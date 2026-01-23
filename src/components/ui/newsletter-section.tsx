@@ -122,7 +122,9 @@ function NewsletterSection({
           className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
         >
           <div className="relative flex-1">
+            <label htmlFor="email-input" className="sr-only">Email address</label>
             <input
+              id="email-input"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -158,12 +160,12 @@ function NewsletterSection({
 
         {/* Status messages */}
         {status === "success" && (
-          <p className="mt-4 text-green-600 dark:text-green-400 text-sm font-medium animate-in fade-in slide-in-from-bottom-2">
+          <p role="status" aria-live="polite" className="mt-4 text-green-600 dark:text-green-400 text-sm font-medium animate-in fade-in slide-in-from-bottom-2">
             Thank you for subscribing! Check your inbox for confirmation.
           </p>
         )}
         {status === "error" && (
-          <p className="mt-4 text-red-600 dark:text-red-400 text-sm font-medium animate-in fade-in slide-in-from-bottom-2">
+          <p role="status" aria-live="polite" className="mt-4 text-red-600 dark:text-red-400 text-sm font-medium animate-in fade-in slide-in-from-bottom-2">
             Something went wrong. Please try again.
           </p>
         )}

@@ -77,6 +77,9 @@ const websiteSchema = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
+    <!-- Preload hero image for LCP optimization -->
+    <link rel="preload" as="image" href="/images/books/marvelous-hindu-deities/hero-shot-1.jpg" fetchpriority="high" />
+
     <title>{title}</title>
 
     <!-- Open Graph -->
@@ -105,12 +108,13 @@ const websiteSchema = {
     <slot name="structured-data" />
   </head>
   <body class="bg-[#f5f5f5]">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     {showAnnouncement && (
       <a href={announcementLink} class="announcement-bar block bg-primary text-light text-center py-2.5 px-4 text-sm font-medium tracking-wide hover:bg-primary-dark transition-colors">
         {announcementText}
       </a>
     )}
-    <main class="max-w-screen-2xl mx-auto bg-white">
+    <main id="main-content" class="max-w-screen-2xl mx-auto bg-white">
       <Header />
       <slot />
       <Footer />

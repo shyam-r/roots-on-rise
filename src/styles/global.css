@@ -88,6 +88,25 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+
+  /* Skip to main content link - WCAG 2.4.1 compliance */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: var(--color-light);
+    padding: 0.5rem 1rem;
+    z-index: 100;
+    transition: top 0.2s;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 0;
+    text-decoration: underline;
+  }
 }
 
 /* Marquee animation */

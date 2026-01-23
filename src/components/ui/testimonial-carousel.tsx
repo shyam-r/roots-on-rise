@@ -170,20 +170,47 @@ function TestimonialCarousel({
     return () => clearInterval(timer)
   }, [autoRotate, autoRotateInterval, isPaused, totalSlides])
 
-  const goToPrev = () => {
+  const goToPrev = React.useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
-  }
+  }, [totalSlides])
 
-  const goToNext = () => {
+  const goToNext = React.useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % totalSlides)
-  }
+  }, [totalSlides])
 
-  const goToSlide = (index: number) => {
+  const goToSlide = React.useCallback((index: number) => {
     setActiveIndex(index)
-  }
+  }, [])
 
   const showArrows = showNavigation === "arrows" || showNavigation === "both"
   const showDots = showNavigation === "dots" || showNavigation === "both"
+
+  // Keyboard navigation handler
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowLeft":
+        case "ArrowUp":
+          event.preventDefault()
+          goToPrev()
+          break
+        case "ArrowRight":
+        case "ArrowDown":
+          event.preventDefault()
+          goToNext()
+          break
+        case "Home":
+          event.preventDefault()
+          goToSlide(0)
+          break
+        case "End":
+          event.preventDefault()
+          goToSlide(totalSlides - 1)
+          break
+      }
+    },
+    [goToPrev, goToNext, goToSlide, totalSlides]
+  )
 
   // For desktop, we show 3 cards starting from activeIndex
   const getVisibleTestimonials = () => {
@@ -200,6 +227,13 @@ function TestimonialCarousel({
       className={cn(testimonialCarouselVariants({ background }), className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Testimonials carousel"
       {...props}
     >
       <div className={CONTAINER_CLASSES[container]}>
