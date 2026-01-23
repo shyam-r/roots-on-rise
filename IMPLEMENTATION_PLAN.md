@@ -371,5 +371,18 @@ import { Button, Badge, DownloadCard } from '@/components/ui';
 3. ~~**Parallel**: Once design tokens stable, start other features~~
 4. ~~**Merge**: Integrate features to master~~
 5. ~~**Deploy**: Push to Cloudflare Pages~~
-6. **Current**: Apply UI component system to remaining pages
-7. **Next**: Add more shadcn components as needed (Input, Dialog, etc.)
+6. ~~**Homepage**: Integrated HeroCarousel, TestimonialCarousel, NewsletterSection, AnnouncementBar~~
+7. **Current**: Code audit in progress (3 parallel agents reviewing components, pages, styles)
+8. **Next**: Apply audit findings, integrate ProductGrid into books page
+9. **Future**: Add more shadcn components as needed (Input, Dialog, etc.)
+
+---
+
+## Active Audit (2026-01-23)
+
+Running parallel code reviews in worktrees:
+- `audit/components` - Reviewing src/components/ui/ for type safety, DRY, accessibility
+- `audit/pages` - Reviewing src/pages/ for data duplication, SEO, consistency
+- `audit/styles` - Reviewing styles for design token usage, Tailwind consistency
+
+Results will be merged and findings addressed.

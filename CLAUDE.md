@@ -416,7 +416,7 @@ All features use requirement codes from `/docs/REQUIREMENTS.md`:
 |------|---------|--------|
 | FR-01 | Announcement Bar | ✅ Done |
 | FR-02 | Hero Section | ✅ Done |
-| FR-03 | Hero Carousel | 🔄 In Progress |
+| FR-03 | Hero Carousel | ✅ Done |
 | FR-04 | Collection Cards | ✅ Done |
 | FR-05 | Scrolling Marquee | ✅ Done |
 | FR-06 | Testimonial Carousel | ✅ Done |
