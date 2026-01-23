@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 .worktrees/
 .worktrees/
+
+# Git worktrees for parallel development
+.worktrees/
