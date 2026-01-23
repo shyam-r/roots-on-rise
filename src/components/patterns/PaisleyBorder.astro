@@ -1,0 +1,148 @@
+---
+/**
+ * PaisleyBorder.astro
+ * ===================
+ * A decorative paisley (buta/boteh) pattern for borders and dividers.
+ *
+ * The paisley motif originated in Persia but became iconic in Indian textiles,
+ * particularly in Kashmir shawls. It represents fertility, life, and eternity.
+ *
+ * Usage:
+ * <PaisleyBorder />
+ * <PaisleyBorder orientation="vertical" color="var(--color-primary-500)" />
+ * <PaisleyBorder repeat={5} spacing="loose" />
+ */
+
+interface Props {
+  /** Orientation of the border pattern */
+  orientation?: 'horizontal' | 'vertical';
+  /** Number of paisley motifs to repeat (default: 3) */
+  repeat?: number;
+  /** Color of the paisley pattern (CSS color value) */
+  color?: string;
+  /** Opacity of the pattern (0-1) */
+  opacity?: number;
+  /** Size of each paisley motif */
+  size?: 'sm' | 'md' | 'lg';
+  /** Spacing between motifs */
+  spacing?: 'tight' | 'normal' | 'loose';
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  orientation = 'horizontal',
+  repeat = 3,
+  color = 'currentColor',
+  opacity = 0.15,
+  size = 'md',
+  spacing = 'normal',
+  class: className = '',
+} = Astro.props;
+
+// Size mapping for SVG viewBox and dimensions
+const sizeMap = {
+  sm: { width: 24, height: 32 },
+  md: { width: 32, height: 44 },
+  lg: { width: 48, height: 64 },
+};
+
+// Spacing mapping for gap between motifs
+const spacingMap = {
+  tight: 'gap-1',
+  normal: 'gap-3',
+  loose: 'gap-6',
+};
+
+const { width, height } = sizeMap[size];
+const gapClass = spacingMap[spacing];
+const isVertical = orientation === 'vertical';
+---
+
+<div
+  class:list={[
+    'paisley-border',
+    'flex items-center justify-center',
+    isVertical ? 'flex-col' : 'flex-row',
+    gapClass,
+    className,
+  ]}
+  role="presentation"
+  aria-hidden="true"
+>
+  {Array.from({ length: repeat }).map((_, index) => (
+    <svg
+      width={isVertical ? height : width}
+      height={isVertical ? width : height}
+      viewBox="0 0 32 44"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={`opacity: ${opacity}; ${isVertical ? 'transform: rotate(90deg);' : ''}`}
+      class={index % 2 === 1 ? 'scale-x-[-1]' : ''}
+    >
+      <!-- Main paisley teardrop shape -->
+      <path
+        d="M16 2C10 2 4 8 4 18C4 28 10 38 16 42C22 38 28 28 28 18C28 8 22 2 16 2Z"
+        stroke={color}
+        stroke-width="1.5"
+        fill="none"
+      />
+
+      <!-- Inner decorative curve -->
+      <path
+        d="M16 6C12 6 8 10 8 18C8 26 12 34 16 38"
+        stroke={color}
+        stroke-width="1"
+        fill="none"
+        stroke-dasharray="2 2"
+      />
+
+      <!-- Central spiral motif -->
+      <path
+        d="M16 12C14 12 12 14 12 17C12 20 14 22 16 22C18 22 20 20 20 17"
+        stroke={color}
+        stroke-width="1"
+        fill="none"
+      />
+
+      <!-- Inner dot pattern -->
+      <circle cx="16" cy="17" r="2" fill={color} />
+      <circle cx="16" cy="26" r="1.5" fill={color} />
+      <circle cx="16" cy="32" r="1" fill={color} />
+
+      <!-- Decorative side curls -->
+      <path
+        d="M10 20C8 18 8 14 10 12"
+        stroke={color}
+        stroke-width="0.75"
+        fill="none"
+      />
+      <path
+        d="M22 20C24 18 24 14 22 12"
+        stroke={color}
+        stroke-width="0.75"
+        fill="none"
+      />
+
+      <!-- Tip curl -->
+      <path
+        d="M16 38C14 40 12 40 10 38"
+        stroke={color}
+        stroke-width="1"
+        fill="none"
+      />
+    </svg>
+  ))}
+</div>
+
+<style>
+  .paisley-border {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .paisley-border svg {
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+  }
+</style>

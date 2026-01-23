@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./design-tokens.css";
 
 /* Custom brand colors using Tailwind 4 @theme */
 @theme {

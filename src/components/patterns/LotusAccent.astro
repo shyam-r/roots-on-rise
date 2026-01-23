@@ -1,0 +1,289 @@
+---
+/**
+ * LotusAccent.astro
+ * =================
+ * A decorative lotus flower element for accents and embellishments.
+ *
+ * The lotus (Padma) is one of the most sacred symbols in Hinduism.
+ * It represents purity, enlightenment, self-regeneration, and rebirth.
+ * Growing from muddy waters, it blooms pristine - symbolizing spiritual awakening.
+ *
+ * Usage:
+ * <LotusAccent />
+ * <LotusAccent variant="half" color="var(--color-primary-500)" />
+ * <LotusAccent variant="outline" size="lg" />
+ */
+
+interface Props {
+  /** Visual variant of the lotus */
+  variant?: 'full' | 'half' | 'outline' | 'minimal';
+  /** Color of the lotus (CSS color value) */
+  color?: string;
+  /** Secondary color for gradients/details */
+  accentColor?: string;
+  /** Opacity of the element (0-1) */
+  opacity?: number;
+  /** Size of the lotus */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /** Rotation angle in degrees */
+  rotation?: number;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  variant = 'full',
+  color = 'currentColor',
+  accentColor,
+  opacity = 0.2,
+  size = 'md',
+  rotation = 0,
+  class: className = '',
+} = Astro.props;
+
+// Size mapping
+const sizeMap = {
+  xs: 24,
+  sm: 32,
+  md: 48,
+  lg: 64,
+  xl: 96,
+};
+
+const dimension = sizeMap[size];
+const accent = accentColor || color;
+---
+
+<div
+  class:list={['lotus-accent', className]}
+  role="presentation"
+  aria-hidden="true"
+  style={`opacity: ${opacity}; transform: rotate(${rotation}deg);`}
+>
+  {variant === 'full' && (
+    <svg
+      width={dimension}
+      height={dimension}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Center petals (front layer) -->
+      <path
+        d="M32 8C32 8 28 18 28 28C28 38 32 48 32 48C32 48 36 38 36 28C36 18 32 8 32 8Z"
+        fill={color}
+        fill-opacity="0.6"
+      />
+
+      <!-- Left front petal -->
+      <path
+        d="M20 16C20 16 18 26 22 34C26 42 32 48 32 48C32 48 24 40 22 30C20 20 20 16 20 16Z"
+        fill={color}
+        fill-opacity="0.5"
+      />
+
+      <!-- Right front petal -->
+      <path
+        d="M44 16C44 16 46 26 42 34C38 42 32 48 32 48C32 48 40 40 42 30C44 20 44 16 44 16Z"
+        fill={color}
+        fill-opacity="0.5"
+      />
+
+      <!-- Left outer petal -->
+      <path
+        d="M10 22C10 22 12 32 18 38C24 44 32 48 32 48C32 48 20 42 14 34C8 26 10 22 10 22Z"
+        fill={color}
+        fill-opacity="0.4"
+      />
+
+      <!-- Right outer petal -->
+      <path
+        d="M54 22C54 22 52 32 46 38C40 44 32 48 32 48C32 48 44 42 50 34C56 26 54 22 54 22Z"
+        fill={color}
+        fill-opacity="0.4"
+      />
+
+      <!-- Far left petal -->
+      <path
+        d="M4 30C4 30 8 38 16 42C24 46 32 48 32 48C32 48 18 44 10 38C2 32 4 30 4 30Z"
+        fill={color}
+        fill-opacity="0.3"
+      />
+
+      <!-- Far right petal -->
+      <path
+        d="M60 30C60 30 56 38 48 42C40 46 32 48 32 48C32 48 46 44 54 38C62 32 60 30 60 30Z"
+        fill={color}
+        fill-opacity="0.3"
+      />
+
+      <!-- Center detail -->
+      <circle cx="32" cy="44" r="4" fill={accent} fill-opacity="0.8" />
+      <circle cx="32" cy="44" r="2" fill={accent} />
+    </svg>
+  )}
+
+  {variant === 'half' && (
+    <svg
+      width={dimension}
+      height={dimension * 0.6}
+      viewBox="0 0 64 38"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Center petal -->
+      <path
+        d="M32 2C32 2 28 12 28 22C28 32 32 36 32 36C32 36 36 32 36 22C36 12 32 2 32 2Z"
+        fill={color}
+        fill-opacity="0.6"
+      />
+
+      <!-- Left petal -->
+      <path
+        d="M20 10C20 10 18 20 22 28C26 36 32 36 32 36C32 36 24 34 22 24C20 14 20 10 20 10Z"
+        fill={color}
+        fill-opacity="0.5"
+      />
+
+      <!-- Right petal -->
+      <path
+        d="M44 10C44 10 46 20 42 28C38 36 32 36 32 36C32 36 40 34 42 24C44 14 44 10 44 10Z"
+        fill={color}
+        fill-opacity="0.5"
+      />
+
+      <!-- Outer left -->
+      <path
+        d="M10 18C10 18 12 28 20 32C28 36 32 36 32 36C32 36 20 34 14 28C8 22 10 18 10 18Z"
+        fill={color}
+        fill-opacity="0.4"
+      />
+
+      <!-- Outer right -->
+      <path
+        d="M54 18C54 18 52 28 44 32C36 36 32 36 32 36C32 36 44 34 50 28C56 22 54 18 54 18Z"
+        fill={color}
+        fill-opacity="0.4"
+      />
+
+      <!-- Base curve -->
+      <path
+        d="M8 36 Q 32 42 56 36"
+        stroke={color}
+        stroke-width="2"
+        fill="none"
+        stroke-opacity="0.5"
+      />
+    </svg>
+  )}
+
+  {variant === 'outline' && (
+    <svg
+      width={dimension}
+      height={dimension}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Center petal outline -->
+      <path
+        d="M32 8C32 8 26 20 26 32C26 44 32 52 32 52C32 52 38 44 38 32C38 20 32 8 32 8Z"
+        stroke={color}
+        stroke-width="1.5"
+        fill="none"
+      />
+
+      <!-- Left petal outline -->
+      <path
+        d="M18 14C18 14 14 28 20 40C26 50 32 52 32 52"
+        stroke={color}
+        stroke-width="1.5"
+        fill="none"
+      />
+
+      <!-- Right petal outline -->
+      <path
+        d="M46 14C46 14 50 28 44 40C38 50 32 52 32 52"
+        stroke={color}
+        stroke-width="1.5"
+        fill="none"
+      />
+
+      <!-- Far left outline -->
+      <path
+        d="M8 24C8 24 8 38 18 46C28 54 32 52 32 52"
+        stroke={color}
+        stroke-width="1"
+        fill="none"
+        stroke-dasharray="3 2"
+      />
+
+      <!-- Far right outline -->
+      <path
+        d="M56 24C56 24 56 38 46 46C36 54 32 52 32 52"
+        stroke={color}
+        stroke-width="1"
+        fill="none"
+        stroke-dasharray="3 2"
+      />
+
+      <!-- Center circle -->
+      <circle cx="32" cy="48" r="3" stroke={color} stroke-width="1.5" fill="none" />
+      <circle cx="32" cy="48" r="1" fill={color} />
+    </svg>
+  )}
+
+  {variant === 'minimal' && (
+    <svg
+      width={dimension}
+      height={dimension * 0.75}
+      viewBox="0 0 64 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Simple three-petal lotus -->
+      <path
+        d="M32 4 Q 38 20 32 44 Q 26 20 32 4"
+        stroke={color}
+        stroke-width="2"
+        fill={color}
+        fill-opacity="0.2"
+      />
+
+      <path
+        d="M16 12 Q 26 28 32 44 Q 18 28 16 12"
+        stroke={color}
+        stroke-width="1.5"
+        fill={color}
+        fill-opacity="0.15"
+      />
+
+      <path
+        d="M48 12 Q 38 28 32 44 Q 46 28 48 12"
+        stroke={color}
+        stroke-width="1.5"
+        fill={color}
+        fill-opacity="0.15"
+      />
+
+      <!-- Simple base -->
+      <ellipse cx="32" cy="44" rx="8" ry="2" fill={color} fill-opacity="0.3" />
+    </svg>
+  )}
+</div>
+
+<style>
+  .lotus-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+    line-height: 0;
+  }
+
+  .lotus-accent svg {
+    display: block;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+  }
+</style>
