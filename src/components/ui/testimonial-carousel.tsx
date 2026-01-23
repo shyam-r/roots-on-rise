@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { CONTAINER_CLASSES } from "@/lib/constants"
 
 const testimonialCarouselVariants = cva(
   "py-16 px-5",
@@ -40,12 +41,7 @@ export interface TestimonialCarouselProps
   container?: "sm" | "md" | "lg" | "xl"
 }
 
-const containerClasses = {
-  sm: "max-w-3xl mx-auto",
-  md: "max-w-4xl mx-auto",
-  lg: "max-w-5xl mx-auto",
-  xl: "max-w-6xl mx-auto",
-}
+// Use shared container classes from constants
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -206,7 +202,7 @@ function TestimonialCarousel({
       onMouseLeave={() => setIsPaused(false)}
       {...props}
     >
-      <div className={containerClasses[container]}>
+      <div className={CONTAINER_CLASSES[container]}>
         {/* Carousel container */}
         <div className="relative">
           {/* Navigation arrows - positioned outside on larger screens */}

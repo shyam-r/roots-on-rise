@@ -137,7 +137,7 @@ function BookCard({
           <a
             href={`https://www.amazon.com/dp/${amazonAsin}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             <ShoppingCart className="w-5 h-5" />
             Buy on Amazon

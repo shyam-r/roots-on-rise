@@ -13,7 +13,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-white hover:bg-secondary-dark focus-visible:ring-secondary",
         amazon:
-          "bg-[#FF9900] text-dark hover:bg-[#e68a00] focus-visible:ring-[#FF9900] font-bold",
+          "bg-amazon text-dark hover:bg-amazon-dark focus-visible:ring-amazon font-bold",
         outline:
           "border-2 border-dark bg-transparent text-dark hover:bg-dark hover:text-light",
         outlineLight:

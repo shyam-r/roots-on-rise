@@ -79,11 +79,11 @@ const selectorId = `format-selector-${Math.random().toString(36).substring(2, 9)
 
 <style>
   .book-format-selector {
-    --selector-primary: var(--color-primary, #c47834);
-    --selector-bg: var(--color-light, #fff);
-    --selector-border: #e5e7eb;
-    --selector-text: var(--color-dark, #2d2d2d);
-    --selector-muted: rgba(45, 45, 45, 0.6);
+    --selector-primary: var(--color-primary);
+    --selector-bg: var(--color-light);
+    --selector-border: var(--color-border);
+    --selector-text: var(--color-dark);
+    --selector-muted: color-mix(in srgb, var(--color-dark) 60%, transparent);
   }
 
   /* Tab Container */
@@ -200,6 +200,18 @@ const selectorId = `format-selector-${Math.random().toString(36).substring(2, 9)
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Accessibility: Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .format-panel {
+      animation: none;
+    }
+    .tab-content,
+    .format-name,
+    .format-price {
+      transition: none;
     }
   }
 

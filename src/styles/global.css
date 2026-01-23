@@ -8,8 +8,15 @@
   --color-primary: #c47834;
   --color-primary-dark: #a85d1c;
   --color-secondary: #d4a574;
+  --color-secondary-dark: #b8925f;
   --color-tertiary: #fdf5e6;
+  --color-tertiary-50: #fffdf9;
   --color-accent: #8b4513;
+  --color-border: #e5e7eb;
+
+  /* Amazon brand colors */
+  --color-amazon: #FF9900;
+  --color-amazon-dark: #e68a00;
 
   --font-sans: "Inter", system-ui, sans-serif;
   --font-title: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -99,6 +106,13 @@
 
 .pause {
   animation-play-state: paused;
+}
+
+/* Accessibility: Respect user motion preferences for marquee */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
 }
 
 /* Smooth scrolling */

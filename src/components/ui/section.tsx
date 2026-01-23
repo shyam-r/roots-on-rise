@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { CONTAINER_CLASSES, type ContainerSize } from "@/lib/constants"
 
 const sectionVariants = cva(
   "py-16 px-5",
@@ -36,13 +37,7 @@ export interface SectionProps
   container?: "sm" | "md" | "lg" | "xl" | "full"
 }
 
-const containerClasses = {
-  sm: "max-w-3xl mx-auto",
-  md: "max-w-4xl mx-auto",
-  lg: "max-w-5xl mx-auto",
-  xl: "max-w-6xl mx-auto",
-  full: "w-full",
-}
+// Use shared container classes from constants
 
 function Section({
   className,
@@ -58,7 +53,7 @@ function Section({
       className={cn(sectionVariants({ background, padding }), className)}
       {...props}
     >
-      <div className={containerClasses[container]}>
+      <div className={CONTAINER_CLASSES[container]}>
         {children}
       </div>
     </Component>
