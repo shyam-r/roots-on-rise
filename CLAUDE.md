@@ -184,17 +184,90 @@ npm run build  # Outputs to dist/
 ## Git Workflow
 
 ### Parallel Development (Worktrees)
-Active feature branches for concurrent work:
-- `feature/design-system` - Foundation tokens and documentation
-- `feature/hero-section` - Homepage hero improvements
-- `feature/navigation` - Header/nav enhancements
-- `feature/product-cards` - Product display components
+
+**MANDATORY**: All parallel agents that write code MUST use git worktrees.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  WORKTREE REQUIREMENT                                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Before spawning parallel write agents:                         │
+│  1. Invoke `using-git-worktrees` skill                         │
+│  2. Each agent gets its own worktree + branch                  │
+│  3. After completion, invoke `finishing-a-development-branch`  │
+│                                                                 │
+│  This is NOT optional. Parallel writes without worktrees       │
+│  cause merge conflicts and lost work.                          │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### Commit Style
 ```
 <type>: <short description>
 
 Types: feat, fix, style, refactor, docs, chore
+```
+
+---
+
+## Session Continuity Protocol
+
+**Problem**: Sessions stop mid-work, leaving uncommitted changes and no context for the next session.
+
+**Solution**: Follow this protocol to ensure work persists across sessions.
+
+### During Work
+
+1. **Commit early, commit often** - Don't batch large changes
+   - One logical change = one commit
+   - If you've made progress, commit it
+
+2. **Write Serena memories** for non-trivial context
+   ```
+   mcp__plugin_serena_serena__write_memory({
+     memory_file_name: "current-work-state.md",
+     content: "## Current State\n- Working on X\n- Next step: Y"
+   })
+   ```
+
+3. **Update IMPLEMENTATION_PLAN.md** when tasks complete
+   - Mark checkboxes as done
+   - Update status in requirements table
+
+### End of Session Checklist
+
+Before ending ANY session, complete this checklist:
+
+```
+□ All working code committed (even if incomplete, commit to a WIP branch)
+□ Push commits to origin
+□ Update IMPLEMENTATION_PLAN.md with current status
+□ Write Serena memory if context is complex
+□ Note any blockers or next steps in commit message
+```
+
+### Session Handoff Format
+
+When work is incomplete, end your response with:
+
+```markdown
+## Session Handoff
+
+**Completed this session:**
+- [x] Task 1
+- [x] Task 2
+
+**In progress (uncommitted):**
+- [ ] Task 3 (file: path/to/file.tsx, status: 80% done)
+
+**Next session should:**
+1. Complete Task 3
+2. Start Task 4
+
+**Blockers:**
+- None / [describe blocker]
 ```
 
 ---
@@ -275,10 +348,20 @@ Task({ subagent_type: "general-purpose", prompt: "Frontend Dev: [task]" })
 Task({ subagent_type: "general-purpose", prompt: "SEO Specialist: [task]" })
 ```
 
-### Collision Avoidance
-1. **File Partitioning** - Assign clear file ownership to each agent
-2. **Worktrees** - Use git worktrees for major conflicting changes
-3. **Sequential Fallback** - If risk of conflict, run sequentially
+### Collision Avoidance (MANDATORY)
+
+**All parallel agents that write files MUST use worktrees:**
+
+1. **Invoke `using-git-worktrees` skill** before spawning parallel write agents
+2. **Each agent gets isolated worktree** - no shared state conflicts
+3. **Invoke `finishing-a-development-branch` skill** after agents complete
+4. **Merge conflicts resolved during integration**, not during active work
+
+**Only skip worktrees for:**
+- Read-only research tasks (grep, glob, exploration)
+- Single-agent work (no parallelism)
+
+**Sequential Fallback**: If worktrees aren't feasible, run agents sequentially
 
 ---
 
@@ -314,6 +397,37 @@ Secondary:
 - hindu gods book for children
 - sanskrit books for toddlers
 - indian culture books for kids
+
+---
+
+## Context Management (Prevent Session Exhaustion)
+
+Sessions have been stopping mid-work due to context exhaustion. Follow these rules:
+
+### DO
+- **Use Serena symbol tools** (`find_symbol`, `get_symbols_overview`) instead of reading whole files
+- **Read specific line ranges** when you only need part of a file
+- **Write Serena memories** for context that needs to persist (don't re-read docs every session)
+- **Use targeted grep/glob** instead of exploratory whole-file reads
+
+### DON'T
+- **Don't read Playwright screenshots repeatedly** - they're 1-3MB each and consume massive context
+- **Don't read planning docs multiple times** - read once, extract what you need, move on
+- **Don't spawn many parallel agents** without considering their combined output size
+- **Don't read both IMPLEMENTATION_PLAN.md files** - use the root one only (docs/ version is stale)
+
+### Planning Document Hierarchy
+```
+CLAUDE.md          → Project rules (read at session start)
+IMPLEMENTATION_PLAN.md → Current task state (read when needed)
+docs/REQUIREMENTS.md   → Feature specs (reference only)
+docs/IMPLEMENTATION_PLAN.md → DEPRECATED, ignore
+```
+
+### Context Budget Awareness
+- Treat context like a budget
+- Each file read, each agent response, each screenshot = cost
+- Prefer surgical, targeted operations over broad exploration
 
 ---
 
