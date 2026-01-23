@@ -1,36 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import ProductCard from '../components/ProductCard.astro';
 import Testimonial from '../components/Testimonial.astro';
+import { Section, SectionHeader, Button, Badge, ComingSoonCard, Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
 
 const featuredBook = {
   title: "The Marvelous Hindu Deities",
   description: "A colorful journey through Hindu mythology for young minds. Introduce your children to the fascinating world of Hindu deities.",
-  image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/1_0f06e5a9-3c81-467d-8b03-a81f2cbab2ac.png?v=1699315224",
+  image: "/images/books/marvelous-hindu-deities/Hero_shot_1.jpg",
   amazonUrl: "https://www.amazon.com/dp/8195870724",
-  price: "$14.95"
+  price: "$14.99"
 };
 
 const bookFormats = [
-  {
-    title: "Board Book",
-    description: "Perfect for little hands ages 0-5",
-    asin: "8195870724",
-    price: "$14.95"
-  },
-  {
-    title: "Paperback",
-    description: "Full-size edition for ages 3+",
-    asin: "B0CN4NXVVN",
-    price: "$12.95"
-  },
-  {
-    title: "Kindle E-Book",
-    description: "Read anywhere, anytime",
-    asin: "B0CLKYY3QC",
-    price: "$4.99"
-  }
+  { title: "Board Book", description: "Perfect for little hands ages 0-5", asin: "8195870724", price: "$14.95" },
+  { title: "Paperback", description: "Full-size edition for ages 3+", asin: "B0CN4NXVVN", price: "$12.95" },
+  { title: "Kindle E-Book", description: "Read anywhere, anytime", asin: "B0CLKYY3QC", price: "$4.99" }
 ];
 
 const testimonials = [
@@ -58,15 +43,13 @@ const comingProducts = [
   {
     title: "Wall Art Prints",
     description: "Beautiful Hindu deity art prints for your home",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
-    comingSoon: true,
+    image: "/images/books/marvelous-hindu-deities/promo_shot_3.png",
     href: "/wall-art"
   },
   {
     title: "Games & Toys",
     description: "Educational games celebrating Hindu culture",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
-    comingSoon: true,
+    image: "/images/books/marvelous-hindu-deities/promo_shot_1.png",
     href: "/games-toys"
   }
 ];
@@ -75,10 +58,16 @@ const availableProducts = [
   {
     title: "Digital Downloads",
     description: "Coloring sheets, mandalas & educational activities",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/2.png?v=1701311580",
+    image: "/images/products/digital-downloads/coloring-sheets.png",
     href: "/digital-downloads",
-    badge: "New!"
+    badge: "Free!"
   }
+];
+
+const features = [
+  "10 beautifully illustrated Hindu deities",
+  "Age-appropriate stories and descriptions",
+  "Perfect for bedtime stories"
 ];
 ---
 
@@ -98,167 +87,164 @@ const availableProducts = [
   />
 
   <!-- Featured Book Section -->
-  <section class="py-16 px-5 bg-light">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="font-title font-bold text-3xl md:text-4xl text-dark mb-4">
-          <span class="text-primary">bestselling</span> book
-        </h2>
-        <p class="text-dark/60 max-w-xl mx-auto">
-          Join thousands of families who have made "The Marvelous Hindu Deities" part of their bedtime story collection.
-        </p>
+  <Section background="light">
+    <SectionHeader
+      title="bestselling book"
+      highlight="bestselling"
+      description={'Join thousands of families who have made "The Marvelous Hindu Deities" part of their bedtime story collection.'}
+    />
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <img
+          src={featuredBook.image}
+          alt={featuredBook.title}
+          class="w-full rounded-lg shadow-xl"
+        />
+        <Badge className="absolute -bottom-4 -right-4 px-4 py-2 text-base">
+          #1 Bestseller
+        </Badge>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="relative">
-          <img
-            src={featuredBook.image}
-            alt={featuredBook.title}
-            class="w-full rounded-lg shadow-xl"
-          />
-          <div class="absolute -bottom-4 -right-4 bg-primary text-white px-4 py-2 rounded-lg font-bold">
-            #1 Bestseller
-          </div>
+      <div>
+        <h3 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+          {featuredBook.title}
+        </h3>
+        <p class="text-dark/70 text-lg mb-6">
+          {featuredBook.description}
+        </p>
+
+        <div class="space-y-4 mb-8">
+          {features.map((feature) => (
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-dark/80">{feature}</span>
+            </div>
+          ))}
         </div>
 
-        <div>
-          <h3 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
-            {featuredBook.title}
-          </h3>
-          <p class="text-dark/70 text-lg mb-6">
-            {featuredBook.description}
-          </p>
-
-          <div class="space-y-4 mb-8">
-            <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-dark/80">10 beautifully illustrated Hindu deities</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-dark/80">Age-appropriate stories and descriptions</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-dark/80">Perfect for bedtime stories</span>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            {bookFormats.map((format) => (
+        <div class="flex flex-wrap gap-3">
+          {bookFormats.map((format) => (
+            <Button variant="amazon" asChild>
               <a
                 href={`https://www.amazon.com/dp/${format.asin}`}
                 target="_blank"
                 rel="noopener"
-                class="amazon-btn"
               >
                 {format.title} - {format.price}
               </a>
-            ))}
-          </div>
+            </Button>
+          ))}
         </div>
       </div>
     </div>
-  </section>
+  </Section>
 
   <!-- Mission Highlight -->
-  <section class="py-16 px-5 bg-tertiary">
-    <div class="max-w-4xl mx-auto text-center">
+  <Section background="tertiary" container="md">
+    <div class="text-center">
       <h2 class="font-title font-bold text-3xl md:text-4xl text-dark mb-6">
         <span class="text-primary">our</span> mission
       </h2>
       <p class="text-dark/80 text-lg md:text-xl leading-relaxed mb-8">
         At Roots On Rise, we spark curiosity and cultivate a deep connection to culture, heritage, and history through engaging, immersive experiences that help people of all ages explore their roots and foster a sense of identity and belonging.
       </p>
-      <a href="/about" class="cta bg-transparent border-dark text-dark hover:bg-dark hover:text-light">
-        Learn About Us
-      </a>
+      <Button variant="outline" asChild>
+        <a href="/about">Learn About Us</a>
+      </Button>
     </div>
-  </section>
+  </Section>
 
   <!-- Testimonials -->
-  <section class="py-16 px-5">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="font-title font-bold text-3xl md:text-4xl text-dark mb-4">
-          <span class="text-primary">loved</span> by families
-        </h2>
-        <p class="text-dark/60 max-w-xl mx-auto">
-          See what parents are saying about our books.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {testimonials.map((testimonial) => (
-          <Testimonial {...testimonial} />
-        ))}
-      </div>
+  <Section>
+    <SectionHeader
+      title="loved by families"
+      highlight="loved"
+      description="See what parents are saying about our books."
+    />
+    <div class="grid md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <Testimonial {...testimonial} />
+      ))}
     </div>
-  </section>
+  </Section>
+
+  <!-- Available Now -->
+  <Section background="light">
+    <SectionHeader
+      title="available now"
+      highlight="available"
+      description="Check out our free digital downloads!"
+    />
+    <div class="grid md:grid-cols-3 gap-8">
+      {availableProducts.map((product) => (
+        <a href={product.href} class="block group">
+          <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+            <div class="aspect-square relative overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {product.badge && (
+                <Badge variant="free" className="absolute top-3 right-3">
+                  {product.badge}
+                </Badge>
+              )}
+            </div>
+            <CardHeader>
+              <CardTitle>{product.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <p class="text-dark/60 text-sm">{product.description}</p>
+            </CardContent>
+          </Card>
+        </a>
+      ))}
+    </div>
+  </Section>
 
   <!-- Coming Soon Products -->
-  <section class="py-16 px-5 bg-light">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="font-title font-bold text-3xl md:text-4xl text-dark mb-4">
-          <span class="text-primary">coming</span> soon
-        </h2>
-        <p class="text-dark/60 max-w-xl mx-auto">
-          We're expanding our collection with more products celebrating Hindu heritage.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {comingProducts.map((product) => (
-          <a href={product.href} class="block group">
-            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div class="aspect-square relative overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-70"
-                />
-                <div class="coming-soon-overlay">
-                  <span class="coming-soon-badge">Coming Soon</span>
-                </div>
-              </div>
-              <div class="p-5">
-                <h3 class="font-title font-bold text-lg text-dark mb-1">{product.title}</h3>
-                <p class="text-dark/60 text-sm">{product.description}</p>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+  <Section>
+    <SectionHeader
+      title="coming soon"
+      highlight="coming"
+      description="We're expanding our collection with more products celebrating Hindu heritage."
+    />
+    <div class="grid md:grid-cols-2 gap-8">
+      {comingProducts.map((product) => (
+        <a href={product.href} class="block">
+          <ComingSoonCard
+            title={product.title}
+            description={product.description}
+            image={product.image}
+          />
+        </a>
+      ))}
     </div>
-  </section>
+  </Section>
 
   <!-- Final CTA -->
-  <section class="py-16 px-5 bg-dark text-light text-center">
-    <h2 class="font-title font-bold text-2xl md:text-3xl mb-4">
-      Start your <span class="text-primary">cultural journey</span> today
-    </h2>
-    <p class="text-light/70 max-w-xl mx-auto mb-8">
-      Give your children the gift of understanding their rich heritage through beautifully illustrated stories.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a
-        href="https://www.amazon.com/dp/8195870724"
-        target="_blank"
-        rel="noopener"
-        class="amazon-btn text-lg px-8 py-3"
-      >
-        Buy on Amazon
-      </a>
-      <a href="/our-story" class="cta bg-transparent border-light text-light hover:bg-light hover:text-dark">
-        Read Our Story
-      </a>
+  <Section background="dark" container="md">
+    <div class="text-center">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
+        Start your <span class="text-primary">cultural journey</span> today
+      </h2>
+      <p class="text-light/70 max-w-xl mx-auto mb-8">
+        Give your children the gift of understanding their rich heritage through beautifully illustrated stories.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button variant="amazon" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/8195870724" target="_blank" rel="noopener">
+            Buy on Amazon
+          </a>
+        </Button>
+        <Button variant="outlineLight" size="lg" asChild>
+          <a href="/our-story">Read Our Story</a>
+        </Button>
+      </div>
     </div>
-  </section>
+  </Section>
 </Layout>

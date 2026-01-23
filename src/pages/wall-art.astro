@@ -1,31 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
+import { Section, SectionHeader, ComingSoonCard, Badge, Button } from '@/components/ui';
 
 const comingProducts = [
   {
     title: "Ganesha Art Print",
     description: "Beautiful illustration of Lord Ganesha, the remover of obstacles",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
-    comingSoon: true
+    image: "/images/books/marvelous-hindu-deities/promo_shot_3.png"
   },
   {
     title: "Lakshmi Art Print",
     description: "Vibrant depiction of Goddess Lakshmi, the goddess of wealth and prosperity",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-5.png?v=1735504487",
-    comingSoon: true
+    image: "/images/books/marvelous-hindu-deities/promo_shot_4.png"
   },
   {
     title: "Shiva Art Print",
     description: "Majestic illustration of Lord Shiva, the destroyer and transformer",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
-    comingSoon: true
+    image: "/images/books/marvelous-hindu-deities/promo_shot_1.png"
   },
   {
     title: "Hindu Deities Collection",
     description: "A collection of all ten Hindu deities from our bestselling book",
-    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487",
-    comingSoon: true
+    image: "/images/books/marvelous-hindu-deities/collage_interior_pages.png"
   },
 ];
 ---
@@ -35,9 +31,9 @@ const comingProducts = [
   description="Coming soon: Beautiful Hindu mythology art prints for your home. Subscribe to be notified when available."
 >
   <!-- Hero -->
-  <section class="bg-tertiary py-16 px-5">
-    <div class="max-w-4xl mx-auto text-center">
-      <span class="coming-soon-badge mb-4 inline-block">Coming Soon</span>
+  <Section background="tertiary" container="md">
+    <div class="text-center">
+      <Badge variant="comingSoon" className="mb-4">Coming Soon</Badge>
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
         <span class="text-primary">wall</span> art
       </h1>
@@ -45,44 +41,50 @@ const comingProducts = [
         Bring the beauty of Hindu mythology into your home with our stunning art prints. Each piece is inspired by illustrations from our beloved children's books.
       </p>
     </div>
-  </section>
+  </Section>
 
   <!-- Preview Grid -->
-  <section class="py-16 px-5">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="font-title font-bold text-2xl text-dark mb-8 text-center">
-        <span class="text-primary">preview</span> collection
-      </h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {comingProducts.map((product) => (
-          <ProductCard {...product} />
-        ))}
-      </div>
+  <Section container="lg">
+    <SectionHeader
+      title="preview collection"
+      highlight="preview"
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {comingProducts.map((product) => (
+        <ComingSoonCard
+          title={product.title}
+          description={product.description}
+          image={product.image}
+        />
+      ))}
     </div>
-  </section>
+  </Section>
 
   <!-- Notify Section -->
-  <section class="py-16 px-5 bg-dark text-light text-center">
-    <h2 class="font-title font-bold text-2xl md:text-3xl mb-4">
-      Be the <span class="text-primary">first to know</span>
-    </h2>
-    <p class="text-light/70 max-w-xl mx-auto mb-8">
-      We're working hard to bring you beautiful art prints. Follow us on social media to be notified when our wall art collection launches.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a
-        href="https://www.instagram.com/rootsonrise"
-        target="_blank"
-        rel="noopener"
-        class="cta bg-transparent border-light text-light hover:bg-light hover:text-dark flex items-center gap-2"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Follow on Instagram
-      </a>
-      <a href="/books" class="cta">
-        Shop Books Instead
-      </a>
+  <Section background="dark" container="md">
+    <div class="text-center">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
+        Be the <span class="text-primary">first to know</span>
+      </h2>
+      <p class="text-light/70 max-w-xl mx-auto mb-8">
+        We're working hard to bring you beautiful art prints. Follow us on social media to be notified when our wall art collection launches.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button variant="outlineLight" asChild>
+          <a
+            href="https://www.instagram.com/rootsonrise"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Follow on Instagram
+          </a>
+        </Button>
+        <Button asChild>
+          <a href="/books">Shop Books Instead</a>
+        </Button>
+      </div>
     </div>
-  </section>
+  </Section>
 </Layout>

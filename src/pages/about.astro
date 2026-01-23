@@ -1,5 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Section, SectionHeader, FeatureCard, Button } from '@/components/ui';
+import { Book, Image, Gamepad2 } from 'lucide-react';
+
+const offerings = [
+  {
+    icon: "📚",
+    title: "Books",
+    description: "Beautifully illustrated children's books that introduce Hindu mythology in an engaging way."
+  },
+  {
+    icon: "🎨",
+    title: "Art & Stationery",
+    description: "Art supplies and stationery that celebrate cultural heritage. (Coming Soon)"
+  },
+  {
+    icon: "🎮",
+    title: "Games & Toys",
+    description: "Educational games and toys that make learning about culture fun. (Coming Soon)"
+  }
+];
 ---
 
 <Layout
@@ -7,8 +27,8 @@ import Layout from '../layouts/Layout.astro';
   description="Roots On Rise - A platform to unveil cultural treasures through playful learning and personal discovery."
 >
   <!-- Hero -->
-  <section class="bg-tertiary py-16 px-5">
-    <div class="max-w-4xl mx-auto text-center">
+  <Section background="tertiary" container="md">
+    <div class="text-center">
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
         <span class="text-primary">about</span> us
       </h1>
@@ -16,81 +36,50 @@ import Layout from '../layouts/Layout.astro';
         We are a platform to unveil cultural treasures through playful learning and personal discovery.
       </p>
     </div>
-  </section>
+  </Section>
 
   <!-- Mission Section -->
-  <section class="py-16 px-5">
-    <div class="max-w-4xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="font-title font-bold text-3xl text-dark mb-6">
-            <span class="text-primary">our</span> mission
-          </h2>
-          <p class="text-dark/80 text-lg leading-relaxed">
-            At Roots On Rise, our mission is to spark curiosity & cultivate a deep connection to culture, heritage, and history by building engaging and immersive experiences to enable people of all ages to explore their roots, foster a sense of identity and belonging.
-          </p>
-        </div>
-        <div class="bg-tertiary aspect-square rounded-lg overflow-hidden">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487"
-            alt="Hindu Deities Illustration"
-            class="w-full h-full object-cover"
-          />
-        </div>
+  <Section>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-title font-bold text-3xl text-dark mb-6">
+          <span class="text-primary">our</span> mission
+        </h2>
+        <p class="text-dark/80 text-lg leading-relaxed">
+          At Roots On Rise, our mission is to spark curiosity & cultivate a deep connection to culture, heritage, and history by building engaging and immersive experiences to enable people of all ages to explore their roots, foster a sense of identity and belonging.
+        </p>
+      </div>
+      <div class="bg-tertiary aspect-square rounded-lg overflow-hidden">
+        <img
+          src="/images/books/marvelous-hindu-deities/collage_interior_pages.png"
+          alt="Hindu Deities Illustration"
+          class="w-full h-full object-cover"
+        />
       </div>
     </div>
-  </section>
+  </Section>
 
   <!-- What We Do -->
-  <section class="py-16 px-5 bg-light">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-title font-bold text-3xl text-dark mb-12 text-center">
-        <span class="text-primary">what</span> we do
-      </h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
-          <h3 class="font-title font-bold text-xl text-dark mb-2">Books</h3>
-          <p class="text-dark/60">
-            Beautifully illustrated children's books that introduce Hindu mythology in an engaging way.
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 class="font-title font-bold text-xl text-dark mb-2">Art & Stationery</h3>
-          <p class="text-dark/60">
-            Art supplies and stationery that celebrate cultural heritage. <em>(Coming Soon)</em>
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h3 class="font-title font-bold text-xl text-dark mb-2">Games & Toys</h3>
-          <p class="text-dark/60">
-            Educational games and toys that make learning about culture fun. <em>(Coming Soon)</em>
-          </p>
-        </div>
-      </div>
+  <Section background="light">
+    <SectionHeader
+      title="what we do"
+      highlight="what"
+    />
+    <div class="grid md:grid-cols-3 gap-8">
+      {offerings.map((item) => (
+        <FeatureCard
+          icon={item.icon}
+          title={item.title}
+          description={item.description}
+          variant="centered"
+        />
+      ))}
     </div>
-  </section>
+  </Section>
 
   <!-- Commitment -->
-  <section class="py-16 px-5">
-    <div class="max-w-3xl mx-auto text-center">
+  <Section container="md">
+    <div class="text-center">
       <h2 class="font-title font-bold text-3xl text-dark mb-6">
         <span class="text-primary">our</span> commitment
       </h2>
@@ -98,23 +87,25 @@ import Layout from '../layouts/Layout.astro';
         We are committed to creating products and experiences that help people thrive, connect their past to a vibrant present and propel them towards a harmonious future while remaining rooted in their rich culture, heritage & history.
       </p>
     </div>
-  </section>
+  </Section>
 
   <!-- CTA -->
-  <section class="py-16 px-5 bg-dark text-light text-center">
-    <h2 class="font-title font-bold text-2xl md:text-3xl mb-4">
-      Start your <span class="text-primary">cultural journey</span> today
-    </h2>
-    <p class="text-light/70 max-w-xl mx-auto mb-8">
-      Explore our collection of books and products designed to celebrate Hindu heritage.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="/books" class="cta">
-        Explore Books
-      </a>
-      <a href="/our-story" class="cta bg-transparent border-light text-light hover:bg-light hover:text-dark">
-        Read Our Story
-      </a>
+  <Section background="dark" container="md">
+    <div class="text-center">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
+        Start your <span class="text-primary">cultural journey</span> today
+      </h2>
+      <p class="text-light/70 max-w-xl mx-auto mb-8">
+        Explore our collection of books and products designed to celebrate Hindu heritage.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button asChild>
+          <a href="/books">Explore Books</a>
+        </Button>
+        <Button variant="outlineLight" asChild>
+          <a href="/our-story">Read Our Story</a>
+        </Button>
+      </div>
     </div>
-  </section>
+  </Section>
 </Layout>

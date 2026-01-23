@@ -17,3 +17,5 @@ export { SectionHeader, type SectionHeaderProps } from "./section-header"
 // Specialized Components
 export { DownloadCard, type DownloadCardProps } from "./download-card"
 export { FeatureCard, type FeatureCardProps } from "./feature-card"
+export { ComingSoonCard, type ComingSoonCardProps } from "./coming-soon-card"
+export { BookCard, type BookCardProps } from "./book-card"
