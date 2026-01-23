@@ -1,0 +1,264 @@
+---
+/**
+ * BookFormatSelector - A tab-style format picker for book products
+ *
+ * Displays available book formats (Board Book, Paperback, Kindle, etc.)
+ * with their prices and direct Amazon purchase links.
+ *
+ * Uses CSS-only interactivity via radio inputs for no-JS tab switching.
+ */
+
+interface Format {
+  name: string;
+  price: string;
+  asin: string;
+  description?: string;
+}
+
+interface Props {
+  formats: Format[];
+  productTitle?: string;
+  class?: string;
+}
+
+const { formats, productTitle = "Book", class: className = "" } = Astro.props;
+
+// Generate unique ID for this selector instance
+const selectorId = `format-selector-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class:list={["book-format-selector", className]} role="group" aria-label={`${productTitle} format options`}>
+  <!-- Format Tabs -->
+  <div class="format-tabs" role="tablist">
+    {formats.map((format, index) => (
+      <label class="format-tab" role="tab">
+        <input
+          type="radio"
+          name={selectorId}
+          value={format.asin}
+          checked={index === 0}
+          class="sr-only"
+          aria-label={`${format.name} - ${format.price}`}
+        />
+        <span class="tab-content">
+          <span class="format-name">{format.name}</span>
+          <span class="format-price">{format.price}</span>
+        </span>
+      </label>
+    ))}
+  </div>
+
+  <!-- Format Details Panel -->
+  <div class="format-details">
+    {formats.map((format, index) => (
+      <div
+        class:list={["format-panel", { "is-default": index === 0 }]}
+        data-format={format.asin}
+        role="tabpanel"
+      >
+        {format.description && (
+          <p class="format-description">{format.description}</p>
+        )}
+
+        <a
+          href={`https://www.amazon.com/dp/${format.asin}?tag=rootsonrise-20`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="amazon-btn buy-button"
+          aria-label={`Buy ${productTitle} ${format.name} on Amazon for ${format.price}`}
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.502.14.112.188.054.39-.14.553-.04.04-.09.08-.15.13l-.19.14c-1.77 1.37-3.715 2.37-5.83 3.005-2.116.634-4.19.95-6.224.95-2.22 0-4.39-.37-6.5-1.11-2.11-.74-4.05-1.76-5.82-3.06-.106-.073-.14-.146-.13-.235.013-.09.073-.14.192-.173z"/>
+          </svg>
+          Buy {format.name} on Amazon
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .book-format-selector {
+    --selector-primary: var(--color-primary, #c47834);
+    --selector-bg: var(--color-light, #fff);
+    --selector-border: #e5e7eb;
+    --selector-text: var(--color-dark, #2d2d2d);
+    --selector-muted: rgba(45, 45, 45, 0.6);
+  }
+
+  /* Tab Container */
+  .format-tabs {
+    display: flex;
+    gap: 0.25rem;
+    background: var(--selector-border);
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Individual Tab */
+  .format-tab {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.625rem;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+
+  .format-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--selector-muted);
+    transition: color 0.2s ease;
+  }
+
+  .format-price {
+    font-size: 0.75rem;
+    color: var(--selector-muted);
+    margin-top: 0.125rem;
+    transition: color 0.2s ease;
+  }
+
+  /* Tab States */
+  .format-tab:hover .tab-content {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .format-tab:focus-within .tab-content {
+    outline: 2px solid var(--selector-primary);
+    outline-offset: 2px;
+  }
+
+  /* Selected Tab */
+  .format-tab input:checked + .tab-content {
+    background: var(--selector-bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .format-tab input:checked + .tab-content .format-name {
+    color: var(--selector-primary);
+  }
+
+  .format-tab input:checked + .tab-content .format-price {
+    color: var(--selector-text);
+    font-weight: 600;
+  }
+
+  /* Details Panel Container */
+  .format-details {
+    position: relative;
+    min-height: 5rem;
+  }
+
+  /* Individual Panel */
+  .format-panel {
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .format-panel.is-default {
+    display: block;
+  }
+
+  .format-description {
+    font-size: 0.875rem;
+    color: var(--selector-muted);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  /* Buy Button */
+  .buy-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.9375rem;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .buy-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(240, 193, 75, 0.4);
+  }
+
+  .buy-button:active {
+    transform: translateY(0);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .format-tabs {
+      flex-direction: column;
+    }
+
+    .tab-content {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.625rem 1rem;
+    }
+
+    .format-price {
+      margin-top: 0;
+      margin-left: 0.5rem;
+    }
+  }
+
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
+
+<script>
+  // Progressive enhancement for tab switching
+  document.querySelectorAll('.book-format-selector').forEach((selector) => {
+    const tabs = selector.querySelectorAll('input[type="radio"]');
+    const panels = selector.querySelectorAll('.format-panel');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        const asin = target.value;
+
+        // Hide all panels
+        panels.forEach((panel) => {
+          panel.classList.remove('is-default');
+          (panel as HTMLElement).style.display = 'none';
+        });
+
+        // Show selected panel
+        const activePanel = selector.querySelector(`[data-format="${asin}"]`);
+        if (activePanel) {
+          activePanel.classList.add('is-default');
+          (activePanel as HTMLElement).style.display = 'block';
+        }
+      });
+    });
+  });
+</script>

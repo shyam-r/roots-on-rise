@@ -10,6 +10,8 @@ interface Props {
   formats?: string[];
   comingSoon?: boolean;
   href?: string;
+  rating?: number;
+  reviewCount?: number;
 }
 
 const {
@@ -22,76 +24,194 @@ const {
   amazonAsin,
   formats = [],
   comingSoon = false,
-  href
+  href,
+  rating = 0,
+  reviewCount = 0,
 } = Astro.props;
 
 const isOnSale = salePrice && regularPrice && salePrice !== regularPrice;
-const amazonUrl = amazonAsin ? `https://www.amazon.com/dp/${amazonAsin}` : null;
+const amazonUrl = amazonAsin ? `https://www.amazon.com/dp/${amazonAsin}?tag=rootsonrise-20` : null;
+const linkHref = comingSoon ? undefined : (href || amazonUrl || '#');
+const displayPrice = salePrice || regularPrice;
+
+// Generate star rating array
+const fullStars = Math.floor(rating);
+const hasHalfStar = rating % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 ---
 
-<article class="bg-tertiary aspect-square relative group overflow-hidden">
+<article class="product-card group relative flex flex-col bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
   <a
-    href={comingSoon ? undefined : (href || amazonUrl || '#')}
+    href={linkHref}
     class:list={[
-      "block absolute w-full h-full top-0 left-0",
-      { "cursor-not-allowed": comingSoon }
+      "flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+      { "cursor-not-allowed pointer-events-none": comingSoon }
     ]}
     target={amazonUrl && !href ? "_blank" : undefined}
-    rel={amazonUrl && !href ? "noopener" : undefined}
+    rel={amazonUrl && !href ? "noopener noreferrer" : undefined}
+    aria-label={comingSoon ? `${title} - Coming Soon` : `View ${title}`}
   >
-    <!-- Image -->
-    <img
-      src={image}
-      alt={imageAlt}
-      class="absolute w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      loading="lazy"
-    />
+    <!-- Image Container -->
+    <div class="aspect-[4/5] relative overflow-hidden bg-tertiary">
+      <img
+        src={image}
+        alt={imageAlt}
+        class:list={[
+          "absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out",
+          comingSoon ? "scale-100 opacity-60" : "group-hover:scale-110"
+        ]}
+        loading="lazy"
+        decoding="async"
+      />
 
-    <!-- Coming Soon Overlay -->
-    {comingSoon && (
-      <div class="coming-soon-overlay">
-        <span class="coming-soon-badge text-lg">Coming Soon</span>
-      </div>
-    )}
+      <!-- Gradient overlay for better text readability -->
+      {!comingSoon && (
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      )}
 
-    <!-- Sale Badge -->
-    {isOnSale && !comingSoon && (
-      <span class="absolute top-4 right-4 bg-red-500 text-light px-3 py-1 rounded-full text-sm font-bold">
-        Sale
-      </span>
-    )}
-
-    <!-- CTA Button -->
-    {!comingSoon && amazonAsin && (
-      <span class="amazon-btn absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        Buy on Amazon
-      </span>
-    )}
-
-    <!-- Title Overlay -->
-    <div class="absolute top-6 md:top-auto md:bottom-6 left-6 right-6">
-      <h3>
-        <span class="block text-primary font-bold font-title text-2xl md:text-3xl drop-shadow-lg">
-          {formats.length > 0 ? formats[0] : 'discover'}
+      <!-- Sale Badge -->
+      {isOnSale && !comingSoon && (
+        <span class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
+          Sale
         </span>
-        <span class="block text-dark font-bold font-title text-xl sm:text-2xl md:text-3xl sm:ml-4 drop-shadow-lg bg-light/80 px-2 py-1 inline-block mt-1">
-          {title}
+      )}
+
+      <!-- Coming Soon Overlay -->
+      {comingSoon && (
+        <div class="coming-soon-overlay-enhanced">
+          <div class="coming-soon-content">
+            <svg class="w-8 h-8 mb-2 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="coming-soon-badge-enhanced">Coming Soon</span>
+            <span class="text-white/70 text-sm mt-1">Get notified when available</span>
+          </div>
+        </div>
+      )}
+
+      <!-- Quick Buy Button (shown on hover) -->
+      {!comingSoon && amazonAsin && (
+        <div class="absolute bottom-4 left-4 right-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <span class="amazon-btn w-full justify-center text-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.502.14.112.188.054.39-.14.553-.04.04-.09.08-.15.13l-.19.14c-1.77 1.37-3.715 2.37-5.83 3.005-2.116.634-4.19.95-6.224.95-2.22 0-4.39-.37-6.5-1.11-2.11-.74-4.05-1.76-5.82-3.06-.106-.073-.14-.146-.13-.235.013-.09.073-.14.192-.173z"/>
+            </svg>
+            Buy on Amazon
+          </span>
+        </div>
+      )}
+    </div>
+
+    <!-- Content Section -->
+    <div class="flex flex-col flex-1 p-5">
+      <!-- Format Label -->
+      {formats.length > 0 && (
+        <span class="text-primary text-xs font-semibold uppercase tracking-wider mb-1">
+          {formats[0]}
         </span>
+      )}
+
+      <!-- Title -->
+      <h3 class="font-title font-bold text-lg text-dark leading-tight mb-2 group-hover:text-primary transition-colors duration-200">
+        {title}
       </h3>
-      {!comingSoon && (regularPrice || salePrice) && (
-        <div class="mt-2 ml-4">
-          {isOnSale ? (
-            <span class="bg-light/90 px-2 py-1 inline-block">
-              <span class="text-primary font-bold text-lg">${salePrice}</span>
-              <span class="text-dark/50 line-through ml-2">${regularPrice}</span>
-            </span>
-          ) : (
-            <span class="bg-light/90 px-2 py-1 inline-block font-bold text-dark text-lg">
-              ${regularPrice || salePrice}
-            </span>
+
+      <!-- Description -->
+      <p class="text-dark/60 text-sm leading-relaxed mb-3 line-clamp-2 flex-1">
+        {description}
+      </p>
+
+      <!-- Rating -->
+      {rating > 0 && (
+        <div class="flex items-center gap-2 mb-3">
+          <div class="flex items-center" role="img" aria-label={`${rating} out of 5 stars`}>
+            {Array(fullStars).fill(null).map(() => (
+              <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+            {hasHalfStar && (
+              <svg class="w-4 h-4 text-amber-400" viewBox="0 0 20 20">
+                <defs>
+                  <linearGradient id="half-star">
+                    <stop offset="50%" stop-color="currentColor" />
+                    <stop offset="50%" stop-color="#e5e7eb" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#half-star)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            )}
+            {Array(emptyStars).fill(null).map(() => (
+              <svg class="w-4 h-4 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          {reviewCount > 0 && (
+            <span class="text-dark/50 text-xs">({reviewCount.toLocaleString()})</span>
           )}
+        </div>
+      )}
+
+      <!-- Price Section -->
+      {!comingSoon && displayPrice && (
+        <div class="mt-auto pt-2 border-t border-gray-100">
+          <div class="flex items-baseline gap-2">
+            {isOnSale ? (
+              <>
+                <span class="text-primary font-bold text-xl">${salePrice}</span>
+                <span class="text-dark/40 text-sm line-through">${regularPrice}</span>
+              </>
+            ) : (
+              <span class="text-dark font-bold text-xl">${displayPrice}</span>
+            )}
+          </div>
         </div>
       )}
     </div>
   </a>
 </article>
+
+<style>
+  .coming-soon-overlay-enhanced {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+  }
+
+  .coming-soon-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .coming-soon-badge-enhanced {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Ensure consistent card heights in grid */
+  .product-card {
+    height: 100%;
+  }
+</style>
