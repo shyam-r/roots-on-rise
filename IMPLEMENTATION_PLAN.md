@@ -372,17 +372,24 @@ import { Button, Badge, DownloadCard } from '@/components/ui';
 4. ~~**Merge**: Integrate features to master~~
 5. ~~**Deploy**: Push to Cloudflare Pages~~
 6. ~~**Homepage**: Integrated HeroCarousel, TestimonialCarousel, NewsletterSection, AnnouncementBar~~
-7. **Current**: Code audit in progress (3 parallel agents reviewing components, pages, styles)
-8. **Next**: Apply audit findings, integrate ProductGrid into books page
-9. **Future**: Add more shadcn components as needed (Input, Dialog, etc.)
+7. ~~**Current**: Code audit in progress (3 parallel agents reviewing components, pages, styles)~~
+8. ~~**Next**: Apply audit findings, integrate ProductGrid into books page~~
+9. **Current**: Centralize product data (last remaining audit finding)
+10. **Future**: Add more shadcn components as needed (Input, Dialog, etc.)
 
 ---
 
-## Active Audit (2026-01-23)
+## Completed Audit (2026-01-23)
 
-Running parallel code reviews in worktrees:
-- `audit/components` - Reviewing src/components/ui/ for type safety, DRY, accessibility
-- `audit/pages` - Reviewing src/pages/ for data duplication, SEO, consistency
-- `audit/styles` - Reviewing styles for design token usage, Tailwind consistency
+Parallel code review completed. Findings addressed:
 
-Results will be merged and findings addressed.
+### Fixed Issues
+- [x] Hardcoded colors replaced with design tokens (Header, Hero, BookFormatSelector)
+- [x] Missing CSS variables added (secondary-dark, tertiary-50, border, amazon colors)
+- [x] Security: Added rel="noreferrer" to external Amazon links
+- [x] Accessibility: Added prefers-reduced-motion to marquee and BookFormatSelector
+- [x] DRY: Extracted containerClasses to shared constants.ts
+
+### Remaining Work
+- [ ] Centralize product data to src/data/products.ts (audit/pages finding)
+- [ ] Remove unused imports from index.astro and about.astro
