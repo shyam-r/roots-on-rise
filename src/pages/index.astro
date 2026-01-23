@@ -1,8 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Testimonial from '../components/Testimonial.astro';
-import { Section, SectionHeader, Button, Badge, ComingSoonCard, Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
+import {
+  Section,
+  SectionHeader,
+  Button,
+  Badge,
+  ComingSoonCard,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  AnnouncementBar,
+  HeroCarousel,
+  TestimonialCarousel,
+  NewsletterSection,
+  type HeroSlide,
+  type Testimonial,
+} from '@/components/ui';
 
 const featuredBook = {
   title: "The Marvelous Hindu Deities",
@@ -18,23 +33,66 @@ const bookFormats = [
   { title: "Kindle E-Book", description: "Read anywhere, anytime", asin: "B0CLKYY3QC", price: "$4.99" }
 ];
 
-const testimonials = [
+// Hero carousel slides
+const heroSlides: HeroSlide[] = [
   {
+    image: "/images/books/marvelous-hindu-deities/hero-shot-1.jpg",
+    title: "Hindu children's books",
+    description: "Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage.",
+    ctaText: "Shop Books",
+    ctaLink: "/books",
+  },
+  {
+    image: "/images/books/shloka-mantra/hero-all.png",
+    title: "New: Shloka & Mantra Book",
+    description: "Introduce your children to sacred Hindu shlokas and Sanskrit mantras with gentle repetition.",
+    ctaText: "Learn More",
+    ctaLink: "/books",
+  },
+  {
+    image: "/images/products/digital-downloads/coloring-sheets.png",
+    title: "Free coloring sheets",
+    description: "Download beautifully designed Hindu deity coloring pages for your little ones.",
+    ctaText: "Get Free Downloads",
+    ctaLink: "/digital-downloads",
+  },
+];
+
+// Testimonials for carousel
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
     quote: "I've been searching for books that introduce Hindu mythology to my kids in a fun, engaging way. This book is absolutely perfect! The illustrations are gorgeous and my children ask for it every night.",
-    author: "Priya M.",
-    title: "Parent of 2",
+    authorName: "Priya M.",
+    authorTitle: "Parent of 2",
     rating: 5
   },
   {
+    id: 2,
     quote: "Beautiful illustrations and simple text that captures the essence of each deity. My 4-year-old loves pointing out the different gods and learning their names.",
-    author: "Anita K.",
-    title: "Verified Amazon Purchase",
+    authorName: "Anita K.",
+    authorTitle: "Verified Amazon Purchase",
     rating: 5
   },
   {
+    id: 3,
     quote: "Finally, a book that helps connect my American-born kids to their Indian heritage. The quality is excellent and it's become a cherished part of our bedtime routine.",
-    author: "Raj S.",
-    title: "Parent",
+    authorName: "Raj S.",
+    authorTitle: "Parent",
+    rating: 5
+  },
+  {
+    id: 4,
+    quote: "The Shloka book has become our morning ritual. My daughter loves chanting along and the pronunciations are so clear and easy to follow.",
+    authorName: "Meera T.",
+    authorTitle: "Verified Amazon Purchase",
+    rating: 5
+  },
+  {
+    id: 5,
+    quote: "Perfect gift for my grandchildren in the US. They're learning about our culture and loving every page. The quality exceeded my expectations!",
+    authorName: "Sunita G.",
+    authorTitle: "Grandmother",
     rating: 5
   }
 ];
@@ -76,17 +134,15 @@ const features = [
   description="Shop beautifully illustrated Hindu children's books celebrating Indian mythology. Explore shloka books, mantra books for kids, and deity picture books. Perfect Diwali gifts for children ages 2-8."
   image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
 >
-  <!-- Hero Section -->
-  <Hero
-    title="Hindu children's books"
-    highlight="Hindu"
-    subtitle="Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage. Perfect for kids ages 2-8 exploring their roots."
-    ctaText="Shop Books"
-    ctaLink="/books"
-    secondaryCtaText="Our Story"
-    secondaryCtaLink="/our-story"
-    bookImage="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
-    bookImageAlt="The Marvelous Hindu Deities - Hindu mythology picture book for children featuring colorful illustrations of Hindu gods and goddesses"
+  <!-- Announcement Bar -->
+  <AnnouncementBar client:load />
+
+  <!-- Hero Carousel -->
+  <HeroCarousel
+    slides={heroSlides}
+    autoRotate={true}
+    interval={6000}
+    client:load
   />
 
   <!-- Featured Book Section -->
@@ -160,18 +216,19 @@ const features = [
     </div>
   </Section>
 
-  <!-- Testimonials -->
+  <!-- Testimonials Carousel -->
   <Section>
     <SectionHeader
       title="loved by families"
       highlight="loved"
       description="See what parents are saying about our books."
     />
-    <div class="grid md:grid-cols-3 gap-8">
-      {testimonials.map((testimonial) => (
-        <Testimonial {...testimonial} />
-      ))}
-    </div>
+    <TestimonialCarousel
+      testimonials={testimonials}
+      autoRotate={true}
+      interval={5000}
+      client:load
+    />
   </Section>
 
   <!-- Available Now -->
@@ -228,6 +285,15 @@ const features = [
       ))}
     </div>
   </Section>
+
+  <!-- Newsletter Section -->
+  <NewsletterSection
+    title="Join our community"
+    highlight="community"
+    description="Get notified about new books, free resources, and cultural celebration ideas."
+    variant="tertiary"
+    client:load
+  />
 
   <!-- Final CTA -->
   <Section background="dark" container="md">
