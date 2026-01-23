@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  highlightWord?: string;
+  description: string;
+  image: string;
+  imageAlt?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title,
+  highlightWord = 'your',
+  description,
+  image,
+  imageAlt = title,
+  ctaText,
+  ctaLink
+} = Astro.props;
+
+// Split title to highlight the word
+const titleParts = highlightWord ? title.split(highlightWord) : [title];
+---
+
+<section class="md:aspect-[1440/632] relative">
+  <img
+    src={image}
+    alt={imageAlt}
+    class="md:absolute w-full h-full object-cover"
+    loading="eager"
+  />
+  <div
+    class="p-8 md:p-0 md:absolute md:max-w-md lg:max-w-xl md:top-28 md:left-12 lg:top-44 lg:left-20 xl:left-32"
+  >
+    <h1
+      class="font-title font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-dark"
+    >
+      {titleParts.length > 1 ? (
+        <>
+          {titleParts[0]}
+          <span class="text-primary">{highlightWord}</span>
+          {titleParts[1]}
+        </>
+      ) : (
+        title
+      )}
+    </h1>
+    <p class="text-lg md:text-xl text-dark/80 mb-8">
+      {description}
+    </p>
+    {ctaText && ctaLink && (
+      <a href={ctaLink} class="cta inline-block">
+        {ctaText}
+      </a>
+    )}
+  </div>
+</section>
