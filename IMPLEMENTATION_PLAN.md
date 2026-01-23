@@ -285,29 +285,91 @@ A feature is complete when:
 
 ## Checkpoints
 
-### Checkpoint 1: Design System Ready
-- [ ] Tokens documented
-- [ ] Pattern library established
-- [ ] Team aligned on conventions
+### Checkpoint 1: Design System Ready ✅
+- [x] Tokens documented (design-tokens.css)
+- [x] Pattern library established (PaisleyBorder, LotusAccent)
+- [x] Team aligned on conventions (CLAUDE.md)
+- [x] shadcn/ui component system added
 
-### Checkpoint 2: Features Complete
-- [ ] Hero section merged
-- [ ] Navigation merged
-- [ ] Product cards merged
-- [ ] No regressions
+### Checkpoint 2: Features Complete ✅
+- [x] Hero section merged
+- [x] Navigation merged
+- [x] Product cards merged
+- [x] No regressions
+- [x] Digital downloads page live with FREE products
 
 ### Checkpoint 3: Polish Complete
-- [ ] All pages reviewed
+- [ ] All pages using UI component system
 - [ ] Performance validated
 - [ ] Accessibility audited
 - [ ] Ready for production
 
 ---
 
+## UI Component System (shadcn/ui)
+
+**Status**: ✅ Implemented (2025-01-23)
+
+### Architecture
+```
+src/
+├── lib/
+│   └── utils.ts           # cn() utility for class merging
+└── components/
+    └── ui/
+        ├── index.ts       # Barrel exports
+        ├── button.tsx     # Primary CTA component
+        ├── badge.tsx      # Status badges (FREE, NEW, Coming Soon)
+        ├── card.tsx       # Base card primitives
+        ├── section.tsx    # Page section layout
+        ├── section-header.tsx  # Section titles with highlight
+        ├── download-card.tsx   # Free download product card
+        └── feature-card.tsx    # Feature grid items
+```
+
+### Usage Pattern
+```tsx
+// Import from barrel file
+import { Button, Badge, DownloadCard } from '@/components/ui';
+
+// Components are server-rendered by default (zero client JS)
+<DownloadCard
+  title="Ganesha Mandala"
+  description="..."
+  image="/images/..."
+  downloadUrl="/images/..."
+  category="Coloring Sheets"
+/>
+
+// Add client:load for interactive components
+<InteractiveComponent client:load />
+```
+
+### Available Components
+| Component | Variants | Purpose |
+|-----------|----------|---------|
+| Button | default, amazon, outline, ghost, link | CTAs and actions |
+| Badge | default, free, new, comingSoon, outline | Status indicators |
+| Card | - | Container with header, content, footer |
+| Section | light, dark, tertiary, gradient | Page sections |
+| SectionHeader | left, center, right | Section titles |
+| DownloadCard | - | Free download products |
+| FeatureCard | default, centered, numbered | Feature grids |
+
+### Dependencies
+- `class-variance-authority` - Type-safe variants
+- `clsx` + `tailwind-merge` - Class merging
+- `lucide-react` - Icons
+- `@radix-ui/react-slot` - Component composition
+
+---
+
 ## Next Steps
 
-1. **Immediate**: Review and approve this plan
-2. **Start**: Begin with `feature/design-system` worktree
-3. **Parallel**: Once design tokens stable, start other features
-4. **Merge**: Integrate features to master
-5. **Deploy**: Push to Cloudflare Pages
+1. ~~**Immediate**: Review and approve this plan~~
+2. ~~**Start**: Begin with `feature/design-system` worktree~~
+3. ~~**Parallel**: Once design tokens stable, start other features~~
+4. ~~**Merge**: Integrate features to master~~
+5. ~~**Deploy**: Push to Cloudflare Pages~~
+6. **Current**: Apply UI component system to remaining pages
+7. **Next**: Add more shadcn components as needed (Input, Dialog, etc.)
