@@ -1,0 +1,97 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt?: string;
+  regularPrice?: string;
+  salePrice?: string;
+  amazonAsin?: string;
+  formats?: string[];
+  comingSoon?: boolean;
+  href?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt = title,
+  regularPrice,
+  salePrice,
+  amazonAsin,
+  formats = [],
+  comingSoon = false,
+  href
+} = Astro.props;
+
+const isOnSale = salePrice && regularPrice && salePrice !== regularPrice;
+const amazonUrl = amazonAsin ? `https://www.amazon.com/dp/${amazonAsin}` : null;
+---
+
+<article class="bg-tertiary aspect-square relative group overflow-hidden">
+  <a
+    href={comingSoon ? undefined : (href || amazonUrl || '#')}
+    class:list={[
+      "block absolute w-full h-full top-0 left-0",
+      { "cursor-not-allowed": comingSoon }
+    ]}
+    target={amazonUrl && !href ? "_blank" : undefined}
+    rel={amazonUrl && !href ? "noopener" : undefined}
+  >
+    <!-- Image -->
+    <img
+      src={image}
+      alt={imageAlt}
+      class="absolute w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+
+    <!-- Coming Soon Overlay -->
+    {comingSoon && (
+      <div class="coming-soon-overlay">
+        <span class="coming-soon-badge text-lg">Coming Soon</span>
+      </div>
+    )}
+
+    <!-- Sale Badge -->
+    {isOnSale && !comingSoon && (
+      <span class="absolute top-4 right-4 bg-red-500 text-light px-3 py-1 rounded-full text-sm font-bold">
+        Sale
+      </span>
+    )}
+
+    <!-- CTA Button -->
+    {!comingSoon && amazonAsin && (
+      <span class="amazon-btn absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+        Buy on Amazon
+      </span>
+    )}
+
+    <!-- Title Overlay -->
+    <div class="absolute top-6 md:top-auto md:bottom-6 left-6 right-6">
+      <h3>
+        <span class="block text-primary font-bold font-title text-2xl md:text-3xl drop-shadow-lg">
+          {formats.length > 0 ? formats[0] : 'discover'}
+        </span>
+        <span class="block text-dark font-bold font-title text-xl sm:text-2xl md:text-3xl sm:ml-4 drop-shadow-lg bg-light/80 px-2 py-1 inline-block mt-1">
+          {title}
+        </span>
+      </h3>
+      {!comingSoon && (regularPrice || salePrice) && (
+        <div class="mt-2 ml-4">
+          {isOnSale ? (
+            <span class="bg-light/90 px-2 py-1 inline-block">
+              <span class="text-primary font-bold text-lg">${salePrice}</span>
+              <span class="text-dark/50 line-through ml-2">${regularPrice}</span>
+            </span>
+          ) : (
+            <span class="bg-light/90 px-2 py-1 inline-block font-bold text-dark text-lg">
+              ${regularPrice || salePrice}
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+  </a>
+</article>
