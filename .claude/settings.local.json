@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__memory__search_nodes",
+      "Skill(superpowers:using-git-worktrees)",
+      "Bash(git worktree:*)",
+      "mcp__plugin_serena_serena__list_dir",
+      "Bash(git check-ignore:*)",
+      "Bash(echo:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "mcp__memory__create_entities"
+    ]
+  }
+}
