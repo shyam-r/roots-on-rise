@@ -1,0 +1,185 @@
+{
+  "scrapedAt": "2026-01-22",
+  "pages": {
+    "ourStory": {
+      "url": "https://rootsonrise.com/pages/our-story",
+      "title": "Our Story",
+      "content": {
+        "heading": "Namaste!",
+        "paragraphs": [
+          "Welcome to our world of cultural exploration! I'm so glad you are here.",
+          "I am Krithika. I play many roles in life, but the one I'm most proud of is to be the mother to my two lovely, beautiful daughters Aarna & Aira. As a new mother, I soon found myself teaching my young girls about the rich cultural heritage of the land I come from - India (Bharat), and telling them stories about our mythology, our many Gods and Goddesses.",
+          "I soon realized that most products - books, games, and related products did not spark curiosity in children to learn more about India, and did not evoke pride in our rich civilization. This drove me to write my first Children's Illustration book \"My Marvelous Hindu Deities\", which quickly became a favorite with my kids, and many others like them.",
+          "Encouraged by the book's popularity, and driven by a deep sense of passion for sharing our rich South Asian heritage & culture with the rest of the world, I created Roots On Rise, a platform to unveil cultural treasures through playful learning and personal discovery.",
+          "Our products are designed to bring engaging and immersive experiences into our homes, and cultivate a deep connection to our collective roots, mythology and history.",
+          "Join us on this exciting adventure as we craft products that not only entertain but also serve as windows into the vibrant tapestry of rich traditions. Together, let's nurture a global community of young learners who celebrate their rich cultural identities!",
+          "Thanks for joining us."
+        ],
+        "author": "Krithika",
+        "childrenMentioned": ["Aarna", "Aira"],
+        "bookMentioned": "My Marvelous Hindu Deities"
+      },
+      "images": []
+    },
+    "aboutUs": {
+      "url": "https://rootsonrise.com/pages/about-us",
+      "title": "About Us",
+      "content": {
+        "mission": "At Roots On Rise, our mission is to spark curiosity & cultivate a deep connection to culture, heritage, and history by building engaging and immersive experiences to enable people of all ages to explore their roots, foster a sense of identity and belonging.",
+        "tagline": "We are a platform to unveil cultural treasures through playful learning and personal discovery.",
+        "description": "Through a curated blend of thoughtfully crafted products, including books, art supplies, stationery, & apparel, we aim to inspire a lifelong love for learning while grounding each person in their unique story.",
+        "commitment": "We are committed to creating products and experiences that help people thrive, connect their past to a vibrant present and propel them towards a harmonious future while remaining rooted in their rich culture, heritage & history."
+      },
+      "images": []
+    },
+    "homepage": {
+      "url": "https://rootsonrise.com/",
+      "title": "Roots On Rise",
+      "heroSection": {
+        "heading": "Featured Products",
+        "featuredProduct": {
+          "title": "The Marvelous Hindu Deities",
+          "subtitle": "Available in Board book, Paperback and E-Book formats",
+          "regularPrice": "$19.99",
+          "salePrice": "$14.99",
+          "description": "Introducing 'The Marvelous Hindu Deities', the perfect children's book to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities.",
+          "productUrl": "/products/the-marvelous-hindu-deities-board-book-edition",
+          "bookCoverType": "Board book"
+        }
+      },
+      "announcementBar": {
+        "messages": [
+          {
+            "title": "Namaste, Namaskara, Hello!",
+            "subtitle": null
+          },
+          {
+            "title": "Enjoy free shipping in the USA!",
+            "subtitle": null
+          },
+          {
+            "title": "Explore our products on Instagram",
+            "link": "https://www.instagram.com/rootsonrise/shop"
+          },
+          {
+            "title": "Buy our books directly on Amazon",
+            "link": "https://www.amazon.com/dp/8195870724"
+          }
+        ],
+        "promotionalBanners": [
+          {
+            "title": "Enjoy a 5% discount on all orders over $49",
+            "subtitle": "Use code 5PCTOFFROR at checkout!"
+          },
+          {
+            "title": "Enjoy Free Shipping on all orders!",
+            "subtitle": "Discount applied automatically at checkout!"
+          }
+        ]
+      },
+      "testimonials": [
+        {
+          "title": "Thoughtfully and beautifully written",
+          "quote": "This is one of the most thoughtfully written books for children I've ever seen! It not only gives an introduction to ten of the Hindu Deities but also does so with rhymes. It's a really fun way for children to learn about our culture. The illustrations are so adorable and pleasing - especially for the age group between 2 to 8 years old! Having 4 nieces and 1 nephew myself, I plan to buy more copies for them.",
+          "author": "Gopika",
+          "amazonReviewLink": "https://www.amazon.com/gp/customer-reviews/R252JB78XE9148/ref=cm_cr_srp_d_rvw_ttl?ie=UTF8&ASIN=B0CN4NXVVN"
+        },
+        {
+          "title": "An enchanting blend of art and mythology",
+          "quote": "The Marvelous Hindu Deities is a visually stunning children's book, introducing young readers to the vibrant world of Hindu mythology. With captivating illustrations, it offers a delightful journey through diverse gods, goddesses, and mythical scenes. The book succeeds in its primary goal – sparking curiosity and appreciation for Hindu culture. A recommended addition to any child's library for its enchanting blend of art and mythology.",
+          "author": "Krishna",
+          "amazonReviewLink": "https://www.amazon.com/review/RRENMRW5RI6OD/ref=cm_cr_srp_d_rdp_perm?ie=UTF8&ASIN=B0CN4NXVVN"
+        }
+      ],
+      "logoImageUrl": "https://rootsonrise.com/cdn/shop/files/Less_Borders_Better_logo.webp?v=1700592383&width=600",
+      "socialMediaLinks": {
+        "facebook": "https://www.facebook.com/rootsonrise",
+        "instagram": "https://www.instagram.com/rootsonrise",
+        "youtube": "https://www.youtube.com/@rootsonrise",
+        "tiktok": "https://tiktok.com/@rootsonrise"
+      },
+      "footer": {
+        "emailSubscription": {
+          "heading": "Subscribe to our email list"
+        },
+        "socialMediaLinks": {
+          "facebook": "https://www.facebook.com/rootsonrise",
+          "instagram": "https://www.instagram.com/rootsonrise",
+          "youtube": "https://www.youtube.com/@rootsonrise",
+          "tiktok": "https://tiktok.com/@rootsonrise"
+        },
+        "paymentMethods": [
+          "Amazon",
+          "American Express",
+          "Apple Pay",
+          "Diners Club",
+          "Discover",
+          "Google Pay",
+          "Mastercard",
+          "PayPal",
+          "Shop Pay",
+          "Visa"
+        ],
+        "copyright": "© 2026, Roots On Rise",
+        "policyLinks": [
+          {
+            "name": "Refund policy",
+            "url": "/policies/refund-policy"
+          },
+          {
+            "name": "Privacy policy",
+            "url": "/policies/privacy-policy"
+          },
+          {
+            "name": "Terms of service",
+            "url": "/policies/terms-of-service"
+          },
+          {
+            "name": "Shipping policy",
+            "url": "/policies/shipping-policy"
+          },
+          {
+            "name": "Contact information",
+            "url": "/policies/contact-information"
+          }
+        ]
+      },
+      "navigation": {
+        "mainMenu": [
+          {
+            "name": "HOME",
+            "url": "/collections/featured-products"
+          },
+          {
+            "name": "BOOKS",
+            "url": "/collections/books"
+          },
+          {
+            "name": "WALL ART",
+            "url": "/collections/wall-art"
+          },
+          {
+            "name": "GAMES & TOYS",
+            "url": "/collections/games-toys"
+          },
+          {
+            "name": "DIGITAL ART & DOWNLOADS",
+            "url": "/collections/free-stuff"
+          },
+          {
+            "name": "OUR STORY",
+            "url": "/pages/our-story"
+          },
+          {
+            "name": "ABOUT US",
+            "url": "/pages/about-us"
+          },
+          {
+            "name": "OTHERS",
+            "url": null
+          }
+        ]
+      }
+    }
+  }
+}

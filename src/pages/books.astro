@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Book data from scraped Shopify content
+const books = [
+  {
+    id: 1,
+    title: "The Marvelous Hindu Deities - Board Book",
+    subtitle: "Special Edition",
+    description: "An enchanting introduction to the world of Hindu gods and goddesses. With its dynamic illustrations, this special edition picture book is perfect for our young readers to delve into the captivating world of Hindu gods and goddesses.",
+    longDescription: "Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures.",
+    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign.png?v=1735437521",
+    images: [
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign.png?v=1735437521",
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487",
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
+    ],
+    regularPrice: "19.99",
+    salePrice: "14.99",
+    amazonAsin: "8195870724",
+    format: "Board book",
+    ageRange: "2-8 years",
+    pages: "24",
+    isOnSale: true,
+  },
+  {
+    id: 2,
+    title: "The Marvelous Hindu Deities - Paperback",
+    subtitle: "Classic Edition",
+    description: "The perfect children's book to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions.",
+    longDescription: "This delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. 'The Marvelous Hindu Deities' invites children to explore and appreciate the rich tapestry of Hindu mythology.",
+    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_eBook_0.5x.webp?v=1735499599",
+    images: [
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_eBook_0.5x.webp?v=1735499599",
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-5.png?v=1735504487",
+    ],
+    regularPrice: "15.99",
+    amazonAsin: "B0CN4NXVVN",
+    format: "Paperback",
+    ageRange: "2-8 years",
+    pages: "32",
+    isbn: "979-8866694815",
+    isOnSale: false,
+  },
+  {
+    id: 3,
+    title: "The Marvelous Hindu Deities - E-Book",
+    subtitle: "Digital Edition",
+    description: "Enjoy our beloved children's book in digital format. Perfect for reading on tablets and e-readers.",
+    longDescription: "Take the magic of Hindu mythology wherever you go with our digital edition. All the vibrant illustrations and engaging content, now available instantly on your favorite device.",
+    image: "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover.png?v=1735499598",
+    images: [
+      "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover.png?v=1735499598",
+    ],
+    regularPrice: "7.99",
+    amazonAsin: "B0CLKYY3QC",
+    format: "E-Book (Kindle)",
+    ageRange: "2-8 years",
+    isOnSale: false,
+  }
+];
+---
+
+<Layout
+  title="Books"
+  description="Explore our collection of Hindu mythology books for children. Beautifully illustrated, perfect for ages 2-8."
+>
+  <!-- Hero -->
+  <section class="bg-tertiary py-16 px-5">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
+        <span class="text-primary">our</span> books
+      </h1>
+      <p class="text-dark/70 text-lg max-w-2xl mx-auto">
+        Introduce your children to the captivating world of Hindu gods and goddesses with our beautifully illustrated books. Available on Amazon with fast Prime delivery.
+      </p>
+    </div>
+  </section>
+
+  <!-- Books Grid -->
+  <section class="py-16 px-5">
+    <div class="max-w-6xl mx-auto">
+      {books.map((book, index) => (
+        <article class={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 mb-16 pb-16 ${index < books.length - 1 ? 'border-b border-dark/10' : ''}`}>
+          <!-- Image Gallery -->
+          <div class="md:w-1/2">
+            <div class="bg-tertiary aspect-square relative overflow-hidden rounded-lg">
+              <img
+                src={book.image}
+                alt={book.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              {book.isOnSale && (
+                <span class="absolute top-4 right-4 bg-red-500 text-light px-3 py-1 rounded-full text-sm font-bold">
+                  Sale
+                </span>
+              )}
+            </div>
+            {book.images.length > 1 && (
+              <div class="grid grid-cols-4 gap-2 mt-2">
+                {book.images.slice(0, 4).map((img, i) => (
+                  <div class="aspect-square bg-tertiary rounded overflow-hidden">
+                    <img
+                      src={img}
+                      alt={`${book.title} preview ${i + 1}`}
+                      class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="md:w-1/2 flex flex-col justify-center">
+            <span class="text-primary font-bold text-sm uppercase tracking-wider mb-2">
+              {book.format}
+            </span>
+            <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-2">
+              {book.title}
+            </h2>
+            <p class="text-dark/50 text-sm mb-4">{book.subtitle}</p>
+
+            <!-- Price -->
+            <div class="flex items-center gap-3 mb-4">
+              {book.isOnSale ? (
+                <>
+                  <span class="text-3xl font-bold text-primary">${book.salePrice}</span>
+                  <span class="text-xl text-dark/40 line-through">${book.regularPrice}</span>
+                </>
+              ) : (
+                <span class="text-3xl font-bold text-dark">${book.regularPrice}</span>
+              )}
+            </div>
+
+            <!-- Details -->
+            <div class="flex flex-wrap gap-4 text-sm text-dark/60 mb-6">
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                {book.format}
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Ages {book.ageRange}
+              </span>
+              {book.pages && (
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  {book.pages} pages
+                </span>
+              )}
+            </div>
+
+            <p class="text-dark/70 mb-4">{book.description}</p>
+            <p class="text-dark/60 text-sm mb-6">{book.longDescription}</p>
+
+            <!-- Amazon Button -->
+            <a
+              href={`https://www.amazon.com/dp/${book.amazonAsin}`}
+              target="_blank"
+              rel="noopener"
+              class="amazon-btn self-start"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.502.14.112.188.054.39-.14.553-.04.04-.09.08-.15.13l-.19.14c-1.77 1.37-3.715 2.37-5.83 3.005-2.116.634-4.19.95-6.224.95-2.22 0-4.39-.37-6.5-1.11-2.11-.74-4.05-1.76-5.82-3.06-.106-.073-.14-.146-.13-.235.013-.09.073-.14.192-.173z"/>
+              </svg>
+              Buy on Amazon
+            </a>
+
+            {book.isbn && (
+              <p class="text-dark/40 text-xs mt-4">ISBN: {book.isbn}</p>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-5 bg-dark text-light text-center">
+    <h2 class="font-title font-bold text-2xl md:text-3xl mb-4">
+      Can't decide? Start with the <span class="text-primary">Board Book</span>!
+    </h2>
+    <p class="text-light/70 max-w-xl mx-auto mb-8">
+      Our bestselling board book edition is perfect for little hands. Durable, colorful, and beloved by families worldwide.
+    </p>
+    <a
+      href="https://www.amazon.com/dp/8195870724"
+      target="_blank"
+      rel="noopener"
+      class="amazon-btn text-lg"
+    >
+      Get the Board Book on Amazon
+    </a>
+  </section>
+</Layout>

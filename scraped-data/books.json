@@ -1,0 +1,299 @@
+{
+  "scrape_metadata": {
+    "source_url": "https://rootsonrise.com/collections/books",
+    "scrape_date": "2026-01-22",
+    "total_products": 2
+  },
+  "books": [
+    {
+      "id": 7571407995069,
+      "title": "The Marvelous Hindu Deities",
+      "handle": "the-marvelous-hindu-deities-board-book-edition",
+      "product_url": "https://rootsonrise.com/products/the-marvelous-hindu-deities-board-book-edition",
+      "description": {
+        "html": "<h4 class=\"a-spacing-none a-text-normal\"><strong><span id=\"productTitle\" class=\"a-size-extra-large celwidget\" data-csa-c-id=\"r4xuby-ygqrdt-grnpbw-boesym\" data-cel-widget=\"productTitle\">An Enchanting Introduction to the World of Hindu Gods and Goddesses</span></strong></h4>\n<p data-mce-fragment=\"1\"><b data-mce-fragment=\"1\"></b>With its dynamic illustrations, this <em>special edition</em> picture book is perfect for our young readers to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. 'The Marvelous Hindu Deities' invites children to explore and appreciate the rich tapestry of Hindu mythology, making it an essential addition to any child's library.</p>\n<p data-mce-fragment=\"1\">An all-time classic, sturdy and beautiful book to give as a gift for new babies, baby showers, birthdays, holidays, and other new beginnings!<br></p>",
+        "text": "An Enchanting Introduction to the World of Hindu Gods and Goddesses. With its dynamic illustrations, this special edition picture book is perfect for our young readers to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. 'The Marvelous Hindu Deities' invites children to explore and appreciate the rich tapestry of Hindu mythology, making it an essential addition to any child's library. An all-time classic, sturdy and beautiful book to give as a gift for new babies, baby showers, birthdays, holidays, and other new beginnings!"
+      },
+      "vendor": "Roots On Rise",
+      "product_type": "Books",
+      "tags": ["Boardbook", "Books", "Books for kids", "Hindu", "Hindu Books for Kids"],
+      "available_formats": [
+        {
+          "format": "Board book",
+          "variant_id": 44741234131133,
+          "sku": "TMHD0001",
+          "price": {
+            "regular": "19.99",
+            "sale": "14.99",
+            "currency": "USD"
+          },
+          "on_sale": true,
+          "available": true,
+          "weight": {
+            "value": 8.0,
+            "unit": "oz"
+          },
+          "requires_shipping": true
+        }
+      ],
+      "amazon": {
+        "asin": "8195870724",
+        "link": "https://www.amazon.com/dp/8195870724",
+        "note": "ASIN found in site announcement bar"
+      },
+      "images": [
+        {
+          "id": 34194541019325,
+          "position": 1,
+          "alt": "Hindu Mythology",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign.png?v=1735437521",
+          "width": 712,
+          "height": 967,
+          "is_featured": true
+        },
+        {
+          "id": 34194540396733,
+          "position": 2,
+          "alt": "Shiva",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
+          "width": 930,
+          "height": 620,
+          "is_featured": false
+        },
+        {
+          "id": 34194539446461,
+          "position": 3,
+          "alt": "Hindu Gods",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487",
+          "width": 1028,
+          "height": 686,
+          "is_featured": false
+        },
+        {
+          "id": 34194539741373,
+          "position": 4,
+          "alt": "Ganesha",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
+          "width": 1008,
+          "height": 672,
+          "is_featured": false
+        },
+        {
+          "id": 34194540134589,
+          "position": 5,
+          "alt": "Lakshmi",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-5.png?v=1735504487",
+          "width": 575,
+          "height": 860,
+          "is_featured": false
+        },
+        {
+          "id": 33936490332349,
+          "position": 6,
+          "alt": "Hindu Mythology",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/35BB318D-BF58-44D1-9067-ED036198D8D4_1_102_o.webp?v=1735499599",
+          "width": 1470,
+          "height": 1350,
+          "is_featured": false
+        },
+        {
+          "id": 33936490102973,
+          "position": 7,
+          "alt": "Coloring book for kids",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/7EDFEBE4-55AE-43E5-825C-258E7E297BA8.webp?v=1735499599",
+          "width": 1179,
+          "height": 1293,
+          "is_featured": false
+        },
+        {
+          "id": 33936490397885,
+          "position": 8,
+          "alt": "Hindu books for kids",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_0.5x.webp?v=1735437521",
+          "width": 2232,
+          "height": 3125,
+          "is_featured": false
+        },
+        {
+          "id": 33936490135741,
+          "position": 9,
+          "alt": "Roots On Rise",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/BackCover_0.5x.webp?v=1735437521",
+          "width": 2232,
+          "height": 3125,
+          "is_featured": false
+        }
+      ],
+      "created_at": "2023-12-10T21:52:14-08:00",
+      "updated_at": "2026-01-22T19:51:40-08:00",
+      "published_at": "2024-12-29T15:01:34-08:00"
+    },
+    {
+      "id": 7563323965629,
+      "title": "The Marvelous Hindu Deities",
+      "handle": "the-marvelous-hindu-deities",
+      "product_url": "https://rootsonrise.com/products/the-marvelous-hindu-deities",
+      "description": {
+        "html": "<p><span>The perfect children's book to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. 'The Marvelous Hindu Deities' invites children to explore and appreciate the rich tapestry of Hindu mythology, making it an essential addition to any child's library.</span><span></span><span><em></em></span></p>",
+        "text": "The perfect children's book to delve into the captivating world of Hindu gods and goddesses. Filled with vibrant pictures and informative descriptions, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. 'The Marvelous Hindu Deities' invites children to explore and appreciate the rich tapestry of Hindu mythology, making it an essential addition to any child's library."
+      },
+      "vendor": "Roots On Rise",
+      "product_type": "Books",
+      "tags": ["Back to School", "Boardbook", "Books", "Books for kids", "coloring book", "coloring book for kids", "Hindu books for kids", "Hindu Mythology", "illustrated book", "kids", "picture book", "poems for kids", "shlokas for kids"],
+      "available_formats": [
+        {
+          "format": "E-Book",
+          "variant_id": 43330139979965,
+          "sku": "B0CLKYY3QC",
+          "price": {
+            "regular": "7.99",
+            "sale": null,
+            "currency": "USD"
+          },
+          "on_sale": false,
+          "available": true,
+          "requires_shipping": false,
+          "amazon": {
+            "asin": "B0CLKYY3QC",
+            "link": "https://www.amazon.com/dp/B0CLKYY3QC",
+            "barcode": "B0CLKYY3QC"
+          }
+        },
+        {
+          "format": "Paperback",
+          "variant_id": 43330140012733,
+          "sku": "B0CN4NXVVN",
+          "price": {
+            "regular": "15.99",
+            "sale": null,
+            "currency": "USD"
+          },
+          "on_sale": false,
+          "available": true,
+          "requires_shipping": true,
+          "amazon": {
+            "asin": "B0CN4NXVVN",
+            "link": "https://www.amazon.com/dp/B0CN4NXVVN",
+            "isbn": "979-8866694815"
+          }
+        }
+      ],
+      "images": [
+        {
+          "id": 33955760046269,
+          "position": 1,
+          "alt": null,
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_eBook_0.5x.webp?v=1735499599",
+          "width": 2232,
+          "height": 3125,
+          "is_featured": true
+        },
+        {
+          "id": 34194540134589,
+          "position": 2,
+          "alt": "Lakshmi",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-5.png?v=1735504487",
+          "width": 575,
+          "height": 860,
+          "is_featured": false
+        },
+        {
+          "id": 34194539446461,
+          "position": 3,
+          "alt": "Hindu Gods",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487",
+          "width": 1028,
+          "height": 686,
+          "is_featured": false
+        },
+        {
+          "id": 34194539741373,
+          "position": 4,
+          "alt": "Ganesha",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
+          "width": 1008,
+          "height": 672,
+          "is_featured": false
+        },
+        {
+          "id": 34194540396733,
+          "position": 5,
+          "alt": "Shiva",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
+          "width": 930,
+          "height": 620,
+          "is_featured": false
+        },
+        {
+          "id": 33936490332349,
+          "position": 6,
+          "alt": "Hindu Mythology",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/35BB318D-BF58-44D1-9067-ED036198D8D4_1_102_o.webp?v=1735499599",
+          "width": 1470,
+          "height": 1350,
+          "is_featured": false
+        },
+        {
+          "id": 33936490102973,
+          "position": 7,
+          "alt": "Coloring book for kids",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/7EDFEBE4-55AE-43E5-825C-258E7E297BA8.webp?v=1735499599",
+          "width": 1179,
+          "height": 1293,
+          "is_featured": false
+        },
+        {
+          "id": 33898380558525,
+          "position": 8,
+          "alt": "Hindu books for kids",
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover.png?v=1735499598",
+          "width": 1390,
+          "height": 2000,
+          "is_featured": false
+        }
+      ],
+      "created_at": "2023-11-26T22:17:41-08:00",
+      "updated_at": "2026-01-22T19:51:44-08:00",
+      "published_at": "2024-12-29T15:04:27-08:00"
+    }
+  ],
+  "amazon_links_summary": {
+    "site_wide_amazon_link": "https://www.amazon.com/dp/8195870724",
+    "asins_found": [
+      {
+        "asin": "8195870724",
+        "source": "Site announcement bar",
+        "amazon_url": "https://www.amazon.com/dp/8195870724"
+      },
+      {
+        "asin": "B0CLKYY3QC",
+        "source": "E-Book variant SKU/barcode",
+        "amazon_url": "https://www.amazon.com/dp/B0CLKYY3QC"
+      },
+      {
+        "asin": "B0CN4NXVVN",
+        "source": "Paperback variant SKU",
+        "amazon_url": "https://www.amazon.com/dp/B0CN4NXVVN"
+      }
+    ],
+    "isbn_found": [
+      {
+        "isbn": "979-8866694815",
+        "format": "Paperback"
+      }
+    ]
+  },
+  "all_image_urls": [
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign.png?v=1735437521",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-2.png?v=1735499598",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-3.png?v=1735504487",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-4.png?v=1735504487",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/Untitleddesign-5.png?v=1735504487",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/35BB318D-BF58-44D1-9067-ED036198D8D4_1_102_o.webp?v=1735499599",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/7EDFEBE4-55AE-43E5-825C-258E7E297BA8.webp?v=1735499599",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_0.5x.webp?v=1735437521",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/BackCover_0.5x.webp?v=1735437521",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover_eBook_0.5x.webp?v=1735499599",
+    "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/FrontCover.png?v=1735499598"
+  ]
+}

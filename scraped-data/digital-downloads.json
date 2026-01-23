@@ -1,0 +1,174 @@
+{
+  "collection": {
+    "name": "Digital Downloads",
+    "url": "https://rootsonrise.com/collections/free-stuff",
+    "scraped_at": "2026-01-22T19:51:00-08:00"
+  },
+  "products": [
+    {
+      "id": 7564486475965,
+      "title": "Coloring sheet: An intricate Ganesha Mandala",
+      "handle": "coloring-sheet-an-intricate-ganesha-mandala",
+      "url": "https://rootsonrise.com/products/coloring-sheet-an-intricate-ganesha-mandala",
+      "description": "Explore an intricate mandala design that centers the mind and attention on The Elephant God - Ganesha, the remover of all obstacles.\n\nThese coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.",
+      "description_html": "Explore an intricate mandala design that centers the mind and attention on The Elephant God - Ganesha, the remover of all obstacles.\n<div data-mce-fragment=\"1\" class=\"a-expander-content a-expander-partial-collapse-content a-expander-content-expanded\" aria-expanded=\"true\">\n<p data-mce-fragment=\"1\"> </p>\n<p data-mce-fragment=\"1\">These coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.<br></p>\n</div>\n<div data-mce-fragment=\"1\" class=\"a-expander-header a-expander-partial-collapse-header\"></div>",
+      "vendor": "Roots On Rise",
+      "product_type": "Coloring Book",
+      "tags": ["Digital Download"],
+      "price": {
+        "amount": "4.00",
+        "currency": "USD",
+        "formatted": "$4.00"
+      },
+      "compare_at_price": null,
+      "sku": "RoR_COL_GAN_001",
+      "requires_shipping": false,
+      "taxable": false,
+      "images": [
+        {
+          "id": 33898321739965,
+          "position": 1,
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/2.png?v=1701311580",
+          "width": 2000,
+          "height": 1545,
+          "alt": null
+        }
+      ],
+      "featured_image": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/2.png?v=1701311580",
+      "created_at": "2023-11-29T18:31:04-08:00",
+      "updated_at": "2026-01-22T19:51:26-08:00",
+      "published_at": "2024-12-31T17:07:28-08:00",
+      "download_info": {
+        "is_digital": true,
+        "requires_shipping": false,
+        "note": "Digital download - delivered electronically after purchase"
+      }
+    },
+    {
+      "id": 7563061461181,
+      "title": "Coloring sheet: Musical Instruments of India",
+      "handle": "coloring-sheet-musical-instruments-of-india",
+      "url": "https://rootsonrise.com/products/coloring-sheet-musical-instruments-of-india",
+      "description": "Explore the various musical instruments of India with rich art and creative tapestry.\n\nThese coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.",
+      "description_html": "Explore the various musical instruments of India with rich art and creative tapestry. \n<div aria-expanded=\"true\" class=\"a-expander-content a-expander-partial-collapse-content a-expander-content-expanded\" data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">These coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.</span></p>\n</div>\n<div class=\"a-expander-header a-expander-partial-collapse-header\" data-mce-fragment=\"1\"></div>",
+      "vendor": "Roots On Rise",
+      "product_type": "Coloring Book",
+      "tags": ["Digital Download"],
+      "price": {
+        "amount": "2.00",
+        "currency": "USD",
+        "formatted": "$2.00"
+      },
+      "compare_at_price": null,
+      "sku": "RoR_COL_MUS_001",
+      "requires_shipping": false,
+      "taxable": false,
+      "images": [
+        {
+          "id": 33888980205757,
+          "position": 1,
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/1.png?v=1701049997",
+          "width": 2000,
+          "height": 1545,
+          "alt": null
+        }
+      ],
+      "featured_image": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/1.png?v=1701049997",
+      "created_at": "2023-11-26T17:53:14-08:00",
+      "updated_at": "2026-01-22T19:51:31-08:00",
+      "published_at": "2024-12-31T17:07:27-08:00",
+      "download_info": {
+        "is_digital": true,
+        "requires_shipping": false,
+        "note": "Digital download - delivered electronically after purchase"
+      }
+    },
+    {
+      "id": 7564485755069,
+      "title": "Coloring sheet: OM Mandala",
+      "handle": "coloring-sheet-om-mandala",
+      "url": "https://rootsonrise.com/products/coloring-sheet-om-mandala",
+      "description": "Explore a simple mandala design that centers the mind and attention on Om. Om is a sacred symbol in Hinduism and is considered to be the first sound of the Universe.\n\nThese coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.",
+      "description_html": "Explore a simple mandala design that centers the mind and attention on Om. Om is a sacred symbol in Hinduism and is considered to be the first sound of the Universe.\n<div aria-expanded=\"true\" class=\"a-expander-content a-expander-partial-collapse-content a-expander-content-expanded\" data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"> </p>\n<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">These coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.</span></p>\n</div>\n<div class=\"a-expander-header a-expander-partial-collapse-header\" data-mce-fragment=\"1\"></div>",
+      "vendor": "Roots On Rise",
+      "product_type": "Coloring Book",
+      "tags": ["Digital Download"],
+      "price": {
+        "amount": "4.00",
+        "currency": "USD",
+        "formatted": "$4.00"
+      },
+      "compare_at_price": null,
+      "sku": "RoR_COL_OM_002",
+      "requires_shipping": false,
+      "taxable": false,
+      "images": [
+        {
+          "id": 33898306044093,
+          "position": 1,
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/4.png?v=1701311192",
+          "width": 2000,
+          "height": 1545,
+          "alt": null
+        }
+      ],
+      "featured_image": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/4.png?v=1701311192",
+      "created_at": "2023-11-29T18:24:36-08:00",
+      "updated_at": "2026-01-22T19:51:35-08:00",
+      "published_at": "2024-12-31T17:07:28-08:00",
+      "download_info": {
+        "is_digital": true,
+        "requires_shipping": false,
+        "note": "Digital download - delivered electronically after purchase"
+      }
+    },
+    {
+      "id": 7564486312125,
+      "title": "Coloring sheet: An intricate OM Mandala",
+      "handle": "coloring-sheet-an-intricate-om-mandala",
+      "url": "https://rootsonrise.com/products/coloring-sheet-an-intricate-om-mandala",
+      "description": "Explore an intricate mandala design that centers the mind and attention on Om. Om is a sacred symbol in Hinduism and is considered to be the first sound of the Universe.\n\nThese coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.",
+      "description_html": "Explore an intricate mandala design that centers the mind and attention on Om. Om is a sacred symbol in Hinduism and is considered to be the first sound of the Universe.\n<div data-mce-fragment=\"1\" class=\"a-expander-content a-expander-partial-collapse-content a-expander-content-expanded\" aria-expanded=\"true\">\n<p data-mce-fragment=\"1\"> </p>\n<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">These coloring pages lets our young readers have fun while learning, and helps cultivate a deep connection to our culture through the power of creativity and play.</span></p>\n</div>\n<div data-mce-fragment=\"1\" class=\"a-expander-header a-expander-partial-collapse-header\"></div>",
+      "vendor": "Roots On Rise",
+      "product_type": "Coloring Book",
+      "tags": ["Digital Download"],
+      "price": {
+        "amount": "4.00",
+        "currency": "USD",
+        "formatted": "$4.00"
+      },
+      "compare_at_price": null,
+      "sku": "RoR_COL_OM_001",
+      "requires_shipping": false,
+      "taxable": false,
+      "images": [
+        {
+          "id": 33898317938877,
+          "position": 1,
+          "src": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/3.png?v=1701311416",
+          "width": 2000,
+          "height": 1545,
+          "alt": null
+        }
+      ],
+      "featured_image": "https://cdn.shopify.com/s/files/1/0635/2470/0349/files/3.png?v=1701311416",
+      "created_at": "2023-11-29T18:29:04-08:00",
+      "updated_at": "2026-01-22T19:51:54-08:00",
+      "published_at": "2024-12-31T17:07:28-08:00",
+      "download_info": {
+        "is_digital": true,
+        "requires_shipping": false,
+        "note": "Digital download - delivered electronically after purchase"
+      }
+    }
+  ],
+  "summary": {
+    "total_products": 4,
+    "price_range": {
+      "min": "$2.00",
+      "max": "$4.00"
+    },
+    "all_digital": true,
+    "note": "Note: Despite the collection being labeled 'free-stuff', these products are priced between $2.00 and $4.00. They are digital downloads (coloring sheets) that do not require physical shipping."
+  }
+}

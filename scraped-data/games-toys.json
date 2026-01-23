@@ -1,0 +1,25 @@
+{
+  "collection": {
+    "id": 311905157309,
+    "title": "Games & Toys",
+    "handle": "games-toys",
+    "description": "",
+    "published_at": "2024-12-30T10:54:19-08:00",
+    "updated_at": "2025-11-26T17:33:01-08:00",
+    "image": null,
+    "products_count": 3,
+    "url": "https://rootsonrise.com/collections/games-toys"
+  },
+  "scrape_metadata": {
+    "scraped_at": "2026-01-22T19:52:00-08:00",
+    "source_url": "https://rootsonrise.com/collections/games-toys",
+    "api_endpoints_checked": [
+      "https://rootsonrise.com/collections/games-toys/products.json",
+      "https://rootsonrise.com/collections/games-toys.json",
+      "https://rootsonrise.com/products.json"
+    ],
+    "status": "empty_collection",
+    "notes": "The Games & Toys collection metadata indicates products_count: 3, but the products.json API returns an empty array. This suggests the 3 products may be: (1) unpublished/draft status, (2) hidden from the storefront, or (3) have visibility restrictions that prevent public API access. The collection page at /collections/games-toys displays 'No products found' and '0 products'."
+  },
+  "products": []
+}
