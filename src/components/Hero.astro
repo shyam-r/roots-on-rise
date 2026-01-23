@@ -1,58 +1,258 @@
 ---
 interface Props {
   title: string;
-  highlightWord?: string;
-  description: string;
-  image: string;
-  imageAlt?: string;
+  highlight?: string;
+  subtitle?: string;
   ctaText?: string;
   ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  bookImage?: string;
+  bookImageAlt?: string;
 }
 
 const {
   title,
-  highlightWord = 'your',
-  description,
-  image,
-  imageAlt = title,
+  highlight,
+  subtitle,
   ctaText,
-  ctaLink
+  ctaLink,
+  secondaryCtaText,
+  secondaryCtaLink,
+  bookImage,
+  bookImageAlt = "Featured book"
 } = Astro.props;
 
-// Split title to highlight the word
-const titleParts = highlightWord ? title.split(highlightWord) : [title];
+// Split title to highlight the specified word
+const highlightLower = highlight?.toLowerCase();
+const titleLower = title.toLowerCase();
+const highlightIndex = highlightLower ? titleLower.indexOf(highlightLower) : -1;
+
+let beforeHighlight = "";
+let highlightText = "";
+let afterHighlight = "";
+
+if (highlightIndex !== -1 && highlight) {
+  beforeHighlight = title.slice(0, highlightIndex);
+  highlightText = title.slice(highlightIndex, highlightIndex + highlight.length);
+  afterHighlight = title.slice(highlightIndex + highlight.length);
+}
 ---
 
-<section class="md:aspect-[1440/632] relative">
-  <img
-    src={image}
-    alt={imageAlt}
-    class="md:absolute w-full h-full object-cover"
-    loading="eager"
-  />
-  <div
-    class="p-8 md:p-0 md:absolute md:max-w-md lg:max-w-xl md:top-28 md:left-12 lg:top-44 lg:left-20 xl:left-32"
-  >
-    <h1
-      class="font-title font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-dark"
-    >
-      {titleParts.length > 1 ? (
-        <>
-          {titleParts[0]}
-          <span class="text-primary">{highlightWord}</span>
-          {titleParts[1]}
-        </>
-      ) : (
-        title
+<section class="hero-section relative overflow-hidden">
+  <!-- Decorative Top Border -->
+  <div class="hero-border-top absolute top-0 left-0 right-0 h-6 md:h-8 overflow-hidden" aria-hidden="true">
+    <svg class="w-full h-full" viewBox="0 0 1200 32" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 32C100 32 100 8 200 8C300 8 300 32 400 32C500 32 500 8 600 8C700 8 700 32 800 32C900 32 900 8 1000 8C1100 8 1100 32 1200 32V0H0V32Z" fill="currentColor" class="text-primary/10"/>
+      <path d="M0 24C80 24 80 12 160 12C240 12 240 24 320 24C400 24 400 12 480 12C560 12 560 24 640 24C720 24 720 12 800 12C880 12 880 24 960 24C1040 24 1040 12 1120 12C1200 12 1200 24 1200 24" stroke="currentColor" stroke-width="2" class="text-secondary/40" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-5 py-16 md:py-24 lg:py-32">
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <!-- Text Content -->
+      <div class="hero-content text-center md:text-left">
+        <h1 class="hero-title font-title font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-dark leading-tight">
+          {highlightIndex !== -1 ? (
+            <>
+              {beforeHighlight}
+              <span class="text-primary relative">
+                {highlightText}
+                <span class="highlight-underline absolute -bottom-1 left-0 right-0 h-1 bg-secondary/50 rounded-full" aria-hidden="true"></span>
+              </span>
+              {afterHighlight}
+            </>
+          ) : (
+            title
+          )}
+        </h1>
+
+        {subtitle && (
+          <p class="hero-subtitle text-lg md:text-xl text-dark/70 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+
+        <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          {ctaText && ctaLink && (
+            <a
+              href={ctaLink}
+              class="cta inline-block text-center rounded-sm"
+            >
+              {ctaText}
+            </a>
+          )}
+          {secondaryCtaText && secondaryCtaLink && (
+            <a
+              href={secondaryCtaLink}
+              class="hero-cta-secondary inline-block text-center uppercase font-bold px-6 py-3 border-2 border-dark/30 text-dark bg-transparent transition-all duration-300 hover:border-primary hover:text-primary hover:bg-primary/5 rounded-sm"
+            >
+              {secondaryCtaText}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Book Showcase (optional) -->
+      {bookImage && (
+        <div class="hero-book hidden md:flex justify-center items-center perspective-1000">
+          <div class="book-container relative">
+            <img
+              src={bookImage}
+              alt={bookImageAlt}
+              class="book-image w-64 lg:w-80 rounded-lg shadow-2xl"
+              loading="lazy"
+            />
+            <!-- Decorative elements around book -->
+            <div class="book-glow absolute inset-0 -z-10 bg-primary/20 blur-3xl rounded-full scale-150" aria-hidden="true"></div>
+          </div>
+        </div>
       )}
-    </h1>
-    <p class="text-lg md:text-xl text-dark/80 mb-8">
-      {description}
-    </p>
-    {ctaText && ctaLink && (
-      <a href={ctaLink} class="cta inline-block">
-        {ctaText}
-      </a>
-    )}
+    </div>
+  </div>
+
+  <!-- Decorative Bottom Border -->
+  <div class="hero-border-bottom absolute bottom-0 left-0 right-0 h-6 md:h-8 overflow-hidden" aria-hidden="true">
+    <svg class="w-full h-full" viewBox="0 0 1200 32" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0C100 0 100 24 200 24C300 24 300 0 400 0C500 0 500 24 600 24C700 24 700 0 800 0C900 0 900 24 1000 24C1100 24 1100 0 1200 0V32H0V0Z" fill="currentColor" class="text-primary/10"/>
+      <path d="M0 8C80 8 80 20 160 20C240 20 240 8 320 8C400 8 400 20 480 20C560 20 560 8 640 8C720 8 720 20 800 20C880 20 880 8 960 8C1040 8 1040 20 1120 20C1200 20 1200 8 1200 8" stroke="currentColor" stroke-width="2" class="text-secondary/40" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Decorative floating elements -->
+  <div class="hero-decoration absolute top-1/4 right-10 w-16 h-16 opacity-20 pointer-events-none hidden lg:block" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" class="text-secondary"/>
+      <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" class="text-primary"/>
+      <circle cx="32" cy="32" r="10" fill="currentColor" class="text-primary/30"/>
+    </svg>
+  </div>
+  <div class="hero-decoration-2 absolute bottom-1/4 left-10 w-12 h-12 opacity-15 pointer-events-none hidden lg:block" aria-hidden="true">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 4L28 20L44 24L28 28L24 44L20 28L4 24L20 20L24 4Z" fill="currentColor" class="text-secondary"/>
+    </svg>
   </div>
 </section>
+
+<style>
+  .hero-section {
+    background:
+      radial-gradient(ellipse 80% 60% at 90% 80%, rgba(196, 120, 52, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 10% 20%, rgba(212, 165, 116, 0.1) 0%, transparent 40%),
+      linear-gradient(180deg, var(--color-tertiary) 0%, #fffdf9 50%, var(--color-tertiary) 100%);
+    min-height: 60vh;
+  }
+
+  /* Entrance animations */
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes floatGently {
+    0%, 100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(-2deg);
+    }
+  }
+
+  @keyframes decorationFloat {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(5deg);
+    }
+  }
+
+  .hero-title {
+    animation: fadeSlideUp 0.8s ease-out forwards;
+  }
+
+  .hero-subtitle {
+    animation: fadeSlideUp 0.8s ease-out 0.15s forwards;
+    opacity: 0;
+  }
+
+  .hero-cta {
+    animation: fadeSlideUp 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-book {
+    animation: fadeIn 1s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+
+  .book-image {
+    animation: floatGently 6s ease-in-out infinite;
+    transform: rotate(-2deg);
+  }
+
+  .hero-decoration {
+    animation: decorationFloat 8s ease-in-out infinite;
+  }
+
+  .hero-decoration-2 {
+    animation: decorationFloat 7s ease-in-out infinite 1s;
+  }
+
+  .hero-border-top,
+  .hero-border-bottom {
+    animation: fadeIn 1s ease-out 0.5s forwards;
+    opacity: 0;
+  }
+
+  /* Highlight underline animation */
+  .highlight-underline {
+    animation: expandWidth 0.6s ease-out 0.8s forwards;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @keyframes expandWidth {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: auto;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-subtitle,
+    .hero-cta,
+    .hero-book,
+    .book-image,
+    .hero-decoration,
+    .hero-decoration-2,
+    .hero-border-top,
+    .hero-border-bottom,
+    .highlight-underline {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
