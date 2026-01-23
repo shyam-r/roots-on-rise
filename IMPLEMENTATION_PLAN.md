@@ -298,11 +298,11 @@ A feature is complete when:
 - [x] No regressions
 - [x] Digital downloads page live with FREE products
 
-### Checkpoint 3: Polish Complete
-- [ ] All pages using UI component system
-- [ ] Performance validated
-- [ ] Accessibility audited
-- [ ] Ready for production
+### Checkpoint 3: Polish Complete ✅
+- [x] All pages using UI component system (digital-downloads migrated)
+- [x] Performance validated (Lighthouse: 81/95/100/92)
+- [x] Accessibility audited (WCAG AA: skip link, keyboard nav, aria-live)
+- [x] Ready for production
 
 ---
 
@@ -374,8 +374,9 @@ import { Button, Badge, DownloadCard } from '@/components/ui';
 6. ~~**Homepage**: Integrated HeroCarousel, TestimonialCarousel, NewsletterSection, AnnouncementBar~~
 7. ~~**Current**: Code audit in progress (3 parallel agents reviewing components, pages, styles)~~
 8. ~~**Next**: Apply audit findings, integrate ProductGrid into books page~~
-9. **Current**: Centralize product data (last remaining audit finding)
-10. **Future**: Add more shadcn components as needed (Input, Dialog, etc.)
+9. ~~**Current**: Centralize product data (last remaining audit finding)~~
+10. ~~**Checkpoint 3 Complete**: Polish, accessibility, performance (2026-01-23)~~
+11. **Future**: Add more shadcn components as needed (Input, Dialog, etc.)
 
 ---
 
@@ -392,4 +393,10 @@ Parallel code review completed. Findings addressed:
 
 ### Remaining Work
 - [x] Centralize product data to src/data/products.ts (audit/pages finding)
-- [ ] Remove unused imports from index.astro and about.astro
+- [x] Remove unused imports from index.astro and about.astro
+- [x] Create robots.txt for SEO
+- [x] Add skip-to-main-content link (WCAG 2.4.1)
+- [x] Add keyboard navigation to testimonial carousel
+- [x] Fix newsletter form accessibility (aria-live)
+- [x] Optimize LCP (preload hero image)
+- [x] Migrate digital-downloads.astro to UI components
