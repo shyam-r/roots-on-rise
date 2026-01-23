@@ -134,23 +134,66 @@ const PRODUCTS = {
 
 ---
 
-## Tech Debt Prevention Rules
+## Tech Debt Prevention Rules (MANDATORY)
 
-### MUST DO
-- [ ] Extract repeated code into components
-- [ ] Use semantic HTML elements
-- [ ] Add `alt` text to all images
-- [ ] Test on mobile devices
-- [ ] Validate accessibility (WCAG AA)
-- [ ] Optimize images before adding
+**Zero tolerance for tech debt. Clean code is not optional.**
 
-### MUST NOT DO
-- [ ] Don't add unused dependencies
-- [ ] Don't duplicate data across files
-- [ ] Don't use `!important` in CSS
-- [ ] Don't ignore TypeScript errors
-- [ ] Don't commit console.logs
-- [ ] Don't hardcode URLs or prices
+### Code Quality Standards
+
+| Principle | Requirement |
+|-----------|-------------|
+| **DRY** | Extract repeated code (>2 occurrences) into components |
+| **KISS** | Simplest solution that works; no over-engineering |
+| **Single Responsibility** | One component = one purpose |
+| **Type Safety** | All props typed; no `any` types |
+| **Semantic HTML** | Appropriate tags (`<article>`, `<section>`, `<nav>`, `<main>`) |
+| **Accessibility** | WCAG AA compliance; all images need `alt` |
+
+### Anti-Patterns to Avoid
+
+```
+❌ NEVER:
+• Duplicate data across files
+• Use `!important` in CSS
+• Ignore TypeScript errors
+• Commit console.logs or debugger statements
+• Hardcode URLs, prices, or API keys
+• Use inline styles when Tailwind suffices
+• Create "utils" files that become dumping grounds
+• Leave TODO comments without issue links
+• Mix concerns (data fetching in display components)
+• Use magic numbers without constants
+```
+
+### Continuous Cleanup (MANDATORY)
+
+**Every session must leave the codebase cleaner than found:**
+
+1. **Before starting work:**
+   - Run `npm run build` to verify clean baseline
+   - Check for TypeScript errors
+   - Review any existing TODO comments
+
+2. **During work:**
+   - Refactor adjacent code if it violates standards
+   - Update types when modifying interfaces
+   - Remove dead code immediately
+
+3. **Before committing:**
+   - Run `npm run build` (must pass)
+   - No new TypeScript errors introduced
+   - No new console.logs or debugger statements
+
+### Documentation Currency
+
+**Keep these files up to date:**
+
+| File | Update When |
+|------|-------------|
+| `IMPLEMENTATION_PLAN.md` | Task completed, status changed, new task added |
+| `CLAUDE.md` | New patterns, conventions, or requirements emerge |
+| `.serena/memories/` | Complex context that future sessions need |
+| Component JSDoc | API changes or new props added |
 
 ### Performance Budgets
 - **LCP** (Largest Contentful Paint): < 2.5s
