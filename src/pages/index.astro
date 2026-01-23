@@ -7,7 +7,7 @@ import { Section, SectionHeader, Button, Badge, ComingSoonCard, Card, CardHeader
 const featuredBook = {
   title: "The Marvelous Hindu Deities",
   description: "A colorful journey through Hindu mythology for young minds. Introduce your children to the fascinating world of Hindu deities.",
-  image: "/images/books/marvelous-hindu-deities/Hero_shot_1.jpg",
+  image: "/images/books/marvelous-hindu-deities/hero-shot-1.jpg",
   amazonUrl: "https://www.amazon.com/dp/8195870724",
   price: "$14.99"
 };
@@ -72,18 +72,21 @@ const features = [
 ---
 
 <Layout
-  title="Roots On Rise - Hindu Cultural Books & Products for Children"
-  description="Discover beautifully illustrated children's books and products celebrating Hindu mythology and culture. Perfect for families sharing their heritage with the next generation."
+  title="Hindu Children's Books & Cultural Products | Roots On Rise"
+  description="Shop beautifully illustrated Hindu children's books celebrating Indian mythology. Explore shloka books, mantra books for kids, and deity picture books. Perfect Diwali gifts for children ages 2-8."
+  image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
 >
   <!-- Hero Section -->
   <Hero
-    title="nurturing cultural roots"
-    highlight="cultural"
-    subtitle="Beautifully illustrated books and products that help children discover the rich tapestry of Hindu mythology and heritage."
+    title="Hindu children's books"
+    highlight="Hindu"
+    subtitle="Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage. Perfect for kids ages 2-8 exploring their roots."
     ctaText="Shop Books"
     ctaLink="/books"
     secondaryCtaText="Our Story"
     secondaryCtaLink="/our-story"
+    bookImage="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
+    bookImageAlt="The Marvelous Hindu Deities - Hindu mythology picture book for children featuring colorful illustrations of Hindu gods and goddesses"
   />
 
   <!-- Featured Book Section -->
@@ -98,7 +101,7 @@ const features = [
       <div class="relative">
         <img
           src={featuredBook.image}
-          alt={featuredBook.title}
+          alt="The Marvelous Hindu Deities - bestselling Hindu children's book with vibrant deity illustrations"
           class="w-full rounded-lg shadow-xl"
         />
         <Badge className="absolute -bottom-4 -right-4 px-4 py-2 text-base">

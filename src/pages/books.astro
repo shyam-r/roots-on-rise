@@ -3,6 +3,48 @@ import Layout from '../layouts/Layout.astro';
 import { BookCard, Button, Section, SectionHeader } from '@/components/ui';
 
 // Book data - The Hindu Gods Series
+// Generate structured data for products (ItemList schema)
+const generateProductSchema = (bookList: typeof books) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Hindu Children's Books Collection",
+  "description": "Beautifully illustrated Hindu mythology books and shloka books for children",
+  "numberOfItems": bookList.length,
+  "itemListElement": bookList.map((book, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Book",
+      "name": book.title,
+      "description": book.description,
+      "image": `https://rootsonrise.com${book.image}`,
+      "author": {
+        "@type": "Organization",
+        "name": "Roots On Rise"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Roots On Rise"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": book.salePrice || book.regularPrice,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": `https://www.amazon.com/dp/${book.amazonAsin}`
+      },
+      "bookFormat": book.format.includes("E-Book") ? "https://schema.org/EBook" :
+                   book.format.includes("Hardcover") ? "https://schema.org/Hardcover" :
+                   book.format.includes("Board") ? "https://schema.org/Hardcover" : "https://schema.org/Paperback",
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedMinAge": 2,
+        "suggestedMaxAge": 8
+      }
+    }
+  }))
+});
+
 const books = [
   // ===== MY LITTLE SHLOKA AND MANTRA BOOK =====
   {
@@ -11,12 +53,12 @@ const books = [
     subtitle: "Special Edition with Coloring Pages",
     description: "A calm, age-appropriate introduction to Hindu shlokas and Sanskrit mantras for kids, created especially for young children and first-time learners.",
     longDescription: "This hardcover edition includes a dedicated coloring section for kids, featuring thoughtfully designed illustrations inspired by Indian spiritual themes. Coloring alongside chanting helps children stay engaged, improves focus, and makes learning peaceful and screen-free. Perfect for family prayer time, daily chanting routines, bedtime reading, and quiet creative moments.",
-    image: "/images/books/shloka-mantra/Front_Cover.jpg",
+    image: "/images/books/shloka-mantra/front-cover.jpg",
     images: [
-      "/images/books/shloka-mantra/Front_Cover.jpg",
-      "/images/books/shloka-mantra/Back_Cover.jpg",
-      "/images/books/shloka-mantra/Collage_Interior_pages.png",
-      "/images/books/shloka-mantra/Hero_shot_1.jpg",
+      "/images/books/shloka-mantra/front-cover.jpg",
+      "/images/books/shloka-mantra/back-cover.jpg",
+      "/images/books/shloka-mantra/collage-interior-pages.png",
+      "/images/books/shloka-mantra/hero-shot-1.jpg",
     ],
     regularPrice: "24.50",
     amazonAsin: "B0GH1Z46BD",
@@ -31,10 +73,10 @@ const books = [
     subtitle: "Sacred Words for Kids",
     description: "A calm, age-appropriate introduction to Hindu shlokas and Sanskrit mantras for kids, created especially for young children and first-time learners.",
     longDescription: "Designed for early childhood, this book presents simple, well-known shlokas and mantras with easy meanings and gentle repetition, helping children chant slowly, clearly, and with respect. The focus is not memorization or speed, but understanding, pronunciation, and familiarity—building a strong foundation from the very beginning.",
-    image: "/images/books/shloka-mantra/Front_Cover.jpg",
+    image: "/images/books/shloka-mantra/front-cover.jpg",
     images: [
-      "/images/books/shloka-mantra/Front_Cover.jpg",
-      "/images/books/shloka-mantra/Hero_2.jpg",
+      "/images/books/shloka-mantra/front-cover.jpg",
+      "/images/books/shloka-mantra/hero-2.jpg",
       "/images/books/shloka-mantra/promo_shot_boy_reading_book.jpg",
     ],
     regularPrice: "14.99",
@@ -50,7 +92,7 @@ const books = [
     subtitle: "Digital Edition",
     description: "Enjoy our Shloka and Mantra book in digital format. Perfect for reading on tablets and e-readers.",
     longDescription: "Take the sacred sounds of Hindu shlokas and mantras wherever you go. This digital edition includes all the gentle repetition and easy meanings, perfect for family prayer time and bedtime routines on any device.",
-    image: "/images/books/shloka-mantra/Front_Cover.jpg",
+    image: "/images/books/shloka-mantra/front-cover.jpg",
     regularPrice: "9.99",
     amazonAsin: "B0GG84NQ35",
     format: "E-Book (Kindle)",
@@ -88,7 +130,7 @@ const books = [
     image: "/images/books/marvelous-hindu-deities/paperback_front_cover.png",
     images: [
       "/images/books/marvelous-hindu-deities/paperback_front_cover.png",
-      "/images/books/marvelous-hindu-deities/Hero_shot_1.jpg",
+      "/images/books/marvelous-hindu-deities/hero-shot-1.jpg",
     ],
     regularPrice: "15.99",
     amazonAsin: "B0CN4NXVVN",
@@ -104,9 +146,9 @@ const books = [
     subtitle: "Digital Edition",
     description: "Enjoy our beloved children's book in digital format. Perfect for reading on tablets and e-readers.",
     longDescription: "Take the magic of Hindu mythology wherever you go with our digital edition. All the vibrant illustrations and engaging content, now available instantly on your favorite device.",
-    image: "/images/books/marvelous-hindu-deities/Front Cover_eBook.jpg",
+    image: "/images/books/marvelous-hindu-deities/front-cover-ebook.jpg",
     images: [
-      "/images/books/marvelous-hindu-deities/Front Cover_eBook.jpg",
+      "/images/books/marvelous-hindu-deities/front-cover-ebook.jpg",
     ],
     regularPrice: "7.99",
     amazonAsin: "B0CLKYY3QC",
@@ -118,17 +160,21 @@ const books = [
 ---
 
 <Layout
-  title="Books"
-  description="Explore our collection of Hindu mythology books for children. Beautifully illustrated, perfect for ages 2-8."
+  title="Hindu Children's Books - Mythology & Shloka Books for Kids | Roots On Rise"
+  description="Shop Hindu children's books featuring Indian mythology, shlokas, and mantras. Beautifully illustrated board books, paperbacks, and e-books for kids ages 2-8. Perfect gifts for Diwali and cultural learning."
+  image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
 >
+  <!-- Product Schema Structured Data -->
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(generateProductSchema(books))} />
+
   <!-- Hero -->
   <Section background="tertiary" container="md">
     <div class="text-center">
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
-        <span class="text-primary">our</span> books
+        Hindu Children's <span class="text-primary">Books</span>
       </h1>
       <p class="text-dark/70 text-lg max-w-2xl mx-auto">
-        Introduce your children to the captivating world of Hindu gods and goddesses with our beautifully illustrated books. Available on Amazon with fast Prime delivery.
+        Introduce your children to the captivating world of Hindu gods, goddesses, shlokas, and mantras with our beautifully illustrated books. Perfect for ages 2-8, available on Amazon with fast Prime delivery.
       </p>
     </div>
   </Section>

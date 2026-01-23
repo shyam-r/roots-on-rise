@@ -7,13 +7,54 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  canonicalUrl?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  showAnnouncement?: boolean;
+  announcementText?: string;
+  announcementLink?: string;
 }
 
 const {
   title,
-  description = "Roots On Rise - Cultural treasures through playful learning and personal discovery",
-  image = "https://rootsonrise.com/cdn/shop/files/Less_Borders_Better_logo.webp"
+  description = "Discover beautifully illustrated Hindu children's books and products. Explore Indian mythology, shloka and mantra books for kids ages 2-8. Perfect Diwali gifts for children.",
+  image = "/images/brand/logo-banner.jpg",
+  canonicalUrl,
+  type = "website",
+  noindex = false,
+  showAnnouncement = true,
+  announcementText = "FREE SHIPPING ON ORDERS OVER $50 | SHOP OUR BESTSELLERS",
+  announcementLink = "/books"
 } = Astro.props;
+
+// Construct canonical URL
+const siteUrl = "https://rootsonrise.com";
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+
+// Full image URL for social sharing
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Structured data for Organization
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Roots On Rise",
+  "url": siteUrl,
+  "logo": `${siteUrl}/images/brand/logo.png`,
+  "description": "Hindu children's books and cultural products celebrating Indian mythology and heritage.",
+  "sameAs": [
+    "https://www.instagram.com/rootsonrise"
+  ]
+};
+
+// Website schema for search
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Roots On Rise",
+  "url": siteUrl,
+  "description": "Hindu children's books, shloka books, and cultural products for kids"
+};
 ---
 
 <!doctype html>
@@ -25,27 +66,50 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Robots -->
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-    <title>{title} | Roots On Rise</title>
+    <title>{title}</title>
 
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | Roots On Rise`} />
+    <meta property="og:site_name" content="Roots On Rise" />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:image" content={image} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Roots On Rise - Hindu Children's Books" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | Roots On Rise`} />
+    <meta name="twitter:site" content="@rootsonrise" />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Roots On Rise - Hindu Children's Books" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Additional structured data slot for pages -->
+    <slot name="structured-data" />
   </head>
   <body class="bg-[#f5f5f5]">
+    {showAnnouncement && (
+      <a href={announcementLink} class="announcement-bar block bg-primary text-light text-center py-2.5 px-4 text-sm font-medium tracking-wide hover:bg-primary-dark transition-colors">
+        {announcementText}
+      </a>
+    )}
     <main class="max-w-screen-2xl mx-auto bg-white">
       <Header />
       <slot />

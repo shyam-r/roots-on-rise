@@ -229,3 +229,92 @@ Types: feat, fix, style, refactor, docs, chore
 <a href="/path" class="cta">Button Text</a>
 <a href="https://amazon.com/..." class="amazon-btn">Buy on Amazon</a>
 ```
+
+---
+
+## Parallel Agent Development Strategy
+
+### When to Use Parallel Agents
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  PARALLEL AGENT EXECUTION RULES                        │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✅ USE PARALLEL when:                                  │
+│  • Multiple components need creation (different files)  │
+│  • Research + implementation can happen simultaneously  │
+│  • SEO, components, and pages are independent          │
+│  • Testing different browsers/devices                   │
+│  • Read-only research tasks                            │
+│                                                         │
+│  ❌ DO NOT PARALLELIZE when:                           │
+│  • Tasks modify the same file                          │
+│  • One task depends on another's output                │
+│  • Shared state could cause conflicts                  │
+│  • Sequential approval needed                          │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Agent Personas
+
+| Agent Type | Description | Use For |
+|------------|-------------|---------|
+| **UX Designer** | Design component specs, layouts, interactions | New feature planning, UI mocks |
+| **Frontend Dev** | Implement React/Astro components | Building components, pages |
+| **SEO Specialist** | Meta tags, structured data, keywords | Search optimization |
+| **QA Tester** | Test across browsers, accessibility | Pre-deployment validation |
+| **Content Writer** | Product descriptions, copy | Marketing text |
+
+### Invocation Pattern
+```javascript
+// Launch multiple agents in ONE message for parallelization
+Task({ subagent_type: "general-purpose", prompt: "UX Designer: [task]" })
+Task({ subagent_type: "general-purpose", prompt: "Frontend Dev: [task]" })
+Task({ subagent_type: "general-purpose", prompt: "SEO Specialist: [task]" })
+```
+
+### Collision Avoidance
+1. **File Partitioning** - Assign clear file ownership to each agent
+2. **Worktrees** - Use git worktrees for major conflicting changes
+3. **Sequential Fallback** - If risk of conflict, run sequentially
+
+---
+
+## Requirements Tracking
+
+All features use requirement codes from `/docs/REQUIREMENTS.md`:
+
+| Code | Feature | Status |
+|------|---------|--------|
+| FR-01 | Announcement Bar | ✅ Done |
+| FR-02 | Hero Section | ✅ Done |
+| FR-03 | Hero Carousel | 🔄 In Progress |
+| FR-04 | Collection Cards | ✅ Done |
+| FR-05 | Scrolling Marquee | ✅ Done |
+| FR-06 | Testimonial Carousel | ✅ Done |
+| FR-07 | Newsletter Section | ✅ Done |
+| FR-08 | Product Grid | 🔄 In Progress |
+| FR-09 | Featured Banner | 🔄 In Progress |
+| FR-10 | Book Detail Card | ✅ Done |
+
+---
+
+## SEO Keywords (Target)
+
+Primary:
+- hindu children's books
+- indian mythology books for kids
+- shloka books for children
+- mantra books for kids
+
+Secondary:
+- diwali gifts for kids
+- hindu gods book for children
+- sanskrit books for toddlers
+- indian culture books for kids
+
+---
+
+*Last Updated: 2026-01-23*
