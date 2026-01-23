@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { DownloadCard } from '@/components/ui';
+import { Badge } from '@/components/ui';
 
 // Digital download products - FREE downloads
 const downloads = [
@@ -32,6 +34,21 @@ const downloads = [
     category: "Coloring Sheets"
   }
 ];
+
+// Features with icons
+const features = [
+  { icon: "🆓", title: "Always Free", description: "No payment required, ever" },
+  { icon: "⚡", title: "Instant Access", description: "Download immediately, no signup" },
+  { icon: "🖨️", title: "Print at Home", description: "High-resolution for quality prints" },
+  { icon: "🎨", title: "Cultural Art", description: "Authentic Hindu cultural designs" },
+];
+
+// How to use steps
+const steps = [
+  { step: 1, title: "Click Download", description: "Click the download button on any design you like. No signup needed!" },
+  { step: 2, title: "Print at Home", description: "Print the image on your home printer. Works great on regular paper!" },
+  { step: 3, title: "Color & Enjoy", description: "Grab your favorite colors and start your mindful coloring journey!" },
+];
 ---
 
 <Layout
@@ -41,9 +58,7 @@ const downloads = [
   <!-- Hero -->
   <section class="bg-gradient-to-b from-tertiary to-light py-16 px-5">
     <div class="max-w-4xl mx-auto text-center">
-      <span class="inline-block bg-green-500 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
-        100% Free
-      </span>
+      <Badge variant="free" className="mb-4">100% Free</Badge>
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
         <span class="text-primary">free</span> downloads
       </h1>
@@ -58,34 +73,15 @@ const downloads = [
   <section class="py-12 px-5 bg-light">
     <div class="max-w-5xl mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-4">
-          <div class="w-12 h-12 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-3">
-            <span class="text-2xl">🆓</span>
+        {features.map((feature) => (
+          <div class="p-4">
+            <div class="w-12 h-12 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="text-2xl">{feature.icon}</span>
+            </div>
+            <h3 class="font-semibold text-dark mb-1">{feature.title}</h3>
+            <p class="text-dark/60 text-sm">{feature.description}</p>
           </div>
-          <h3 class="font-semibold text-dark mb-1">Always Free</h3>
-          <p class="text-dark/60 text-sm">No payment required, ever</p>
-        </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-3">
-            <span class="text-2xl">⚡</span>
-          </div>
-          <h3 class="font-semibold text-dark mb-1">Instant Access</h3>
-          <p class="text-dark/60 text-sm">Download immediately, no signup</p>
-        </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-3">
-            <span class="text-2xl">🖨️</span>
-          </div>
-          <h3 class="font-semibold text-dark mb-1">Print at Home</h3>
-          <p class="text-dark/60 text-sm">High-resolution for quality prints</p>
-        </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-tertiary rounded-full flex items-center justify-center mx-auto mb-3">
-            <span class="text-2xl">🎨</span>
-          </div>
-          <h3 class="font-semibold text-dark mb-1">Cultural Art</h3>
-          <p class="text-dark/60 text-sm">Authentic Hindu cultural designs</p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -105,40 +101,13 @@ const downloads = [
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {downloads.map((product) => (
-          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col group">
-            <div class="aspect-square relative overflow-hidden bg-tertiary">
-              <img
-                src={product.image}
-                alt={product.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-              <div class="absolute top-3 right-3 bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                FREE
-              </div>
-            </div>
-            <div class="p-5 flex flex-col flex-1">
-              <span class="text-xs text-primary font-semibold uppercase tracking-wide mb-1">
-                {product.category}
-              </span>
-              <h3 class="font-title font-bold text-lg text-dark mb-2">
-                {product.title}
-              </h3>
-              <p class="text-dark/60 text-sm flex-1">{product.description}</p>
-              <div class="mt-4 pt-4 border-t border-gray-100">
-                <a
-                  href={product.downloadUrl}
-                  download
-                  class="w-full inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-lg transition-colors"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Download Free
-                </a>
-              </div>
-            </div>
-          </div>
+          <DownloadCard
+            title={product.title}
+            description={product.description}
+            image={product.image}
+            downloadUrl={product.downloadUrl}
+            category={product.category}
+          />
         ))}
       </div>
     </div>
@@ -152,33 +121,15 @@ const downloads = [
       </h2>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary text-light rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-            1
+        {steps.map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary text-light rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+              {item.step}
+            </div>
+            <h3 class="font-title font-bold text-lg text-dark mb-2">{item.title}</h3>
+            <p class="text-dark/60 text-sm">{item.description}</p>
           </div>
-          <h3 class="font-title font-bold text-lg text-dark mb-2">Click Download</h3>
-          <p class="text-dark/60 text-sm">
-            Click the download button on any design you like. No signup needed!
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary text-light rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-            2
-          </div>
-          <h3 class="font-title font-bold text-lg text-dark mb-2">Print at Home</h3>
-          <p class="text-dark/60 text-sm">
-            Print the image on your home printer. Works great on regular paper!
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary text-light rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-            3
-          </div>
-          <h3 class="font-title font-bold text-lg text-dark mb-2">Color & Enjoy</h3>
-          <p class="text-dark/60 text-sm">
-            Grab your favorite colors and start your mindful coloring journey!
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
