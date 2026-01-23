@@ -15,118 +15,24 @@ import {
   HeroCarousel,
   TestimonialCarousel,
   NewsletterSection,
-  type HeroSlide,
-  type Testimonial,
 } from '@/components/ui';
+import {
+  FEATURED_BOOK,
+  getSeriesFormats,
+  HERO_SLIDES,
+  TESTIMONIALS,
+  COMING_SOON_PRODUCTS,
+  AVAILABLE_PRODUCTS,
+} from '@/data/products';
 
-const featuredBook = {
-  title: "The Marvelous Hindu Deities",
-  description: "A colorful journey through Hindu mythology for young minds. Introduce your children to the fascinating world of Hindu deities.",
-  image: "/images/books/marvelous-hindu-deities/hero-shot-1.jpg",
-  amazonUrl: "https://www.amazon.com/dp/8195870724",
-  price: "$14.99"
-};
-
-const bookFormats = [
-  { title: "Board Book", description: "Perfect for little hands ages 0-5", asin: "8195870724", price: "$14.95" },
-  { title: "Paperback", description: "Full-size edition for ages 3+", asin: "B0CN4NXVVN", price: "$12.95" },
-  { title: "Kindle E-Book", description: "Read anywhere, anytime", asin: "B0CLKYY3QC", price: "$4.99" }
-];
-
-// Hero carousel slides
-const heroSlides: HeroSlide[] = [
-  {
-    image: "/images/books/marvelous-hindu-deities/hero-shot-1.jpg",
-    title: "Hindu children's books",
-    description: "Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage.",
-    ctaText: "Shop Books",
-    ctaLink: "/books",
-  },
-  {
-    image: "/images/books/shloka-mantra/hero-all.png",
-    title: "New: Shloka & Mantra Book",
-    description: "Introduce your children to sacred Hindu shlokas and Sanskrit mantras with gentle repetition.",
-    ctaText: "Learn More",
-    ctaLink: "/books",
-  },
-  {
-    image: "/images/products/digital-downloads/coloring-sheets.png",
-    title: "Free coloring sheets",
-    description: "Download beautifully designed Hindu deity coloring pages for your little ones.",
-    ctaText: "Get Free Downloads",
-    ctaLink: "/digital-downloads",
-  },
-];
-
-// Testimonials for carousel
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    quote: "I've been searching for books that introduce Hindu mythology to my kids in a fun, engaging way. This book is absolutely perfect! The illustrations are gorgeous and my children ask for it every night.",
-    authorName: "Priya M.",
-    authorTitle: "Parent of 2",
-    rating: 5
-  },
-  {
-    id: 2,
-    quote: "Beautiful illustrations and simple text that captures the essence of each deity. My 4-year-old loves pointing out the different gods and learning their names.",
-    authorName: "Anita K.",
-    authorTitle: "Verified Amazon Purchase",
-    rating: 5
-  },
-  {
-    id: 3,
-    quote: "Finally, a book that helps connect my American-born kids to their Indian heritage. The quality is excellent and it's become a cherished part of our bedtime routine.",
-    authorName: "Raj S.",
-    authorTitle: "Parent",
-    rating: 5
-  },
-  {
-    id: 4,
-    quote: "The Shloka book has become our morning ritual. My daughter loves chanting along and the pronunciations are so clear and easy to follow.",
-    authorName: "Meera T.",
-    authorTitle: "Verified Amazon Purchase",
-    rating: 5
-  },
-  {
-    id: 5,
-    quote: "Perfect gift for my grandchildren in the US. They're learning about our culture and loving every page. The quality exceeded my expectations!",
-    authorName: "Sunita G.",
-    authorTitle: "Grandmother",
-    rating: 5
-  }
-];
-
-const comingProducts = [
-  {
-    title: "Wall Art Prints",
-    description: "Beautiful Hindu deity art prints for your home",
-    image: "/images/books/marvelous-hindu-deities/promo_shot_3.png",
-    href: "/wall-art"
-  },
-  {
-    title: "Games & Toys",
-    description: "Educational games celebrating Hindu culture",
-    image: "/images/books/marvelous-hindu-deities/promo_shot_1.png",
-    href: "/games-toys"
-  }
-];
-
-const availableProducts = [
-  {
-    title: "Digital Downloads",
-    description: "Coloring sheets, mandalas & educational activities",
-    image: "/images/products/digital-downloads/coloring-sheets.png",
-    href: "/digital-downloads",
-    badge: "Free!"
-  }
-];
-
-const features = [
-  "10 beautifully illustrated Hindu deities",
-  "Age-appropriate stories and descriptions",
-  "Perfect for bedtime stories"
-];
+// Use centralized data
+const featuredBook = FEATURED_BOOK;
+const bookFormats = getSeriesFormats('marvelous-hindu-deities');
+const heroSlides = HERO_SLIDES;
+const testimonials = TESTIMONIALS;
+const comingProducts = COMING_SOON_PRODUCTS;
+const availableProducts = AVAILABLE_PRODUCTS;
+const features = FEATURED_BOOK.features;
 ---
 
 <Layout
@@ -190,9 +96,9 @@ const features = [
               <a
                 href={`https://www.amazon.com/dp/${format.asin}`}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
-                {format.title} - {format.price}
+                {format.name} - {format.price}
               </a>
             </Button>
           ))}

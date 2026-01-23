@@ -391,5 +391,5 @@ Parallel code review completed. Findings addressed:
 - [x] DRY: Extracted containerClasses to shared constants.ts
 
 ### Remaining Work
-- [ ] Centralize product data to src/data/products.ts (audit/pages finding)
+- [x] Centralize product data to src/data/products.ts (audit/pages finding)
 - [ ] Remove unused imports from index.astro and about.astro
