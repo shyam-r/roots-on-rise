@@ -297,7 +297,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaLink: '/books',
   },
   {
-    image: '/images/products/digital-downloads/coloring-sheets.png',
+    image: '/images/downloads/ganesha-mandala.png',
     title: 'Free coloring sheets',
     description: 'Download beautifully designed Hindu deity coloring pages for your little ones.',
     ctaText: 'Get Free Downloads',
@@ -328,7 +328,7 @@ export const AVAILABLE_PRODUCTS = [
   {
     title: 'Digital Downloads',
     description: 'Coloring sheets, mandalas & educational activities',
-    image: '/images/products/digital-downloads/coloring-sheets.png',
+    image: '/images/downloads/ganesha-mandala.png',
     href: '/digital-downloads',
     badge: 'Free!',
   },
