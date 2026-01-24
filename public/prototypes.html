@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Prototypes - Roots On Rise</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c47834',
+            'primary-dark': '#a85d1c',
+            secondary: '#d4a574',
+            tertiary: '#fdf5e6',
+            accent: '#8b4513',
+            dark: '#2d2d2d',
+            light: '#fff',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #1a1a1a; }
+    .font-title { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .proto-section { margin-bottom: 4rem; }
+    .proto-label {
+      display: inline-block;
+      background: #c47834;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+    .proto-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+    }
+    .proto-header {
+      background: #2d2d2d;
+      color: white;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      font-size: 1.125rem;
+    }
+    .proto-notes {
+      background: #f5f5f5;
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      color: #666;
+      border-top: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body class="p-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="font-title text-5xl font-bold text-white mb-4">Design Prototypes</h1>
+      <p class="text-white/60 text-lg">Review each option and tell me your preferences (e.g., "Header 2, Hero B, Colors 1")</p>
+    </div>
+
+    <!-- ========== HEADER OPTIONS ========== -->
+    <section class="proto-section">
+      <span class="proto-label">HEADER LAYOUTS</span>
+
+      <!-- Header 1: Current Left-aligned -->
+      <div class="proto-card">
+        <div class="proto-header">HEADER 1: Left Logo + Right Navigation (Current)</div>
+        <div>
+          <div class="bg-primary text-white py-2 text-center text-sm">
+            Namaste! Shop our books on Amazon for fast Prime delivery
+          </div>
+          <div class="bg-tertiary px-6 py-4 flex items-center justify-between border-b border-amber-200">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-b from-orange-300 to-amber-700 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">🌳</span>
+              </div>
+              <div>
+                <div class="font-title font-bold text-dark text-lg">ROOTS ON RISE</div>
+                <div class="text-xs text-dark/50">EMBRACE | ELEVATE | INSPIRE</div>
+              </div>
+            </div>
+            <nav class="flex gap-6 text-dark/70 font-medium">
+              <a href="#" class="hover:text-primary transition">Books</a>
+              <a href="#" class="hover:text-primary transition">Wall Art</a>
+              <a href="#" class="hover:text-primary transition">Games & Toys</a>
+              <a href="#" class="hover:text-primary transition">Downloads</a>
+              <a href="#" class="hover:text-primary transition">Our Story</a>
+            </nav>
+            <div class="flex gap-3 text-dark/40">
+              <span>◯</span><span>◯</span><span>◯</span>
+            </div>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Pros:</strong> Compact, familiar layout, efficient space use<br>
+          <strong>Cons:</strong> Logo less prominent, standard e-commerce feel
+        </div>
+      </div>
+
+      <!-- Header 2: Centered Logo, Two Rows -->
+      <div class="proto-card">
+        <div class="proto-header">HEADER 2: Centered Logo (Two-Row, More Prominent)</div>
+        <div>
+          <div class="bg-primary text-white py-2 text-center text-sm">
+            Namaste! Shop our books on Amazon for fast Prime delivery
+          </div>
+          <div class="bg-tertiary border-b border-amber-200">
+            <div class="flex items-center justify-center py-6">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-b from-orange-300 to-amber-700 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                  <span class="text-3xl">🌳</span>
+                </div>
+                <div class="font-title font-bold text-dark text-2xl">ROOTS ON RISE</div>
+                <div class="text-sm text-dark/50 tracking-widest">EMBRACE | ELEVATE | INSPIRE</div>
+              </div>
+            </div>
+            <nav class="flex justify-center gap-8 pb-4 text-dark/70 font-medium border-t border-amber-100 pt-4">
+              <a href="#" class="hover:text-primary transition">Books</a>
+              <a href="#" class="hover:text-primary transition">Wall Art</a>
+              <a href="#" class="hover:text-primary transition">Games & Toys</a>
+              <a href="#" class="hover:text-primary transition">Downloads</a>
+              <a href="#" class="hover:text-primary transition">Our Story</a>
+            </nav>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Pros:</strong> Brand-focused, elegant/editorial feel, logo stands out<br>
+          <strong>Cons:</strong> Takes more vertical space
+        </div>
+      </div>
+
+      <!-- Header 3: Dark with Centered Logo -->
+      <div class="proto-card">
+        <div class="proto-header">HEADER 3: Dark Header with Centered Logo</div>
+        <div>
+          <div class="bg-primary text-white py-2 text-center text-sm">
+            Namaste! Shop our books on Amazon for fast Prime delivery
+          </div>
+          <div class="bg-dark border-b border-white/10">
+            <div class="flex items-center justify-center py-5">
+              <div class="text-center">
+                <div class="w-14 h-14 bg-gradient-to-b from-orange-400 to-amber-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                  <span class="text-2xl">🌳</span>
+                </div>
+                <div class="font-title font-bold text-white text-xl">ROOTS ON RISE</div>
+                <div class="text-xs text-white/50 tracking-widest">EMBRACE | ELEVATE | INSPIRE</div>
+              </div>
+            </div>
+            <nav class="flex justify-center gap-8 pb-4 text-white/70 font-medium">
+              <a href="#" class="hover:text-primary transition">Books</a>
+              <a href="#" class="hover:text-primary transition">Wall Art</a>
+              <a href="#" class="hover:text-primary transition">Games & Toys</a>
+              <a href="#" class="hover:text-primary transition">Downloads</a>
+              <a href="#" class="hover:text-primary transition">Our Story</a>
+            </nav>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Pros:</strong> Premium feel, logo pops on dark, modern<br>
+          <strong>Cons:</strong> Darker mood, less warm/playful
+        </div>
+      </div>
+
+      <!-- Header 4: Playful Colorful Nav -->
+      <div class="proto-card">
+        <div class="proto-header">HEADER 4: Playful Colorful Navigation (Gloobooks-style)</div>
+        <div>
+          <div class="bg-dark text-white py-2 text-center text-sm">
+            Namaste! Shop our books on Amazon for fast Prime delivery
+          </div>
+          <div class="flex">
+            <div class="bg-tertiary px-6 py-4 flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-b from-orange-300 to-amber-700 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">🌳</span>
+              </div>
+              <div>
+                <div class="font-title font-bold text-dark">ROOTS ON RISE</div>
+                <div class="text-[10px] text-dark/50">EMBRACE | ELEVATE | INSPIRE</div>
+              </div>
+            </div>
+            <nav class="flex flex-1">
+              <a href="#" class="flex-1 bg-primary text-white font-bold py-4 text-center text-sm hover:brightness-110 transition">BOOKS</a>
+              <a href="#" class="flex-1 bg-secondary text-dark font-bold py-4 text-center text-sm hover:brightness-110 transition">WALL ART</a>
+              <a href="#" class="flex-1 bg-accent text-white font-bold py-4 text-center text-sm hover:brightness-110 transition">GAMES</a>
+              <a href="#" class="flex-1 bg-primary/80 text-white font-bold py-4 text-center text-sm hover:brightness-110 transition">DOWNLOADS</a>
+              <a href="#" class="flex-1 bg-secondary/80 text-dark font-bold py-4 text-center text-sm hover:brightness-110 transition">STORY</a>
+            </nav>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Pros:</strong> Fun, memorable, child-friendly, playful energy<br>
+          <strong>Cons:</strong> Very bold, may feel busy
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HERO/CAROUSEL OPTIONS ========== -->
+    <section class="proto-section">
+      <span class="proto-label">HERO / CAROUSEL STYLES</span>
+
+      <!-- Hero A: Full-bleed Apple style -->
+      <div class="proto-card">
+        <div class="proto-header">HERO A: Full-Bleed Cinematic (Apple-style) - CURRENTLY IMPLEMENTED</div>
+        <div class="relative h-80 overflow-hidden">
+          <img src="/images/hero/hero-books-background.webp" alt="Hero" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent"></div>
+          <div class="absolute bottom-8 left-8 max-w-lg">
+            <h2 class="font-title text-4xl font-bold text-white mb-3">children's books</h2>
+            <p class="text-white/80 text-lg mb-5">Beautifully illustrated books celebrating Indian mythology and heritage.</p>
+            <a href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition">Shop Books →</a>
+          </div>
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+            <span class="w-10 h-1 bg-white rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Immersive, dramatic, content at bottom-left, minimal UI chrome
+        </div>
+      </div>
+
+      <!-- Hero B: Split Layout -->
+      <div class="proto-card">
+        <div class="proto-header">HERO B: Split Layout (Gloobooks-style)</div>
+        <div class="grid grid-cols-2 h-80">
+          <div class="bg-gradient-to-br from-purple-900 to-purple-700 flex items-center justify-center p-8">
+            <div class="w-48 h-64 bg-white rounded-lg shadow-2xl transform -rotate-3 flex items-center justify-center">
+              <span class="text-6xl">📚</span>
+            </div>
+          </div>
+          <div class="bg-tertiary flex flex-col justify-center p-10">
+            <h2 class="font-title text-3xl font-bold text-dark mb-3">THE MARVELOUS HINDU DEITIES</h2>
+            <p class="text-dark/70 mb-5">A colorful journey through Hindu mythology for young minds. Perfect for ages 2-8.</p>
+            <a href="#" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full w-fit transition">SHOP NOW</a>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Product-focused, clear split, colorful accent background, playful
+        </div>
+      </div>
+
+      <!-- Hero C: Minimal Text-focused -->
+      <div class="proto-card">
+        <div class="proto-header">HERO C: Minimal Text-Focused (Clean & Elegant)</div>
+        <div class="h-80 bg-gradient-to-br from-tertiary to-orange-50 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute top-10 left-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-10 right-20 w-40 h-40 bg-secondary/30 rounded-full blur-3xl"></div>
+          <div class="text-center z-10 max-w-xl px-8">
+            <h2 class="font-title text-4xl font-bold text-dark mb-4">nurturing <span class="text-primary">cultural</span> roots</h2>
+            <p class="text-dark/60 text-lg mb-6">Beautifully illustrated children's books celebrating Hindu heritage and mythology.</p>
+            <div class="flex justify-center gap-4">
+              <a href="#" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition">Shop Books</a>
+              <a href="#" class="border-2 border-dark/30 hover:border-primary text-dark hover:text-primary font-semibold px-6 py-3 rounded-full transition">Our Story</a>
+            </div>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Clean, soft gradients, text-centered, no hero image, elegant
+        </div>
+      </div>
+
+      <!-- Hero A+B Mix: Full-Bleed with Floating Product Card -->
+      <div class="proto-card">
+        <div class="proto-header">HERO A+B MIX: Cinematic Full-Bleed + Floating Product Card</div>
+        <div class="relative h-96 overflow-hidden">
+          <!-- Full-bleed background image (from A) -->
+          <img src="/images/hero/hero-books-background.webp" alt="Hero" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/60 to-transparent"></div>
+
+          <!-- Content grid like split (from B) but overlaid -->
+          <div class="relative h-full grid grid-cols-2 gap-8 px-12 items-center max-w-7xl mx-auto">
+            <!-- Left: Text content -->
+            <div class="max-w-md">
+              <span class="inline-block bg-primary/90 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">Featured Collection</span>
+              <h2 class="font-title text-4xl font-bold text-white mb-4 leading-tight">discover the magic of <span class="text-secondary">hindu mythology</span></h2>
+              <p class="text-white/80 text-lg mb-6">Beautifully illustrated books that bring ancient stories to life for young minds.</p>
+              <div class="flex gap-4">
+                <a href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition">Shop Books →</a>
+                <a href="#" class="inline-flex items-center gap-2 border-2 border-white/30 hover:border-white text-white font-semibold px-6 py-3 rounded-full transition">Watch Video</a>
+              </div>
+            </div>
+
+            <!-- Right: Floating product card (from B) -->
+            <div class="flex justify-end">
+              <div class="relative">
+                <!-- Book image with shadow and tilt -->
+                <div class="w-56 h-72 bg-white rounded-2xl shadow-2xl transform rotate-3 overflow-hidden border-4 border-white flex items-center justify-center">
+                  <span class="text-7xl">📚</span>
+                </div>
+                <!-- Decorative accent circle -->
+                <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-secondary/40 rounded-full blur-xl"></div>
+                <div class="absolute -top-4 -right-4 w-16 h-16 bg-primary/40 rounded-full blur-lg"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress indicators (from A) -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+            <span class="w-10 h-1 bg-white rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Cinematic immersion from A + product focus from B. Full-bleed dramatic backdrop with floating book card. Best of both worlds.
+        </div>
+      </div>
+
+      <!-- Hero A+B Mix V2: Cinematic with Colored Content Panel -->
+      <div class="proto-card">
+        <div class="proto-header">HERO A+B MIX V2: Cinematic + Colored Accent Panel</div>
+        <div class="relative h-96 overflow-hidden">
+          <!-- Full-bleed background image -->
+          <img src="/images/hero/hero-books-background.webp" alt="Hero" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-dark/40"></div>
+
+          <!-- Colored accent panel from right (Gloobooks-style) -->
+          <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-primary/95 via-primary/85 to-transparent"></div>
+
+          <!-- Content positioned on right panel -->
+          <div class="relative h-full flex items-center justify-end px-12">
+            <div class="max-w-md text-right">
+              <h2 class="font-title text-4xl font-bold text-white mb-4 leading-tight">the marvelous hindu deities</h2>
+              <p class="text-white/90 text-lg mb-6">A colorful journey through Hindu mythology. Perfect for ages 2-8.</p>
+              <a href="#" class="inline-flex items-center gap-2 bg-white hover:bg-tertiary text-primary font-bold px-8 py-4 rounded-full transition text-lg">SHOP NOW</a>
+
+              <!-- Book preview floating -->
+              <div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-44 h-56 bg-white rounded-xl shadow-2xl transform -rotate-6 flex items-center justify-center border-4 border-white">
+                <span class="text-5xl">📖</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress indicators -->
+          <div class="absolute bottom-4 left-8 flex gap-3">
+            <span class="w-10 h-1 bg-white rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+            <span class="w-6 h-1 bg-white/40 rounded-full"></span>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Cinematic backdrop + bold colored overlay panel. Creates playful energy while maintaining drama.
+        </div>
+      </div>
+
+      <!-- Hero A+B Mix V3: Asymmetric Split with Cinematic Image -->
+      <div class="proto-card">
+        <div class="proto-header">HERO A+B MIX V3: Asymmetric 60/40 Split</div>
+        <div class="relative h-96 overflow-hidden grid grid-cols-5">
+          <!-- Left 60%: Cinematic image -->
+          <div class="col-span-3 relative">
+            <img src="/images/hero/hero-books-background.webp" alt="Hero" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-dark/30 to-dark/80"></div>
+            <!-- Minimal text overlay -->
+            <div class="absolute bottom-8 left-8">
+              <span class="text-white/60 text-sm tracking-widest uppercase">Featured</span>
+            </div>
+          </div>
+
+          <!-- Right 40%: Content panel (like B but cinematic colors) -->
+          <div class="col-span-2 bg-dark flex flex-col justify-center p-10">
+            <span class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">NEW RELEASE</span>
+            <h2 class="font-title text-3xl font-bold text-white mb-4 leading-tight">children's books</h2>
+            <p class="text-white/70 mb-6">Beautifully illustrated stories celebrating Hindu heritage.</p>
+            <a href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full w-fit transition">Shop Collection →</a>
+
+            <!-- Indicators inside panel -->
+            <div class="flex gap-2 mt-8">
+              <span class="w-8 h-1 bg-primary rounded-full"></span>
+              <span class="w-4 h-1 bg-white/30 rounded-full"></span>
+              <span class="w-4 h-1 bg-white/30 rounded-full"></span>
+            </div>
+          </div>
+        </div>
+        <div class="proto-notes">
+          <strong>Style:</strong> Asymmetric split (60% image / 40% content). Cinematic left side, structured content right. Modern editorial feel.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COLOR SCHEME OPTIONS ========== -->
+    <section class="proto-section">
+      <span class="proto-label">COLOR SCHEMES</span>
+
+      <!-- Colors 1: Current Warm Cream -->
+      <div class="proto-card">
+        <div class="proto-header">COLORS 1: Warm Cream Background (Current)</div>
+        <div class="p-8 bg-tertiary">
+          <div class="flex gap-4 mb-6">
+            <div class="w-20 h-20 bg-primary rounded-lg flex items-center justify-center text-white text-xs">Primary<br>#c47834</div>
+            <div class="w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-dark text-xs">Secondary<br>#d4a574</div>
+            <div class="w-20 h-20 bg-tertiary border-2 border-dark/10 rounded-lg flex items-center justify-center text-dark text-xs">Tertiary<br>#fdf5e6</div>
+            <div class="w-20 h-20 bg-accent rounded-lg flex items-center justify-center text-white text-xs">Accent<br>#8b4513</div>
+            <div class="w-20 h-20 bg-dark rounded-lg flex items-center justify-center text-white text-xs">Dark<br>#2d2d2d</div>
+          </div>
+          <p class="text-dark/70">Warm, inviting, soft. Cream background feels cultural and heritage-focused.</p>
+        </div>
+        <div class="proto-notes">
+          <strong>Feel:</strong> Warm, traditional, soft, heritage-focused
+        </div>
+      </div>
+
+      <!-- Colors 2: White + Bold Accents -->
+      <div class="proto-card">
+        <div class="proto-header">COLORS 2: Clean White + Bold Accents</div>
+        <div class="p-8 bg-white">
+          <div class="flex gap-4 mb-6">
+            <div class="w-20 h-20 bg-primary rounded-lg flex items-center justify-center text-white text-xs">Primary<br>#c47834</div>
+            <div class="w-20 h-20 bg-orange-500 rounded-lg flex items-center justify-center text-white text-xs">Bright<br>#f97316</div>
+            <div class="w-20 h-20 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center text-dark text-xs">White<br>#ffffff</div>
+            <div class="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-dark text-xs">Light Gray<br>#f3f4f6</div>
+            <div class="w-20 h-20 bg-gray-900 rounded-lg flex items-center justify-center text-white text-xs">Dark<br>#111827</div>
+          </div>
+          <p class="text-dark/70">Clean, modern, Apple-like. White lets product images pop.</p>
+        </div>
+        <div class="proto-notes">
+          <strong>Feel:</strong> Modern, clean, minimal, product-focused
+        </div>
+      </div>
+
+      <!-- Colors 3: Dark/Rich -->
+      <div class="proto-card">
+        <div class="proto-header">COLORS 3: Dark & Rich (Premium)</div>
+        <div class="p-8 bg-dark">
+          <div class="flex gap-4 mb-6">
+            <div class="w-20 h-20 bg-primary rounded-lg flex items-center justify-center text-white text-xs">Gold<br>#c47834</div>
+            <div class="w-20 h-20 bg-amber-400 rounded-lg flex items-center justify-center text-dark text-xs">Bright Gold<br>#fbbf24</div>
+            <div class="w-20 h-20 bg-purple-900 rounded-lg flex items-center justify-center text-white text-xs">Purple<br>#581c87</div>
+            <div class="w-20 h-20 bg-dark border border-white/20 rounded-lg flex items-center justify-center text-white text-xs">Dark<br>#2d2d2d</div>
+            <div class="w-20 h-20 bg-gray-900 rounded-lg flex items-center justify-center text-white text-xs">Darker<br>#111111</div>
+          </div>
+          <p class="text-white/70">Rich, premium, dramatic. Gold accents feel luxurious.</p>
+        </div>
+        <div class="proto-notes">
+          <strong>Feel:</strong> Premium, dramatic, luxurious, bold
+        </div>
+      </div>
+
+      <!-- Colors 4: Playful Multi-color -->
+      <div class="proto-card">
+        <div class="proto-header">COLORS 4: Playful Multi-Color (Gloobooks-style)</div>
+        <div class="p-8 bg-white">
+          <div class="flex gap-4 mb-6">
+            <div class="w-20 h-20 bg-primary rounded-lg flex items-center justify-center text-white text-xs">Saffron<br>#c47834</div>
+            <div class="w-20 h-20 bg-teal-500 rounded-lg flex items-center justify-center text-white text-xs">Teal<br>#14b8a6</div>
+            <div class="w-20 h-20 bg-purple-600 rounded-lg flex items-center justify-center text-white text-xs">Purple<br>#9333ea</div>
+            <div class="w-20 h-20 bg-pink-500 rounded-lg flex items-center justify-center text-white text-xs">Pink<br>#ec4899</div>
+            <div class="w-20 h-20 bg-amber-400 rounded-lg flex items-center justify-center text-dark text-xs">Yellow<br>#fbbf24</div>
+          </div>
+          <p class="text-dark/70">Fun, playful, child-friendly. Multiple bright colors for energy.</p>
+        </div>
+        <div class="proto-notes">
+          <strong>Feel:</strong> Playful, fun, energetic, child-focused
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SELECTION ========== -->
+    <div class="bg-white rounded-xl p-8 shadow-lg">
+      <h2 class="font-title text-2xl font-bold text-dark mb-4">Tell me your choices:</h2>
+      <div class="space-y-3 text-dark/80">
+        <p><strong>Header:</strong> 1, 2, 3, or 4?</p>
+        <p><strong>Hero:</strong> A, B, or C?</p>
+        <p><strong>Colors:</strong> 1, 2, 3, or 4?</p>
+        <p class="text-dark/50 mt-4">Or describe what you'd like to mix/change from these options.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

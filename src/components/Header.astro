@@ -51,7 +51,7 @@ const currentPath = Astro.url.pathname;
           <img
             src="/images/brand/Brand-Logo-Name-Transparent-Background.svg"
             alt="Roots On Rise - Embrace, Elevate, Inspire"
-            class="h-28 md:h-32 lg:h-36 w-auto transition-all duration-500"
+            class="h-32 md:h-40 lg:h-44 w-auto transition-all duration-500"
           />
         </a>
 
@@ -388,8 +388,11 @@ const currentPath = Astro.url.pathname;
     setTimeout(updateHeaderHeight, 500);
   }
 
-  // Hide announcement bar after 3 seconds
+  // Hide announcement bar after 7 seconds (only on landing page)
   function startAnnouncementBarTimer() {
+    // Only auto-hide on the landing page
+    if (window.location.pathname !== '/') return;
+
     setTimeout(() => {
       if (announcementBar && !announcementBarHidden) {
         announcementBarHidden = true;
@@ -397,7 +400,7 @@ const currentPath = Astro.url.pathname;
         // Update spacer after transition
         setTimeout(updateHeaderHeight, 300);
       }
-    }, 3000);
+    }, 7000);
   }
 
   // Scroll handler
