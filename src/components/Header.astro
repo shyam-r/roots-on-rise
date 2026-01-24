@@ -44,7 +44,7 @@ const currentPath = Astro.url.pathname;
           <img
             src="/images/brand/Brand-Logo-Name-Transparent-Background.svg"
             alt="Roots On Rise - Embrace, Elevate, Inspire"
-            class="h-32 md:h-40 lg:h-44 w-auto transition-all duration-500"
+            class="h-20 sm:h-28 md:h-40 lg:h-44 w-auto transition-all duration-500"
           />
         </a>
 
@@ -238,7 +238,7 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 <!-- Header spacer to prevent content from being hidden behind fixed header -->
-<div id="header-spacer" class="h-[var(--header-height,180px)] transition-all duration-500"></div>
+<div id="header-spacer" class="h-[var(--header-height,120px)] transition-all duration-500"></div>
 
 <style>
   /* Sticky header shadow when scrolled/minimized */
@@ -272,7 +272,7 @@ const currentPath = Astro.url.pathname;
 
   /* Mobile drawer open state */
   #mobile-drawer.open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
 
   #mobile-overlay.open {
@@ -409,8 +409,9 @@ const currentPath = Astro.url.pathname;
     menuBtnMin?.setAttribute('aria-expanded', 'true');
     mobileDrawer.setAttribute('aria-hidden', 'false');
 
-    // Add open classes
+    // Add open classes and remove translate
     mobileDrawer.classList.add('open');
+    mobileDrawer.classList.remove('translate-x-full');
     mobileOverlay.classList.add('open');
 
     // Prevent body scroll
@@ -433,8 +434,9 @@ const currentPath = Astro.url.pathname;
     menuBtnMin?.setAttribute('aria-expanded', 'false');
     mobileDrawer.setAttribute('aria-hidden', 'true');
 
-    // Remove open classes
+    // Remove open classes and add translate back
     mobileDrawer.classList.remove('open');
+    mobileDrawer.classList.add('translate-x-full');
     mobileOverlay.classList.remove('open');
 
     // Restore body scroll
