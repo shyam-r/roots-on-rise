@@ -64,6 +64,8 @@ export interface HeroSlide {
   description: string;
   ctaText: string;
   ctaLink: string;
+  badge?: string;
+  productImage?: string;
 }
 
 // =============================================================================
@@ -283,25 +285,30 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image: '/images/books/marvelous-hindu-deities/hero-shot-1.jpg',
-    title: 'children\'s books',
-    description: 'Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage.',
+    image: '/images/books/marvelous-hindu-deities/promo_shot_7.jpg',
+    title: 'discover the magic of hindu mythology',
+    description: 'Beautifully illustrated books that bring ancient stories to life for young minds.',
     ctaText: 'Shop Books',
     ctaLink: '/books',
+    badge: 'Featured Collection',
+    productImage: '/images/books/marvelous-hindu-deities/promo_shot_1.png',
   },
   {
     image: '/images/books/shloka-mantra/hero-all.png',
-    title: 'New: Shloka & Mantra Book',
+    title: 'new: shloka & mantra book',
     description: 'Introduce your children to sacred Hindu shlokas and Sanskrit mantras with gentle repetition.',
-    ctaText: 'Learn More',
+    ctaText: 'Shop Now',
     ctaLink: '/books',
+    badge: 'New Release',
+    productImage: '/images/books/shloka-mantra/front-cover.jpg',
   },
   {
     image: '/images/downloads/ganesha-mandala.png',
-    title: 'Free coloring sheets',
+    title: 'free coloring sheets',
     description: 'Download beautifully designed Hindu deity coloring pages for your little ones.',
     ctaText: 'Get Free Downloads',
     ctaLink: '/digital-downloads',
+    badge: 'Free Resources',
   },
 ];
 

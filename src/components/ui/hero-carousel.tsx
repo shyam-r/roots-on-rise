@@ -8,6 +8,8 @@ export interface HeroSlide {
   description?: string
   ctaText?: string
   ctaLink?: string
+  badge?: string
+  productImage?: string
 }
 
 export interface HeroCarouselProps {
@@ -195,61 +197,98 @@ function HeroCarousel({
                 />
               </div>
 
-              {/* Apple-style gradient overlay - subtle vignette effect */}
+              {/* Gradient overlay - stronger from left for text readability */}
               <div
-                className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/20 to-transparent"
+                className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/50 to-dark/20"
                 aria-hidden="true"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-r from-dark/40 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent"
                 aria-hidden="true"
               />
 
-              {/* Content - Bottom-left positioning like Apple */}
-              <div className="absolute inset-0 flex items-end">
-                <div className="w-full px-6 md:px-12 lg:px-20 pb-24 md:pb-32">
-                  <div
-                    className={cn(
-                      "max-w-3xl",
-                      !prefersReducedMotion && "transition-all duration-700 ease-out",
-                      contentVisible && isActive
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    )}
-                  >
-                    {/* Title - Large, bold, Apple-style */}
-                    <h2
-                      className="font-title font-bold text-4xl md:text-6xl lg:text-7xl text-light mb-4 md:mb-6 tracking-tight leading-[1.1]"
-                      id={`slide-title-${index}`}
+              {/* Content - Two column layout: Text left, Product card right */}
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20">
+                  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    {/* Left Column: Text Content */}
+                    <div
+                      className={cn(
+                        !prefersReducedMotion && "transition-all duration-700 ease-out",
+                        contentVisible && isActive
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-8"
+                      )}
                     >
-                      {slide.title}
-                    </h2>
+                      {/* Badge */}
+                      {slide.badge && (
+                        <span className="inline-block bg-primary/90 text-light text-sm font-semibold px-4 py-1.5 rounded-full mb-4 md:mb-5">
+                          {slide.badge}
+                        </span>
+                      )}
 
-                    {/* Description - Clean, readable */}
-                    {slide.description && (
-                      <p className="text-light/80 text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl leading-relaxed font-light">
-                        {slide.description}
-                      </p>
-                    )}
+                      {/* Title - Large, bold */}
+                      <h2
+                        className="font-title font-bold text-3xl md:text-5xl lg:text-6xl text-light mb-4 md:mb-6 tracking-tight leading-[1.1]"
+                        id={`slide-title-${index}`}
+                      >
+                        {slide.title}
+                      </h2>
 
-                    {/* CTA - Minimal, elegant button */}
-                    {slide.ctaText && slide.ctaLink && (
-                      <a
-                        href={slide.ctaLink}
-                        tabIndex={isActive ? 0 : -1}
+                      {/* Description */}
+                      {slide.description && (
+                        <p className="text-light/80 text-lg md:text-xl mb-6 md:mb-8 max-w-xl leading-relaxed">
+                          {slide.description}
+                        </p>
+                      )}
+
+                      {/* CTA Button */}
+                      {slide.ctaText && slide.ctaLink && (
+                        <a
+                          href={slide.ctaLink}
+                          tabIndex={isActive ? 0 : -1}
+                          className={cn(
+                            "inline-flex items-center gap-2",
+                            "px-8 py-4 rounded-full",
+                            "bg-primary hover:bg-primary-dark",
+                            "text-light font-semibold text-lg",
+                            "transition-all duration-300 ease-out",
+                            "hover:scale-105 hover:shadow-2xl hover:shadow-primary/30",
+                            "focus:outline-none focus-visible:ring-2 focus-visible:ring-light focus-visible:ring-offset-4 focus-visible:ring-offset-dark"
+                          )}
+                        >
+                          {slide.ctaText}
+                          <ChevronRight className="w-5 h-5" aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Right Column: Floating Product Card */}
+                    {slide.productImage && (
+                      <div
                         className={cn(
-                          "inline-flex items-center gap-2",
-                          "px-8 py-4 rounded-full",
-                          "bg-primary hover:bg-primary-dark",
-                          "text-light font-semibold text-lg",
-                          "transition-all duration-300 ease-out",
-                          "hover:scale-105 hover:shadow-2xl hover:shadow-primary/30",
-                          "focus:outline-none focus-visible:ring-2 focus-visible:ring-light focus-visible:ring-offset-4 focus-visible:ring-offset-dark"
+                          "hidden lg:flex justify-center lg:justify-end",
+                          !prefersReducedMotion && "transition-all duration-700 ease-out delay-200",
+                          contentVisible && isActive
+                            ? "opacity-100 translate-x-0"
+                            : "opacity-0 translate-x-8"
                         )}
                       >
-                        {slide.ctaText}
-                        <ChevronRight className="w-5 h-5" aria-hidden="true" />
-                      </a>
+                        <div className="relative">
+                          {/* Book image with shadow and tilt */}
+                          <div className="w-52 xl:w-64 h-68 xl:h-80 bg-light rounded-2xl shadow-2xl transform rotate-3 overflow-hidden border-4 border-light/90 hover:rotate-0 transition-transform duration-500">
+                            <img
+                              src={slide.productImage}
+                              alt=""
+                              aria-hidden="true"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          {/* Decorative blur circles */}
+                          <div className="absolute -bottom-6 -left-6 w-28 h-28 bg-secondary/30 rounded-full blur-2xl" aria-hidden="true" />
+                          <div className="absolute -top-6 -right-6 w-20 h-20 bg-primary/30 rounded-full blur-xl" aria-hidden="true" />
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

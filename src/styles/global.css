@@ -5,13 +5,15 @@
 @theme {
   --color-light: #fff;
   --color-dark: #2d2d2d;
-  --color-primary: #c47834;
-  --color-primary-dark: #a85d1c;
-  --color-secondary: #d4a574;
-  --color-secondary-dark: #b8925f;
-  --color-tertiary: #fdf5e6;
+  --color-primary: #d4a017;           /* Rich gold - warm, not yellow */
+  --color-primary-dark: #b8860b;      /* Dark goldenrod */
+  --color-secondary: #8b4513;         /* Saddle brown - earthy */
+  --color-secondary-dark: #6b350f;
+  --color-tertiary: #fdf5e6;          /* Old lace cream */
   --color-tertiary-50: #fffdf9;
-  --color-accent: #8b4513;
+  --color-accent: #c47834;            /* Warm saffron */
+  --color-gold: #daa520;              /* Goldenrod for highlights */
+  --color-muted: #f3f4f6;
   --color-border: #e5e7eb;
 
   /* Amazon brand colors */
