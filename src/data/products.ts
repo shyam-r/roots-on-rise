@@ -295,7 +295,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     image: '/images/books/shloka-mantra/hero-all.png',
-    title: 'new: shloka & mantra book',
+    title: 'shloka & mantra book',
     description: 'Introduce your children to sacred Hindu shlokas and Sanskrit mantras with gentle repetition.',
     ctaText: 'Shop Now',
     ctaLink: '/books',

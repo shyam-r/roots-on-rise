@@ -16,13 +16,6 @@ const currentPath = Astro.url.pathname;
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress" class="h-0.5 bg-primary origin-left scale-x-0 transition-transform duration-100"></div>
 
-  <!-- Top announcement bar - hides when minimized -->
-  <div id="announcement-bar" class="bg-primary text-light py-2 text-center text-sm transition-all duration-300">
-    <a href="https://www.amazon.com/dp/8195870724" target="_blank" rel="noopener" class="hover:underline focus-visible:underline focus-visible:outline-none">
-      Namaste! Shop our books on Amazon for fast Prime delivery
-    </a>
-  </div>
-
   <!-- Main header content -->
   <div id="header-main" class="bg-tertiary text-dark border-b border-secondary/20 transition-all duration-500">
 
@@ -253,16 +246,6 @@ const currentPath = Astro.url.pathname;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   }
 
-  /* Hide announcement bar when minimized OR independently dismissed */
-  #site-header.minimized #announcement-bar,
-  #announcement-bar.hidden {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-    overflow: hidden;
-  }
-
   /* Hide expanded state when minimized */
   #site-header.minimized #header-expanded {
     display: none;
@@ -335,7 +318,6 @@ const currentPath = Astro.url.pathname;
   const header = document.getElementById('site-header');
   const scrollProgress = document.getElementById('scroll-progress');
   const headerSpacer = document.getElementById('header-spacer');
-  const announcementBar = document.getElementById('announcement-bar');
   const headerExpanded = document.getElementById('header-expanded');
   const headerMinimized = document.getElementById('header-minimized');
   const menuBtn = document.getElementById('mobile-menu-btn');
@@ -346,7 +328,6 @@ const currentPath = Astro.url.pathname;
 
   // State
   let isMinimized = false;
-  let announcementBarHidden = false;
 
   // Store focusable elements for focus trap
   let focusableElements: HTMLElement[] = [];
@@ -386,21 +367,6 @@ const currentPath = Astro.url.pathname;
 
     // Update spacer after transition
     setTimeout(updateHeaderHeight, 500);
-  }
-
-  // Hide announcement bar after 7 seconds (only on landing page)
-  function startAnnouncementBarTimer() {
-    // Only auto-hide on the landing page
-    if (window.location.pathname !== '/') return;
-
-    setTimeout(() => {
-      if (announcementBar && !announcementBarHidden) {
-        announcementBarHidden = true;
-        announcementBar.classList.add('hidden');
-        // Update spacer after transition
-        setTimeout(updateHeaderHeight, 300);
-      }
-    }, 7000);
   }
 
   // Scroll handler
@@ -540,7 +506,6 @@ const currentPath = Astro.url.pathname;
   // Initial setup
   updateHeaderHeight();
   handleScroll();
-  startAnnouncementBarTimer(); // Start announcement bar auto-hide timer
 
   // Update height when fonts/images load
   window.addEventListener('load', updateHeaderHeight);
