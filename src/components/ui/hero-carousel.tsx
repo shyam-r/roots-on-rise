@@ -133,7 +133,7 @@ function HeroCarousel({
 
       {/* Slides container */}
       <div
-        className="relative aspect-[16/9] md:aspect-[21/9] w-full"
+        className="relative aspect-[4/3] md:aspect-[16/9] w-full"
         aria-live={autoRotate && !isPaused ? "off" : "polite"}
       >
         {slides.map((slide, index) => {
