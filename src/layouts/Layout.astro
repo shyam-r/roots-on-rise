@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title,
-  description = "Discover beautifully illustrated Hindu children's books and products. Explore Indian mythology, shloka and mantra books for kids ages 2-8. Perfect Diwali gifts for children.",
+  description = "Discover beautifully illustrated children's books and cultural products. Explore mythology, shloka and mantra books for kids ages 2-8. Perfect gifts for children.",
   image = "/images/brand/logo-banner.jpg",
   canonicalUrl,
   type = "website",
@@ -41,7 +41,7 @@ const organizationSchema = {
   "name": "Roots On Rise",
   "url": siteUrl,
   "logo": `${siteUrl}/images/brand/Brand-Logo-Name-Transparent-Background.png`,
-  "description": "Hindu children's books and cultural products celebrating Indian mythology and heritage.",
+  "description": "Children's books and cultural products celebrating mythology and heritage.",
   "sameAs": [
     "https://www.instagram.com/rootsonrise"
   ]
@@ -53,7 +53,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": "Roots On Rise",
   "url": siteUrl,
-  "description": "Hindu children's books, shloka books, and cultural products for kids"
+  "description": "Children's books, shloka books, and cultural products for kids"
 };
 ---
 
@@ -89,7 +89,7 @@ const websiteSchema = {
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Roots On Rise - Hindu Children's Books" />
+    <meta property="og:image:alt" content="Roots On Rise - Children's Books & Cultural Products" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
@@ -98,7 +98,7 @@ const websiteSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="Roots On Rise - Hindu Children's Books" />
+    <meta name="twitter:image:alt" content="Roots On Rise - Children's Books & Cultural Products" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

@@ -284,7 +284,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export const HERO_SLIDES: HeroSlide[] = [
   {
     image: '/images/books/marvelous-hindu-deities/hero-shot-1.jpg',
-    title: 'Hindu children\'s books',
+    title: 'children\'s books',
     description: 'Beautifully illustrated books celebrating Indian mythology, shlokas, and cultural heritage.',
     ctaText: 'Shop Books',
     ctaLink: '/books',
@@ -388,8 +388,8 @@ export function generateProductSchema(bookList: Book[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    'name': 'Hindu Children\'s Books Collection',
-    'description': 'Beautifully illustrated Hindu mythology books and shloka books for children',
+    'name': 'Children\'s Books Collection',
+    'description': 'Beautifully illustrated mythology books and shloka books for children',
     'numberOfItems': bookList.length,
     'itemListElement': bookList.map((book, index) => ({
       '@type': 'ListItem',
