@@ -13,11 +13,11 @@ export interface BookCardProps {
   images?: string[]
   regularPrice: string
   salePrice?: string
-  amazonAsin: string
+  isbn?: string             // Primary identifier for physical books
+  asin?: string             // Only for Amazon-exclusive formats (Kindle)
   format: string
   ageRange: string
   pages?: string
-  isbn?: string
   isOnSale?: boolean
   layout?: "horizontal" | "vertical"
   reverse?: boolean
@@ -33,16 +33,18 @@ function BookCard({
   images = [],
   regularPrice,
   salePrice,
-  amazonAsin,
+  isbn,
+  asin,
   format,
   ageRange,
   pages,
-  isbn,
   isOnSale = false,
   layout = "horizontal",
   reverse = false,
   className
 }: BookCardProps) {
+  // Use ISBN for physical books, ASIN for Kindle
+  const purchaseId = isbn ?? asin
   const isHorizontal = layout === "horizontal"
 
   // Track the currently displayed image (can be changed by clicking thumbnails)
@@ -155,7 +157,7 @@ function BookCard({
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
           <a
-            href={`https://www.amazon.com/dp/${amazonAsin}?tag=rootsonrise-20`}
+            href={`https://www.amazon.com/dp/${purchaseId}?tag=rootsonrise-20`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -166,6 +168,9 @@ function BookCard({
 
         {isbn && (
           <p className="text-dark/40 text-xs mt-4">ISBN: {isbn}</p>
+        )}
+        {!isbn && asin && (
+          <p className="text-dark/40 text-xs mt-4">ASIN: {asin}</p>
         )}
       </div>
     </article>

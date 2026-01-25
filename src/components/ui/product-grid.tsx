@@ -16,7 +16,8 @@ export interface Product {
   salePrice?: string
   href: string
   badge?: string
-  amazonAsin?: string
+  isbn?: string              // Primary identifier for physical books
+  asin?: string              // Only for Amazon-exclusive formats (Kindle)
 }
 
 export interface ProductGridProps {
@@ -174,7 +175,7 @@ function ProductCard({ product, showQuickView, onQuickView }: ProductCardProps) 
         </div>
 
         {/* Amazon Button */}
-        {product.amazonAsin && (
+        {(product.isbn || product.asin) && (
           <Button
             variant="amazon"
             size="sm"
@@ -182,7 +183,7 @@ function ProductCard({ product, showQuickView, onQuickView }: ProductCardProps) 
             className="w-full mt-3"
           >
             <a
-              href={`https://www.amazon.com/dp/${product.amazonAsin}?tag=rootsonrise-20`}
+              href={`https://www.amazon.com/dp/${product.isbn ?? product.asin}?tag=rootsonrise-20`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

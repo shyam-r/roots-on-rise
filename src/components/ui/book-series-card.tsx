@@ -202,7 +202,7 @@ function BookSeriesCard({
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
           <a
-            href={`https://www.amazon.com/dp/${selectedBook.amazonAsin}?tag=rootsonrise-20`}
+            href={`https://www.amazon.com/dp/${selectedBook.isbn ?? selectedBook.asin}?tag=rootsonrise-20`}
             target="_blank"
             rel="noopener noreferrer"
           >

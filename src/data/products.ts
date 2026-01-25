@@ -17,9 +17,21 @@ import { AMAZON_BASE_URL } from '@/lib/constants';
 export interface BookFormat {
   id: string;
   name: string;
-  asin: string;
+  isbn?: string;          // Primary identifier for physical books
+  asin?: string;          // Only for Amazon-exclusive formats (Kindle)
   price: string;
   description?: string;
+}
+
+export interface BookMetadata {
+  publisher?: string;
+  publicationDate?: string;
+  language?: string;
+  printLength?: string;
+  weight?: string;
+  dimensions?: string;
+  fileSize?: string;       // For e-books
+  seriesName?: string;     // Amazon series association
 }
 
 export interface Book {
@@ -27,18 +39,20 @@ export interface Book {
   seriesId: string;
   title: string;
   subtitle?: string;
+  author?: string;
   description: string;
   longDescription?: string;
   image: string;
   images?: string[];
   regularPrice: string;
   salePrice?: string;
-  amazonAsin: string;
+  isbn?: string;            // Primary identifier for physical books (ISBN-13)
+  asin?: string;            // Only for Amazon-exclusive formats (Kindle e-books)
   format: string;
   ageRange: string;
   pages?: string;
-  isbn?: string;
   isOnSale: boolean;
+  metadata?: BookMetadata;
 }
 
 export interface BookSeries {
@@ -48,6 +62,33 @@ export interface BookSeries {
   description: string;
   formats: BookFormat[];
 }
+
+export interface PublisherSeries {
+  id: string;
+  name: string;
+  description: string;
+}
+
+// =============================================================================
+// Publisher Series (Parent grouping for all books)
+// =============================================================================
+
+/**
+ * The Hindu Gods Series - our flagship children's book series
+ */
+export const PUBLISHER_SERIES: PublisherSeries = {
+  id: 'hindu-gods-series',
+  name: 'The Hindu Gods Series',
+  description: `This children's book series offers a gentle, age-appropriate introduction to Hindu culture, spirituality, and sacred traditions.
+
+Created for young children and families, the books introduce Hindu shlokas, mantras, and deities through clear language, calm rhythm, and thoughtful storytelling. Each book is designed to help children listen carefully, chant with respect, and understand meaning at their own pace, without pressure to memorize or rush.
+
+Through simple explanations, rich illustrations, and timeless stories from Hindu mythology, children begin to build familiarity with sacred sounds, symbols, and values in a way that feels natural and comforting.
+
+Ideal for daily reading, quiet time, bedtime routines, or family chanting, this series supports focus, mindfulness, cultural learning, and positive habits from an early age.
+
+A meaningful starting point for parents seeking Hindu children's books that nurture connection to heritage, identity, and tradition, one small step at a time.`,
+};
 
 export interface Testimonial {
   id: string | number;
@@ -77,10 +118,10 @@ export const BOOK_SERIES: BookSeries[] = [
     id: 'shloka-mantra',
     name: 'My Little Shloka and Mantra Book',
     shortName: 'Shloka & Mantra',
-    description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children ages 3-8 with pronunciation guides and simple meanings.',
+    description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children from baby to 14 years with pronunciation guides and simple meanings.',
     formats: [
-      { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$24.50', description: '78 pages with bonus coloring section' },
-      { id: 'paperback', name: 'Paperback', asin: 'B0GGRS2D5B', price: '$14.99', description: '67 pages, perfect for daily practice' },
+      { id: 'hardcover', name: 'Hardcover', isbn: '979-8243585606', price: '$24.50', description: '78 pages with bonus coloring section' },
+      { id: 'paperback', name: 'Paperback', isbn: '979-8243474535', price: '$14.99', description: '67 pages, perfect for daily practice' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0GG84NQ35', price: '$9.99', description: 'Instant download, read anywhere' },
     ],
   },
@@ -88,10 +129,10 @@ export const BOOK_SERIES: BookSeries[] = [
     id: 'marvelous-hindu-deities',
     name: 'The Marvelous Hindu Deities',
     shortName: 'Hindu Deities',
-    description: 'Introduces 10 major Hindu gods and goddesses—including Ganesha, Krishna, and Lakshmi—to children ages 2-8 through vibrant illustrations.',
+    description: 'Introduces 10 major Hindu gods and goddesses—including Ganesha, Krishna, and Lakshmi—to children from baby to 12 years through vibrant illustrations.',
     formats: [
-      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', description: '24 thick pages, toddler-proof for ages 2-5' },
-      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$15.99', description: '32 pages with expanded stories' },
+      { id: 'board-book', name: 'Board Book', isbn: '978-8195870721', price: '$14.99', description: '24 thick pages, toddler-proof for ages 2-12' },
+      { id: 'paperback', name: 'Paperback', isbn: '979-8866694815', price: '$15.99', description: '44 pages with expanded stories' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$7.99', description: 'Instant download, perfect for travel' },
     ],
   },
@@ -108,115 +149,170 @@ export const BOOKS: Book[] = [
     seriesId: 'shloka-mantra',
     title: 'My Little Shloka and Mantra Book - Hardcover',
     subtitle: 'Special Edition with Coloring Pages',
-    description: 'A 78-page hardcover introducing 15 traditional Hindu shlokas and Sanskrit mantras for children ages 3-8. Includes pronunciation guides, simple meanings, and bonus coloring pages featuring deity illustrations.',
+    description: 'A 78-page hardcover introducing 15 traditional Hindu shlokas and Sanskrit mantras for children from baby to 14 years. Includes pronunciation guides, simple meanings, and bonus coloring pages featuring deity illustrations.',
     longDescription: 'This special hardcover edition teaches 15 age-appropriate Hindu prayers including the Gayatri Mantra, Shanti Mantras, and deity shlokas. Each shloka includes simple transliteration for pronunciation, easy-to-understand meanings, and gentle repetition exercises. The 78 pages include a dedicated coloring section with deity illustrations, making learning peaceful and screen-free. Ideal for daily chanting routines, bedtime reading, and family prayer time.',
-    image: '/images/books/shloka-mantra/front-cover.jpg',
+    image: '/images/books/shloka-mantra/hardcover/front-cover.jpg',
     images: [
-      '/images/books/shloka-mantra/front-cover.jpg',
-      '/images/books/shloka-mantra/back-cover.jpg',
+      '/images/books/shloka-mantra/hardcover/front-cover.jpg',
+      '/images/books/shloka-mantra/hardcover/back-cover.jpg',
       '/images/books/shloka-mantra/collage-interior-pages.png',
-      '/images/books/shloka-mantra/hero-shot-1.jpg',
+      '/images/books/shloka-mantra/hardcover/hero-shot-1.jpg',
+      '/images/books/shloka-mantra/hardcover/hero-all.png',
     ],
     regularPrice: '24.50',
-    amazonAsin: 'B0GH1Z46BD',
+    isbn: '979-8243585606',
     format: 'Hardcover',
-    ageRange: '3-8 years',
+    ageRange: 'Baby - 14 years',
     pages: '78',
     isOnSale: false,
+    metadata: {
+      publisher: 'Independently published',
+      publicationDate: 'January 15, 2026',
+      language: 'English',
+      printLength: '78 pages',
+      weight: '6.1 ounces',
+      dimensions: '6.24 x 0.38 x 9.24 inches',
+      seriesName: 'The Hindu Gods Series',
+    },
   },
   {
     id: 2,
     seriesId: 'shloka-mantra',
     title: 'My Little Shloka and Mantra Book - Paperback',
     subtitle: 'Sacred Words for Kids',
-    description: 'A 67-page paperback teaching 15 Hindu shlokas and mantras to children ages 3-8. Features transliterations, simple meanings, and structured learning for first-time chanters.',
-    longDescription: 'Designed for early childhood, this 67-page book presents 15 well-known Hindu shlokas and mantras with clear transliterations and age-appropriate meanings. The structured format uses gentle repetition to help children chant slowly and clearly. Focuses on understanding and pronunciation rather than memorization, building a strong foundation in Hindu prayer traditions. Best for children ages 3-8 learning Sanskrit sounds for the first time.',
-    image: '/images/books/shloka-mantra/front-cover.jpg',
+    description: 'A 67-page paperback teaching 15 Hindu shlokas and mantras to children from baby to 14 years. Features transliterations, simple meanings, and structured learning for first-time chanters.',
+    longDescription: 'Designed for early childhood, this 67-page book presents 15 well-known Hindu shlokas and mantras with clear transliterations and age-appropriate meanings. The structured format uses gentle repetition to help children chant slowly and clearly. Focuses on understanding and pronunciation rather than memorization, building a strong foundation in Hindu prayer traditions. Best for children learning Sanskrit sounds for the first time.',
+    image: '/images/books/shloka-mantra/paperback/front-cover.jpg',
     images: [
-      '/images/books/shloka-mantra/front-cover.jpg',
-      '/images/books/shloka-mantra/hero-2.jpg',
+      '/images/books/shloka-mantra/paperback/front-cover.jpg',
+      '/images/books/shloka-mantra/paperback/back-cover.jpg',
+      '/images/books/shloka-mantra/collage-interior-pages.png',
       '/images/books/shloka-mantra/promo_shot_boy_reading_book.jpg',
+      '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
     ],
     regularPrice: '14.99',
-    amazonAsin: 'B0GGRS2D5B',
+    isbn: '979-8243474535',
     format: 'Paperback',
-    ageRange: '3-8 years',
+    ageRange: 'Baby - 14 years',
     pages: '67',
     isOnSale: false,
+    metadata: {
+      publisher: 'Independently published',
+      publicationDate: 'January 11, 2026',
+      language: 'English',
+      printLength: '67 pages',
+      weight: '5 ounces',
+      dimensions: '6 x 0.16 x 9 inches',
+      seriesName: 'The Hindu Gods Series',
+    },
   },
   {
     id: 3,
     seriesId: 'shloka-mantra',
     title: 'My Little Shloka and Mantra Book - E-Book',
     subtitle: 'Digital Edition',
-    description: 'Digital Kindle edition of our shloka book with 15 Hindu mantras for children ages 3-8. Read on any device with the Kindle app.',
+    description: 'Digital Kindle edition of our shloka book with 15 Hindu mantras for children from baby to 14 years. Read on any device with the Kindle app.',
     longDescription: 'The complete Shloka and Mantra Book in digital format, featuring all 15 shlokas with transliterations and meanings. Perfect for reading on tablets, phones, or Kindle devices. Ideal for travel, bedtime routines on the go, and families wanting instant access. Available worldwide with no shipping required.',
-    image: '/images/books/shloka-mantra/front-cover.jpg',
+    image: '/images/books/shloka-mantra/ebook/front-cover.jpg',
+    images: [
+      '/images/books/shloka-mantra/ebook/front-cover.jpg',
+    ],
     regularPrice: '9.99',
-    amazonAsin: 'B0GG84NQ35',
+    asin: 'B0GG84NQ35',
     format: 'E-Book (Kindle)',
-    ageRange: '3-8 years',
+    ageRange: 'Baby - 14 years',
     isOnSale: false,
+    metadata: {
+      seriesName: 'The Hindu Gods Series',
+    },
   },
   // ===== THE MARVELOUS HINDU DEITIES =====
   {
     id: 4,
     seriesId: 'marvelous-hindu-deities',
     title: 'The Marvelous Hindu Deities - Board Book',
-    subtitle: 'Special Edition',
-    description: 'A 24-page board book introducing 10 Hindu gods and goddesses to children ages 2-8. Features Ganesha, Krishna, Lakshmi, Shiva, and 6 more deities with vibrant illustrations and simple descriptions.',
+    subtitle: 'Special Illustrated Edition',
+    author: 'Krithika Nayak',
+    description: 'A 24-page board book introducing 10 Hindu gods and goddesses to children ages 2-12. Features Ganesha, Krishna, Lakshmi, Shiva, and 6 more deities with vibrant illustrations and simple descriptions.',
     longDescription: 'This durable board book introduces 10 major Hindu deities: Ganesha, Krishna, Lakshmi, Shiva, Vishnu, Saraswati, Hanuman, Durga, Brahma, and Parvati. Each deity is presented with a full-page vibrant illustration and age-appropriate description of their stories and significance. The 24 thick pages are designed for toddler handling, making it the bestselling choice for ages 2-5. Perfect as a first introduction to Hindu mythology.',
-    image: '/images/books/marvelous-hindu-deities/board_book_front_cover.webp',
+    image: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
     images: [
-      '/images/books/marvelous-hindu-deities/board_book_front_cover.webp',
-      '/images/books/marvelous-hindu-deities/board_book_back_cover.webp',
+      '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+      '/images/books/marvelous-hindu-deities/boardbook/board_book_back_cover.webp',
       '/images/books/marvelous-hindu-deities/collage_interior_pages.png',
-      '/images/books/marvelous-hindu-deities/promo_shot_girl_reading.jpeg',
+      '/images/books/marvelous-hindu-deities/boardbook/promo_shot_girl_reading.jpeg',
+      '/images/books/marvelous-hindu-deities/boardbook/hero-shot-1.jpg',
     ],
     regularPrice: '19.99',
     salePrice: '14.99',
-    amazonAsin: '8195870724',
+    isbn: '978-8195870721',
     format: 'Board book',
-    ageRange: '2-8 years',
+    ageRange: '2 - 12 years',
     pages: '24',
     isOnSale: true,
+    metadata: {
+      publisher: 'Roots On Rise',
+      publicationDate: 'January 1, 2024',
+      language: 'English',
+      printLength: '24 pages',
+      weight: '6.4 ounces',
+      dimensions: '1 x 5 x 7 inches',
+    },
   },
   {
     id: 5,
     seriesId: 'marvelous-hindu-deities',
     title: 'The Marvelous Hindu Deities - Paperback',
-    subtitle: 'Classic Edition',
-    description: 'A 32-page paperback featuring 10 Hindu gods and goddesses for children ages 2-8. Includes detailed illustrations and stories of Ganesha, Krishna, Lakshmi, and more.',
-    longDescription: 'This 32-page paperback edition features the same 10 Hindu deities as the board book—Ganesha, Krishna, Lakshmi, Shiva, Vishnu, Saraswati, Hanuman, Durga, Brahma, and Parvati—with expanded descriptions and additional story context. The larger format showcases vibrant illustrations and provides more detailed information suitable for ages 3-8. An excellent choice for children ready for regular book pages and deeper learning about Hindu mythology.',
-    image: '/images/books/marvelous-hindu-deities/paperback_front_cover.png',
+    subtitle: 'An Enchanting Introduction to the World of Hindu Gods and Goddesses',
+    author: 'Krithika Nayak',
+    description: 'A 44-page paperback featuring vibrant pictures, informative descriptions, and entertaining rhymes for an enchanting introduction to Hindu deities. Now with bonus coloring pages!',
+    longDescription: 'Filled with vibrant pictures, informative descriptions, and entertaining rhymes, this delightful read offers an enchanting introduction to the fascinating realm of Hindu deities. Through engaging visuals and carefully curated information, young readers can embark on an exciting journey, discovering the unique attributes and stories behind these revered figures. Now with bonus coloring pages that let young readers have fun while learning, helping cultivate a deep connection to culture through the power of creativity and play.',
+    image: '/images/books/marvelous-hindu-deities/paperback/paperback_front_cover.png',
     images: [
-      '/images/books/marvelous-hindu-deities/paperback_front_cover.png',
-      '/images/books/marvelous-hindu-deities/hero-shot-1.jpg',
+      '/images/books/marvelous-hindu-deities/paperback/paperback_front_cover.png',
+      '/images/books/marvelous-hindu-deities/collage_interior_pages.png',
+      '/images/books/marvelous-hindu-deities/paperback/promo_shot_book_in_hands.png',
+      '/images/books/marvelous-hindu-deities/paperback/promo_shot_8.jpg',
     ],
     regularPrice: '15.99',
-    amazonAsin: 'B0CN4NXVVN',
-    format: 'Paperback',
-    ageRange: '2-8 years',
-    pages: '32',
     isbn: '979-8866694815',
+    format: 'Paperback',
+    ageRange: 'Baby - 12 years',
+    pages: '44',
     isOnSale: false,
+    metadata: {
+      publisher: 'Independently published',
+      publicationDate: 'November 9, 2023',
+      language: 'English',
+      printLength: '44 pages',
+      weight: '4.5 ounces',
+      dimensions: '7 x 0.11 x 10 inches',
+    },
   },
   {
     id: 6,
     seriesId: 'marvelous-hindu-deities',
     title: 'The Marvelous Hindu Deities - E-Book',
     subtitle: 'Digital Edition',
-    description: 'Digital Kindle edition featuring 10 Hindu deities with vibrant illustrations for children ages 2-8. Instant download, read anywhere.',
+    author: 'Krithika Nayak',
+    description: 'Digital Kindle edition featuring 10 Hindu deities with vibrant illustrations for children from baby to 12 years. Instant download, read anywhere.',
     longDescription: 'The complete Marvelous Hindu Deities book in digital format, featuring all 10 deities with full-color illustrations. Perfect for reading on tablets, phones, or Kindle devices. Ideal for travel, grandparents who want digital copies, and families seeking instant access. Available worldwide with no shipping wait.',
-    image: '/images/books/marvelous-hindu-deities/front-cover-ebook.jpg',
+    image: '/images/books/marvelous-hindu-deities/ebook/front-cover-ebook.jpg',
     images: [
-      '/images/books/marvelous-hindu-deities/front-cover-ebook.jpg',
+      '/images/books/marvelous-hindu-deities/ebook/front-cover-ebook.jpg',
+      '/images/books/marvelous-hindu-deities/ebook/hero-shot-announce-ebook.jpg',
     ],
     regularPrice: '7.99',
-    amazonAsin: 'B0CLKYY3QC',
+    asin: 'B0CLKYY3QC',
     format: 'E-Book (Kindle)',
-    ageRange: '2-8 years',
+    ageRange: 'Baby - 12 years',
     isOnSale: false,
+    metadata: {
+      publicationDate: 'November 7, 2023',
+      language: 'English',
+      fileSize: '34.3 MB',
+      seriesName: 'The Hindu Gods Series',
+    },
   },
 ];
 
@@ -227,8 +323,8 @@ export const BOOKS: Book[] = [
 export const FEATURED_BOOK = {
   seriesId: 'marvelous-hindu-deities',
   title: 'The Marvelous Hindu Deities',
-  description: 'A 24-page board book introducing 10 Hindu gods and goddesses to children ages 2-8. Bestselling choice for first-time readers.',
-  image: '/images/books/marvelous-hindu-deities/hero-shot-1.jpg',
+  description: 'A 24-page board book introducing 10 Hindu gods and goddesses to children ages 2-12. Bestselling choice for first-time readers.',
+  image: '/images/books/marvelous-hindu-deities/boardbook/hero-shot-1.jpg',
   price: '$14.99',
   features: [
     '10 deities: Ganesha, Krishna, Lakshmi, and more',
@@ -285,22 +381,22 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    image: '/images/books/marvelous-hindu-deities/promo_shot_7.jpg',
+    image: '/images/books/marvelous-hindu-deities/boardbook/promo_shot_7.jpg',
     title: 'discover the magic of hindu mythology',
     description: 'Beautifully illustrated books that bring ancient stories to life for young minds.',
     ctaText: 'Shop Books',
     ctaLink: '/books',
     badge: 'Featured Collection',
-    productImage: '/images/books/marvelous-hindu-deities/promo_shot_1.png',
+    productImage: '/images/books/marvelous-hindu-deities/boardbook/promo_shot_1.png',
   },
   {
-    image: '/images/books/shloka-mantra/hero-all.png',
+    image: '/images/books/shloka-mantra/hardcover/hero-all.png',
     title: 'shloka & mantra book',
     description: 'Introduce your children to sacred Hindu shlokas and Sanskrit mantras with gentle repetition.',
     ctaText: 'Shop Now',
     ctaLink: '/books',
     badge: 'New Release',
-    productImage: '/images/books/shloka-mantra/front-cover.jpg',
+    productImage: '/images/books/shloka-mantra/hardcover/front-cover.jpg',
   },
   {
     image: '/images/downloads/ganesha-mandala.png',
@@ -320,13 +416,13 @@ export const COMING_SOON_PRODUCTS = [
   {
     title: 'Wall Art Prints',
     description: 'Beautiful Hindu deity art prints for your home',
-    image: '/images/books/marvelous-hindu-deities/promo_shot_3.png',
+    image: '/images/books/marvelous-hindu-deities/paperback/promo_shot_3.png',
     href: '/wall-art',
   },
   {
     title: 'Games & Toys',
     description: 'Educational games celebrating Hindu culture',
-    image: '/images/books/marvelous-hindu-deities/promo_shot_1.png',
+    image: '/images/books/marvelous-hindu-deities/boardbook/promo_shot_1.png',
     href: '/games-toys',
   },
 ];
@@ -368,24 +464,52 @@ export function getSeriesFormats(seriesId: string): BookFormat[] {
 }
 
 /**
- * Get Amazon URL for an ASIN
+ * Get the purchase identifier for a book (ISBN for physical, ASIN for Kindle)
  */
-export function getAmazonUrl(asin: string, affiliateTag = 'rootsonrise-20'): string {
-  return `${AMAZON_BASE_URL}${asin}?tag=${affiliateTag}`;
+export function getBookPurchaseId(book: Book): string {
+  return book.isbn ?? book.asin ?? '';
 }
 
 /**
- * Get a specific book by ASIN
+ * Get Amazon URL for a book using ISBN or ASIN
+ */
+export function getAmazonUrl(identifier: string, affiliateTag = 'rootsonrise-20'): string {
+  return `${AMAZON_BASE_URL}${identifier}?tag=${affiliateTag}`;
+}
+
+/**
+ * Get Amazon URL directly from a book object
+ */
+export function getBookAmazonUrl(book: Book, affiliateTag = 'rootsonrise-20'): string {
+  return getAmazonUrl(getBookPurchaseId(book), affiliateTag);
+}
+
+/**
+ * Get a specific book by ISBN
+ */
+export function getBookByIsbn(isbn: string): Book | undefined {
+  return BOOKS.find((book) => book.isbn === isbn);
+}
+
+/**
+ * Get a specific book by ASIN (for Kindle e-books)
  */
 export function getBookByAsin(asin: string): Book | undefined {
-  return BOOKS.find((book) => book.amazonAsin === asin);
+  return BOOKS.find((book) => book.asin === asin);
+}
+
+/**
+ * Get a book by any identifier (ISBN or ASIN)
+ */
+export function getBookByIdentifier(identifier: string): Book | undefined {
+  return BOOKS.find((book) => book.isbn === identifier || book.asin === identifier);
 }
 
 /**
  * Get bestseller book (board book edition)
  */
 export function getBestsellerBook(): Book | undefined {
-  return BOOKS.find((book) => book.amazonAsin === '8195870724');
+  return BOOKS.find((book) => book.isbn === '978-8195870721');
 }
 
 // =============================================================================
@@ -401,11 +525,11 @@ export interface FAQItem {
 export const HINDU_DEITIES_FAQ: FAQItem[] = [
   {
     question: "What age is The Marvelous Hindu Deities book for?",
-    answer: "The board book edition is designed for ages 2-5 with thick, durable pages perfect for toddlers. The paperback edition works best for ages 3-8 and includes more detailed descriptions. Both editions feature the same 10 Hindu deities with vibrant illustrations."
+    answer: "All formats are suitable for children from baby to 12 years. The board book edition has thick, durable pages perfect for toddlers (ages 2-5). The paperback and Kindle editions include more detailed descriptions suitable for older children. All editions feature the same 10 Hindu deities with vibrant illustrations."
   },
   {
     question: "What's the difference between the board book and paperback?",
-    answer: "The board book has 24 thick pages that withstand toddler handling, making it ideal for ages 2-5. The paperback has 32 regular pages with more detailed content, better suited for older children ages 3-8 who can handle books carefully."
+    answer: "The board book has 24 thick pages that withstand toddler handling, making it ideal for the youngest readers. The paperback has 44 pages with expanded stories and more detailed content. Both are suitable for ages baby to 12 years."
   },
   {
     question: "How many deities are featured in The Marvelous Hindu Deities?",
@@ -425,7 +549,7 @@ export const HINDU_DEITIES_FAQ: FAQItem[] = [
 export const SHLOKA_MANTRA_FAQ: FAQItem[] = [
   {
     question: "What age is the Shloka and Mantra Book for?",
-    answer: "The book is designed for children ages 3-8. It works especially well for ages 4-7 when children are learning to read and can follow along with the transliterations. Parents often start reading it aloud to children as young as 2."
+    answer: "The book is suitable for children from baby to 14 years. Parents often start reading it aloud to babies and toddlers, while older children can follow along with the transliterations independently. It works especially well for ages 4-7 when children are learning to read."
   },
   {
     question: "What's the difference between the hardcover and paperback?",
@@ -551,7 +675,7 @@ export function generateProductSchema(bookList: Book[]) {
           'price': book.salePrice || book.regularPrice,
           'priceCurrency': 'USD',
           'availability': 'https://schema.org/InStock',
-          'url': getAmazonUrl(book.amazonAsin),
+          'url': getBookAmazonUrl(book),
         },
         'bookFormat': book.format.includes('E-Book')
           ? 'https://schema.org/EBook'

@@ -6,7 +6,8 @@ interface Props {
   imageAlt?: string;
   regularPrice?: string;
   salePrice?: string;
-  amazonAsin?: string;
+  isbn?: string;              // Primary identifier for physical books
+  asin?: string;              // Only for Amazon-exclusive formats (Kindle)
   formats?: string[];
   comingSoon?: boolean;
   href?: string;
@@ -21,7 +22,8 @@ const {
   imageAlt = title,
   regularPrice,
   salePrice,
-  amazonAsin,
+  isbn,
+  asin,
   formats = [],
   comingSoon = false,
   href,
@@ -30,7 +32,8 @@ const {
 } = Astro.props;
 
 const isOnSale = salePrice && regularPrice && salePrice !== regularPrice;
-const amazonUrl = amazonAsin ? `https://www.amazon.com/dp/${amazonAsin}?tag=rootsonrise-20` : null;
+const purchaseId = isbn ?? asin;
+const amazonUrl = purchaseId ? `https://www.amazon.com/dp/${purchaseId}?tag=rootsonrise-20` : null;
 const linkHref = comingSoon ? undefined : (href || amazonUrl || '#');
 const displayPrice = salePrice || regularPrice;
 
@@ -90,7 +93,7 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       )}
 
       <!-- Quick Buy Button (shown on hover) -->
-      {!comingSoon && amazonAsin && (
+      {!comingSoon && purchaseId && (
         <div class="absolute bottom-4 left-4 right-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
           <span class="amazon-btn w-full justify-center text-sm">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
