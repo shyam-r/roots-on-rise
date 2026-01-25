@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { BookCard, Button, Section, SectionHeader } from '@/components/ui';
-import { BOOKS, generateProductSchema } from '@/data/products';
+import { BookSeriesCard, Button, Section, SectionHeader } from '@/components/ui';
+import { BOOKS, BOOK_SERIES, getBooksBySeriesId, generateProductSchema } from '@/data/products';
 
-// Use centralized book data
-const books = BOOKS;
+// Use centralized book data - grouped by series
+const allBooks = BOOKS;
+const bookSeries = BOOK_SERIES;
 ---
 
 <Layout
@@ -13,7 +14,7 @@ const books = BOOKS;
   image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
 >
   <!-- Product Schema Structured Data -->
-  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(generateProductSchema(books))} />
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(generateProductSchema(allBooks))} />
 
   <!-- Hero -->
   <Section background="tertiary" container="md">
@@ -27,30 +28,22 @@ const books = BOOKS;
     </div>
   </Section>
 
-  <!-- Books List -->
+  <!-- Books List - Grouped by Series -->
   <Section>
     <div class="space-y-16">
-      {books.map((book, index) => (
-        <div class={index < books.length - 1 ? "pb-16 border-b border-dark/10" : ""}>
-          <BookCard
-            title={book.title}
-            subtitle={book.subtitle}
-            description={book.description}
-            longDescription={book.longDescription}
-            image={book.image}
-            images={book.images}
-            regularPrice={book.regularPrice}
-            salePrice={book.salePrice}
-            amazonAsin={book.amazonAsin}
-            format={book.format}
-            ageRange={book.ageRange}
-            pages={book.pages}
-            isbn={book.isbn}
-            isOnSale={book.isOnSale}
-            reverse={index % 2 !== 0}
-          />
-        </div>
-      ))}
+      {bookSeries.map((series, index) => {
+        const seriesBooks = getBooksBySeriesId(series.id);
+        return (
+          <div class={index < bookSeries.length - 1 ? "pb-16 border-b border-dark/10" : ""}>
+            <BookSeriesCard
+              series={series}
+              books={seriesBooks}
+              reverse={index % 2 !== 0}
+              client:load
+            />
+          </div>
+        );
+      })}
     </div>
   </Section>
 
