@@ -120,12 +120,13 @@ function BookSeriesCard({
         isHorizontal ? "md:w-1/2" : "w-full"
       )}>
         {/* Series Title */}
-        <div className="flex flex-wrap items-center gap-3 mb-4">
+        <div className="flex flex-wrap items-center gap-3 mb-1">
           <h2 className="font-title font-bold text-2xl md:text-3xl text-dark">
             {series.name}
           </h2>
           <BestsellerBadge variant="compact" />
         </div>
+        <p className="text-dark/60 text-sm mb-4">{series.description}</p>
 
         {/* Format Pills with inline benefit */}
         <div className="mb-6">
@@ -190,8 +191,13 @@ function BookSeriesCard({
           )}
         </div>
 
-        {/* Single Description */}
-        <p className="text-dark/70 mb-6">{selectedBook.description}</p>
+        {/* Description */}
+        <div className="mb-6 space-y-3">
+          <p className="text-dark/70">{selectedBook.description}</p>
+          {selectedBook.longDescription && (
+            <p className="text-dark/60 text-sm">{selectedBook.longDescription}</p>
+          )}
+        </div>
 
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
