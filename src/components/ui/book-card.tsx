@@ -155,12 +155,12 @@ function BookCard({
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
           <a
-            href={`https://www.amazon.com/dp/${amazonAsin}`}
+            href={`https://www.amazon.com/dp/${amazonAsin}?tag=rootsonrise-20`}
             target="_blank"
             rel="noopener noreferrer"
           >
             <ShoppingCart className="w-5 h-5" />
-            Buy on Amazon
+            Get It With Prime Delivery
           </a>
         </Button>
 

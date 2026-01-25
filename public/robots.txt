@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rootsonrise.com/sitemap.xml
+Sitemap: https://rootsonrise.com/sitemap-index.xml

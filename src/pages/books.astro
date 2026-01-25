@@ -1,11 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BookSeriesCard, Button, Section, SectionHeader } from '@/components/ui';
-import { BOOKS, BOOK_SERIES, getBooksBySeriesId, generateProductSchema } from '@/data/products';
+import {
+  BOOKS,
+  BOOK_SERIES,
+  BOOK_FAQ,
+  getBooksBySeriesId,
+  generateProductSchema,
+  generateBreadcrumbSchema,
+  generateFAQSchema
+} from '@/data/products';
 
 // Use centralized book data - grouped by series
 const allBooks = BOOKS;
 const bookSeries = BOOK_SERIES;
+
+// Generate schemas for SEO
+const breadcrumbSchema = generateBreadcrumbSchema('Books', '/books');
+const faqSchema = generateFAQSchema(BOOK_FAQ);
 ---
 
 <Layout
@@ -13,8 +25,10 @@ const bookSeries = BOOK_SERIES;
   description="Shop beautifully illustrated children's books featuring mythology, shlokas, and mantras. Board books, paperbacks, and e-books for kids ages 2-8. Perfect gifts for Diwali and cultural learning."
   image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
 >
-  <!-- Product Schema Structured Data -->
+  <!-- Structured Data: Products, Breadcrumbs, FAQ -->
   <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(generateProductSchema(allBooks))} />
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- Hero -->
   <Section background="tertiary" container="md">
@@ -47,6 +61,97 @@ const bookSeries = BOOK_SERIES;
     </div>
   </Section>
 
+  <!-- Format Comparison Table -->
+  <Section background="tertiary">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+          compare <span class="text-primary">formats</span>
+        </h2>
+        <p class="text-dark/60 max-w-xl mx-auto">
+          Not sure which edition to choose? Here's a quick comparison to help you decide.
+        </p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white rounded-xl shadow-sm">
+          <thead>
+            <tr class="border-b border-dark/10">
+              <th class="text-left py-4 px-6 font-title font-bold text-dark">Feature</th>
+              <th class="text-center py-4 px-6 font-title font-bold text-primary">Board Book</th>
+              <th class="text-center py-4 px-6 font-title font-bold text-dark">Paperback</th>
+              <th class="text-center py-4 px-6 font-title font-bold text-dark">Kindle</th>
+            </tr>
+          </thead>
+          <tbody class="text-dark/80">
+            <tr class="border-b border-dark/5">
+              <td class="py-4 px-6 font-medium">Price</td>
+              <td class="py-4 px-6 text-center font-semibold">$14.99</td>
+              <td class="py-4 px-6 text-center">$15.99</td>
+              <td class="py-4 px-6 text-center">$7.99</td>
+            </tr>
+            <tr class="border-b border-dark/5">
+              <td class="py-4 px-6 font-medium">Best Age</td>
+              <td class="py-4 px-6 text-center font-semibold">2-5 years</td>
+              <td class="py-4 px-6 text-center">3-8 years</td>
+              <td class="py-4 px-6 text-center">Any age</td>
+            </tr>
+            <tr class="border-b border-dark/5">
+              <td class="py-4 px-6 font-medium">Pages</td>
+              <td class="py-4 px-6 text-center">24 thick pages</td>
+              <td class="py-4 px-6 text-center">32 pages</td>
+              <td class="py-4 px-6 text-center">Digital</td>
+            </tr>
+            <tr class="border-b border-dark/5">
+              <td class="py-4 px-6 font-medium">Durability</td>
+              <td class="py-4 px-6 text-center font-semibold">★★★ Toddler-proof</td>
+              <td class="py-4 px-6 text-center">★★ Good</td>
+              <td class="py-4 px-6 text-center">N/A</td>
+            </tr>
+            <tr class="border-b border-dark/5">
+              <td class="py-4 px-6 font-medium">Portability</td>
+              <td class="py-4 px-6 text-center">Sturdy, heavier</td>
+              <td class="py-4 px-6 text-center">Lightweight</td>
+              <td class="py-4 px-6 text-center font-semibold">★★★ Best</td>
+            </tr>
+            <tr class="bg-primary/5">
+              <td class="py-4 px-6 font-bold text-dark">Recommendation</td>
+              <td class="py-4 px-6 text-center font-bold text-primary">First-time readers</td>
+              <td class="py-4 px-6 text-center font-medium">Growing readers</td>
+              <td class="py-4 px-6 text-center font-medium">Travel & gifts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section>
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+          frequently asked <span class="text-primary">questions</span>
+        </h2>
+        <p class="text-dark/60 max-w-xl mx-auto">
+          Common questions from parents and gift-givers about our books.
+        </p>
+      </div>
+      <div class="space-y-6">
+        {BOOK_FAQ.map((faq) => (
+          <details class="group bg-tertiary rounded-xl p-6 cursor-pointer">
+            <summary class="font-title font-semibold text-dark flex items-center justify-between list-none">
+              <span>{faq.question}</span>
+              <span class="text-primary transition-transform group-open:rotate-45 text-2xl font-light">+</span>
+            </summary>
+            <p class="mt-4 text-dark/70 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Section>
+
   <!-- CTA Section -->
   <Section background="dark" container="md">
     <div class="text-center">
@@ -57,8 +162,8 @@ const bookSeries = BOOK_SERIES;
         Our bestselling board book edition is perfect for little hands. Durable, colorful, and beloved by families worldwide.
       </p>
       <Button variant="amazon" size="lg" asChild>
-        <a href="https://www.amazon.com/dp/8195870724" target="_blank" rel="noopener">
-          Get the Board Book on Amazon
+        <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+          Get It With Free Prime Delivery
         </a>
       </Button>
     </div>

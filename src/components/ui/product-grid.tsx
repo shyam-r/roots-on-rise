@@ -182,14 +182,14 @@ function ProductCard({ product, showQuickView, onQuickView }: ProductCardProps) 
             className="w-full mt-3"
           >
             <a
-              href={`https://www.amazon.com/dp/${product.amazonAsin}`}
+              href={`https://www.amazon.com/dp/${product.amazonAsin}?tag=rootsonrise-20`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               aria-label={`Buy ${product.title} on Amazon`}
             >
               <ShoppingCart className="w-4 h-4" aria-hidden="true" />
-              Buy on Amazon
+              Order on Amazon
             </a>
           </Button>
         )}
