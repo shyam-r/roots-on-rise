@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import {
   Section,
   SectionHeader,
@@ -175,4 +176,12 @@ const steps = [
       </Button>
     </div>
   </Section>
+
+  <!-- Cross-sell Exit Intent -->
+  <ExitIntentPopup
+    title="Love our free coloring sheets?"
+    description="Get the complete Hindu Deities book with 10 beautifully illustrated gods and goddesses - perfect for little hands!"
+    ctaText="See the Book"
+    ctaLink="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+  />
 </Layout>

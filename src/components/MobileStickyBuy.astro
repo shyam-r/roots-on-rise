@@ -1,0 +1,112 @@
+---
+// =============================================================================
+// Mobile Sticky Buy Button
+// =============================================================================
+// E-commerce pattern: Persistent CTA that stays visible while scrolling on mobile
+// Shows only after user has scrolled past the first product CTA (engagement signal)
+// Hides when scrolling up (content discovery) or at bottom of page
+// =============================================================================
+
+interface Props {
+  productName?: string;
+  price?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  productName = "The Marvelous Hindu Deities",
+  price = "$14.99",
+  ctaText = "Get It With Prime Delivery",
+  ctaLink = "https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+} = Astro.props;
+---
+
+<!-- Mobile Sticky Buy Button - Only visible on mobile after scroll -->
+<div
+  id="mobile-sticky-buy"
+  class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-dark/10 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] transform translate-y-full transition-transform duration-300 safe-area-bottom"
+>
+  <div class="flex items-center gap-3 px-4 py-3">
+    <!-- Product info -->
+    <div class="flex-1 min-w-0">
+      <p class="font-title font-bold text-dark text-sm truncate">{productName}</p>
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-primary">{price}</span>
+        <span class="text-xs text-dark/50 flex items-center gap-1">
+          <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Prime
+        </span>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <a
+      href={ctaLink}
+      target="_blank"
+      rel="noopener"
+      class="flex-shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#FF9900] hover:bg-[#e68a00] active:bg-[#cc7a00] text-white text-sm font-semibold rounded-lg transition-colors"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      Buy Now
+    </a>
+  </div>
+</div>
+
+<style>
+  /* Safe area for devices with home indicators */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+</style>
+
+<script>
+  // =============================================================================
+  // Mobile Sticky CTA Behavior
+  // =============================================================================
+  // Pattern: Show after scrolling past first CTA, hide when scrolling up
+  // This follows best practices from Shopify/Amazon mobile apps
+  // =============================================================================
+
+  const stickyBar = document.getElementById('mobile-sticky-buy');
+  if (stickyBar && window.innerWidth < 768) {
+    let lastScrollY = 0;
+    let ticking = false;
+    const SHOW_THRESHOLD = 400; // Show after scrolling 400px (past first fold)
+    const HIDE_NEAR_BOTTOM = 200; // Hide when near bottom
+
+    function updateStickyBar() {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const nearBottom = scrollY > maxScroll - HIDE_NEAR_BOTTOM;
+
+      // Show conditions:
+      // 1. Scrolled past threshold
+      // 2. Not near the bottom (where CTAs already exist)
+      // 3. Scrolling down (engaged, not leaving)
+      const isScrollingDown = scrollY > lastScrollY;
+      const pastThreshold = scrollY > SHOW_THRESHOLD;
+
+      if (pastThreshold && !nearBottom && isScrollingDown) {
+        stickyBar.classList.remove('translate-y-full');
+      } else if (!pastThreshold || nearBottom || (!isScrollingDown && scrollY < lastScrollY - 50)) {
+        // Hide when: above threshold, near bottom, or scrolling up significantly
+        stickyBar.classList.add('translate-y-full');
+      }
+
+      lastScrollY = scrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateStickyBar);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+</script>

@@ -54,3 +54,13 @@ export {
   featuredBannerVariants,
   type FeaturedBannerProps,
 } from "./featured-banner"
+
+// Trust & Conversion Components
+export {
+  ReviewSummary,
+  BestsellerBadge,
+  PrimeShipping,
+  GuaranteeBadge,
+  SocialProofCounter,
+  TrustStack,
+} from "./trust-signals"

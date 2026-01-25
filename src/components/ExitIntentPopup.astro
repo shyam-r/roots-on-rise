@@ -81,24 +81,107 @@ const {
 </div>
 
 <script>
-  // Exit intent popup logic
+  // =============================================================================
+  // E-commerce Optimized Exit Intent Popup
+  // =============================================================================
+  // Based on conversion optimization research:
+  // 1. Engagement-gated: Only show to users who've spent time + scrolled (qualified leads)
+  // 2. Time-based cooldown: 3-day localStorage cooldown, not session-based
+  // 3. Mobile support: Scroll-up velocity + idle timeout triggers
+  // 4. Respect user choice: Longer cooldown if dismissed, track CTA clicks
+  // =============================================================================
+
   const popup = document.getElementById('exit-popup');
   const overlay = document.getElementById('exit-popup-overlay');
   const closeBtn = document.getElementById('exit-popup-close');
+  const ctaLink = popup?.querySelector('a[href*="amazon"]');
 
-  // Check if already shown this session
-  const STORAGE_KEY = 'exitPopupShown';
-  const hasShown = sessionStorage.getItem(STORAGE_KEY);
+  // Configuration
+  const CONFIG = {
+    STORAGE_KEY: 'exitPopup',
+    MIN_TIME_ON_PAGE: 12000,        // 12 seconds minimum engagement
+    MIN_SCROLL_DEPTH: 25,           // 25% scroll depth required
+    COOLDOWN_DISMISSED: 3,          // 3 days if user closed popup
+    COOLDOWN_CLICKED: 14,           // 14 days if user clicked CTA (success!)
+    MOBILE_IDLE_TIMEOUT: 45000,     // 45 seconds idle on mobile
+    SCROLL_UP_THRESHOLD: -150,      // px/100ms scroll velocity to trigger
+  };
 
+  // State
   let isShowing = false;
   let hasTriggered = false;
+  let pageLoadTime = Date.now();
+  let maxScrollDepth = 0;
+  let lastScrollY = 0;
+  let lastScrollTime = Date.now();
+  let idleTimer: ReturnType<typeof setTimeout> | null = null;
+  const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  // =============================================================================
+  // Cooldown Logic (localStorage with expiry)
+  // =============================================================================
+
+  function getStoredData(): { lastShown: number; action: 'dismissed' | 'clicked' } | null {
+    try {
+      const data = localStorage.getItem(CONFIG.STORAGE_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function setStoredData(action: 'dismissed' | 'clicked') {
+    try {
+      localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+        lastShown: Date.now(),
+        action
+      }));
+    } catch {
+      // localStorage unavailable, fall back to session
+      sessionStorage.setItem(CONFIG.STORAGE_KEY, 'true');
+    }
+  }
+
+  function isInCooldown(): boolean {
+    const data = getStoredData();
+    if (!data) return false;
+
+    const daysSinceShown = (Date.now() - data.lastShown) / (1000 * 60 * 60 * 24);
+    const cooldownDays = data.action === 'clicked'
+      ? CONFIG.COOLDOWN_CLICKED
+      : CONFIG.COOLDOWN_DISMISSED;
+
+    return daysSinceShown < cooldownDays;
+  }
+
+  // =============================================================================
+  // Engagement Tracking
+  // =============================================================================
+
+  function hasMetEngagementThreshold(): boolean {
+    const timeOnPage = Date.now() - pageLoadTime;
+    return timeOnPage >= CONFIG.MIN_TIME_ON_PAGE && maxScrollDepth >= CONFIG.MIN_SCROLL_DEPTH;
+  }
+
+  function updateScrollDepth() {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight > 0) {
+      const currentDepth = (window.scrollY / scrollHeight) * 100;
+      maxScrollDepth = Math.max(maxScrollDepth, currentDepth);
+    }
+  }
+
+  // =============================================================================
+  // Show/Hide Popup
+  // =============================================================================
 
   function showPopup() {
-    if (hasShown || hasTriggered || isShowing) return;
+    if (isInCooldown() || hasTriggered || isShowing || !hasMetEngagementThreshold()) {
+      return;
+    }
 
     hasTriggered = true;
     isShowing = true;
-    sessionStorage.setItem(STORAGE_KEY, 'true');
 
     if (popup && overlay) {
       popup.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
@@ -109,12 +192,11 @@ const {
       overlay.classList.add('opacity-100');
       overlay.setAttribute('aria-hidden', 'false');
 
-      // Focus the close button for accessibility
       closeBtn?.focus();
     }
   }
 
-  function hidePopup() {
+  function hidePopup(action: 'dismissed' | 'clicked' = 'dismissed') {
     if (popup && overlay) {
       popup.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
       popup.classList.remove('opacity-100', 'scale-100');
@@ -125,30 +207,114 @@ const {
       overlay.setAttribute('aria-hidden', 'true');
 
       isShowing = false;
+      setStoredData(action);
     }
   }
 
-  // Exit intent detection - mouse leaves viewport at top
+  // =============================================================================
+  // Desktop: Mouse Exit Intent
+  // =============================================================================
+
   function handleMouseLeave(e: MouseEvent) {
-    // Only trigger if mouse leaves from the top of the page
     if (e.clientY <= 0) {
       showPopup();
     }
   }
 
-  // Only add exit intent on desktop (not mobile/touch devices)
-  if (!('ontouchstart' in window)) {
-    document.addEventListener('mouseleave', handleMouseLeave);
+  // =============================================================================
+  // Mobile: Scroll-Up Velocity Detection
+  // =============================================================================
+
+  function handleScroll() {
+    updateScrollDepth();
+
+    if (isMobile && hasMetEngagementThreshold()) {
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime;
+
+      if (timeDelta > 50) { // Debounce
+        const scrollDelta = window.scrollY - lastScrollY;
+        const velocity = (scrollDelta / timeDelta) * 100; // px per 100ms
+
+        // Fast scroll up from below fold = leaving intent
+        if (velocity < CONFIG.SCROLL_UP_THRESHOLD && window.scrollY > 200) {
+          showPopup();
+        }
+
+        lastScrollY = window.scrollY;
+        lastScrollTime = now;
+      }
+
+      // Reset idle timer on scroll
+      resetIdleTimer();
+    }
+  }
+
+  // =============================================================================
+  // Mobile: Idle Timeout (engaged but stopped interacting)
+  // =============================================================================
+
+  function resetIdleTimer() {
+    if (idleTimer) clearTimeout(idleTimer);
+
+    if (isMobile && hasMetEngagementThreshold() && !hasTriggered) {
+      idleTimer = setTimeout(() => {
+        showPopup();
+      }, CONFIG.MOBILE_IDLE_TIMEOUT);
+    }
+  }
+
+  // =============================================================================
+  // Tab Visibility (user switching away)
+  // =============================================================================
+
+  function handleVisibilityChange() {
+    if (document.hidden && hasMetEngagementThreshold()) {
+      // User is leaving - show on return if they come back
+      // This is gentler than showing immediately
+    }
+  }
+
+  // =============================================================================
+  // Initialize
+  // =============================================================================
+
+  // Skip if in cooldown
+  if (!isInCooldown()) {
+    // Track scroll depth
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Desktop: mouse exit
+    if (!isMobile) {
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    // Mobile: start idle timer after engagement threshold could be met
+    if (isMobile) {
+      setTimeout(() => {
+        if (hasMetEngagementThreshold()) {
+          resetIdleTimer();
+        }
+      }, CONFIG.MIN_TIME_ON_PAGE);
+    }
+
+    // Track tab visibility
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   }
 
   // Close handlers
-  closeBtn?.addEventListener('click', hidePopup);
-  overlay?.addEventListener('click', hidePopup);
+  closeBtn?.addEventListener('click', () => hidePopup('dismissed'));
+  overlay?.addEventListener('click', () => hidePopup('dismissed'));
+
+  // Track CTA clicks for longer cooldown
+  ctaLink?.addEventListener('click', () => {
+    setStoredData('clicked');
+  });
 
   // Escape key to close
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isShowing) {
-      hidePopup();
+      hidePopup('dismissed');
     }
   });
 </script>

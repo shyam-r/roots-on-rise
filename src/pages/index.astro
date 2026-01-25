@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
+import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
 import {
   Section,
   SectionHeader,
@@ -179,4 +181,8 @@ const availableProducts = AVAILABLE_PRODUCTS;
       </div>
     </div>
   </Section>
+
+  <!-- Conversion Components -->
+  <ExitIntentPopup />
+  <MobileStickyBuy />
 </Layout>

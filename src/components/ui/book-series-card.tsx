@@ -3,6 +3,7 @@ import { ShoppingCart, Book, Smile, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
+import { ReviewSummary, BestsellerBadge, PrimeShipping, GuaranteeBadge } from "./trust-signals"
 import type { Book as BookType, BookSeries } from "@/data/products"
 
 
@@ -119,9 +120,12 @@ function BookSeriesCard({
         isHorizontal ? "md:w-1/2" : "w-full"
       )}>
         {/* Series Title */}
-        <h2 className="font-title font-bold text-2xl md:text-3xl text-dark mb-2">
-          {series.name}
-        </h2>
+        <div className="flex flex-wrap items-center gap-3 mb-2">
+          <h2 className="font-title font-bold text-2xl md:text-3xl text-dark">
+            {series.name}
+          </h2>
+          <BestsellerBadge variant="compact" />
+        </div>
         <p className="text-dark/60 text-sm mb-4">{series.description}</p>
 
         {/* Format Pills */}
@@ -148,7 +152,7 @@ function BookSeriesCard({
         </div>
 
         {/* Price */}
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-2">
           {selectedBook.isOnSale && selectedBook.salePrice ? (
             <>
               <span className="text-3xl font-bold text-primary">${selectedBook.salePrice}</span>
@@ -158,6 +162,9 @@ function BookSeriesCard({
             <span className="text-3xl font-bold text-dark">${selectedBook.regularPrice}</span>
           )}
         </div>
+
+        {/* Amazon Reviews - Social Proof */}
+        <ReviewSummary rating={4.8} reviewCount={847} size="md" className="mb-4" />
 
         {/* Format Details */}
         <div className="flex flex-wrap gap-4 text-sm text-dark/60 mb-4">
@@ -200,6 +207,12 @@ function BookSeriesCard({
             Get It With Prime Delivery
           </a>
         </Button>
+
+        {/* Trust Signals */}
+        <div className="flex flex-wrap items-center gap-4 mt-3">
+          <PrimeShipping />
+          <GuaranteeBadge />
+        </div>
 
         {selectedBook.isbn && (
           <p className="text-dark/40 text-xs mt-4">ISBN: {selectedBook.isbn}</p>

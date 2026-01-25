@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { BookSeriesCard, Button, Section, SectionHeader } from '@/components/ui';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
+import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
 import {
   BOOKS,
   BOOK_SERIES,
@@ -276,7 +277,7 @@ const faqSchema = generateFAQSchema(allFAQs);
     </div>
   </Section>
 
-  <!-- Exit Intent Popup -->
+  <!-- Conversion Components -->
   <ExitIntentPopup
     title="Wait! Don't miss our bestseller"
     description="The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide."
@@ -284,4 +285,5 @@ const faqSchema = generateFAQSchema(allFAQs);
     ctaLink="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
     productImage="/images/books/marvelous-hindu-deities/board_book_front_cover.webp"
   />
+  <MobileStickyBuy />
 </Layout>
