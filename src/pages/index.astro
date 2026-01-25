@@ -13,10 +13,12 @@ import {
   HeroCarousel,
   TestimonialCarousel,
   NewsletterSection,
+  BookSeriesCard,
 } from '@/components/ui';
 import {
   FEATURED_BOOK,
-  getSeriesFormats,
+  getSeriesById,
+  getBooksBySeriesId,
   HERO_SLIDES,
   TESTIMONIALS,
   COMING_SOON_PRODUCTS,
@@ -25,12 +27,12 @@ import {
 
 // Use centralized data
 const featuredBook = FEATURED_BOOK;
-const bookFormats = getSeriesFormats('marvelous-hindu-deities');
+const featuredSeries = getSeriesById('marvelous-hindu-deities')!;
+const featuredBooks = getBooksBySeriesId('marvelous-hindu-deities');
 const heroSlides = HERO_SLIDES;
 const testimonials = TESTIMONIALS;
 const comingProducts = COMING_SOON_PRODUCTS;
 const availableProducts = AVAILABLE_PRODUCTS;
-const features = FEATURED_BOOK.features;
 ---
 
 <Layout
@@ -54,56 +56,12 @@ const features = FEATURED_BOOK.features;
       description={'Join thousands of families who have made "The Marvelous Hindu Deities" part of their bedtime story collection.'}
     />
 
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="relative">
-        <img
-          src={featuredBook.image}
-          alt="The Marvelous Hindu Deities - bestselling children's book with vibrant deity illustrations"
-          class="w-full rounded-lg shadow-xl"
-        />
-        <Badge className="absolute -bottom-4 -right-4 px-4 py-2 text-base">
-          #1 Bestseller
-        </Badge>
-      </div>
-
-      <div>
-        <h3 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
-          {featuredBook.title}
-        </h3>
-        <p class="text-dark/70 text-lg mb-6">
-          {featuredBook.description}
-        </p>
-
-        <div class="space-y-4 mb-8">
-          {features.map((feature) => (
-            <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-dark/80">{feature}</span>
-            </div>
-          ))}
-        </div>
-
-        <div class="flex flex-wrap gap-3 mb-6">
-          {bookFormats.map((format) => (
-            <a
-              href={`https://www.amazon.com/dp/${format.asin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-white text-dark/70 border-dark/20 hover:border-primary hover:text-primary hover:bg-tertiary"
-            >
-              {format.name} <span class="text-primary font-semibold">{format.price}</span>
-            </a>
-          ))}
-        </div>
-        <Button variant="amazon" size="lg" asChild>
-          <a href="https://www.amazon.com/dp/8195870724" target="_blank" rel="noopener noreferrer">
-            Buy on Amazon
-          </a>
-        </Button>
-      </div>
-    </div>
+    <BookSeriesCard
+      series={featuredSeries}
+      books={featuredBooks}
+      defaultFormat="board-book"
+      client:load
+    />
   </Section>
 
   <!-- Mission Highlight -->
