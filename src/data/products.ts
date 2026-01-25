@@ -389,7 +389,7 @@ export function getBestsellerBook(): Book | undefined {
 }
 
 // =============================================================================
-// FAQ Data (for AI SEO and featured snippets)
+// FAQ Data (per book series for AI SEO and featured snippets)
 // =============================================================================
 
 export interface FAQItem {
@@ -397,32 +397,82 @@ export interface FAQItem {
   answer: string;
 }
 
-export const BOOK_FAQ: FAQItem[] = [
+// FAQs for The Marvelous Hindu Deities
+export const HINDU_DEITIES_FAQ: FAQItem[] = [
   {
     question: "What age is The Marvelous Hindu Deities book for?",
     answer: "The board book edition is designed for ages 2-5 with thick, durable pages perfect for toddlers. The paperback edition works best for ages 3-8 and includes more detailed descriptions. Both editions feature the same 10 Hindu deities with vibrant illustrations."
   },
   {
     question: "What's the difference between the board book and paperback?",
-    answer: "The board book ($14.99) has 24 thick pages that withstand toddler handling, making it ideal for ages 2-5. The paperback ($15.99) has 32 regular pages with more detailed content, better suited for older children ages 3-8 who can handle books carefully."
-  },
-  {
-    question: "Is this book appropriate for non-Hindu families?",
-    answer: "Yes! Our books are designed as accessible introductions to Hindu mythology, similar to how Greek mythology is taught in schools. Many families use them to teach cultural appreciation, diversity, and world religions. The stories focus on universal values like courage, wisdom, and kindness."
+    answer: "The board book has 24 thick pages that withstand toddler handling, making it ideal for ages 2-5. The paperback has 32 regular pages with more detailed content, better suited for older children ages 3-8 who can handle books carefully."
   },
   {
     question: "How many deities are featured in The Marvelous Hindu Deities?",
-    answer: "The book features 10 major Hindu deities including Ganesha, Krishna, Lakshmi, Shiva, Vishnu, Saraswati, Hanuman, Durga, Brahma, and Parvati. Each deity is presented with vibrant illustrations and age-appropriate descriptions of their stories and significance."
+    answer: "The book features 10 major Hindu deities: Ganesha, Krishna, Lakshmi, Shiva, Vishnu, Saraswati, Hanuman, Durga, Brahma, and Parvati. Each deity is presented with a full-page vibrant illustration and age-appropriate description of their stories and significance."
   },
   {
-    question: "What makes the Shloka and Mantra Book special?",
-    answer: "The My Little Shloka and Mantra Book introduces 15 traditional Hindu prayers with simple transliterations and meanings. It's designed for gentle repetition and learning, not memorization. The hardcover edition ($24.50) includes coloring pages, while the paperback ($14.99) focuses on the shlokas alone."
+    question: "Is The Marvelous Hindu Deities appropriate for non-Hindu families?",
+    answer: "Yes! The book is designed as an accessible introduction to Hindu mythology, similar to how Greek mythology is taught in schools. Many families use it to teach cultural appreciation, diversity, and world religions. The stories focus on universal values like courage, wisdom, and kindness."
   },
+  {
+    question: "Which format makes the best gift?",
+    answer: "The board book is the most popular gift choice—it's durable, beautifully illustrated, and arrives ready to give. It's perfect for baby showers, Diwali, birthdays, and grandparents gifting to grandchildren. The Kindle edition is better for personal reading on-the-go."
+  }
+];
+
+// FAQs for My Little Shloka and Mantra Book
+export const SHLOKA_MANTRA_FAQ: FAQItem[] = [
+  {
+    question: "What age is the Shloka and Mantra Book for?",
+    answer: "The book is designed for children ages 3-8. It works especially well for ages 4-7 when children are learning to read and can follow along with the transliterations. Parents often start reading it aloud to children as young as 2."
+  },
+  {
+    question: "What's the difference between the hardcover and paperback?",
+    answer: "The hardcover Special Edition has 78 pages and includes a bonus coloring section with deity illustrations—perfect for keeping kids engaged during learning. The paperback has 67 pages focused purely on the shlokas and mantras."
+  },
+  {
+    question: "How many shlokas and mantras are included?",
+    answer: "The book teaches 15 traditional Hindu prayers including the Gayatri Mantra, Shanti Mantras, and deity-specific shlokas. Each one includes the original Sanskrit, a simple transliteration for pronunciation, and an easy-to-understand meaning."
+  },
+  {
+    question: "Do I need to know Sanskrit to use this book with my child?",
+    answer: "Not at all! Every shloka includes a phonetic transliteration in English so parents can read and chant along even without Sanskrit knowledge. The pronunciations are designed to be learned together as a family."
+  },
+  {
+    question: "Which format makes the best gift?",
+    answer: "The hardcover Special Edition with coloring pages makes the best gift—it's premium quality, includes interactive activities, and arrives ready to give. It's ideal for Diwali, birthdays, and connecting grandchildren with their heritage."
+  }
+];
+
+// Combined FAQ for general books page
+export const GENERAL_FAQ: FAQItem[] = [
   {
     question: "How long does shipping take?",
     answer: "All our books are sold through Amazon. Prime members typically receive orders in 1-2 days with free shipping. Standard shipping usually takes 3-5 business days. Amazon's 30-day return policy applies to all purchases."
+  },
+  {
+    question: "Are these books appropriate for non-Hindu families?",
+    answer: "Yes! Our books are designed as accessible introductions to Hindu culture and mythology, similar to how Greek mythology is taught in schools. Many families use them to teach cultural appreciation and diversity."
   }
 ];
+
+// Legacy export for backwards compatibility
+export const BOOK_FAQ: FAQItem[] = [...HINDU_DEITIES_FAQ, ...SHLOKA_MANTRA_FAQ.slice(0, 2), ...GENERAL_FAQ];
+
+/**
+ * Get FAQ for a specific book series
+ */
+export function getFAQBySeriesId(seriesId: string): FAQItem[] {
+  switch (seriesId) {
+    case 'marvelous-hindu-deities':
+      return HINDU_DEITIES_FAQ;
+    case 'shloka-mantra':
+      return SHLOKA_MANTRA_FAQ;
+    default:
+      return GENERAL_FAQ;
+  }
+}
 
 // =============================================================================
 // Schema Generators

@@ -1,11 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BookSeriesCard, Button, Section, SectionHeader } from '@/components/ui';
+import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import {
   BOOKS,
   BOOK_SERIES,
-  BOOK_FAQ,
+  HINDU_DEITIES_FAQ,
+  SHLOKA_MANTRA_FAQ,
+  GENERAL_FAQ,
   getBooksBySeriesId,
+  getFAQBySeriesId,
   generateProductSchema,
   generateBreadcrumbSchema,
   generateFAQSchema
@@ -15,9 +19,10 @@ import {
 const allBooks = BOOKS;
 const bookSeries = BOOK_SERIES;
 
-// Generate schemas for SEO
+// Generate schemas for SEO - combine all FAQs for rich results
 const breadcrumbSchema = generateBreadcrumbSchema('Books', '/books');
-const faqSchema = generateFAQSchema(BOOK_FAQ);
+const allFAQs = [...HINDU_DEITIES_FAQ, ...SHLOKA_MANTRA_FAQ, ...GENERAL_FAQ];
+const faqSchema = generateFAQSchema(allFAQs);
 ---
 
 <Layout
@@ -47,6 +52,7 @@ const faqSchema = generateFAQSchema(BOOK_FAQ);
     <div class="space-y-16">
       {bookSeries.map((series, index) => {
         const seriesBooks = getBooksBySeriesId(series.id);
+        const faqId = series.id === 'marvelous-hindu-deities' ? 'faq-hindu-deities' : 'faq-shloka-mantra';
         return (
           <div class={index < bookSeries.length - 1 ? "pb-16 border-b border-dark/10" : ""}>
             <BookSeriesCard
@@ -55,6 +61,21 @@ const faqSchema = generateFAQSchema(BOOK_FAQ);
               reverse={index % 2 !== 0}
               client:load
             />
+            <!-- FAQ Link -->
+            <div class={`mt-4 ${index % 2 !== 0 ? 'text-right' : 'text-left'}`}>
+              <a
+                href={`#${faqId}`}
+                class="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary-dark transition-colors group"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="group-hover:underline">Frequently Asked Questions about this book</span>
+                <svg class="w-3 h-3 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+            </div>
           </div>
         );
       })}
@@ -63,7 +84,7 @@ const faqSchema = generateFAQSchema(BOOK_FAQ);
 
   <!-- Format Comparison Table -->
   <Section background="tertiary">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10">
         <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
           compare <span class="text-primary">formats</span>
@@ -73,61 +94,90 @@ const faqSchema = generateFAQSchema(BOOK_FAQ);
         </p>
       </div>
       <div class="overflow-x-auto">
-        <table class="w-full bg-white rounded-xl shadow-sm">
+        <table class="w-full bg-white rounded-xl shadow-sm text-sm md:text-base">
           <thead>
             <tr class="border-b border-dark/10">
-              <th class="text-left py-4 px-6 font-title font-bold text-dark">Feature</th>
-              <th class="text-center py-4 px-6 font-title font-bold text-primary">Board Book</th>
-              <th class="text-center py-4 px-6 font-title font-bold text-dark">Paperback</th>
-              <th class="text-center py-4 px-6 font-title font-bold text-dark">Kindle</th>
+              <th class="text-left py-4 px-4 font-title font-bold text-dark">Feature</th>
+              <th class="text-center py-4 px-3 font-title font-bold text-primary">Board Book</th>
+              <th class="text-center py-4 px-3 font-title font-bold text-primary">Hardcover</th>
+              <th class="text-center py-4 px-3 font-title font-bold text-dark">Paperback</th>
+              <th class="text-center py-4 px-3 font-title font-bold text-dark">Kindle</th>
             </tr>
           </thead>
           <tbody class="text-dark/80">
-            <tr class="border-b border-dark/5">
-              <td class="py-4 px-6 font-medium">Price</td>
-              <td class="py-4 px-6 text-center font-semibold">$14.99</td>
-              <td class="py-4 px-6 text-center">$15.99</td>
-              <td class="py-4 px-6 text-center">$7.99</td>
+            <tr class="border-b border-dark/5 bg-tertiary/50">
+              <td class="py-3 px-4 font-medium">Available For</td>
+              <td class="py-3 px-3 text-center text-xs">Hindu Deities</td>
+              <td class="py-3 px-3 text-center text-xs">Shloka & Mantra</td>
+              <td class="py-3 px-3 text-center text-xs">Both books</td>
+              <td class="py-3 px-3 text-center text-xs">Both books</td>
             </tr>
             <tr class="border-b border-dark/5">
-              <td class="py-4 px-6 font-medium">Best Age</td>
-              <td class="py-4 px-6 text-center font-semibold">2-5 years</td>
-              <td class="py-4 px-6 text-center">3-8 years</td>
-              <td class="py-4 px-6 text-center">Any age</td>
+              <td class="py-3 px-4 font-medium">Best Age</td>
+              <td class="py-3 px-3 text-center font-semibold">2-5 years</td>
+              <td class="py-3 px-3 text-center">3-8 years</td>
+              <td class="py-3 px-3 text-center">3-8 years</td>
+              <td class="py-3 px-3 text-center">Any age</td>
             </tr>
             <tr class="border-b border-dark/5">
-              <td class="py-4 px-6 font-medium">Pages</td>
-              <td class="py-4 px-6 text-center">24 thick pages</td>
-              <td class="py-4 px-6 text-center">32 pages</td>
-              <td class="py-4 px-6 text-center">Digital</td>
+              <td class="py-3 px-4 font-medium">Pages</td>
+              <td class="py-3 px-3 text-center">24 thick</td>
+              <td class="py-3 px-3 text-center">78 + coloring</td>
+              <td class="py-3 px-3 text-center">32-67</td>
+              <td class="py-3 px-3 text-center">Digital</td>
             </tr>
             <tr class="border-b border-dark/5">
-              <td class="py-4 px-6 font-medium">Durability</td>
-              <td class="py-4 px-6 text-center font-semibold">★★★ Toddler-proof</td>
-              <td class="py-4 px-6 text-center">★★ Good</td>
-              <td class="py-4 px-6 text-center">N/A</td>
+              <td class="py-3 px-4 font-medium">Durability</td>
+              <td class="py-3 px-3 text-center font-semibold text-primary">★★★ Toddler-proof</td>
+              <td class="py-3 px-3 text-center">★★★ Premium</td>
+              <td class="py-3 px-3 text-center">★★ Good</td>
+              <td class="py-3 px-3 text-center text-dark/40">N/A</td>
             </tr>
             <tr class="border-b border-dark/5">
-              <td class="py-4 px-6 font-medium">Portability</td>
-              <td class="py-4 px-6 text-center">Sturdy, heavier</td>
-              <td class="py-4 px-6 text-center">Lightweight</td>
-              <td class="py-4 px-6 text-center font-semibold">★★★ Best</td>
+              <td class="py-3 px-4 font-medium">Bonus Content</td>
+              <td class="py-3 px-3 text-center text-dark/40">—</td>
+              <td class="py-3 px-3 text-center font-semibold text-primary">Coloring pages</td>
+              <td class="py-3 px-3 text-center text-dark/40">—</td>
+              <td class="py-3 px-3 text-center text-dark/40">—</td>
+            </tr>
+            <tr class="border-b border-dark/5">
+              <td class="py-3 px-4 font-medium">Best as Gift</td>
+              <td class="py-3 px-3 text-center font-semibold text-primary">★★★ Perfect</td>
+              <td class="py-3 px-3 text-center font-semibold text-primary">★★★ Perfect</td>
+              <td class="py-3 px-3 text-center">★★ Good</td>
+              <td class="py-3 px-3 text-center text-dark/50">Not ideal</td>
             </tr>
             <tr class="bg-primary/5">
-              <td class="py-4 px-6 font-bold text-dark">Recommendation</td>
-              <td class="py-4 px-6 text-center font-bold text-primary">First-time readers</td>
-              <td class="py-4 px-6 text-center font-medium">Growing readers</td>
-              <td class="py-4 px-6 text-center font-medium">Travel & gifts</td>
+              <td class="py-4 px-4 font-bold text-dark">Recommendation</td>
+              <td class="py-4 px-3 text-center font-bold text-primary">First-time readers</td>
+              <td class="py-4 px-3 text-center font-medium">Growing readers</td>
+              <td class="py-4 px-3 text-center font-medium">Travel reading</td>
+              <td class="py-4 px-3 text-center font-medium text-dark/50">Quick preview</td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <!-- Quick CTA after comparison -->
+      <div class="mt-10 text-center p-6 bg-white rounded-xl shadow-sm border-2 border-primary/20">
+        <p class="font-title font-bold text-xl text-dark mb-2">
+          Can't decide? Start with the <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark underline underline-offset-2">Board Book</a>!
+        </p>
+        <p class="text-dark/60 text-sm mb-4">
+          Our bestselling edition — perfect for little hands, beloved by families worldwide.
+        </p>
+        <Button variant="amazon" size="md" asChild>
+          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+            Get It With Free Prime Delivery
+          </a>
+        </Button>
+      </div>
     </div>
   </Section>
 
-  <!-- FAQ Section -->
+  <!-- FAQ Section - Per Book Series -->
   <Section>
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-4xl mx-auto">
       <div class="text-center mb-10">
         <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
           frequently asked <span class="text-primary">questions</span>
@@ -136,36 +186,102 @@ const faqSchema = generateFAQSchema(BOOK_FAQ);
           Common questions from parents and gift-givers about our books.
         </p>
       </div>
-      <div class="space-y-6">
-        {BOOK_FAQ.map((faq) => (
-          <details class="group bg-tertiary rounded-xl p-6 cursor-pointer">
-            <summary class="font-title font-semibold text-dark flex items-center justify-between list-none">
-              <span>{faq.question}</span>
-              <span class="text-primary transition-transform group-open:rotate-45 text-2xl font-light">+</span>
-            </summary>
-            <p class="mt-4 text-dark/70 leading-relaxed">
-              {faq.answer}
-            </p>
-          </details>
-        ))}
+
+      <!-- The Marvelous Hindu Deities FAQ -->
+      <div id="faq-hindu-deities" class="mb-12 scroll-mt-32">
+        <h3 class="font-title font-bold text-lg text-primary mb-4 flex items-center gap-2">
+          <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">📖</span>
+          The Marvelous Hindu Deities
+        </h3>
+        <div class="space-y-4">
+          {HINDU_DEITIES_FAQ.map((faq) => (
+            <details class="group bg-tertiary rounded-xl p-5 cursor-pointer">
+              <summary class="font-title font-semibold text-dark flex items-center justify-between list-none text-sm md:text-base">
+                <span>{faq.question}</span>
+                <span class="text-primary transition-transform group-open:rotate-45 text-xl font-light ml-4 flex-shrink-0">+</span>
+              </summary>
+              <p class="mt-3 text-dark/70 leading-relaxed text-sm">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- My Little Shloka and Mantra Book FAQ -->
+      <div id="faq-shloka-mantra" class="mb-12 scroll-mt-32">
+        <h3 class="font-title font-bold text-lg text-primary mb-4 flex items-center gap-2">
+          <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">🙏</span>
+          My Little Shloka and Mantra Book
+        </h3>
+        <div class="space-y-4">
+          {SHLOKA_MANTRA_FAQ.map((faq) => (
+            <details class="group bg-tertiary rounded-xl p-5 cursor-pointer">
+              <summary class="font-title font-semibold text-dark flex items-center justify-between list-none text-sm md:text-base">
+                <span>{faq.question}</span>
+                <span class="text-primary transition-transform group-open:rotate-45 text-xl font-light ml-4 flex-shrink-0">+</span>
+              </summary>
+              <p class="mt-3 text-dark/70 leading-relaxed text-sm">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- General FAQ -->
+      <div>
+        <h3 class="font-title font-bold text-lg text-dark/70 mb-4 flex items-center gap-2">
+          <span class="w-8 h-8 bg-dark/5 rounded-full flex items-center justify-center text-sm">❓</span>
+          General Questions
+        </h3>
+        <div class="space-y-4">
+          {GENERAL_FAQ.map((faq) => (
+            <details class="group bg-tertiary rounded-xl p-5 cursor-pointer">
+              <summary class="font-title font-semibold text-dark flex items-center justify-between list-none text-sm md:text-base">
+                <span>{faq.question}</span>
+                <span class="text-primary transition-transform group-open:rotate-45 text-xl font-light ml-4 flex-shrink-0">+</span>
+              </summary>
+              <p class="mt-3 text-dark/70 leading-relaxed text-sm">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
       </div>
     </div>
   </Section>
 
-  <!-- CTA Section -->
+  <!-- Final CTA Section -->
   <Section background="dark" container="md">
     <div class="text-center">
       <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
-        Can't decide? Start with the <span class="text-primary">Board Book</span>!
+        Ready to start your <span class="text-primary">cultural journey</span>?
       </h2>
       <p class="text-light/70 max-w-xl mx-auto mb-8">
-        Our bestselling board book edition is perfect for little hands. Durable, colorful, and beloved by families worldwide.
+        Give your children the gift of understanding their rich heritage through beautifully illustrated stories.
       </p>
-      <Button variant="amazon" size="lg" asChild>
-        <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
-          Get It With Free Prime Delivery
-        </a>
-      </Button>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button variant="amazon" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+            Shop Hindu Deities Book
+          </a>
+        </Button>
+        <Button variant="outlineLight" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/B0GH1Z46BD?tag=rootsonrise-20" target="_blank" rel="noopener">
+            Shop Shloka Book
+          </a>
+        </Button>
+      </div>
     </div>
   </Section>
+
+  <!-- Exit Intent Popup -->
+  <ExitIntentPopup
+    title="Wait! Don't miss our bestseller"
+    description="The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide."
+    ctaText="Get It With Free Prime Delivery"
+    ctaLink="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+    productImage="/images/books/marvelous-hindu-deities/board_book_front_cover.webp"
+  />
 </Layout>

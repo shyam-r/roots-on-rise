@@ -1,0 +1,154 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  productImage?: string;
+}
+
+const {
+  title = "Wait! Don't miss our bestseller",
+  description = "The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide.",
+  ctaText = "Get It With Free Prime Delivery",
+  ctaLink = "https://www.amazon.com/dp/8195870724?tag=rootsonrise-20",
+  productImage = "/images/books/marvelous-hindu-deities/board_book_front_cover.webp"
+} = Astro.props;
+---
+
+<!-- Exit Intent Popup Overlay -->
+<div
+  id="exit-popup-overlay"
+  class="fixed inset-0 bg-dark/80 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<!-- Exit Intent Popup -->
+<div
+  id="exit-popup"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[90vw] max-w-md bg-white rounded-2xl shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exit-popup-title"
+  aria-hidden="true"
+>
+  <!-- Close button -->
+  <button
+    id="exit-popup-close"
+    class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-dark/50 hover:text-dark hover:bg-dark/5 rounded-full transition-colors"
+    aria-label="Close popup"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Content -->
+  <div class="p-6 pt-10 text-center">
+    <!-- Product image -->
+    <div class="w-32 h-32 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg">
+      <img
+        src={productImage}
+        alt="Featured book"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <h2 id="exit-popup-title" class="font-title font-bold text-xl md:text-2xl text-dark mb-2">
+      {title}
+    </h2>
+    <p class="text-dark/70 text-sm mb-6 max-w-xs mx-auto">
+      {description}
+    </p>
+
+    <a
+      href={ctaLink}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#FF9900] hover:bg-[#e68a00] text-white font-semibold rounded-lg transition-colors shadow-md"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      {ctaText}
+    </a>
+
+    <p class="text-dark/40 text-xs mt-4">
+      Free shipping with Amazon Prime
+    </p>
+  </div>
+</div>
+
+<script>
+  // Exit intent popup logic
+  const popup = document.getElementById('exit-popup');
+  const overlay = document.getElementById('exit-popup-overlay');
+  const closeBtn = document.getElementById('exit-popup-close');
+
+  // Check if already shown this session
+  const STORAGE_KEY = 'exitPopupShown';
+  const hasShown = sessionStorage.getItem(STORAGE_KEY);
+
+  let isShowing = false;
+  let hasTriggered = false;
+
+  function showPopup() {
+    if (hasShown || hasTriggered || isShowing) return;
+
+    hasTriggered = true;
+    isShowing = true;
+    sessionStorage.setItem(STORAGE_KEY, 'true');
+
+    if (popup && overlay) {
+      popup.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      popup.classList.add('opacity-100', 'scale-100');
+      popup.setAttribute('aria-hidden', 'false');
+
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+      overlay.classList.add('opacity-100');
+      overlay.setAttribute('aria-hidden', 'false');
+
+      // Focus the close button for accessibility
+      closeBtn?.focus();
+    }
+  }
+
+  function hidePopup() {
+    if (popup && overlay) {
+      popup.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      popup.classList.remove('opacity-100', 'scale-100');
+      popup.setAttribute('aria-hidden', 'true');
+
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      overlay.classList.remove('opacity-100');
+      overlay.setAttribute('aria-hidden', 'true');
+
+      isShowing = false;
+    }
+  }
+
+  // Exit intent detection - mouse leaves viewport at top
+  function handleMouseLeave(e: MouseEvent) {
+    // Only trigger if mouse leaves from the top of the page
+    if (e.clientY <= 0) {
+      showPopup();
+    }
+  }
+
+  // Only add exit intent on desktop (not mobile/touch devices)
+  if (!('ontouchstart' in window)) {
+    document.addEventListener('mouseleave', handleMouseLeave);
+  }
+
+  // Close handlers
+  closeBtn?.addEventListener('click', hidePopup);
+  overlay?.addEventListener('click', hidePopup);
+
+  // Escape key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isShowing) {
+      hidePopup();
+    }
+  });
+</script>
