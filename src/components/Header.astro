@@ -25,9 +25,6 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress" class="h-0.5 bg-primary origin-left scale-x-0 transition-transform duration-100"></div>
-
   <!-- Announcement Bar -->
   {showAnnouncement && (
     <a
@@ -184,6 +181,9 @@ const currentPath = Astro.url.pathname;
       </div>
     </div>
   </div>
+
+  <!-- Scroll Progress Bar (absolute positioned at bottom of header) -->
+  <div id="scroll-progress" class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 transition-transform duration-100"></div>
 </header>
 
 <!-- Mobile Drawer Overlay -->
