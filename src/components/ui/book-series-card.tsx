@@ -5,6 +5,7 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import type { Book as BookType, BookSeries } from "@/data/products"
 
+
 export interface BookSeriesCardProps {
   series: BookSeries
   books: BookType[]
@@ -26,6 +27,9 @@ function BookSeriesCard({
   const initialFormat = defaultFormat || series.formats[0]?.id || ""
   const [selectedFormatId, setSelectedFormatId] = React.useState(initialFormat)
 
+  // Track the currently displayed image (can be changed by clicking thumbnails)
+  const [displayedImage, setDisplayedImage] = React.useState<string | null>(null)
+
   // Find the currently selected book
   const selectedBook = React.useMemo(() => {
     // Map format ID to book format string
@@ -42,6 +46,14 @@ function BookSeriesCard({
     ) || books[0]
   }, [selectedFormatId, books])
 
+  // Reset displayed image when format changes (so it shows the book's main image)
+  React.useEffect(() => {
+    setDisplayedImage(null)
+  }, [selectedFormatId])
+
+  // The actual image to display - either user-selected or the book's default
+  const currentImage = displayedImage || selectedBook.image
+
   // Find the selected format details from series
   const selectedFormat = series.formats.find(f => f.id === selectedFormatId) || series.formats[0]
 
@@ -55,31 +67,48 @@ function BookSeriesCard({
     )}>
       {/* Image Gallery */}
       <div className={cn(isHorizontal ? "md:w-1/2" : "w-full")}>
-        <div className="bg-tertiary aspect-square relative overflow-hidden rounded-lg">
+        <div className="aspect-[3/4] relative overflow-hidden rounded-lg bg-transparent">
+          {/* Product image - uses object-contain to prevent cropping */}
           <img
-            src={selectedBook.image}
+            src={currentImage}
             alt={selectedBook.title}
-            className="w-full h-full object-cover transition-opacity duration-300"
+            className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300"
             loading="lazy"
           />
           {selectedBook.isOnSale && (
-            <Badge variant="destructive" className="absolute top-4 right-4">
+            <Badge variant="destructive" className="absolute top-4 right-4 z-10">
               Sale
             </Badge>
           )}
         </div>
         {selectedBook.images && selectedBook.images.length > 1 && (
-          <div className="grid grid-cols-4 gap-2 mt-2">
-            {selectedBook.images.slice(0, 4).map((img, i) => (
-              <div key={i} className="aspect-square bg-tertiary rounded overflow-hidden">
-                <img
-                  src={img}
-                  alt={`${selectedBook.title} preview ${i + 1}`}
-                  className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                  loading="lazy"
-                />
-              </div>
-            ))}
+          <div className="grid grid-cols-4 gap-2 mt-3">
+            {selectedBook.images.slice(0, 4).map((img, i) => {
+              const isActive = currentImage === img
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setDisplayedImage(img)}
+                  className={cn(
+                    "aspect-square rounded-lg overflow-hidden transition-all duration-200 bg-transparent",
+                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                    isActive
+                      ? "ring-2 ring-primary ring-offset-2"
+                      : "opacity-70 hover:opacity-100"
+                  )}
+                  aria-label={`View ${selectedBook.title} image ${i + 1}`}
+                  aria-pressed={isActive}
+                >
+                  <img
+                    src={img}
+                    alt={`${selectedBook.title} preview ${i + 1}`}
+                    className="w-full h-full object-contain p-1"
+                    loading="lazy"
+                  />
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
@@ -108,7 +137,7 @@ function BookSeriesCard({
                   "border-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                   isSelected
                     ? "bg-primary text-white border-primary"
-                    : "bg-white text-dark/70 border-dark/20 hover:border-primary hover:text-primary"
+                    : "bg-transparent text-dark/70 border-dark/20 hover:border-primary hover:text-primary"
                 )}
                 aria-pressed={isSelected}
               >

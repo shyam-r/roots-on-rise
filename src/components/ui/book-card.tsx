@@ -45,6 +45,9 @@ function BookCard({
 }: BookCardProps) {
   const isHorizontal = layout === "horizontal"
 
+  // Track the currently displayed image (can be changed by clicking thumbnails)
+  const [displayedImage, setDisplayedImage] = React.useState<string>(image)
+
   return (
     <article className={cn(
       "flex flex-col gap-8",
@@ -53,31 +56,48 @@ function BookCard({
     )}>
       {/* Image Gallery */}
       <div className={cn(isHorizontal ? "md:w-1/2" : "w-full")}>
-        <div className="bg-tertiary aspect-square relative overflow-hidden rounded-lg">
+        <div className="aspect-[3/4] relative overflow-hidden rounded-lg bg-transparent">
+          {/* Product image - uses object-contain to prevent cropping */}
           <img
-            src={image}
+            src={displayedImage}
             alt={title}
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300"
             loading="lazy"
           />
           {isOnSale && (
-            <Badge variant="destructive" className="absolute top-4 right-4">
+            <Badge variant="destructive" className="absolute top-4 right-4 z-10">
               Sale
             </Badge>
           )}
         </div>
         {images.length > 1 && (
-          <div className="grid grid-cols-4 gap-2 mt-2">
-            {images.slice(0, 4).map((img, i) => (
-              <div key={i} className="aspect-square bg-tertiary rounded overflow-hidden">
-                <img
-                  src={img}
-                  alt={`${title} preview ${i + 1}`}
-                  className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                  loading="lazy"
-                />
-              </div>
-            ))}
+          <div className="grid grid-cols-4 gap-2 mt-3">
+            {images.slice(0, 4).map((img, i) => {
+              const isActive = displayedImage === img
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setDisplayedImage(img)}
+                  className={cn(
+                    "aspect-square rounded-lg overflow-hidden transition-all duration-200 bg-transparent",
+                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                    isActive
+                      ? "ring-2 ring-primary ring-offset-2"
+                      : "opacity-70 hover:opacity-100"
+                  )}
+                  aria-label={`View ${title} image ${i + 1}`}
+                  aria-pressed={isActive}
+                >
+                  <img
+                    src={img}
+                    alt={`${title} preview ${i + 1}`}
+                    className="w-full h-full object-contain p-1"
+                    loading="lazy"
+                  />
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
