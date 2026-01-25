@@ -1,4 +1,16 @@
 ---
+interface Props {
+  showAnnouncement?: boolean;
+  announcementText?: string;
+  announcementLink?: string;
+}
+
+const {
+  showAnnouncement = false,
+  announcementText = "FREE SHIPPING ON ORDERS OVER $50 | SHOP OUR BESTSELLERS",
+  announcementLink = "/books"
+} = Astro.props;
+
 const navItems = [
   { name: 'Books', href: '/books' },
   { name: 'Wall Art', href: '/wall-art' },
@@ -15,6 +27,17 @@ const currentPath = Astro.url.pathname;
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress" class="h-0.5 bg-primary origin-left scale-x-0 transition-transform duration-100"></div>
+
+  <!-- Announcement Bar -->
+  {showAnnouncement && (
+    <a
+      id="announcement-bar"
+      href={announcementLink}
+      class="announcement-bar block bg-primary text-light text-center py-2.5 px-4 text-sm font-medium tracking-wide hover:bg-primary-dark transition-all duration-300"
+    >
+      {announcementText}
+    </a>
+  )}
 
   <!-- Main header content -->
   <div id="header-main" class="bg-tertiary text-dark border-b border-secondary/20 transition-all duration-500">
@@ -248,6 +271,11 @@ const currentPath = Astro.url.pathname;
 
   /* Hide expanded state when minimized */
   #site-header.minimized #header-expanded {
+    display: none;
+  }
+
+  /* Hide announcement bar when minimized */
+  #site-header.minimized #announcement-bar {
     display: none;
   }
 

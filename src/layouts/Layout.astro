@@ -109,13 +109,12 @@ const websiteSchema = {
   </head>
   <body class="bg-[#f5f5f5]">
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    {showAnnouncement && (
-      <a href={announcementLink} class="announcement-bar block bg-primary text-light text-center py-2.5 px-4 text-sm font-medium tracking-wide hover:bg-primary-dark transition-colors">
-        {announcementText}
-      </a>
-    )}
     <main id="main-content" class="max-w-screen-2xl mx-auto bg-white">
-      <Header />
+      <Header
+        showAnnouncement={showAnnouncement}
+        announcementText={announcementText}
+        announcementLink={announcementLink}
+      />
       <slot />
       <Footer />
     </main>
