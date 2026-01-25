@@ -1,12 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Section, SectionHeader, FeatureCard, Badge, Button } from '@/components/ui';
+import { Section, SectionHeader, ComingSoonCard, Badge, Button } from '@/components/ui';
 
-const upcomingProducts = [
-  { icon: "🎲", title: "Board Games", description: "Strategy and adventure games based on stories from Hindu mythology. Perfect for family game nights!" },
-  { icon: "🧩", title: "Puzzles", description: "Beautiful jigsaw puzzles featuring artwork of Hindu deities and mythological scenes." },
-  { icon: "🎴", title: "Card Games", description: "Memory matching and educational card games to help children learn about Hindu culture." },
-  { icon: "🪆", title: "Figurines", description: "Collectible figurines of beloved Hindu deities, perfect for display or imaginative play." },
+const puzzleProducts = [
+  {
+    title: "Ganesha Jigsaw Puzzle",
+    description: "Beautiful jigsaw puzzle featuring Lord Ganesha, the remover of obstacles. Perfect for family fun!",
+    image: "/images/products/games-toys/jigsaw-puzzle-ganesha-the-elephant-god.jpg"
+  },
+  {
+    title: "Lakshmi Jigsaw Puzzle",
+    description: "Stunning puzzle of Goddess Lakshmi, the goddess of wealth and prosperity",
+    image: "/images/products/games-toys/jigsaw-puzzle-lakshmi-the-goddess-of-wealth-prosperity.jpg"
+  },
+  {
+    title: "Hanuman Jigsaw Puzzle",
+    description: "Exciting puzzle featuring Lord Hanuman, the devoted monkey god and symbol of strength",
+    image: "/images/products/games-toys/jigsaw-puzzle-hanuman-the-monkey-god.jpg"
+  },
+  {
+    title: "Hindu Deity Postcards",
+    description: "Collectible postcard sets featuring all ten Hindu deities from our bestselling book",
+    image: "/images/products/games-toys/postcards-1-15-30-and-45-pcs.jpg"
+  },
 ];
 ---
 
@@ -31,18 +47,16 @@ const upcomingProducts = [
   <!-- What's Coming -->
   <Section>
     <SectionHeader
-      title="what's coming"
-      highlight="what's"
+      title="preview collection"
+      highlight="preview"
     />
-    <div class="grid md:grid-cols-2 gap-6">
-      {upcomingProducts.map((item) => (
-        <div class="bg-light p-8 rounded-lg">
-          <FeatureCard
-            icon={item.icon}
-            title={item.title}
-            description={item.description}
-          />
-        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {puzzleProducts.map((product) => (
+        <ComingSoonCard
+          title={product.title}
+          description={product.description}
+          image={product.image}
+        />
       ))}
     </div>
   </Section>

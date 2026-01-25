@@ -168,7 +168,7 @@ function BookSeriesCard({
             rel="noopener noreferrer"
           >
             <ShoppingCart className="w-5 h-5" />
-            Buy {selectedFormat.name} on Amazon
+            Buy on Amazon
           </a>
         </Button>
 

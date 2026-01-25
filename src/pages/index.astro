@@ -85,19 +85,23 @@ const features = FEATURED_BOOK.features;
           ))}
         </div>
 
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 mb-6">
           {bookFormats.map((format) => (
-            <Button variant="amazon" asChild>
-              <a
-                href={`https://www.amazon.com/dp/${format.asin}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {format.name} - {format.price}
-              </a>
-            </Button>
+            <a
+              href={`https://www.amazon.com/dp/${format.asin}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-white text-dark/70 border-dark/20 hover:border-primary hover:text-primary hover:bg-tertiary"
+            >
+              {format.name} <span class="text-primary font-semibold">{format.price}</span>
+            </a>
           ))}
         </div>
+        <Button variant="amazon" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/8195870724" target="_blank" rel="noopener noreferrer">
+            Buy on Amazon
+          </a>
+        </Button>
       </div>
     </div>
   </Section>
