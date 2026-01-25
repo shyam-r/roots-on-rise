@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ShoppingCart, Book, Smile, FileText } from "lucide-react"
+import { ShoppingCart, Smile, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
@@ -120,58 +120,64 @@ function BookSeriesCard({
         isHorizontal ? "md:w-1/2" : "w-full"
       )}>
         {/* Series Title */}
-        <div className="flex flex-wrap items-center gap-3 mb-2">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           <h2 className="font-title font-bold text-2xl md:text-3xl text-dark">
             {series.name}
           </h2>
           <BestsellerBadge variant="compact" />
         </div>
-        <p className="text-dark/60 text-sm mb-4">{series.description}</p>
 
-        {/* Format Pills */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {series.formats.map((format) => {
-            const isSelected = format.id === selectedFormatId
-            return (
-              <button
-                key={format.id}
-                onClick={() => setSelectedFormatId(format.id)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                  "border-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
-                  isSelected
-                    ? "bg-primary text-white border-primary"
-                    : "bg-transparent text-dark/70 border-dark/20 hover:border-primary hover:text-primary"
-                )}
-                aria-pressed={isSelected}
-              >
-                {format.name}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Price */}
-        <div className="flex items-center gap-3 mb-2">
-          {selectedBook.isOnSale && selectedBook.salePrice ? (
-            <>
-              <span className="text-3xl font-bold text-primary">${selectedBook.salePrice}</span>
-              <span className="text-xl text-dark/40 line-through">${selectedBook.regularPrice}</span>
-            </>
-          ) : (
-            <span className="text-3xl font-bold text-dark">${selectedBook.regularPrice}</span>
+        {/* Format Pills with inline benefit */}
+        <div className="mb-6">
+          <div className="flex flex-wrap gap-2">
+            {series.formats.map((format) => {
+              const isSelected = format.id === selectedFormatId
+              return (
+                <button
+                  key={format.id}
+                  onClick={() => setSelectedFormatId(format.id)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                    "border-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                    isSelected
+                      ? "bg-primary text-white border-primary"
+                      : "bg-transparent text-dark/70 border-dark/20 hover:border-primary hover:text-primary"
+                  )}
+                  aria-pressed={isSelected}
+                >
+                  {format.name}
+                </button>
+              )
+            })}
+          </div>
+          {/* Format benefit shown inline */}
+          {selectedFormat.description && (
+            <p className="text-primary text-sm mt-2 flex items-center gap-1">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              {selectedFormat.description}
+            </p>
           )}
         </div>
 
-        {/* Amazon Reviews - Social Proof */}
-        <ReviewSummary rating={4.8} reviewCount={847} size="md" className="mb-4" />
+        {/* Price + Reviews */}
+        <div className="flex flex-wrap items-center gap-4 mb-4">
+          <div className="flex items-center gap-2">
+            {selectedBook.isOnSale && selectedBook.salePrice ? (
+              <>
+                <span className="text-3xl font-bold text-primary">${selectedBook.salePrice}</span>
+                <span className="text-xl text-dark/40 line-through">${selectedBook.regularPrice}</span>
+              </>
+            ) : (
+              <span className="text-3xl font-bold text-dark">${selectedBook.regularPrice}</span>
+            )}
+          </div>
+          <ReviewSummary rating={4.8} reviewCount={847} size="sm" />
+        </div>
 
-        {/* Format Details */}
+        {/* Product Specs */}
         <div className="flex flex-wrap gap-4 text-sm text-dark/60 mb-4">
-          <span className="flex items-center gap-1">
-            <Book className="w-4 h-4" />
-            {selectedBook.format}
-          </span>
           <span className="flex items-center gap-1">
             <Smile className="w-4 h-4" />
             Ages {selectedBook.ageRange}
@@ -184,17 +190,8 @@ function BookSeriesCard({
           )}
         </div>
 
-        {/* Format-specific description */}
-        {selectedFormat.description && (
-          <p className="text-primary font-medium text-sm mb-2">
-            {selectedFormat.description}
-          </p>
-        )}
-
-        <p className="text-dark/70 mb-4">{selectedBook.description}</p>
-        {selectedBook.longDescription && (
-          <p className="text-dark/60 text-sm mb-6">{selectedBook.longDescription}</p>
-        )}
+        {/* Single Description */}
+        <p className="text-dark/70 mb-6">{selectedBook.description}</p>
 
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
