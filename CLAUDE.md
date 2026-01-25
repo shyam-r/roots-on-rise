@@ -226,6 +226,32 @@ npm run build  # Outputs to dist/
 
 ## Git Workflow
 
+### Feature Branch Workflow (MANDATORY)
+
+**All changes MUST go through feature branches. Never commit directly to master.**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  FEATURE BRANCH REQUIREMENT                                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. Create feature branch:  git checkout -b feature/your-name  │
+│  2. Make changes and commit to feature branch                  │
+│  3. Push feature branch:    git push -u origin feature/...     │
+│  4. Merge to master:        git checkout master && git merge   │
+│  5. Push to production:     git push origin master             │
+│                                                                 │
+│  Branch naming: feature/, fix/, refactor/, docs/               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Why feature branches:**
+- Allows code review before production
+- Easy rollback if issues found
+- GitHub Actions only deploys on master merge
+- Clean git history with meaningful merge commits
+
 ### Parallel Development (Worktrees)
 
 **MANDATORY**: All parallel agents that write code MUST use git worktrees.
