@@ -472,9 +472,12 @@ export function getBookPurchaseId(book: Book): string {
 
 /**
  * Get Amazon URL for a book using ISBN or ASIN
+ * Note: ISBNs may contain hyphens for readability, but Amazon URLs require them stripped
  */
 export function getAmazonUrl(identifier: string, affiliateTag = 'rootsonrise-20'): string {
-  return `${AMAZON_BASE_URL}${identifier}?tag=${affiliateTag}`;
+  // Strip hyphens from ISBN (ASINs don't have hyphens, so this is safe for both)
+  const cleanIdentifier = identifier.replace(/-/g, '');
+  return `${AMAZON_BASE_URL}${cleanIdentifier}?tag=${affiliateTag}`;
 }
 
 /**
