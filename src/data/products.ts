@@ -120,8 +120,8 @@ export const BOOK_SERIES: BookSeries[] = [
     shortName: 'Shloka & Mantra',
     description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children from baby to 14 years with pronunciation guides and simple meanings.',
     formats: [
-      { id: 'hardcover', name: 'Hardcover', isbn: '979-8243585606', price: '$24.50', description: '78 pages with bonus coloring section' },
-      { id: 'paperback', name: 'Paperback', isbn: '979-8243474535', price: '$14.99', description: '67 pages, perfect for daily practice' },
+      { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$24.50', description: '78 pages with bonus coloring section' },
+      { id: 'paperback', name: 'Paperback', asin: 'B0GGRS2D5B', price: '$14.99', description: '67 pages, perfect for daily practice' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0GG84NQ35', price: '$9.99', description: 'Instant download, read anywhere' },
     ],
   },
@@ -131,8 +131,8 @@ export const BOOK_SERIES: BookSeries[] = [
     shortName: 'Hindu Deities',
     description: 'Introduces 10 major Hindu gods and goddesses—including Ganesha, Krishna, and Lakshmi—to children from baby to 12 years through vibrant illustrations.',
     formats: [
-      { id: 'board-book', name: 'Board Book', isbn: '978-8195870721', price: '$14.99', description: '24 thick pages, toddler-proof for ages 2-12' },
-      { id: 'paperback', name: 'Paperback', isbn: '979-8866694815', price: '$15.99', description: '44 pages with expanded stories' },
+      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', description: '24 thick pages, toddler-proof for ages 2-12' },
+      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$15.99', description: '44 pages with expanded stories' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$7.99', description: 'Instant download, perfect for travel' },
     ],
   },
@@ -160,7 +160,7 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/hardcover/hero-all.png',
     ],
     regularPrice: '24.50',
-    isbn: '979-8243585606',
+    asin: 'B0GH1Z46BD',
     format: 'Hardcover',
     ageRange: 'Baby - 14 years',
     pages: '78',
@@ -191,7 +191,7 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
     ],
     regularPrice: '14.99',
-    isbn: '979-8243474535',
+    asin: 'B0GGRS2D5B',
     format: 'Paperback',
     ageRange: 'Baby - 14 years',
     pages: '67',
@@ -245,7 +245,7 @@ export const BOOKS: Book[] = [
     ],
     regularPrice: '19.99',
     salePrice: '14.99',
-    isbn: '978-8195870721',
+    asin: '8195870724',
     format: 'Board book',
     ageRange: '2 - 12 years',
     pages: '24',
@@ -275,7 +275,7 @@ export const BOOKS: Book[] = [
       '/images/books/marvelous-hindu-deities/paperback/promo_shot_8.jpg',
     ],
     regularPrice: '15.99',
-    isbn: '979-8866694815',
+    asin: 'B0CN4NXVVN',
     format: 'Paperback',
     ageRange: 'Baby - 12 years',
     pages: '44',
@@ -512,7 +512,7 @@ export function getBookByIdentifier(identifier: string): Book | undefined {
  * Get bestseller book (board book edition)
  */
 export function getBestsellerBook(): Book | undefined {
-  return BOOKS.find((book) => book.isbn === '978-8195870721');
+  return BOOKS.find((book) => book.asin === '8195870724');
 }
 
 // =============================================================================
