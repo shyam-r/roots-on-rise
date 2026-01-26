@@ -399,7 +399,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     productImage: '/images/books/shloka-mantra/hardcover/front-cover.jpg',
   },
   {
-    image: '/images/downloads/ganesha-mandala.png',
+    image: '/images/downloads-optimized/ganesha-mandala.webp',
     title: 'free coloring sheets',
     description: 'Download beautifully designed Hindu deity coloring pages for your little ones.',
     ctaText: 'Get Free Downloads',
@@ -431,7 +431,7 @@ export const AVAILABLE_PRODUCTS = [
   {
     title: 'Digital Downloads',
     description: 'Coloring sheets, mandalas & educational activities',
-    image: '/images/downloads/ganesha-mandala.png',
+    image: '/images/downloads-optimized/ganesha-mandala.webp',
     href: '/digital-downloads',
     badge: 'Free!',
   },
