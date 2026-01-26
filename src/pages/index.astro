@@ -26,6 +26,7 @@ import {
   COMING_SOON_PRODUCTS,
   AVAILABLE_PRODUCTS,
 } from '@/data/products';
+import { getOptimizedImage } from '@/lib/images';
 
 // Use centralized data
 const featuredBook = FEATURED_BOOK;
@@ -35,12 +36,15 @@ const heroSlides = HERO_SLIDES;
 const testimonials = TESTIMONIALS;
 const comingProducts = COMING_SOON_PRODUCTS;
 const availableProducts = AVAILABLE_PRODUCTS;
+
+// Optimized OG image
+const ogImage = getOptimizedImage(featuredBook.image, 'hero');
 ---
 
 <Layout
   title="Children's Books & Cultural Products | Roots On Rise"
   description="Shop beautifully illustrated children's books celebrating mythology and heritage. Explore shloka books, mantra books for kids, and picture books. Perfect gifts for children ages 2-8."
-  image="/images/books/marvelous-hindu-deities/hero-shot-1.jpg"
+  image={ogImage}
 >
   <!-- Hero Carousel -->
   <HeroCarousel

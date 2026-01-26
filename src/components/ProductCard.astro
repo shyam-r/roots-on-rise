@@ -1,4 +1,6 @@
 ---
+import { getOptimizedImage, getImageSrcSet } from '@/lib/images';
+
 interface Props {
   title: string;
   description: string;
@@ -37,6 +39,10 @@ const amazonUrl = purchaseId ? `https://www.amazon.com/dp/${purchaseId}?tag=root
 const linkHref = comingSoon ? undefined : (href || amazonUrl || '#');
 const displayPrice = salePrice || regularPrice;
 
+// Optimized image paths
+const optimizedImage = getOptimizedImage(image, 'product');
+const imageSrcSet = getImageSrcSet(image);
+
 // Generate star rating array
 const fullStars = Math.floor(rating);
 const hasHalfStar = rating % 1 >= 0.5;
@@ -57,7 +63,9 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     <!-- Image Container -->
     <div class="aspect-[4/5] relative overflow-hidden bg-tertiary">
       <img
-        src={image}
+        src={optimizedImage}
+        srcset={imageSrcSet}
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         alt={imageAlt}
         class:list={[
           "absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out",

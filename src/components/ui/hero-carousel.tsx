@@ -1,6 +1,7 @@
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
 
 export interface HeroSlide {
   image: string
@@ -182,10 +183,12 @@ function HeroCarousel({
                   : undefined
               }
             >
-              {/* Background Image with Ken Burns effect */}
+              {/* Background Image with Ken Burns effect - optimized WebP */}
               <div className="absolute inset-0 overflow-hidden">
                 <img
-                  src={slide.image}
+                  src={getOptimizedImage(slide.image, 'hero')}
+                  srcSet={getImageSrcSet(slide.image)}
+                  sizes="100vw"
                   alt=""
                   aria-hidden="true"
                   className={cn(
@@ -193,6 +196,7 @@ function HeroCarousel({
                     !prefersReducedMotion && isActive && "animate-ken-burns"
                   )}
                   loading={index === 0 ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
                   {...(index === 0 ? { fetchPriority: "high" } : {})}
                 />
               </div>
@@ -275,13 +279,15 @@ function HeroCarousel({
                         )}
                       >
                         <div className="relative">
-                          {/* Book image with shadow and tilt */}
+                          {/* Book image with shadow and tilt - optimized */}
                           <div className="w-52 xl:w-64 h-68 xl:h-80 bg-light rounded-2xl shadow-2xl transform rotate-3 overflow-hidden border-4 border-light/90 hover:rotate-0 transition-transform duration-500">
                             <img
-                              src={slide.productImage}
+                              src={getOptimizedImage(slide.productImage, 'product')}
                               alt=""
                               aria-hidden="true"
                               className="w-full h-full object-cover"
+                              loading="lazy"
+                              decoding="async"
                             />
                           </div>
                           {/* Decorative blur circles */}

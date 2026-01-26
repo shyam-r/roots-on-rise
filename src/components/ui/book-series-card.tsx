@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { ReviewSummary, BestsellerBadge, PrimeShipping, GuaranteeBadge } from "./trust-signals"
+import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
 import type { Book as BookType, BookSeries } from "@/data/products"
 
 
@@ -69,12 +70,15 @@ function BookSeriesCard({
       {/* Image Gallery */}
       <div className={cn(isHorizontal ? "md:w-1/2" : "w-full")}>
         <div className="aspect-[3/4] relative overflow-hidden rounded-lg bg-transparent">
-          {/* Product image - uses object-contain to prevent cropping */}
+          {/* Product image - optimized WebP with srcset */}
           <img
-            src={currentImage}
+            src={getOptimizedImage(currentImage, 'product')}
+            srcSet={getImageSrcSet(currentImage)}
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt={selectedBook.title}
             className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300"
             loading="lazy"
+            decoding="async"
           />
           {selectedBook.isOnSale && (
             <Badge variant="destructive" className="absolute top-4 right-4 z-10">
@@ -102,10 +106,11 @@ function BookSeriesCard({
                   aria-pressed={isActive}
                 >
                   <img
-                    src={img}
+                    src={getOptimizedImage(img, 'thumb')}
                     alt={`${selectedBook.title} preview ${i + 1}`}
                     className="w-full h-full object-contain p-1"
                     loading="lazy"
+                    decoding="async"
                   />
                 </button>
               )

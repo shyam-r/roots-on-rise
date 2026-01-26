@@ -3,6 +3,7 @@ import { ShoppingCart, Book, Smile, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
+import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
 
 export interface BookCardProps {
   title: string
@@ -59,12 +60,15 @@ function BookCard({
       {/* Image Gallery */}
       <div className={cn(isHorizontal ? "md:w-1/2" : "w-full")}>
         <div className="aspect-[3/4] relative overflow-hidden rounded-lg bg-transparent">
-          {/* Product image - uses object-contain to prevent cropping */}
+          {/* Product image - optimized WebP with srcset */}
           <img
-            src={displayedImage}
+            src={getOptimizedImage(displayedImage, 'product')}
+            srcSet={getImageSrcSet(displayedImage)}
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt={title}
             className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300"
             loading="lazy"
+            decoding="async"
           />
           {isOnSale && (
             <Badge variant="destructive" className="absolute top-4 right-4 z-10">
@@ -92,10 +96,11 @@ function BookCard({
                   aria-pressed={isActive}
                 >
                   <img
-                    src={img}
+                    src={getOptimizedImage(img, 'thumb')}
                     alt={`${title} preview ${i + 1}`}
                     className="w-full h-full object-contain p-1"
                     loading="lazy"
+                    decoding="async"
                   />
                 </button>
               )
