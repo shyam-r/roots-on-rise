@@ -1,0 +1,26 @@
+# Cloudflare Pages custom headers
+# https://developers.cloudflare.com/pages/platform/headers/
+
+# Global headers for all pages
+/*
+  X-Robots-Tag: index, follow
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Product pages - explicitly indexable for AI shopping
+/books
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
+
+/books/*
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
+
+# Homepage
+/
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
+
+# Static assets - allow caching
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
