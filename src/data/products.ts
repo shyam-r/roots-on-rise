@@ -121,7 +121,8 @@ export const BOOK_SERIES: BookSeries[] = [
     description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children from baby to 14 years with pronunciation guides and simple meanings.',
     formats: [
       { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$24.50', description: '78 pages with bonus coloring section' },
-      { id: 'paperback', name: 'Paperback', asin: 'B0GGRS2D5B', price: '$14.99', description: '67 pages, perfect for daily practice' },
+      { id: 'paperback-standard', name: 'Paperback', asin: 'B0GK15FLFJ', price: '$11.99', description: '72 pages, great value edition' },
+      { id: 'paperback-premium', name: 'Premium Paperback', asin: 'B0GGRS2D5B', price: '$15.99', description: '81 pages, premium color + 10 coloring pages' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0GG84NQ35', price: '$9.99', description: 'Instant download, read anywhere' },
     ],
   },
@@ -178,10 +179,10 @@ export const BOOKS: Book[] = [
   {
     id: 2,
     seriesId: 'shloka-mantra',
-    title: 'My Little Shloka and Mantra Book - Paperback',
+    title: 'My Little Shloka and Mantra Book - Standard Edition',
     subtitle: 'Sacred Words for Kids',
-    description: 'A 67-page paperback teaching 15 Hindu shlokas and mantras to children from baby to 14 years. Features transliterations, simple meanings, and structured learning for first-time chanters.',
-    longDescription: 'Designed for early childhood, this 67-page book presents 15 well-known Hindu shlokas and mantras with clear transliterations and age-appropriate meanings. The structured format uses gentle repetition to help children chant slowly and clearly. Focuses on understanding and pronunciation rather than memorization, building a strong foundation in Hindu prayer traditions. Best for children learning Sanskrit sounds for the first time.',
+    description: 'A 72-page paperback teaching 15 Hindu shlokas and mantras to children ages 5-14. Features transliterations, simple meanings, and structured learning for first-time chanters. Great value edition.',
+    longDescription: 'Designed for early childhood, this 72-page book presents 15 well-known Hindu shlokas and mantras with clear transliterations and age-appropriate meanings. The structured format uses gentle repetition to help children chant slowly and clearly. Focuses on understanding and pronunciation rather than memorization, building a strong foundation in Hindu prayer traditions. Best for children learning Sanskrit sounds for the first time.',
     image: '/images/books/shloka-mantra/paperback/front-cover.jpg',
     images: [
       '/images/books/shloka-mantra/paperback/front-cover.jpg',
@@ -190,19 +191,52 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/promo_shot_boy_reading_book.jpg',
       '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
     ],
-    regularPrice: '14.99',
-    asin: 'B0GGRS2D5B',
-    format: 'Paperback',
-    ageRange: 'Baby - 14 years',
-    pages: '67',
+    regularPrice: '11.99',
+    isbn: '979-8245747705',
+    asin: 'B0GK15FLFJ',
+    format: 'Paperback - Standard Edition',
+    ageRange: '5 - 14 years',
+    pages: '72',
     isOnSale: false,
     metadata: {
       publisher: 'Independently published',
       publicationDate: 'January 11, 2026',
       language: 'English',
-      printLength: '67 pages',
+      printLength: '72 pages',
+      weight: '3.84 ounces',
+      dimensions: '6 x 0.17 x 9 inches',
+      seriesName: 'The Hindu Gods Series',
+    },
+  },
+  {
+    id: 7,
+    seriesId: 'shloka-mantra',
+    title: 'My Little Shloka and Mantra Book - Premium Edition',
+    subtitle: 'Premium Color Pages + Activity Section',
+    description: 'An 81-page premium paperback with high-quality color pages teaching 15 Hindu shlokas and mantras. Includes a kids activity coloring section with 10 deity illustrations.',
+    longDescription: 'Our premium edition features 81 pages printed on high-quality premium color stock, presenting 15 well-known Hindu shlokas and mantras with clear transliterations and age-appropriate meanings. This edition includes a bonus kids activity section with 10 beautifully designed deity illustrations for coloring—keeping children engaged while they learn. The structured format uses gentle repetition to help children chant slowly and clearly.',
+    image: '/images/books/shloka-mantra/paperback/front-cover.jpg',
+    images: [
+      '/images/books/shloka-mantra/paperback/front-cover.jpg',
+      '/images/books/shloka-mantra/paperback/back-cover.jpg',
+      '/images/books/shloka-mantra/collage-interior-pages.png',
+      '/images/books/shloka-mantra/promo_shot_boy_reading_book.jpg',
+      '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
+    ],
+    regularPrice: '15.99',
+    isbn: '979-8243474535',
+    asin: 'B0GGRS2D5B',
+    format: 'Paperback - Premium Edition',
+    ageRange: '5 - 14 years',
+    pages: '81',
+    isOnSale: false,
+    metadata: {
+      publisher: 'Independently published',
+      publicationDate: 'January 11, 2026',
+      language: 'English',
+      printLength: '81 pages',
       weight: '5 ounces',
-      dimensions: '6 x 0.16 x 9 inches',
+      dimensions: '6 x 0.2 x 9 inches',
       seriesName: 'The Hindu Gods Series',
     },
   },
@@ -555,8 +589,8 @@ export const SHLOKA_MANTRA_FAQ: FAQItem[] = [
     answer: "The book is suitable for children from baby to 14 years. Parents often start reading it aloud to babies and toddlers, while older children can follow along with the transliterations independently. It works especially well for ages 4-7 when children are learning to read."
   },
   {
-    question: "What's the difference between the hardcover and paperback?",
-    answer: "The hardcover Special Edition has 78 pages and includes a bonus coloring section with deity illustrations—perfect for keeping kids engaged during learning. The paperback has 67 pages focused purely on the shlokas and mantras."
+    question: "What's the difference between the hardcover and paperback editions?",
+    answer: "We offer three print editions: The hardcover Special Edition (78 pages) includes a bonus coloring section. The Standard Paperback (72 pages, $11.99) is our great value option. The Premium Paperback (81 pages, $15.99) features high-quality premium color pages plus a kids activity section with 10 deity illustrations to color."
   },
   {
     question: "How many shlokas and mantras are included?",
@@ -568,7 +602,7 @@ export const SHLOKA_MANTRA_FAQ: FAQItem[] = [
   },
   {
     question: "Which format makes the best gift?",
-    answer: "The hardcover Special Edition with coloring pages makes the best gift—it's premium quality, includes interactive activities, and arrives ready to give. It's ideal for Diwali, birthdays, and connecting grandchildren with their heritage."
+    answer: "The hardcover Special Edition makes the best gift—it's premium quality with bonus coloring pages. The Premium Paperback (81 pages) is also excellent for gifting, featuring expanded content and our bestseller status. The Standard Paperback offers great value for budget-conscious families."
   }
 ];
 

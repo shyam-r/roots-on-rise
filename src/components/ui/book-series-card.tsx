@@ -39,6 +39,8 @@ function BookSeriesCard({
       'board-book': ['Board book', 'Board Book'],
       'hardcover': ['Hardcover'],
       'paperback': ['Paperback'],
+      'paperback-standard': ['Standard Edition', 'Paperback - Standard'],
+      'paperback-premium': ['Premium Edition', 'Paperback - Premium'],
       'kindle': ['E-Book (Kindle)', 'E-Book', 'Kindle'],
     }
 
@@ -47,6 +49,17 @@ function BookSeriesCard({
       matchingFormats.some(f => book.format.toLowerCase().includes(f.toLowerCase()))
     ) || books[0]
   }, [selectedFormatId, books])
+
+  // Determine edition ribbon to display
+  const editionRibbon = React.useMemo(() => {
+    if (selectedFormatId === 'paperback-standard') {
+      return '/images/books/shloka-mantra/paperback/standard-edition-ribbon.svg'
+    }
+    if (selectedFormatId === 'paperback-premium') {
+      return '/images/books/shloka-mantra/paperback/premium-edition-ribbon.svg'
+    }
+    return null
+  }, [selectedFormatId])
 
   // Reset displayed image when format changes (so it shows the book's main image)
   React.useEffect(() => {
@@ -69,7 +82,7 @@ function BookSeriesCard({
     )}>
       {/* Image Gallery */}
       <div className={cn(isHorizontal ? "md:w-1/2" : "w-full")}>
-        <div className="aspect-[3/4] relative overflow-hidden rounded-lg bg-transparent">
+        <div className="aspect-[3/4] relative rounded-lg bg-transparent">
           {/* Product image - optimized WebP with srcset */}
           <img
             src={getOptimizedImage(currentImage, 'product')}
@@ -84,6 +97,15 @@ function BookSeriesCard({
             <Badge variant="destructive" className="absolute top-4 right-4 z-10">
               Sale
             </Badge>
+          )}
+          {/* Edition Ribbon - bottom center, half-in */}
+          {editionRibbon && (
+            <img
+              src={editionRibbon}
+              alt={selectedFormatId === 'paperback-premium' ? 'Premium Edition' : 'Standard Edition'}
+              className="absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+              style={{ bottom: '-10px', width: '85px', height: '20px' }}
+            />
           )}
         </div>
         {selectedBook.images && selectedBook.images.length > 1 && (
