@@ -1,19 +1,53 @@
 ---
+import { BOOKS, getAmazonUrl } from '@/data/products';
+
 interface Props {
-  title?: string;
-  description?: string;
-  ctaText?: string;
-  ctaLink?: string;
-  productImage?: string;
+  // Optional override - if not provided, rotates through popup offers
+  bookId?: number;
 }
 
-const {
-  title = "Wait! Don't miss our bestseller",
-  description = "The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide.",
-  ctaText = "Get It With Free Prime Delivery",
-  ctaLink = "https://www.amazon.com/dp/8195870724?tag=rootsonrise-20",
-  productImage = "/images/books/marvelous-hindu-deities/board_book_front_cover.webp"
-} = Astro.props;
+const { bookId } = Astro.props;
+
+// Define popup offer configurations for different books
+const POPUP_OFFERS = [
+  {
+    bookId: 4, // Board Book - Hindu Deities
+    title: "Wait! Don't miss our bestseller",
+    description: "The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide.",
+    ctaText: "Get It With Free Prime Delivery",
+    badge: "Bestseller",
+  },
+  {
+    bookId: 7, // Premium Paperback - Shloka
+    title: "Upgrade to Premium Edition",
+    description: "81 pages of premium color printing + 10 bonus coloring pages. The complete experience for young learners.",
+    ctaText: "Get Premium Edition",
+    badge: "Premium",
+  },
+  {
+    bookId: 2, // Standard Paperback - Shloka
+    title: "Great value for families",
+    description: "Introduce your children to sacred shlokas and mantras with our affordable Standard Edition.",
+    ctaText: "Get It Now — Only $11.99",
+    badge: "Best Value",
+  },
+  {
+    bookId: 1, // Hardcover - Shloka
+    title: "The perfect gift",
+    description: "Our premium Hardcover edition with bonus coloring section — ideal for Diwali, birthdays, and special occasions.",
+    ctaText: "Get the Gift Edition",
+    badge: "Gift Idea",
+  },
+];
+
+// Select offer - either specified or random
+const selectedOffer = bookId
+  ? POPUP_OFFERS.find(o => o.bookId === bookId) || POPUP_OFFERS[0]
+  : POPUP_OFFERS[Math.floor(Math.random() * POPUP_OFFERS.length)];
+
+const book = BOOKS.find(b => b.id === selectedOffer.bookId)!;
+const productImage = book.image;
+const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
 ---
 
 <!-- Exit Intent Popup Overlay -->
@@ -45,21 +79,31 @@ const {
 
   <!-- Content -->
   <div class="p-6 pt-10 text-center">
+    <!-- Badge -->
+    {selectedOffer.badge && (
+      <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">
+        {selectedOffer.badge}
+      </span>
+    )}
+
     <!-- Product image -->
-    <div class="w-32 h-32 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg">
+    <div class="w-36 h-44 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg bg-tertiary">
       <img
         src={productImage}
-        alt="Featured book"
-        class="w-full h-full object-cover"
+        alt={book.title}
+        class="w-full h-full object-contain p-2"
         loading="lazy"
       />
     </div>
 
     <h2 id="exit-popup-title" class="font-title font-bold text-xl md:text-2xl text-dark mb-2">
-      {title}
+      {selectedOffer.title}
     </h2>
-    <p class="text-dark/70 text-sm mb-6 max-w-xs mx-auto">
-      {description}
+    <p class="text-dark/70 text-sm mb-4 max-w-xs mx-auto">
+      {selectedOffer.description}
+    </p>
+    <p class="text-primary font-bold text-lg mb-4">
+      ${book.salePrice || book.regularPrice}
     </p>
 
     <a
@@ -71,7 +115,7 @@ const {
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
-      {ctaText}
+      {selectedOffer.ctaText}
     </a>
 
     <p class="text-dark/40 text-xs mt-4">
@@ -82,13 +126,12 @@ const {
 
 <script>
   // =============================================================================
-  // E-commerce Optimized Exit Intent Popup
+  // Exit Intent Popup - Product Engagement Triggered
   // =============================================================================
-  // Based on conversion optimization research:
-  // 1. Engagement-gated: Only show to users who've spent time + scrolled (qualified leads)
-  // 2. Time-based cooldown: 3-day localStorage cooldown, not session-based
-  // 3. Mobile support: Scroll-up velocity + idle timeout triggers
-  // 4. Respect user choice: Longer cooldown if dismissed, track CTA clicks
+  // Trigger conditions:
+  // 1. User has viewed products for 10+ seconds, OR
+  // 2. User clicked on a product
+  // Then: Show popup when user attempts to leave (mouse exit / scroll up / idle)
   // =============================================================================
 
   const popup = document.getElementById('exit-popup');
@@ -99,26 +142,35 @@ const {
   // Configuration
   const CONFIG = {
     STORAGE_KEY: 'exitPopup',
-    MIN_TIME_ON_PAGE: 12000,        // 12 seconds minimum engagement
-    MIN_SCROLL_DEPTH: 25,           // 25% scroll depth required
-    COOLDOWN_DISMISSED: 3,          // 3 days if user closed popup
-    COOLDOWN_CLICKED: 14,           // 14 days if user clicked CTA (success!)
-    MOBILE_IDLE_TIMEOUT: 45000,     // 45 seconds idle on mobile
-    SCROLL_UP_THRESHOLD: -150,      // px/100ms scroll velocity to trigger
+    MIN_PRODUCT_VIEW_TIME: 10000,   // 10 seconds viewing products
+    COOLDOWN_DISMISSED_MINS: 30,    // 30 minutes after dismissal
+    COOLDOWN_CLICKED_DAYS: 7,       // 7 days if user clicked CTA
+    MOBILE_IDLE_TIMEOUT: 30000,     // 30 seconds idle on mobile
+    SCROLL_UP_THRESHOLD: -100,      // px/100ms scroll velocity to trigger
   };
+
+  // Product selectors to observe
+  const PRODUCT_SELECTORS = [
+    '.product-card',
+    '[data-product]',
+    '.book-series-card',
+    '[class*="ProductCard"]',
+    '[class*="BookCard"]',
+  ].join(', ');
 
   // State
   let isShowing = false;
   let hasTriggered = false;
-  let pageLoadTime = Date.now();
-  let maxScrollDepth = 0;
+  let productViewStartTime: number | null = null;
+  let totalProductViewTime = 0;
+  let hasClickedProduct = false;
   let lastScrollY = 0;
   let lastScrollTime = Date.now();
   let idleTimer: ReturnType<typeof setTimeout> | null = null;
   const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   // =============================================================================
-  // Cooldown Logic (localStorage with expiry)
+  // Cooldown Logic (30 min for dismissals, 7 days for CTA clicks)
   // =============================================================================
 
   function getStoredData(): { lastShown: number; action: 'dismissed' | 'clicked' } | null {
@@ -137,8 +189,7 @@ const {
         action
       }));
     } catch {
-      // localStorage unavailable, fall back to session
-      sessionStorage.setItem(CONFIG.STORAGE_KEY, 'true');
+      // Storage unavailable
     }
   }
 
@@ -146,29 +197,72 @@ const {
     const data = getStoredData();
     if (!data) return false;
 
-    const daysSinceShown = (Date.now() - data.lastShown) / (1000 * 60 * 60 * 24);
-    const cooldownDays = data.action === 'clicked'
-      ? CONFIG.COOLDOWN_CLICKED
-      : CONFIG.COOLDOWN_DISMISSED;
+    const timeSinceShown = Date.now() - data.lastShown;
 
-    return daysSinceShown < cooldownDays;
+    if (data.action === 'clicked') {
+      const cooldownMs = CONFIG.COOLDOWN_CLICKED_DAYS * 24 * 60 * 60 * 1000;
+      return timeSinceShown < cooldownMs;
+    } else {
+      const cooldownMs = CONFIG.COOLDOWN_DISMISSED_MINS * 60 * 1000;
+      return timeSinceShown < cooldownMs;
+    }
   }
 
   // =============================================================================
-  // Engagement Tracking
+  // Product Engagement Tracking (Intersection Observer)
   // =============================================================================
 
   function hasMetEngagementThreshold(): boolean {
-    const timeOnPage = Date.now() - pageLoadTime;
-    return timeOnPage >= CONFIG.MIN_TIME_ON_PAGE && maxScrollDepth >= CONFIG.MIN_SCROLL_DEPTH;
+    // User clicked a product OR viewed products for 10+ seconds
+    return hasClickedProduct || totalProductViewTime >= CONFIG.MIN_PRODUCT_VIEW_TIME;
   }
 
-  function updateScrollDepth() {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (scrollHeight > 0) {
-      const currentDepth = (window.scrollY / scrollHeight) * 100;
-      maxScrollDepth = Math.max(maxScrollDepth, currentDepth);
+  function setupProductObserver() {
+    const products = document.querySelectorAll(PRODUCT_SELECTORS);
+    if (products.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      const anyVisible = entries.some(entry => entry.isIntersecting);
+
+      if (anyVisible && productViewStartTime === null) {
+        // Started viewing products
+        productViewStartTime = Date.now();
+      } else if (!anyVisible && productViewStartTime !== null) {
+        // Stopped viewing products - accumulate time
+        totalProductViewTime += Date.now() - productViewStartTime;
+        productViewStartTime = null;
+      }
+    }, {
+      threshold: 0.5 // At least 50% of product visible
+    });
+
+    products.forEach(product => observer.observe(product));
+
+    // Track product clicks
+    products.forEach(product => {
+      product.addEventListener('click', () => {
+        hasClickedProduct = true;
+      });
+    });
+
+    // Also track Amazon link clicks within products
+    document.querySelectorAll('a[href*="amazon"]').forEach(link => {
+      link.addEventListener('click', () => {
+        hasClickedProduct = true;
+      });
+    });
+  }
+
+  // Finalize view time when checking (in case still viewing)
+  function getCurrentViewTime(): number {
+    if (productViewStartTime !== null) {
+      return totalProductViewTime + (Date.now() - productViewStartTime);
     }
+    return totalProductViewTime;
+  }
+
+  function hasMetEngagementThresholdNow(): boolean {
+    return hasClickedProduct || getCurrentViewTime() >= CONFIG.MIN_PRODUCT_VIEW_TIME;
   }
 
   // =============================================================================
@@ -176,7 +270,7 @@ const {
   // =============================================================================
 
   function showPopup() {
-    if (isInCooldown() || hasTriggered || isShowing || !hasMetEngagementThreshold()) {
+    if (isInCooldown() || hasTriggered || isShowing || !hasMetEngagementThresholdNow()) {
       return;
     }
 
@@ -226,17 +320,14 @@ const {
   // =============================================================================
 
   function handleScroll() {
-    updateScrollDepth();
-
-    if (isMobile && hasMetEngagementThreshold()) {
+    if (isMobile && hasMetEngagementThresholdNow()) {
       const now = Date.now();
       const timeDelta = now - lastScrollTime;
 
-      if (timeDelta > 50) { // Debounce
+      if (timeDelta > 50) {
         const scrollDelta = window.scrollY - lastScrollY;
-        const velocity = (scrollDelta / timeDelta) * 100; // px per 100ms
+        const velocity = (scrollDelta / timeDelta) * 100;
 
-        // Fast scroll up from below fold = leaving intent
         if (velocity < CONFIG.SCROLL_UP_THRESHOLD && window.scrollY > 200) {
           showPopup();
         }
@@ -245,19 +336,18 @@ const {
         lastScrollTime = now;
       }
 
-      // Reset idle timer on scroll
       resetIdleTimer();
     }
   }
 
   // =============================================================================
-  // Mobile: Idle Timeout (engaged but stopped interacting)
+  // Mobile: Idle Timeout
   // =============================================================================
 
   function resetIdleTimer() {
     if (idleTimer) clearTimeout(idleTimer);
 
-    if (isMobile && hasMetEngagementThreshold() && !hasTriggered) {
+    if (isMobile && hasMetEngagementThresholdNow() && !hasTriggered) {
       idleTimer = setTimeout(() => {
         showPopup();
       }, CONFIG.MOBILE_IDLE_TIMEOUT);
@@ -265,23 +355,14 @@ const {
   }
 
   // =============================================================================
-  // Tab Visibility (user switching away)
-  // =============================================================================
-
-  function handleVisibilityChange() {
-    if (document.hidden && hasMetEngagementThreshold()) {
-      // User is leaving - show on return if they come back
-      // This is gentler than showing immediately
-    }
-  }
-
-  // =============================================================================
   // Initialize
   // =============================================================================
 
-  // Skip if in cooldown
   if (!isInCooldown()) {
-    // Track scroll depth
+    // Setup product visibility tracking
+    setupProductObserver();
+
+    // Track scroll for mobile exit intent
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Desktop: mouse exit
@@ -289,24 +370,21 @@ const {
       document.addEventListener('mouseleave', handleMouseLeave);
     }
 
-    // Mobile: start idle timer after engagement threshold could be met
+    // Mobile: check periodically for engagement threshold
     if (isMobile) {
-      setTimeout(() => {
-        if (hasMetEngagementThreshold()) {
+      setInterval(() => {
+        if (hasMetEngagementThresholdNow() && !hasTriggered) {
           resetIdleTimer();
         }
-      }, CONFIG.MIN_TIME_ON_PAGE);
+      }, 2000);
     }
-
-    // Track tab visibility
-    document.addEventListener('visibilitychange', handleVisibilityChange);
   }
 
   // Close handlers
   closeBtn?.addEventListener('click', () => hidePopup('dismissed'));
   overlay?.addEventListener('click', () => hidePopup('dismissed'));
 
-  // Track CTA clicks for longer cooldown
+  // Track popup CTA clicks for longer cooldown
   ctaLink?.addEventListener('click', () => {
     setStoredData('clicked');
   });
