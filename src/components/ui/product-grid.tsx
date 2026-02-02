@@ -183,7 +183,7 @@ function ProductCard({ product, showQuickView, onQuickView }: ProductCardProps) 
             className="w-full mt-3"
           >
             <a
-              href={`https://www.amazon.com/dp/${product.isbn ?? product.asin}?tag=rootsonrise-20`}
+              href={`https://www.amazon.com/dp/${product.asin ?? product.isbn}?tag=rootsonrise-20`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

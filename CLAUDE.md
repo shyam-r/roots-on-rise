@@ -110,6 +110,26 @@ const PRODUCTS = {
 };
 ```
 
+### Amazon URL Architecture
+
+**CRITICAL: Amazon `/dp/` URLs only accept ASINs or ISBN-10s, NOT ISBN-13s.**
+
+| Identifier Type | Format | Works in `/dp/` URL |
+|----------------|--------|---------------------|
+| ASIN | `B0GK15FLFJ` (10 alphanumeric, starts with B) | ✅ Yes |
+| ISBN-10 | `8195870724` (10 digits) | ✅ Yes |
+| ISBN-13 | `9798245747705` (13 digits) | ❌ No |
+| ISBN-13 with hyphens | `979-8245747705` | ❌ No |
+
+**Implementation rule:** When constructing Amazon URLs, always prefer `asin` over `isbn`:
+```typescript
+// Correct - ASIN first
+const purchaseId = book.asin ?? book.isbn;
+
+// Wrong - ISBN first (breaks if ISBN-13)
+const purchaseId = book.isbn ?? book.asin;
+```
+
 ---
 
 ## Content Guidelines

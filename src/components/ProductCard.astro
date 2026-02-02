@@ -34,7 +34,7 @@ const {
 } = Astro.props;
 
 const isOnSale = salePrice && regularPrice && salePrice !== regularPrice;
-const purchaseId = isbn ?? asin;
+const purchaseId = asin ?? isbn;
 const amazonUrl = purchaseId ? `https://www.amazon.com/dp/${purchaseId}?tag=rootsonrise-20` : null;
 const linkHref = comingSoon ? undefined : (href || amazonUrl || '#');
 const displayPrice = salePrice || regularPrice;

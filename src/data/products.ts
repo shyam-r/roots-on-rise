@@ -498,10 +498,11 @@ export function getSeriesFormats(seriesId: string): BookFormat[] {
 }
 
 /**
- * Get the purchase identifier for a book (ISBN for physical, ASIN for Kindle)
+ * Get the purchase identifier for a book (ASIN preferred, ISBN fallback)
+ * Note: Amazon /dp/ URLs only work with ASINs or ISBN-10s, not ISBN-13s
  */
 export function getBookPurchaseId(book: Book): string {
-  return book.isbn ?? book.asin ?? '';
+  return book.asin ?? book.isbn ?? '';
 }
 
 /**

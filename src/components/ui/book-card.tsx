@@ -44,8 +44,8 @@ function BookCard({
   reverse = false,
   className
 }: BookCardProps) {
-  // Use ISBN for physical books, ASIN for Kindle
-  const purchaseId = isbn ?? asin
+  // Use ASIN for Amazon URLs (ISBN-13s don't work in /dp/ URLs)
+  const purchaseId = asin ?? isbn
   const isHorizontal = layout === "horizontal"
 
   // Track the currently displayed image (can be changed by clicking thumbnails)
