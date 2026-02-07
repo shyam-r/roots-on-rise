@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "amzn-ads-mcp": {
+      "type": "sse",
+      "url": "https://advertising-ai.amazon.com/mcp",
+      "headers": {
+        "Authorization": "Bearer Atza|gQAM1yvOAwEBAJSMVwwPrxPGzL2C6CAnjv_2WdiRdNOMSagulgR89fXuOPbbAroTp_fTep6WPYJM608L9xo0zprSv9-OqurUkn71cEf_vMo7samb7mllktFuMRN0PDr8u-YR9D76iH66EYMLsNt3f5q0uZjdA2N1WW3X6c5w2jLu9g83VaTrH0W32cO9Cjio5RzrVoRCoj7CUOqjtIQQeOShWTGiyhw_vtPlAD6MijSGNijyn3sIcPWZKyLIzxcCGMEDjpkjJRduP-yYpuNe_pYckXbXy5z2TuBF350dQB_1STiI21TaYCyqnT-dXaHigsgC0Yt49fzej8RKBPMybMCX50pn3B5VBn4JlH3kxBf8mGbtNG3pH0FN0V4fRX_flBC5d6mOJzXYVdl2DXGNzNJmNqQnLDnlXQiVhMtPgJM4B7pbh7gWkFghGv6HMJlQqaTnQqE9myDNmUqh6YadUkygbe4pPlIwyyRht7-iGA-gkf7k4oqXIkEbCOnHwJiZCeDE5S9AGab9heQtu9ED3Z6EAzLU5Mcy0Lvn3A06d_qj6WcaNWiQ2-AFjah4RSfNqcjzucXu3g7JEuVRN5dNyW-TTsCAmA",
+        "Amazon-Ads-ClientId": "amzn1.application-oa2-client.3ed1ff65dcd9499fa9f2456134374df6",
+        "Accept": "application/json, text/event-stream"
+      }
+    }
+  }
+}
