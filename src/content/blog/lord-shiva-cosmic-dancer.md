@@ -2,8 +2,8 @@
 title: "Lord Shiva: The Cosmic Dancer with a Third Eye"
 description: "Discover Lord Shiva — the powerful god with a third eye, a snake necklace, and the most amazing dance in the universe. Kid-friendly Hindu mythology."
 date: 2026-02-03
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/shiva.webp
+imageAlt: "Illustration of Lord Shiva, the cosmic dancer"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

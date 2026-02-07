@@ -2,8 +2,8 @@
 title: "Goddess Durga: The Warrior Goddess Who Rides a Lion"
 description: "Meet Goddess Durga — the powerful warrior goddess who rides a lion and protects the world from evil. An empowering story for kids."
 date: 2026-01-31
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/durga.webp
+imageAlt: "Illustration of Goddess Durga, the warrior goddess"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

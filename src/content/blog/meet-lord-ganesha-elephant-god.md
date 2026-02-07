@@ -2,8 +2,8 @@
 title: "Meet Lord Ganesha: The Elephant God Who Loves Sweets"
 description: "Learn about Lord Ganesha — the friendly elephant-headed god who removes obstacles, loves modak sweets, and is always worshipped first. A kid-friendly introduction."
 date: 2026-02-07
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/ganesha.webp
+imageAlt: "Illustration of Lord Ganesha, the elephant-headed Hindu god"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

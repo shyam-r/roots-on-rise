@@ -2,8 +2,8 @@
 title: "Goddess Saraswati: The Goddess of Music, Books, and Learning"
 description: "Meet Goddess Saraswati — she plays a beautiful instrument, wears white, and blesses students and artists. A kid-friendly introduction."
 date: 2026-02-02
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/saraswati.webp
+imageAlt: "Illustration of Goddess Saraswati, goddess of knowledge and music"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

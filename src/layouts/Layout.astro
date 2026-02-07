@@ -91,6 +91,10 @@ const websiteSchema = {
       });
     </script>
 
+    <!-- Copyright -->
+    <meta name="copyright" content="Roots On Rise. All rights reserved." />
+    <meta name="rights" content="All illustrations are copyrighted by Roots On Rise. Unauthorized reproduction prohibited." />
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonical} />
 
@@ -131,6 +135,23 @@ const websiteSchema = {
 
     <!-- Additional structured data slot for pages -->
     <slot name="structured-data" />
+
+    <!-- Image copy protection -->
+    <style is:inline>
+      img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+      .protected-img { position: relative; }
+      .protected-img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+    </style>
+    <script is:inline>
+      document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+    </script>
   </head>
   <body class="bg-[#f5f5f5]">
     <a href="#main-content" class="skip-link">Skip to main content</a>

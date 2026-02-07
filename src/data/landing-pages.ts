@@ -63,7 +63,7 @@ const DEITY_PAGES: LandingPage[] = [
     heading: 'discover lord ganesha',
     headingHighlight: 'ganesha',
     subheading: 'The beloved elephant-headed god who removes obstacles and blesses new beginnings — brought to life for young readers.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/ganesha.webp',
     content: [
       {
         heading: 'Who Is Lord Ganesha?',
@@ -112,7 +112,7 @@ In "The Marvelous Hindu Deities," Ganesha is presented with vibrant, colorful il
     heading: 'discover lord krishna',
     headingHighlight: 'krishna',
     subheading: 'The playful blue god who enchants with his flute and teaches the world about love, joy, and dharma.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/krishna.webp',
     content: [
       {
         heading: 'Who Is Lord Krishna?',
@@ -161,7 +161,7 @@ In "The Marvelous Hindu Deities," Krishna is presented with his iconic flute and
     heading: 'discover goddess lakshmi',
     headingHighlight: 'lakshmi',
     subheading: 'The radiant goddess of wealth, fortune, and prosperity who brings abundance and blessings to every home.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/lakshmi.webp',
     content: [
       {
         heading: 'Who Is Goddess Lakshmi?',
@@ -206,7 +206,7 @@ In "The Marvelous Hindu Deities," Lakshmi is portrayed with warm, glowing illust
     heading: 'discover lord hanuman',
     headingHighlight: 'hanuman',
     subheading: 'The mighty monkey god whose extraordinary strength and unwavering devotion inspire courage in children everywhere.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/hanuman.webp',
     content: [
       {
         heading: 'Who Is Lord Hanuman?',
@@ -251,7 +251,7 @@ In "The Marvelous Hindu Deities," Hanuman is illustrated with dynamic energy tha
     heading: 'discover lord shiva',
     headingHighlight: 'shiva',
     subheading: 'The powerful cosmic dancer who destroys evil and transforms the universe — presented for young minds.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/shiva.webp',
     content: [
       {
         heading: 'Who Is Lord Shiva?',
@@ -296,7 +296,7 @@ In "The Marvelous Hindu Deities," Shiva is presented with illustrations that bal
     heading: 'discover goddess saraswati',
     headingHighlight: 'saraswati',
     subheading: 'The serene goddess of knowledge, music, and the arts who inspires a love of learning in every child.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/saraswati.webp',
     content: [
       {
         heading: 'Who Is Goddess Saraswati?',
@@ -341,7 +341,7 @@ In "The Marvelous Hindu Deities," Saraswati is illustrated with her iconic veena
     heading: 'discover lord vishnu',
     headingHighlight: 'vishnu',
     subheading: 'The great preserver who protects the universe and descends in many forms to restore balance and dharma.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/vishnu.webp',
     content: [
       {
         heading: 'Who Is Lord Vishnu?',
@@ -386,7 +386,7 @@ In "The Marvelous Hindu Deities," Vishnu is presented in his cosmic form, giving
     heading: 'discover goddess durga',
     headingHighlight: 'durga',
     subheading: 'The fierce warrior goddess who rides a lion and vanquishes evil — a symbol of feminine power and protection.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/durga.webp',
     content: [
       {
         heading: 'Who Is Goddess Durga?',
@@ -431,7 +431,7 @@ In "The Marvelous Hindu Deities," Durga is illustrated with her lion mount and m
     heading: 'discover lord rama',
     headingHighlight: 'rama',
     subheading: 'The ideal prince whose epic journey in the Ramayana teaches honor, courage, and the triumph of good over evil.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/rama.webp',
     content: [
       {
         heading: 'Who Is Lord Rama?',
@@ -476,7 +476,7 @@ In "The Marvelous Hindu Deities," Rama is presented with his iconic bow, conveyi
     heading: 'discover goddess parvati',
     headingHighlight: 'parvati',
     subheading: 'The gentle goddess of love, devotion, and motherhood — mother of Ganesha and embodiment of divine grace.',
-    heroImage: '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp',
+    heroImage: '/images/deities/optimized/parvati.webp',
     content: [
       {
         heading: 'Who Is Goddess Parvati?',

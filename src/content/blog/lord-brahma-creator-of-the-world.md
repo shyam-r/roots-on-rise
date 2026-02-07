@@ -2,8 +2,8 @@
 title: "Lord Brahma: The Creator of the Entire World"
 description: "Learn about Lord Brahma — the four-faced god who created everything in the universe, from the stars to the rivers to you! Hindu mythology for kids."
 date: 2026-01-28
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/brahma.webp
+imageAlt: "Illustration of Lord Brahma, the creator of the world"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: deities

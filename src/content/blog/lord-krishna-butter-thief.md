@@ -2,8 +2,8 @@
 title: "Lord Krishna: The Playful Blue God Who Stole Butter"
 description: "Discover the magical childhood of Lord Krishna — from stealing butter to lifting mountains. Fun stories about the blue-skinned god kids love."
 date: 2026-02-06
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/krishna.webp
+imageAlt: "Illustration of Lord Krishna, the blue-skinned Hindu god"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

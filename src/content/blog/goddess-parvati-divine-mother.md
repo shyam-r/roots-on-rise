@@ -2,8 +2,8 @@
 title: "Goddess Parvati: The Loving Mother of Lord Ganesha"
 description: "Meet Goddess Parvati — the gentle, loving mother goddess who created Ganesha and balanced Shiva's wild energy. A warm story for kids."
 date: 2026-01-29
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/parvati.webp
+imageAlt: "Illustration of Goddess Parvati, the divine mother"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: deities

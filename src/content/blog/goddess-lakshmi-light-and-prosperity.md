@@ -2,8 +2,8 @@
 title: "Goddess Lakshmi: The Beautiful Goddess of Light and Prosperity"
 description: "Meet Goddess Lakshmi — she stands on a lotus, wears golden clothes, and brings blessings to every home during Diwali. A kid-friendly guide."
 date: 2026-02-05
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/lakshmi.webp
+imageAlt: "Illustration of Goddess Lakshmi, Hindu goddess of prosperity"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both

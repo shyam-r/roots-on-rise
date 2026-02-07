@@ -2,8 +2,8 @@
 title: "Lord Vishnu: The Protector Who Takes Many Forms"
 description: "Learn about Lord Vishnu — the guardian of the universe who comes to Earth in amazing forms whenever the world needs saving. Stories for kids."
 date: 2026-02-01
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/vishnu.webp
+imageAlt: "Illustration of Lord Vishnu, the protector of the universe"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: deities

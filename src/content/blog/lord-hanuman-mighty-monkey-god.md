@@ -2,8 +2,8 @@
 title: "Lord Hanuman: The Mighty Monkey God Who Could Fly"
 description: "Meet Lord Hanuman — the original superhero of Hindu mythology! He can fly, grow to giant size, and carries mountains. Stories kids love."
 date: 2026-02-04
-image: /images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp
-imageAlt: The Marvelous Hindu Deities board book cover
+image: /images/deities/optimized/hanuman.webp
+imageAlt: "Illustration of Lord Hanuman, the mighty monkey god"
 category: deity
 ageRange: "Ages 2-8"
 relatedBook: both
