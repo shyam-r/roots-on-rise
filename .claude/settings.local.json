@@ -12,5 +12,27 @@
       "Bash(npm install:*)",
       "mcp__memory__create_entities"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/refresh-amazon-token.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/refresh-amazon-token.sh"
+          }
+        ]
+      }
+    ]
   }
 }

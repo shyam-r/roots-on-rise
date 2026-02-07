@@ -1,0 +1,29 @@
+Keyword,Match Type,Bid
+hindu books,Broad,0.35
+hindu god,Broad,0.30
+indian god,Phrase,0.25
+hindu god goddess book,Broad,0.40
+hinduism books,Broad,0.25
+hindu kids books,Broad,0.25
+hindi books kids,Phrase,0.40
+ganesha book,Broad,0.25
+ganesha book,Exact,0.25
+hindu gods,Broad,0.25
+hinduism books kids,Exact,0.45
+hinduism for kids,Broad,0.25
+indian mythology book,Broad,0.25
+board books indian,Broad,0.25
+hindu baby gifts,Broad,0.20
+krishna,Broad,0.35
+hanuman,Phrase,0.20
+diwali books kids,Broad,0.30
+diwali books kids,Phrase,0.30
+hindu children books,Broad,0.30
+hinduism,Phrase,0.20
+hinduism books,Phrase,0.25
+hindu mythology kids,Broad,0.35
+marvelous hindu deities,Broad,0.15
+hindu kids,Broad,0.20
+ganesha books for kids,Broad,0.25
+hindi books kids,Broad,0.30
+indian book for babies,Broad,0.25

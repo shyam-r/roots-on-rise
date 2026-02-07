@@ -4,7 +4,7 @@
       "type": "sse",
       "url": "https://advertising-ai.amazon.com/mcp",
       "headers": {
-        "Authorization": "Bearer Atza|gQAM1yvOAwEBAJSMVwwPrxPGzL2C6CAnjv_2WdiRdNOMSagulgR89fXuOPbbAroTp_fTep6WPYJM608L9xo0zprSv9-OqurUkn71cEf_vMo7samb7mllktFuMRN0PDr8u-YR9D76iH66EYMLsNt3f5q0uZjdA2N1WW3X6c5w2jLu9g83VaTrH0W32cO9Cjio5RzrVoRCoj7CUOqjtIQQeOShWTGiyhw_vtPlAD6MijSGNijyn3sIcPWZKyLIzxcCGMEDjpkjJRduP-yYpuNe_pYckXbXy5z2TuBF350dQB_1STiI21TaYCyqnT-dXaHigsgC0Yt49fzej8RKBPMybMCX50pn3B5VBn4JlH3kxBf8mGbtNG3pH0FN0V4fRX_flBC5d6mOJzXYVdl2DXGNzNJmNqQnLDnlXQiVhMtPgJM4B7pbh7gWkFghGv6HMJlQqaTnQqE9myDNmUqh6YadUkygbe4pPlIwyyRht7-iGA-gkf7k4oqXIkEbCOnHwJiZCeDE5S9AGab9heQtu9ED3Z6EAzLU5Mcy0Lvn3A06d_qj6WcaNWiQ2-AFjah4RSfNqcjzucXu3g7JEuVRN5dNyW-TTsCAmA",
+        "Authorization": "Bearer Atza|gQDIxPzPAwEBAHaQaYlZQS9ExNfvvCAUufRUUDZs1iGpB0DzBxW_5E04pZQZ5DtESNylohfjyYJ3J4KF8BqXJ-ochVErGVmjgMEsxL5r_4e83e7e8kDqIOvj7cIvvvXp1rMFAXuZhWZFuWffMmSRsfFzCWjzyYd2uXuc-ld2lF5sfLGxh3dFo7n5PZDivF1s91R7fN-rAxo3edvh1VJXI4O6dWkYbgCM2FfHvKdTWpmQkVgkrC8sAQXkAZYmPupBrVa8HI9snDBADDo773UaheMgDS_r_xu-mwmvkbVYTamiDPOTGgmdbuQg9A0hRbaYNUpOLbBixtl_bz3qE8Q-z8LwVRheUmeh-65H_ocAO-QmeTouohbuCVB0Y50Aj9Qu5B2F7kMQzmpEHqHZM9z4HLHEaSqrfxEs7Idn1BghcbJBWUFvVF0-YWfWkw-_vNKqPMY5dp3KvFhU2LsxsPBZlhGO5Gu7Qe2NLtwkWgjFX6gSBnDwX4no2S7DBU-2_citGZe0yEOc2en_p62PRkzwjOYk4FCLqBlGKaYRJq2xhQ6zGZmN2iZO7psAVoRVYheMQIzQISDnE6vtiMeC31HObg-KX_s4tkzo1sekWqf-qFXHxaCf9CPep-9NA5PcsSd1fpRhvZSXm2b3p6CycovaR9Q",
         "Amazon-Ads-ClientId": "amzn1.application-oa2-client.3ed1ff65dcd9499fa9f2456134374df6",
         "Accept": "application/json, text/event-stream"
       }
