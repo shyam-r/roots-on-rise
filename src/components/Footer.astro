@@ -19,21 +19,6 @@ const socialLinks = [
 <footer class="bg-dark text-light mx-auto max-w-screen-2xl">
   <div class="max-w-6xl mx-auto px-5 py-12 md:py-16">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-      <!-- Brand -->
-      <div>
-        <a href="/" class="inline-block mb-4">
-          <img
-            src="/images/brand/Brand-Logo-Name-Transparent-Background.svg"
-            alt="Roots On Rise - Embrace, Elevate, Inspire"
-            class="h-16 w-auto brightness-0 invert"
-          />
-        </a>
-        <p class="text-light/70 text-sm leading-relaxed">
-          Unveiling cultural treasures through playful learning and personal discovery.
-          Inspiring a love for heritage in young minds.
-        </p>
-      </div>
-
       <!-- Quick Links -->
       <div>
         <h3 class="font-title font-bold text-lg mb-4">Quick Links</h3>
@@ -54,10 +39,25 @@ const socialLinks = [
         </nav>
       </div>
 
+      <!-- Brand -->
+      <div class="text-center">
+        <a href="/" class="inline-block mb-4">
+          <img
+            src="/images/brand/Brand-Logo-Name-Transparent-Background.svg"
+            alt="Roots On Rise - Embrace, Elevate, Inspire"
+            class="h-16 w-auto brightness-0 invert"
+          />
+        </a>
+        <p class="text-light/70 text-sm leading-relaxed">
+          Unveiling cultural treasures through playful learning and personal discovery.
+          Inspiring a love for heritage in young minds.
+        </p>
+      </div>
+
       <!-- Social -->
-      <div>
+      <div class="md:text-right">
         <h3 class="font-title font-bold text-lg mb-4">Connect With Us</h3>
-        <div class="flex items-center gap-4 mb-4">
+        <div class="flex items-center gap-4 mb-4 md:justify-end">
           {socialLinks.map((link) => (
             <a
               href={link.href}
