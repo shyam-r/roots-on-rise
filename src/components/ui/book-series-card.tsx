@@ -75,7 +75,7 @@ function BookSeriesCard({
   const isHorizontal = layout === "horizontal"
 
   return (
-    <article className={cn(
+    <article data-product className={cn(
       "flex flex-col gap-8",
       isHorizontal && (reverse ? "md:flex-row-reverse" : "md:flex-row"),
       className
