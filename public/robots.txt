@@ -1,11 +1,12 @@
-# Robots.txt for Roots On Rise
-# Allow all crawlers including AI bots for product discovery
+# Roots On Rise - robots.txt
+# Allow all search engines and AI search bots for maximum discoverability
+# Block AI training bots via Cloudflare WAF (not robots.txt)
 
-# Default: Allow all
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
-# Explicitly allow AI crawlers (critical for AI search visibility)
+# AI search bots - explicitly allowed for search and AI-generated answers
 User-agent: GPTBot
 Allow: /
 
@@ -30,6 +31,9 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
 User-agent: FacebookBot
 Allow: /
 
@@ -45,5 +49,8 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# Sitemap
+# Block known training-only scrapers
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://rootsonrise.com/sitemap-index.xml
