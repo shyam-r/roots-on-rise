@@ -6,6 +6,7 @@ image: /images/deities/optimized/rama.webp
 imageAlt: "Illustration of Lord Rama, the brave prince"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord rama for kids", "rama story children", "ramayana for kids", "diwali story prince rama", "hindu gods book", "rama sita hanuman"]
 relatedBook: both
 relatedSlug: rama-book-for-kids
 ---

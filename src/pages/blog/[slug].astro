@@ -7,13 +7,16 @@ import { getLandingPageBySlug } from '@/data/landing-pages';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({
+  return posts.map((post, index) => ({
     params: { slug: post.id.replace(/\.md$/, '') },
-    props: { post },
+    props: { post, index },
   }));
 }
 
-const { post } = Astro.props;
+const { post, index } = Astro.props;
+
+// Rotate CTA variant: 0=inline-banner, 1=format-list, 2=minimal
+const ctaVariant = index % 3;
 const { Content } = await render(post);
 const postSlug = post.id.replace(/\.md$/, '');
 
@@ -52,6 +55,9 @@ const articleSchema = {
   },
   image: post.data.image ? `https://rootsonrise.com${post.data.image}` : undefined,
   mainEntityOfPage: { '@type': 'WebPage', '@id': `https://rootsonrise.com/blog/${postSlug}` },
+  ...(post.data.keywords && { keywords: post.data.keywords.join(', ') }),
+  audience: { '@type': 'Audience', audienceType: 'Children, Parents, Educators' },
+  inLanguage: 'en-US',
 };
 
 const formattedDate = post.data.date.toLocaleDateString('en-US', {
@@ -116,7 +122,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
         prose-p:text-dark/70 prose-p:leading-relaxed prose-p:text-base
         prose-li:text-dark/70 prose-li:text-base
-        prose-strong:text-dark prose-strong:font-semibold
+        prose-strong:text-primary prose-strong:font-semibold
         prose-a:text-primary prose-a:no-underline hover:prose-a:underline
         prose-ol:pl-6 prose-ul:pl-6
         prose-img:rounded-xl prose-img:shadow-sm
@@ -126,40 +132,96 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     </article>
   </Section>
 
-  <!-- Book Showcase -->
-  <Section background="gradientWarm">
-    <div class="text-center mb-8">
-      <h2 class="font-title font-bold text-2xl text-dark mb-2">
-        explore the <span class="text-primary">books</span>
-      </h2>
-      <p class="text-dark/60 text-sm max-w-md mx-auto">
-        Bring these stories home with our beautifully illustrated children's books.
-      </p>
-    </div>
-    <div class:list={["grid gap-6 max-w-4xl mx-auto", seriesToShow.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-sm"]}>
+  <!-- Book Showcase — rotates between 3 styles so pages don't all look identical -->
+  {ctaVariant === 0 && (
+    /* Variant A: Horizontal banner — image left, formats right */
+    <Section background="tertiary">
       {seriesToShow.map((series) => {
         const books = getBooksBySeriesId(series.id);
         const primaryBook = books[0];
-        const primaryFormat = series.formats[0];
-        if (!primaryBook || !primaryFormat) return null;
-        const amazonUrl = getAmazonUrl(primaryFormat.asin || '');
+        if (!primaryBook) return null;
         return (
-          <div class="bg-white rounded-2xl shadow-sm border border-dark/5 overflow-hidden">
-            <div class="aspect-[4/3] overflow-hidden bg-tertiary">
-              <img src={primaryBook.image} alt={series.name} class="w-full h-full object-contain p-6" loading="lazy" />
+          <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 mb-8 last:mb-0">
+            <div class="w-48 shrink-0">
+              <img src={primaryBook.image} alt={series.name} class="w-full rounded-xl shadow-md" loading="lazy" />
             </div>
-            <div class="p-5">
-              <h3 class="font-title font-bold text-lg text-dark mb-1">{series.name}</h3>
-              <p class="text-dark/60 text-sm mb-3 line-clamp-2">{series.description}</p>
-              <Button variant="amazon" size="sm" asChild className="w-full">
-                <a href={amazonUrl} target="_blank" rel="noopener">Buy on Amazon — {primaryFormat.price}</a>
-              </Button>
+            <div class="flex-1 text-center md:text-left">
+              <h2 class="font-title font-bold text-2xl text-dark mb-2">{series.name}</h2>
+              <p class="text-dark/60 text-sm mb-4 max-w-md">{series.description}</p>
+              <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                {series.formats.map((fmt) => (
+                  <Button variant={fmt.id.includes('kindle') ? 'outline' : 'amazon'} size="sm" asChild>
+                    <a href={getAmazonUrl(fmt.asin || '')} target="_blank" rel="noopener">
+                      {fmt.name} — {fmt.price}
+                    </a>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         );
       })}
-    </div>
-  </Section>
+    </Section>
+  )}
+
+  {ctaVariant === 1 && (
+    /* Variant B: Format comparison list — clean table-like layout */
+    <Section background="gradientWarm">
+      <div class="text-center mb-8">
+        <h2 class="font-title font-bold text-2xl text-dark mb-2">
+          bring these stories <span class="text-primary">home</span>
+        </h2>
+        <p class="text-dark/60 text-sm max-w-md mx-auto">Available in multiple formats to suit your family.</p>
+      </div>
+      <div class="max-w-2xl mx-auto space-y-4">
+        {seriesToShow.flatMap((series) =>
+          series.formats.map((fmt) => {
+            const amazonUrl = getAmazonUrl(fmt.asin || '');
+            return (
+              <a href={amazonUrl} target="_blank" rel="noopener"
+                class="flex items-center justify-between bg-white rounded-xl px-5 py-4 border border-dark/5 hover:shadow-md transition-shadow group">
+                <div>
+                  <p class="font-title font-bold text-dark group-hover:text-primary transition-colors">
+                    {series.shortName} — {fmt.name}
+                  </p>
+                  {fmt.description && <p class="text-dark/50 text-sm">{fmt.description}</p>}
+                </div>
+                <span class="font-bold text-primary text-lg shrink-0 ml-4">{fmt.price}</span>
+              </a>
+            );
+          })
+        )}
+      </div>
+    </Section>
+  )}
+
+  {ctaVariant === 2 && (
+    /* Variant C: Minimal callout — quote-style with single CTA */
+    <Section background="dark" container="md">
+      <div class="text-center">
+        <p class="text-light/50 text-sm uppercase tracking-wider mb-3">From our bookshelf</p>
+        <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-3">
+          see these deities come to <span class="text-primary">life</span>
+        </h2>
+        <p class="text-light/60 max-w-lg mx-auto mb-8">
+          Beautifully illustrated books that make Hindu mythology accessible and exciting for young readers.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          {seriesToShow.map((series) => {
+            const primaryFormat = series.formats[0];
+            if (!primaryFormat) return null;
+            return (
+              <Button variant="amazon" size="lg" asChild>
+                <a href={getAmazonUrl(primaryFormat.asin || '')} target="_blank" rel="noopener">
+                  {series.shortName} — {primaryFormat.price}
+                </a>
+              </Button>
+            );
+          })}
+        </div>
+      </div>
+    </Section>
+  )}
 
   <!-- Related Content -->
   {relatedPage && (

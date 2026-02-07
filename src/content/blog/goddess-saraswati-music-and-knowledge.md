@@ -6,6 +6,7 @@ image: /images/deities/optimized/saraswati.webp
 imageAlt: "Illustration of Goddess Saraswati, goddess of knowledge and music"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["goddess saraswati for kids", "saraswati story children", "hindu goddess of knowledge", "vasant panchami kids", "saraswati book", "hindu gods for children"]
 relatedBook: both
 relatedSlug: saraswati-book-for-kids
 ---

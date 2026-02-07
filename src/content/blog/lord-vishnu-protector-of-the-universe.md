@@ -6,6 +6,7 @@ image: /images/deities/optimized/vishnu.webp
 imageAlt: "Illustration of Lord Vishnu, the protector of the universe"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord vishnu for kids", "vishnu story children", "protector god hindu", "dashavatar kids", "vishnu avatars", "hindu mythology children"]
 relatedBook: deities
 relatedSlug: vishnu-book-for-kids
 ---

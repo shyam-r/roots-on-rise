@@ -6,6 +6,7 @@ image: /images/deities/optimized/shiva.webp
 imageAlt: "Illustration of Lord Shiva, the cosmic dancer"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord shiva for kids", "shiva story children", "cosmic dancer hindu", "nataraja kids", "mahadev for children", "hindu gods book"]
 relatedBook: both
 relatedSlug: shiva-book-for-kids
 ---

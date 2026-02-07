@@ -6,6 +6,7 @@ image: /images/deities/optimized/ganesha.webp
 imageAlt: "Illustration of Lord Ganesha, the elephant-headed Hindu god"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord ganesha for kids", "ganesha story children", "elephant god hindu", "ganesh chaturthi kids", "hindu gods for children", "ganesha book"]
 relatedBook: both
 relatedSlug: ganesha-book-for-kids
 ---

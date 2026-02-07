@@ -6,6 +6,7 @@ image: /images/deities/optimized/durga.webp
 imageAlt: "Illustration of Goddess Durga, the warrior goddess"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["goddess durga for kids", "durga story children", "warrior goddess hindu", "navratri for kids", "durga puja children", "hindu goddess book"]
 relatedBook: both
 relatedSlug: durga-book-for-kids
 ---

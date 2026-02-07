@@ -6,6 +6,7 @@ image: /images/deities/optimized/hanuman.webp
 imageAlt: "Illustration of Lord Hanuman, the mighty monkey god"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord hanuman for kids", "hanuman story children", "monkey god hindu", "hanuman chalisa kids", "hindu gods book", "ramayana for kids"]
 relatedBook: both
 relatedSlug: hanuman-book-for-kids
 ---

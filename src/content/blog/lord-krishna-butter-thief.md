@@ -6,6 +6,7 @@ image: /images/deities/optimized/krishna.webp
 imageAlt: "Illustration of Lord Krishna, the blue-skinned Hindu god"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord krishna for kids", "krishna stories children", "butter thief krishna", "blue god hindu", "krishna book for kids", "janmashtami"]
 relatedBook: both
 relatedSlug: krishna-book-for-kids
 ---

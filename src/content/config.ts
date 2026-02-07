@@ -10,6 +10,7 @@ const blog = defineCollection({
     imageAlt: z.string().optional(),
     category: z.enum(['deity', 'festival', 'culture', 'activity']),
     ageRange: z.string().default('2-8 years'),
+    keywords: z.array(z.string()).optional(),
     relatedBook: z.enum(['deities', 'shloka', 'both']).default('both'),
     relatedSlug: z.string().optional(),
   }),

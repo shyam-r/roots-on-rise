@@ -6,6 +6,7 @@ image: /images/deities/optimized/parvati.webp
 imageAlt: "Illustration of Goddess Parvati, the divine mother"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["goddess parvati for kids", "parvati story children", "divine mother hindu", "shiva parvati kids", "hindu goddess book", "ganesha mother"]
 relatedBook: deities
 relatedSlug: parvati-book-for-kids
 ---

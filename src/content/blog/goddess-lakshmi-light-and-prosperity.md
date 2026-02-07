@@ -6,6 +6,7 @@ image: /images/deities/optimized/lakshmi.webp
 imageAlt: "Illustration of Goddess Lakshmi, Hindu goddess of prosperity"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["goddess lakshmi for kids", "lakshmi story children", "diwali goddess", "hindu goddess of wealth", "lakshmi book kids", "diwali for kids"]
 relatedBook: both
 relatedSlug: lakshmi-book-for-kids
 ---

@@ -146,10 +146,42 @@ const websiteSchema = {
         inset: 0;
         z-index: 1;
       }
+      /* Hide images when printing */
+      @media print {
+        img { visibility: hidden !important; }
+        body::before {
+          content: 'Images are copyrighted by Roots On Rise and cannot be printed.';
+          display: block;
+          text-align: center;
+          padding: 2rem;
+          font-size: 1.2rem;
+          color: #666;
+        }
+      }
     </style>
     <script is:inline>
+      /* Block right-click on images */
       document.addEventListener('contextmenu', function(e) {
         if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+      /* Block drag on images */
+      document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+      /* Blur images when tab loses focus (deters screen recording) */
+      document.addEventListener('visibilitychange', function() {
+        var imgs = document.querySelectorAll('img[src*="/deities/"]');
+        imgs.forEach(function(img) {
+          img.style.filter = document.hidden ? 'blur(20px)' : 'none';
+          img.style.transition = 'filter 0.3s';
+        });
+      });
+      /* Block common screenshot keyboard shortcuts */
+      document.addEventListener('keyup', function(e) {
+        if (e.key === 'PrintScreen') {
+          navigator.clipboard.writeText('');
+          alert('Screenshots of copyrighted images are not permitted.');
+        }
       });
     </script>
   </head>

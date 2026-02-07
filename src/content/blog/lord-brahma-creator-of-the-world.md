@@ -6,6 +6,7 @@ image: /images/deities/optimized/brahma.webp
 imageAlt: "Illustration of Lord Brahma, the creator of the world"
 category: deity
 ageRange: "Ages 2-8"
+keywords: ["lord brahma for kids", "brahma creator story", "hindu god of creation", "brahma four heads", "hindu mythology children", "trimurti for kids"]
 relatedBook: deities
 relatedSlug: hindu-mythology-for-kids
 ---
