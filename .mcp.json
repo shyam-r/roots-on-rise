@@ -4,7 +4,7 @@
       "type": "sse",
       "url": "https://advertising-ai.amazon.com/mcp",
       "headers": {
-        "Authorization": "Bearer Atza|gQDIxPzPAwEBAHaQaYlZQS9ExNfvvCAUufRUUDZs1iGpB0DzBxW_5E04pZQZ5DtESNylohfjyYJ3J4KF8BqXJ-ochVErGVmjgMEsxL5r_4e83e7e8kDqIOvj7cIvvvXp1rMFAXuZhWZFuWffMmSRsfFzCWjzyYd2uXuc-ld2lF5sfLGxh3dFo7n5PZDivF1s91R7fN-rAxo3edvh1VJXI4O6dWkYbgCM2FfHvKdTWpmQkVgkrC8sAQXkAZYmPupBrVa8HI9snDBADDo773UaheMgDS_r_xu-mwmvkbVYTamiDPOTGgmdbuQg9A0hRbaYNUpOLbBixtl_bz3qE8Q-z8LwVRheUmeh-65H_ocAO-QmeTouohbuCVB0Y50Aj9Qu5B2F7kMQzmpEHqHZM9z4HLHEaSqrfxEs7Idn1BghcbJBWUFvVF0-YWfWkw-_vNKqPMY5dp3KvFhU2LsxsPBZlhGO5Gu7Qe2NLtwkWgjFX6gSBnDwX4no2S7DBU-2_citGZe0yEOc2en_p62PRkzwjOYk4FCLqBlGKaYRJq2xhQ6zGZmN2iZO7psAVoRVYheMQIzQISDnE6vtiMeC31HObg-KX_s4tkzo1sekWqf-qFXHxaCf9CPep-9NA5PcsSd1fpRhvZSXm2b3p6CycovaR9Q",
+        "Authorization": "Bearer Atza|gQB5BFI5AwEBADAXEpUnGNoHayPnXiCc-SKRKgpFvA2I35wrULKfc8hUrXBWhlAExepY6sTyG4J6A5ww8aVl6OK4z5-pX1tQ1x9hwppWVZc1cSTkpOO5Ii8iECKnTEFVLcNSOcYkpDQHxqEswCUIYx5-KJMS_ibGojqeL52T2uoVTbI4aq2GmiUHMXge0B9U0Xv12pRLbcVnRvGq0f8qq7qjxR0fAu5Y7Ev-n3moKPfQx1BVoNFB1WBRoWLjWqqgUeFypjTS-vJiQPJ2D4o1BiDGVc5d_H0LZYG-P-LSA6YxdzJrn5me9jVgMaDC6OZ_Y6rRMc_xV_V3d_Yl6zMSDdqyrFrQxip8zX3SQg7Enr5qTtSNrn0qxyzdgmE_Ql-C47G2VxVE8uhRXoxS0QG8ctWB7V1olgajHbzBNdf2PWIa7iDJHkQ1liRb3q0axnpUj1k9LICN_k13gkzSRK3zg3dndKWcB9fQ9sJWa5hdLR_TKiUlUJll13bMdjw6uLtJZhLcPEG7RcGXaOtB3H3JTqHmvXDVZ5xlYSC-xAmQ5b-EsDPQjhK-U0fcbtpuQi5PiEIaQGhNMPJH1tfwxqJmbO20E_cDVE9O3JVjxfWz6EQ5e7mIbwFSlypabo1frdP38Pm2pQ_hO4-AN6gmyGMZtzxFV28",
         "Amazon-Ads-ClientId": "amzn1.application-oa2-client.3ed1ff65dcd9499fa9f2456134374df6",
         "Accept": "application/json, text/event-stream"
       }
