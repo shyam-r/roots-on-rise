@@ -41,20 +41,20 @@ const categoryLabels: Record<string, string> = {
   <Section>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
       {posts.map((post) => (
-        <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="group bg-white rounded-2xl border border-dark/5 overflow-hidden hover:shadow-md transition-shadow">
+        <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="group bg-white rounded-2xl border border-dark/5 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
           {post.data.image && (
-            <div class="aspect-[3/2] overflow-hidden bg-tertiary">
+            <div class="aspect-square overflow-hidden bg-tertiary flex items-center justify-center p-6">
               <img
                 src={post.data.image}
                 alt={post.data.imageAlt || post.data.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
             </div>
           )}
-          <div class="p-5">
+          <div class="p-5 flex flex-col flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs font-medium text-primary/70 uppercase tracking-wider">
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider">
                 {categoryLabels[post.data.category] || post.data.category}
               </span>
               <span class="text-dark/30 text-xs">
@@ -64,7 +64,7 @@ const categoryLabels: Record<string, string> = {
             <h2 class="font-title font-bold text-lg text-dark group-hover:text-primary transition-colors mb-2">
               {post.data.title}
             </h2>
-            <p class="text-dark/60 text-sm line-clamp-2">
+            <p class="text-dark/60 text-sm line-clamp-2 mt-auto">
               {post.data.description}
             </p>
           </div>
