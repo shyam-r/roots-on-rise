@@ -1,0 +1,331 @@
+---
+/**
+ * Dynamic landing page template.
+ *
+ * Generates one static page per entry in LANDING_PAGES data.
+ * Each page is keyword-optimized with structured data, FAQ schema,
+ * educational content, and Amazon CTAs.
+ *
+ * To add a new landing page: add an entry to src/data/landing-pages.ts
+ */
+import Layout from '../layouts/Layout.astro';
+import { Button, Section, SectionHeader } from '@/components/ui';
+import {
+  LANDING_PAGES,
+  getRelatedPages,
+  type LandingPage,
+} from '@/data/landing-pages';
+import {
+  BOOK_SERIES,
+  BOOKS,
+  getBooksBySeriesId,
+  getBookPurchaseId,
+  getAmazonUrl,
+  generateFAQSchema,
+  generateBreadcrumbSchema,
+} from '@/data/products';
+
+export function getStaticPaths() {
+  return LANDING_PAGES.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: LandingPage;
+}
+
+const { page } = Astro.props;
+
+// Determine which book series to show
+const seriesToShow = page.featuredBooks === 'deities'
+  ? BOOK_SERIES.filter((s) => s.id === 'marvelous-hindu-deities')
+  : page.featuredBooks === 'shloka'
+    ? BOOK_SERIES.filter((s) => s.id === 'shloka-mantra')
+    : BOOK_SERIES;
+
+// Get related pages for internal linking
+const relatedPages = getRelatedPages(page);
+
+// Generate structured data
+const breadcrumbSchema = generateBreadcrumbSchema(page.heading, `/${page.slug}`);
+const faqSchema = page.faq.length > 0 ? generateFAQSchema(page.faq) : null;
+
+// Article schema for educational content
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: page.title.split(' | ')[0],
+  description: page.description,
+  author: {
+    '@type': 'Organization',
+    name: 'Roots On Rise',
+    url: 'https://rootsonrise.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Roots On Rise',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://rootsonrise.com/images/brand/Brand-Logo-Name-Transparent-Background.svg',
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://rootsonrise.com/${page.slug}`,
+  },
+};
+
+// Build the highlighted heading
+function renderHeading(heading: string, highlight: string) {
+  const lowerHeading = heading.toLowerCase();
+  const lowerHighlight = highlight.toLowerCase();
+  const index = lowerHeading.indexOf(lowerHighlight);
+  if (index === -1) return heading;
+  const before = heading.slice(0, index);
+  const match = heading.slice(index, index + highlight.length);
+  const after = heading.slice(index + highlight.length);
+  return { before, match, after };
+}
+
+const headingParts = renderHeading(page.heading, page.headingHighlight);
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  image={page.ogImage || page.heroImage}
+  type="article"
+>
+  <!-- Structured Data -->
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {faqSchema && (
+    <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )}
+
+  <!-- Hero Section -->
+  <Section background="tertiary" container="md">
+    <div class="text-center">
+      <nav class="text-sm text-dark/50 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/books" class="hover:text-primary transition-colors">Books</a>
+        <span class="mx-2">/</span>
+        <span class="text-dark/70">{typeof headingParts === 'string' ? headingParts : `${headingParts.before}${headingParts.match}${headingParts.after}`}</span>
+      </nav>
+      <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
+        {typeof headingParts === 'string' ? (
+          headingParts
+        ) : (
+          <>
+            {headingParts.before}<span class="text-primary">{headingParts.match}</span>{headingParts.after}
+          </>
+        )}
+      </h1>
+      <p class="text-dark/70 text-lg max-w-2xl mx-auto">
+        {page.subheading}
+      </p>
+    </div>
+  </Section>
+
+  <!-- Educational Content -->
+  <Section>
+    <div class="max-w-3xl mx-auto">
+      {page.content.map((section, i) => (
+        <article class:list={["prose-section", i < page.content.length - 1 && "mb-12"]}>
+          <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+            {section.heading}
+          </h2>
+          <div class="text-dark/70 leading-relaxed space-y-4 prose-content">
+            {section.body.split('\n\n').map((paragraph) => {
+              if (paragraph.startsWith('•') || paragraph.includes('\n•')) {
+                const items = paragraph.split('\n').filter((line) => line.startsWith('•'));
+                return (
+                  <ul class="space-y-2 pl-1">
+                    {items.map((item) => {
+                      const text = item.replace(/^•\s*/, '');
+                      const boldMatch = text.match(/^\*\*(.+?)\*\*\s*[—–-]\s*(.*)/);
+                      if (boldMatch) {
+                        return (
+                          <li class="flex gap-2">
+                            <span class="text-primary mt-1 flex-shrink-0">&#10003;</span>
+                            <span><strong class="text-dark">{boldMatch[1]}</strong> — {boldMatch[2]}</span>
+                          </li>
+                        );
+                      }
+                      return (
+                        <li class="flex gap-2">
+                          <span class="text-primary mt-1 flex-shrink-0">&#10003;</span>
+                          <span set:html={text.replace(/\*\*(.+?)\*\*/g, '<strong class="text-dark">$1</strong>')} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                );
+              }
+              return (
+                <p set:html={paragraph.replace(/\*\*(.+?)\*\*/g, '<strong class="text-dark">$1</strong>')} />
+              );
+            })}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Book Showcase -->
+  <Section background="gradientWarm">
+    <div class="text-center mb-10">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+        explore our <span class="text-primary">books</span>
+      </h2>
+      <p class="text-dark/60 max-w-xl mx-auto">
+        Beautifully illustrated books that bring these stories to life for young readers.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+      {seriesToShow.map((series) => {
+        const books = getBooksBySeriesId(series.id);
+        const primaryBook = books[0];
+        const primaryFormat = series.formats[0];
+        if (!primaryBook || !primaryFormat) return null;
+        const purchaseId = primaryFormat.asin || '';
+        const amazonUrl = getAmazonUrl(purchaseId);
+        return (
+          <div class="bg-white rounded-2xl shadow-sm border border-dark/5 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="aspect-[4/3] overflow-hidden bg-tertiary">
+              <img
+                src={primaryBook.image}
+                alt={series.name}
+                class="w-full h-full object-contain p-6"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-title font-bold text-xl text-dark mb-2">
+                {series.name}
+              </h3>
+              <p class="text-dark/60 text-sm mb-4 line-clamp-2">
+                {series.description}
+              </p>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="font-bold text-lg text-dark">{primaryFormat.price}</span>
+                {series.formats.length > 1 && (
+                  <span class="text-dark/40 text-sm">
+                    {series.formats.length} formats available
+                  </span>
+                )}
+              </div>
+              <div class="flex gap-3">
+                <Button variant="amazon" size="sm" asChild className="flex-1">
+                  <a href={amazonUrl} target="_blank" rel="noopener">
+                    Buy on Amazon
+                  </a>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <a href="/books">
+                    All Formats
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    {seriesToShow.length === 1 && (
+      <div class="text-center mt-8">
+        <Button variant="outline" size="md" asChild>
+          <a href="/books">
+            Browse All Books
+          </a>
+        </Button>
+      </div>
+    )}
+  </Section>
+
+  <!-- FAQ Section -->
+  {page.faq.length > 0 && (
+    <Section>
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+            frequently asked <span class="text-primary">questions</span>
+          </h2>
+        </div>
+        <div class="space-y-4">
+          {page.faq.map((faq) => (
+            <details class="group bg-tertiary rounded-xl p-5 cursor-pointer">
+              <summary class="font-title font-semibold text-dark flex items-center justify-between list-none text-sm md:text-base">
+                <span>{faq.question}</span>
+                <span class="text-primary transition-transform group-open:rotate-45 text-xl font-light ml-4 flex-shrink-0">+</span>
+              </summary>
+              <p class="mt-3 text-dark/70 leading-relaxed text-sm">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )}
+
+  <!-- Related Pages (Internal Linking) -->
+  {relatedPages.length > 0 && (
+    <Section background="tertiary">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="font-title font-bold text-xl md:text-2xl text-dark mb-2">
+            continue <span class="text-primary">exploring</span>
+          </h2>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {relatedPages.map((related) => (
+            <a
+              href={`/${related.slug}`}
+              class="bg-white rounded-xl p-5 border border-dark/5 hover:border-primary/30 hover:shadow-sm transition-all group"
+            >
+              <span class="text-xs font-medium text-primary/70 uppercase tracking-wider">
+                {related.category === 'deity' ? 'Deity' : related.category === 'festival' ? 'Festival' : 'Learn'}
+              </span>
+              <h3 class="font-title font-bold text-dark mt-1 group-hover:text-primary transition-colors">
+                {related.heading}
+              </h3>
+              <p class="text-dark/50 text-sm mt-2 line-clamp-2">
+                {related.subheading}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )}
+
+  <!-- Final CTA -->
+  <Section background="dark" container="md">
+    <div class="text-center">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
+        ready to start the <span class="text-primary">journey</span>?
+      </h2>
+      <p class="text-light/70 max-w-xl mx-auto mb-8">
+        Give your children the gift of understanding their rich heritage through beautifully illustrated stories and sacred traditions.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button variant="amazon" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+            Shop Hindu Deities Book
+          </a>
+        </Button>
+        <Button variant="outlineLight" size="lg" asChild>
+          <a href="https://www.amazon.com/dp/B0GH1Z46BD?tag=rootsonrise-20" target="_blank" rel="noopener">
+            Shop Shloka Book
+          </a>
+        </Button>
+      </div>
+    </div>
+  </Section>
+</Layout>
