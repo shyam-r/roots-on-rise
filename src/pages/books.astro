@@ -15,6 +15,11 @@ import {
   generateBreadcrumbSchema,
   generateFAQSchema
 } from '@/data/products';
+import { getLandingPagesByCategory } from '@/data/landing-pages';
+
+const deityPages = getLandingPagesByCategory('deity');
+const festivalPages = getLandingPagesByCategory('festival');
+const topicPages = getLandingPagesByCategory('topic');
 
 // Use centralized book data - grouped by series
 const allBooks = BOOKS;
@@ -247,6 +252,65 @@ const faqSchema = generateFAQSchema(allFAQs);
                 {faq.answer}
               </p>
             </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Explore More - Internal links to landing pages -->
+  <Section background="tertiary">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
+          explore <span class="text-primary">more</span>
+        </h2>
+        <p class="text-dark/60 max-w-xl mx-auto">
+          Dive deeper into Hindu mythology, deities, festivals, and cultural traditions for children.
+        </p>
+      </div>
+
+      <!-- Deities -->
+      <div class="mb-8">
+        <h3 class="font-title font-semibold text-sm uppercase tracking-wider text-primary mb-3">Meet the Deities</h3>
+        <div class="flex flex-wrap gap-2">
+          {deityPages.map((p) => (
+            <a
+              href={`/${p.slug}`}
+              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+            >
+              {p.heading.replace('discover ', '').replace('goddess ', '').replace('lord ', '')}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Festivals -->
+      <div class="mb-8">
+        <h3 class="font-title font-semibold text-sm uppercase tracking-wider text-primary mb-3">Festivals & Celebrations</h3>
+        <div class="flex flex-wrap gap-2">
+          {festivalPages.map((p) => (
+            <a
+              href={`/${p.slug}`}
+              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+            >
+              {p.heading.replace('celebrate ', '').replace('the perfect ', '').replace(' with kids', '').replace(' gift', ' gifts')}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Topics -->
+      <div>
+        <h3 class="font-title font-semibold text-sm uppercase tracking-wider text-primary mb-3">Learn More</h3>
+        <div class="flex flex-wrap gap-2">
+          {topicPages.map((p) => (
+            <a
+              href={`/${p.slug}`}
+              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+            >
+              {p.heading}
+            </a>
           ))}
         </div>
       </div>
