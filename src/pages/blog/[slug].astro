@@ -1,0 +1,171 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Button, Section } from '@/components/ui';
+import { BOOK_SERIES, getBooksBySeriesId, getAmazonUrl, generateBreadcrumbSchema } from '@/data/products';
+import { getLandingPageBySlug } from '@/data/landing-pages';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const postSlug = post.id.replace(/\.md$/, '');
+
+// Determine which books to show
+const seriesToShow = post.data.relatedBook === 'deities'
+  ? BOOK_SERIES.filter((s) => s.id === 'marvelous-hindu-deities')
+  : post.data.relatedBook === 'shloka'
+    ? BOOK_SERIES.filter((s) => s.id === 'shloka-mantra')
+    : BOOK_SERIES;
+
+// Related landing page
+const relatedPage = post.data.relatedSlug ? getLandingPageBySlug(post.data.relatedSlug) : null;
+
+// Schemas
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://rootsonrise.com' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://rootsonrise.com/blog' },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: `https://rootsonrise.com/blog/${postSlug}` },
+  ],
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  author: { '@type': 'Organization', name: 'Roots On Rise', url: 'https://rootsonrise.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Roots On Rise',
+    logo: { '@type': 'ImageObject', url: 'https://rootsonrise.com/images/brand/Brand-Logo-Name-Transparent-Background.svg' },
+  },
+  image: post.data.image ? `https://rootsonrise.com${post.data.image}` : undefined,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://rootsonrise.com/blog/${postSlug}` },
+};
+
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title={`${post.data.title} | Roots On Rise Blog`}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+>
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Breadcrumb -->
+  <Section background="tertiary" padding="sm" container="md">
+    <nav class="text-sm text-dark/50" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/blog" class="hover:text-primary transition-colors">Blog</a>
+      <span class="mx-2">/</span>
+      <span class="text-dark/70">{post.data.title}</span>
+    </nav>
+  </Section>
+
+  <!-- Article -->
+  <Section container="sm">
+    <article>
+      <header class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-medium text-primary uppercase tracking-wider">{post.data.category}</span>
+          <span class="text-dark/40 text-xs">{formattedDate}</span>
+          <span class="text-dark/40 text-xs">{post.data.ageRange}</span>
+        </div>
+        <h1 class="font-title font-bold text-3xl md:text-4xl text-dark mb-4">
+          {post.data.title}
+        </h1>
+        <p class="text-dark/60 text-lg">
+          {post.data.description}
+        </p>
+      </header>
+
+      {post.data.image && (
+        <div class="rounded-2xl overflow-hidden mb-8">
+          <img
+            src={post.data.image}
+            alt={post.data.imageAlt || post.data.title}
+            class="w-full"
+          />
+        </div>
+      )}
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-title prose-headings:text-dark
+        prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
+        prose-p:text-dark/70 prose-p:leading-relaxed
+        prose-li:text-dark/70
+        prose-strong:text-dark
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+      ">
+        <Content />
+      </div>
+    </article>
+  </Section>
+
+  <!-- Book Showcase -->
+  <Section background="gradientWarm">
+    <div class="text-center mb-8">
+      <h2 class="font-title font-bold text-2xl text-dark mb-2">
+        explore the <span class="text-primary">books</span>
+      </h2>
+      <p class="text-dark/60 text-sm max-w-md mx-auto">
+        Bring these stories home with our beautifully illustrated children's books.
+      </p>
+    </div>
+    <div class:list={["grid gap-6 max-w-4xl mx-auto", seriesToShow.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-sm"]}>
+      {seriesToShow.map((series) => {
+        const books = getBooksBySeriesId(series.id);
+        const primaryBook = books[0];
+        const primaryFormat = series.formats[0];
+        if (!primaryBook || !primaryFormat) return null;
+        const amazonUrl = getAmazonUrl(primaryFormat.asin || '');
+        return (
+          <div class="bg-white rounded-2xl shadow-sm border border-dark/5 overflow-hidden">
+            <div class="aspect-[4/3] overflow-hidden bg-tertiary">
+              <img src={primaryBook.image} alt={series.name} class="w-full h-full object-contain p-6" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <h3 class="font-title font-bold text-lg text-dark mb-1">{series.name}</h3>
+              <p class="text-dark/60 text-sm mb-3 line-clamp-2">{series.description}</p>
+              <Button variant="amazon" size="sm" asChild className="w-full">
+                <a href={amazonUrl} target="_blank" rel="noopener">Buy on Amazon — {primaryFormat.price}</a>
+              </Button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </Section>
+
+  <!-- Related Content -->
+  {relatedPage && (
+    <Section>
+      <div class="max-w-sm mx-auto text-center">
+        <p class="text-dark/50 text-sm mb-2">Continue reading</p>
+        <a href={`/${relatedPage.slug}`} class="font-title font-bold text-lg text-primary hover:underline">
+          {relatedPage.heading} &rarr;
+        </a>
+      </div>
+    </Section>
+  )}
+</Layout>
