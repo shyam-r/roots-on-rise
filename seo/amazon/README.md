@@ -33,17 +33,29 @@ This folder contains keyword files and campaign data for Amazon KDP Ads.
 
 ---
 
-## Campaign Settings
+## Campaign Settings (Updated Feb 12, 2026)
 
-### TMHD Board Book - Manual
-- **Budget**: $10/day
-- **Targeting**: Manual (Exact match only)
+### TMHD Board Book - Manual (ACTIVE)
+- **Campaign ID**: `277349431885953`
+- **Budget**: $15/day
+- **Targeting**: Manual — 40 curated keywords
+- **Bids**: $0.15-$0.50 (scaled by historical performance)
 - **Bidding**: Dynamic bids - down only
-- **Placement**: Limit off-Amazon spend
+- **Placement**: Limit off-Amazon spend, no Top of Search boost
 
-### MLSAMB Shloka
-- **Recommendation**: Do not advertise
-- Margin too thin for 20% net profit requirement
+### MLSAMB Shloka - Manual (ACTIVE)
+- **Campaign ID**: `60439308988811`
+- **Budget**: $5/day (reduced from $12)
+- **Targeting**: Manual — 33 keywords
+- **Bids**: $0.15-$0.35
+- **Note**: Experimental/data-gathering only — 4.75% max ACOS is razor-thin
+
+### TMHD Legacy (PAUSED)
+- **Campaign ID**: `488619109239365`
+- **Budget**: $15/day (not spending)
+- **Note**: Retired Feb 12 — 618 unfocused keywords at $0.10, 21 dangerous keywords paused
+
+**Total active daily budget**: $20/day
 
 ---
 
@@ -97,4 +109,4 @@ TMHD Example:
 
 ---
 
-*Last updated: 2026-02-01*
+*Last updated: 2026-02-12*
