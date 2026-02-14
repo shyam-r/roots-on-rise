@@ -12,7 +12,7 @@ Analysis of Sponsored Products campaigns for:
 
 | Campaign | ID | State | Budget | Strategy |
 |----------|----|-------|--------|----------|
-| TMHD Legacy | `488619109239365` | **ENABLED** | $10/day | 618 keywords (21 bleeders paused), wide discovery net |
+| TMHD Legacy | `488619109239365` | **ENABLED** | $10/day | 118 focused keywords ($0.15-$0.35 bids) + ASIN targeting |
 | MLSAMB Shloka - Manual | `60439308988811` | **ENABLED** | $5/day | 33 keywords ($0.15-$0.35 bids) |
 | Shloka Auto | `98223164798717` | **ENABLED** | $3/day | Auto-targeting discovery funnel |
 | TMHD Board Book - Manual | `277349431885953` | PAUSED | $15/day | 40 curated keywords — underperforming, paused Feb 14 |
@@ -125,6 +125,69 @@ Ad Group IDs:
 
 The Legacy campaign's 618 broad keywords acted as a **discovery net** — most keywords caught nothing, but occasional long-tail terms like "malibhagavatam: divine story of krishna for children" converted at 2.3% ACOS. A curated 40-keyword campaign was too narrow to catch these serendipitous searches. With the 21 known bleeders still paused, the Legacy at $10/day is a better balance between discovery and waste control.
 
+### Keyword Portfolio Optimization (618 → 118)
+
+After re-enabling Legacy, a deep audit of all 618 keywords was performed using 60-day performance data (Dec 15 – Feb 14).
+
+**Phase 1 — Bleeder Removal (595 → 575)**
+
+Paused 20 keywords spending money with zero conversions. Examples:
+
+| Keyword | Match | Spend | Clicks | Why Paused |
+|---------|-------|-------|--------|------------|
+| hindu books | Broad | $8.95 | 26 | High spend, 0 purchases |
+| indian god | Phrase | $4.29 | 9 | $4.29 spent, 0 returns |
+| hindi books kids | Phrase | $2.73 | 4 | Wrong language intent |
+| indian mythology books kids | Exact | $2.10 | 4 | $0.53/click, 0 purchases |
+| indian children book | Broad | $1.31 | 3 | Generic, no conversions |
+
+**Phase 2 — Portfolio Restructure (575 → 118)**
+
+Categorized all 575 remaining keywords:
+
+| Category | Count | Action |
+|----------|-------|--------|
+| Dead weight (0 impressions in 60 days) | 383 | Paused — $0.10 bids never won auctions |
+| Active but irrelevant | 33 | Paused — off-topic (swimming, psalm 23, nepali, etc.) |
+| Active with potential, low/null bids | 91 | Boosted bids to $0.20-$0.35 |
+| Active with proper bids | 51 | Kept as-is |
+| **Total ENABLED** | **118** | Focused portfolio |
+
+**Bid Adjustments for Boosted Keywords:**
+
+| Original Bid | New Bid | Count | Keywords Include |
+|-------------|---------|-------|-----------------|
+| $0.10 | $0.25 | 28 | hinduism for kids, ganesha book, hanuman, krishna books |
+| null (no bid) | $0.20-$0.35 | 24 | durga, vishnu, mythology books, childrens books |
+| $0.20 | $0.30 | 15 | hindu children's books, hindu stories, board books indian |
+| $0.25 | $0.30-$0.35 | 24 | goddess book, indian book for babies, hindu god goddess book |
+
+**Net result**: Same discovery net concept, but 5x fewer keywords competing for budget. Budget should now concentrate on the 118 keywords that actually have a chance of winning auctions and converting.
+
+---
+
+## Historical Performance (Nov 14, 2025 – Feb 14, 2026)
+
+4-month aggregated data across all campaigns. Full data in `all-keyword-performance-historical.csv`.
+
+| Metric | Value |
+|--------|-------|
+| Total Spend | $89.04 |
+| Total Purchases | 21 |
+| Total Sales | $317.48 |
+| Overall ACOS | 28.0% |
+| Cost per Purchase | $4.24 |
+
+**Top Converters (by purchases):**
+
+| Keyword | Purchases | Sales | Spend | ACOS |
+|---------|-----------|-------|-------|------|
+| hindu god (Broad) | 9 | $118.71 | $17.86 | 15.0% |
+| hinduism books (Broad) | 4 | $59.96 | $5.46 | 9.1% |
+| hinduism books kids (Exact) | 2 | $28.78 | $2.01 | 7.0% |
+| ganesha book (Broad) | 2 | $28.78 | $0.97 | 3.4% |
+| hinduism for kids (Broad) | 2 | $28.78 | $4.08 | 14.2% |
+
 ---
 
 ## Search Term Report (Feb 1-14)
@@ -226,5 +289,5 @@ Top click-getters:
 ---
 
 *Analysis Date: 2026-02-12*
-*Updated: 2026-02-14 — Legacy re-enabled, TMHD Manual paused, search term report added*
+*Updated: 2026-02-14 — Legacy re-enabled, TMHD Manual paused, keyword portfolio 618→118, historical data pulled*
 *Changes Applied: 2026-02-12, 2026-02-14 via Amazon Ads API*

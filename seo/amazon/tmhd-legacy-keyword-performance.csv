@@ -1,0 +1,137 @@
+keyword,matchType,bid,impressions,clicks,cost,purchases,sales,status,dataWindow
+hindu books,BROAD,0.2,609,26,8.95,1,14.39,ENABLED,Dec15-Feb14
+hindu god,BROAD,0.1,431,15,5.53,2,30.38,ARCHIVED,Dec15-Feb14
+indian god,PHRASE,0.2,126,9,4.29,1,14.39,PAUSED,Dec15-Feb14
+indian mythology book,BROAD,0.1,114,7,2.74,1,15.99,ARCHIVED,Dec15-Feb14
+hindi books kids,PHRASE,0.5,702,4,2.73,0,0.00,ENABLED,Dec15-Feb14
+indian mythology books kids,EXACT,0.2,217,4,2.10,0,0.00,ENABLED,Dec15-Feb14
+indian children book,BROAD,0.3,39,3,1.31,0,0.00,ENABLED,Dec15-Feb14
+mythology kids,PHRASE,0.25,105,2,0.75,0,0.00,ENABLED,Dec15-Feb14
+hindu children's books,BROAD,0.2,21,3,0.73,0,0.00,ENABLED,Dec15-Feb14
+hindu stories,BROAD,0.2,28,2,0.70,0,0.00,ENABLED,Dec15-Feb14
+indian mythology,BROAD,0.3,104,1,0.60,0,0.00,ENABLED,Dec15-Feb14
+hinduism books kids,EXACT,0.3,27,1,0.42,0,0.00,ENABLED,Dec15-Feb14
+children's hindu stories,BROAD,0.2,5,1,0.40,0,0.00,ENABLED,Dec15-Feb14
+goddess book,BROAD,0.25,230,1,0.37,0,0.00,ENABLED,Dec15-Feb14
+indian book for babies,BROAD,0.25,110,1,0.37,0,0.00,ENABLED,Dec15-Feb14
+hanuman chalisa,BROAD,,31,1,0.35,0,0.00,ENABLED,Dec15-Feb14
+krishna book,BROAD,,54,1,0.35,0,0.00,ENABLED,Dec15-Feb14
+hanuman books kids,BROAD,,6,1,0.35,0,0.00,ENABLED,Dec15-Feb14
+ramayana kids,BROAD,,31,2,0.35,0,0.00,ENABLED,Dec15-Feb14
+krishna,BROAD,,36,1,0.35,1,14.99,ENABLED,Dec15-Feb14
+hindu god books for baby,BROAD,0.25,19,1,0.34,0,0.00,ENABLED,Dec15-Feb14
+"keyword-group=""category""",TARGETING_EXPRESSION,0.3,199,1,0.30,0,0.00,ENABLED,Dec15-Feb14
+book about hinduism,BROAD,0.2,8,1,0.30,0,0.00,ENABLED,Dec15-Feb14
+ganesha books for kids,BROAD,0.1,11,1,0.28,0,0.00,ARCHIVED,Dec15-Feb14
+hindu god goddess book,BROAD,0.3,82,1,0.26,0,0.00,ENABLED,Dec15-Feb14
+indian god,BROAD,0.25,26,1,0.25,0,0.00,ENABLED,Dec15-Feb14
+krishna story book for kids,BROAD,0.1,3,1,0.15,0,0.00,ARCHIVED,Dec15-Feb14
+hindu mythology,BROAD,0.1,29,1,0.15,0,0.00,ARCHIVED,Dec15-Feb14
+ramayana,BROAD,0.1,54,1,0.15,0,0.00,PAUSED,Dec15-Feb14
+hinduism,BROAD,0.1,25,1,0.15,0,0.00,PAUSED,Dec15-Feb14
+hinduism for kids,BROAD,0.1,30,1,0.15,0,0.00,ENABLED,Dec15-Feb14
+kids books 1-3,BROAD,0.1,2,1,0.15,0,0.00,ARCHIVED,Dec15-Feb14
+hindu mythology kids,BROAD,,2,1,0.15,1,14.39,ENABLED,Dec15-Feb14
+kids books,BROAD,0.1,2856,2,0.14,0,0.00,PAUSED,Dec15-Feb14
+hindu mythology,PHRASE,0.1,22,1,0.12,0,0.00,ENABLED,Dec15-Feb14
+board books indian,BROAD,0.2,9,1,0.12,0,0.00,ENABLED,Dec15-Feb14
+shloka book for kids,BROAD,0.2,2,1,0.10,0,0.00,ENABLED,Dec15-Feb14
+shlokas for kids,BROAD,0.2,33,2,0.08,0,0.00,ENABLED,Dec15-Feb14
+hindu mythology illustrated,BROAD,0.1,9,1,0.07,0,0.00,ARCHIVED,Dec15-Feb14
+vishnu,BROAD,,52,1,0.06,0,0.00,ENABLED,Dec15-Feb14
+hindu kids,BROAD,0.1,21,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+kids books ages 4-6,BROAD,0.1,0,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+vedas and upanishads for children,BROAD,0.1,1,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+hanuman books for kids,BROAD,0.1,7,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+vedas for kids,BROAD,0.1,8,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+indian kids books,BROAD,0.1,8,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+board book,BROAD,0.1,195,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+hindu deity,BROAD,0.1,10,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+hindu,BROAD,0.1,49,0,0.00,0,0.00,PAUSED,Dec15-Feb14
+ganesha book,BROAD,0.1,45,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+shloka book,BROAD,0.1,4,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+lakshmi books,BROAD,0.1,14,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu baby gifts,BROAD,0.1,12,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+krishna books for kids,BROAD,0.1,3,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hanuman,BROAD,0.1,39,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu gifts for kids,BROAD,0.1,6,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+marvelous hindu deities,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu,PHRASE,0.1,5,0,0.00,0,0.00,PAUSED,Dec15-Feb14
+hindu deity,PHRASE,0.1,6,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism books,BROAD,0.1,15,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+books about india for kids,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism for kids,PHRASE,0.1,19,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian book,PHRASE,0.1,15,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+ganesha,PHRASE,0.1,18,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+god goddess,PHRASE,0.1,16,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+mythology book,PHRASE,,19,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+childrens books,PHRASE,,122,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian book,BROAD,0.25,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian mythology book,PHRASE,0.3,12,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian mythology,EXACT,0.3,10,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+diwali books kids,PHRASE,0.3,18,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+diwali books kids,BROAD,0.3,33,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+illustrated children book,BROAD,0.3,6,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu god,EXACT,0.3,41,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism books kids,BROAD,0.25,9,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian god,EXACT,0.3,7,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu mythology book,EXACT,0.3,31,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindi books kids,BROAD,0.3,40,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+books on indian gods kids,BROAD,0.25,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+introduction to hinduism,BROAD,0.1,42,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+lord vishnu books,BROAD,0.1,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+gods and goddesses for kids,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu goddess,BROAD,0.1,4,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+krishna book,PHRASE,,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+durga,PHRASE,,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+durga,BROAD,,57,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+mythology books kids,BROAD,,5,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+childrens hindu books,BROAD,,6,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian gods book kids,BROAD,,3,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu religious books kids,BROAD,,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+children board book,BROAD,,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+diwali books children,BROAD,,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+children's hinduism books,BROAD,,6,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian festivals books kids,BROAD,,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+introduction hinduism,BROAD,,11,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+buddhism kids,EXACT,,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+holi book kids,EXACT,,0,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+deity book,EXACT,,42,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu good book,BROAD,0.2,4,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+durga saptashati book in hindi,BROAD,0.2,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu festival books,BROAD,0.2,15,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+baby believer board books,BROAD,0.2,17,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+ganesha book,EXACT,0.4,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu kids books,EXACT,0.35,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu kids books,BROAD,0.3,4,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+shlokas and mantras books for kids,BROAD,0.1,1,0,0.00,0,0.00,ARCHIVED,Dec15-Feb14
+baby board books,BROAD,0.1,14,0,0.00,0,0.00,PAUSED,Dec15-Feb14
+board book,PHRASE,0.1,1,0,0.00,0,0.00,PAUSED,Dec15-Feb14
+ramayana,PHRASE,0.1,2,0,0.00,0,0.00,PAUSED,Dec15-Feb14
+hanuman,PHRASE,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism,PHRASE,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+psalm 23 children's board book,BROAD,0.1,0,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+swimming book for kids,BROAD,0.1,0,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+lord shiva books for kids,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+nepali kids books,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+ganesh story book for kids,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian mythology,PHRASE,0.25,22,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+"keyword-group=""gift""",TARGETING_EXPRESSION,0.3,10,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian children book,EXACT,0.3,7,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+diwali books kids,EXACT,0.3,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+indian kids books,EXACT,0.3,23,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+my little book of gods and goddesses boxset,PHRASE,0.25,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+my little book of gods and goddesses boxset,BROAD,0.25,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hanuman kavach book,BROAD,0.1,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism gods and goddesses,BROAD,0.1,3,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+free kids books 3-5,BROAD,0.1,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hanuman chalisa,PHRASE,,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+diwali books toddlers,BROAD,,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hare krishna,EXACT,,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu children's books,PHRASE,0.2,4,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hinduism and christianity,BROAD,0.2,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu stories,PHRASE,0.2,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu festival books,PHRASE,0.2,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hanuman chalisa pocket book in english,BROAD,0.2,1,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+best kids hindu books,BROAD,0.2,2,0,0.00,0,0.00,ENABLED,Dec15-Feb14
+hindu books,PHRASE,0.2,14,0,0.00,0,0.00,ENABLED,Dec15-Feb14
