@@ -203,11 +203,11 @@ function HeroCarousel({
 
               {/* Gradient overlay - stronger from left for text readability */}
               <div
-                className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/50 to-dark/20"
+                className="absolute inset-0 bg-gradient-to-r from-dark/75 via-dark/35 to-dark/10"
                 aria-hidden="true"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-dark/45 via-transparent to-transparent"
                 aria-hidden="true"
               />
 
