@@ -1,0 +1,274 @@
+---
+/**
+ * Download Popup with Book Upsell.
+ *
+ * Intercepts clicks on `.dl-popup-trigger` buttons (rendered by DownloadCard).
+ * Shows a modal with circular download progress and an alternating book upsell.
+ * The actual file download is triggered programmatically so the popup IS the
+ * download experience — 100% of downloaders see the book recommendation.
+ */
+import { BOOK_SERIES, getAmazonUrl } from '@/data/products';
+
+// Prepare both book upsell options (server-side)
+const upsellBooks = BOOK_SERIES.map(series => {
+  const format = series.formats[0];
+  return {
+    title: series.name,
+    meta: `${format.name} · ${format.price}`,
+    image: series.id === 'marvelous-hindu-deities'
+      ? '/images/books/marvelous-hindu-deities/boardbook/board_book_front_cover.webp'
+      : '/images/books/shloka-mantra/paperback/front-cover.jpg',
+    href: getAmazonUrl(format.asin || ''),
+    price: format.price!,
+  };
+});
+---
+
+<!-- Download Popup Overlay -->
+<div
+  id="dl-popup-overlay"
+  class="fixed inset-0 z-[100] bg-dark/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<!-- Download Popup Modal -->
+<div
+  id="dl-popup"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[90vw] max-w-[400px] bg-white rounded-2xl shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dl-popup-title"
+  aria-hidden="true"
+>
+  <!-- Close -->
+  <button
+    id="dl-popup-close"
+    class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-dark/5 text-dark/40 hover:bg-dark/10 hover:text-dark transition-colors"
+    aria-label="Close"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Download Progress Section -->
+  <div class="px-6 pt-7 pb-5 text-center border-b border-dark/5 bg-gradient-to-b from-gray-50 to-white">
+    <h3 id="dl-popup-title" class="font-title font-bold text-base text-dark mb-4"></h3>
+
+    <!-- Circular progress ring -->
+    <div id="dl-ring-wrap" class="relative w-16 h-16 mx-auto mb-3">
+      <!-- Background ring -->
+      <div class="absolute inset-0 rounded-full border-[3px] border-dark/10"></div>
+      <!-- Progress ring (conic-gradient) -->
+      <div
+        id="dl-ring"
+        class="absolute inset-0 rounded-full"
+        style="background: conic-gradient(#c47834 0deg, transparent 0deg); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));"
+      ></div>
+      <!-- Center content -->
+      <div class="absolute inset-[6px] flex items-center justify-center">
+        <span id="dl-pct" class="text-sm font-bold text-primary">0%</span>
+        <!-- Checkmark (hidden until complete) -->
+        <svg id="dl-check" class="w-6 h-6 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+    </div>
+    <p id="dl-status" class="text-sm text-dark/50">Preparing download...</p>
+  </div>
+
+  <!-- Book Upsell Section -->
+  <div class="px-6 py-5">
+    <p class="text-[11px] uppercase tracking-wider text-primary font-bold mb-3">You might also love</p>
+
+    <div class="flex items-center gap-3 bg-gradient-to-r from-tertiary to-[#fef8f0] rounded-xl p-3 border border-primary/10">
+      <div class="w-14 h-[72px] shrink-0 rounded-lg overflow-hidden shadow-md bg-tertiary">
+        <img id="dl-book-img" src="" alt="" class="w-full h-full object-contain p-0.5" loading="lazy" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <p id="dl-book-title" class="font-title font-bold text-sm text-dark leading-tight mb-0.5"></p>
+        <p id="dl-book-meta" class="text-[11px] text-dark/50 mb-1"></p>
+        <div class="flex items-center gap-1">
+          <span class="text-amber-500 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-dark/30 text-[10px]">4.9</span>
+        </div>
+      </div>
+    </div>
+
+    <a
+      id="dl-book-cta"
+      href="#"
+      target="_blank"
+      rel="noopener"
+      class="flex items-center justify-center gap-2 w-full mt-3 py-3 bg-[#FF9900] hover:bg-[#e68a00] text-white font-semibold text-sm rounded-xl transition-colors shadow-[0_4px_12px_rgba(255,153,0,0.25)]"
+    >
+      <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      View on Amazon
+    </a>
+    <p class="text-center text-[11px] text-dark/40 mt-2">Free delivery with Amazon Prime</p>
+  </div>
+</div>
+
+<script define:vars={{ upsellBooks }}>
+  // =============================================================================
+  // Download Popup — intercepts .dl-popup-trigger clicks, shows modal with
+  // circular progress animation + alternating book upsell.
+  // =============================================================================
+
+  const overlay = document.getElementById('dl-popup-overlay');
+  const popup = document.getElementById('dl-popup');
+  const closeBtn = document.getElementById('dl-popup-close');
+  const ring = document.getElementById('dl-ring');
+  const pctEl = document.getElementById('dl-pct');
+  const checkEl = document.getElementById('dl-check');
+  const statusEl = document.getElementById('dl-status');
+  const titleEl = document.getElementById('dl-popup-title');
+  const ringWrap = document.getElementById('dl-ring-wrap');
+
+  const bookImg = document.getElementById('dl-book-img');
+  const bookTitle = document.getElementById('dl-book-title');
+  const bookMeta = document.getElementById('dl-book-meta');
+  const bookCta = document.getElementById('dl-book-cta');
+
+  let lastBookIdx = -1;
+  let abortController: AbortController | null = null;
+
+  function getNextBook() {
+    const idx = lastBookIdx === 0 ? 1 : 0;
+    lastBookIdx = idx;
+    return upsellBooks[idx];
+  }
+
+  function updateRing(progress: number, color = '#c47834') {
+    const degrees = progress * 360;
+    const percent = Math.round(progress * 100);
+    ring!.style.background = `conic-gradient(${color} ${degrees}deg, transparent ${degrees}deg)`;
+    pctEl!.textContent = percent + '%';
+  }
+
+  function showComplete() {
+    ring!.style.background = `conic-gradient(#22c55e 360deg, transparent 0deg)`;
+    ringWrap!.querySelector('.border-dark\\/10')?.classList.add('!border-green-500/20');
+    pctEl!.classList.add('hidden');
+    checkEl!.classList.remove('hidden');
+    statusEl!.textContent = 'Download complete!';
+    statusEl!.className = 'text-sm font-semibold text-green-600';
+  }
+
+  function showError(message = 'Download failed') {
+    ring!.style.background = `conic-gradient(#ef4444 360deg, transparent 0deg)`;
+    pctEl!.classList.add('hidden');
+    checkEl!.classList.remove('hidden');
+    // Reuse check icon but tint red via parent
+    checkEl!.className = 'w-6 h-6 text-red-500';
+    statusEl!.textContent = message;
+    statusEl!.className = 'text-sm font-semibold text-red-500';
+  }
+
+  async function showPopup(downloadTitle: string, downloadUrl: string) {
+    const book = getNextBook();
+
+    // Set download info
+    titleEl!.textContent = downloadTitle;
+    statusEl!.textContent = 'Preparing download...';
+    statusEl!.className = 'text-sm text-dark/50';
+
+    // Reset ring
+    updateRing(0);
+    pctEl!.classList.remove('hidden');
+    checkEl!.classList.add('hidden');
+    checkEl!.className = 'w-6 h-6 text-green-500 hidden';
+    ringWrap!.querySelector('.border-dark\\/10')?.classList.remove('!border-green-500/20');
+
+    // Set book upsell
+    bookImg!.src = book.image;
+    bookImg!.alt = book.title;
+    bookTitle!.textContent = book.title;
+    bookMeta!.textContent = book.meta;
+    bookCta!.href = book.href;
+
+    // Show modal
+    overlay!.classList.remove('opacity-0', 'pointer-events-none');
+    overlay!.setAttribute('aria-hidden', 'false');
+    popup!.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+    popup!.classList.add('scale-100');
+    popup!.setAttribute('aria-hidden', 'false');
+
+    // Fetch file as blob — tracks real progress, bypasses "allow downloads" prompt
+    abortController = new AbortController();
+
+    try {
+      const response = await fetch(downloadUrl, { signal: abortController.signal });
+      if (!response.ok) throw new Error('Download failed');
+
+      const contentLength = Number(response.headers.get('Content-Length')) || 0;
+      const reader = response.body!.getReader();
+      const chunks: Uint8Array[] = [];
+      let received = 0;
+
+      statusEl!.textContent = 'Downloading...';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.length;
+
+        // Update progress ring with real data
+        const progress = contentLength > 0 ? received / contentLength : 0;
+        updateRing(Math.min(progress, 0.99));
+      }
+
+      // Assemble blob and trigger save
+      const blob = new Blob(chunks);
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      // Extract filename from URL
+      const filename = downloadUrl.split('/').pop() || downloadTitle;
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(blobUrl);
+
+      showComplete();
+    } catch (err: any) {
+      if (err.name === 'AbortError') {
+        // User closed popup before download finished — not an error
+        return;
+      }
+      showError('Download failed — tap to retry');
+    }
+  }
+
+  function hidePopup() {
+    overlay!.classList.add('opacity-0', 'pointer-events-none');
+    overlay!.setAttribute('aria-hidden', 'true');
+    popup!.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+    popup!.classList.remove('scale-100');
+    popup!.setAttribute('aria-hidden', 'true');
+    // Abort any in-flight download
+    if (abortController) { abortController.abort(); abortController = null; }
+  }
+
+  // Intercept all download trigger buttons
+  document.querySelectorAll('.dl-popup-trigger').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = btn.getAttribute('data-download-url') || '';
+      const title = btn.getAttribute('data-download-title') || 'Coloring Sheet';
+      showPopup(title, url);
+    });
+  });
+
+  closeBtn?.addEventListener('click', hidePopup);
+  overlay?.addEventListener('click', hidePopup);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hidePopup();
+  });
+</script>
