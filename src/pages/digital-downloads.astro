@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
+import DarkCtaSection from '@/components/DarkCtaSection.astro';
 import { getAmazonUrl, BOOK_SERIES, getBooksBySeriesId } from '@/data/products';
 import { getOptimizedImage } from '@/lib/images';
+import { DOWNLOADS, DOWNLOAD_FEATURES, DOWNLOAD_STEPS, DOWNLOAD_CATEGORIES } from '@/data/downloads';
 import {
   Section,
   SectionHeader,
@@ -11,127 +13,6 @@ import {
   DownloadCard,
   FeatureCard,
 } from '@/components/ui';
-
-// Digital download products - FREE downloads
-// Preview images use optimized WebP, downloads use original PNG for print quality
-const downloads = [
-  // --- Mandalas & Symbols ---
-  {
-    title: "Ganesha Mandala",
-    description: "Intricate mandala design featuring Lord Ganesha. Perfect for mindful coloring.",
-    image: "/images/downloads-optimized/ganesha-mandala.webp",
-    downloadUrl: "/images/downloads/ganesha-mandala.png",
-    category: "Mandalas & Symbols"
-  },
-  {
-    title: "Om Symbol Mandala",
-    description: "Sacred Om symbol surrounded by intricate mandala patterns.",
-    image: "/images/downloads-optimized/om-mandala.webp",
-    downloadUrl: "/images/downloads/om-mandala.png",
-    category: "Mandalas & Symbols"
-  },
-  {
-    title: "Intricate Om Mandala",
-    description: "Advanced mandala design for experienced colorists.",
-    image: "/images/downloads-optimized/intricate-om.webp",
-    downloadUrl: "/images/downloads/intricate-om.png",
-    category: "Mandalas & Symbols"
-  },
-  {
-    title: "Lotus Mandala",
-    description: "Beautiful lotus-inspired mandala with intricate petal patterns.",
-    image: "/images/downloads-optimized/mandala.webp",
-    downloadUrl: "/images/downloads/mandala.png",
-    category: "Mandalas & Symbols"
-  },
-  {
-    title: "Om Symbol",
-    description: "The sacred Om — universal sound of creation. Large outline perfect for coloring.",
-    image: "/images/downloads-optimized/om-symbol.webp",
-    downloadUrl: "/images/downloads/om-symbol.png",
-    category: "Mandalas & Symbols"
-  },
-  {
-    title: "Swastika Symbol",
-    description: "Ancient Hindu symbol of auspiciousness, prosperity, and good fortune.",
-    image: "/images/downloads-optimized/swastika.webp",
-    downloadUrl: "/images/downloads/swastika.png",
-    category: "Mandalas & Symbols"
-  },
-  // --- Sacred Places & Objects ---
-  {
-    title: "Mount Kailasha",
-    description: "The sacred abode of Lord Shiva — majestic mountain scene with sunrise and pine trees.",
-    image: "/images/downloads-optimized/kailasha.webp",
-    downloadUrl: "/images/downloads/kailasha.png",
-    category: "Sacred Places"
-  },
-  {
-    title: "Kedarnath Temple",
-    description: "One of the twelve Jyotirlingas — the iconic Himalayan temple with snow-capped peaks.",
-    image: "/images/downloads-optimized/kedarnath.webp",
-    downloadUrl: "/images/downloads/kedarnath.png",
-    category: "Sacred Places"
-  },
-  {
-    title: "Shiva Linga",
-    description: "Sacred symbol of Lord Shiva representing the cosmic pillar of creation.",
-    image: "/images/downloads-optimized/shiva-linga.webp",
-    downloadUrl: "/images/downloads/shiva-linga.png",
-    category: "Sacred Places"
-  },
-  {
-    title: "Diya Oil Lamp",
-    description: "Traditional oil lamp lit during Diwali and daily puja. Symbol of light over darkness.",
-    image: "/images/downloads-optimized/diya.webp",
-    downloadUrl: "/images/downloads/diya.png",
-    category: "Sacred Places"
-  },
-  // --- Divine Instruments & Symbols ---
-  {
-    title: "Trishul (Trident)",
-    description: "Lord Shiva's trident with damaru drum — symbol of divine power and cosmic rhythm.",
-    image: "/images/downloads-optimized/trishul.webp",
-    downloadUrl: "/images/downloads/trishul.png",
-    category: "Divine Symbols"
-  },
-  {
-    title: "Shankha & Sudarshana Chakra",
-    description: "Lord Vishnu's sacred conch shell and divine discus — symbols of protection and dharma.",
-    image: "/images/downloads-optimized/shankha-chakra.webp",
-    downloadUrl: "/images/downloads/shankha-chakra.png",
-    category: "Divine Symbols"
-  },
-  {
-    title: "Deity Symbols Collection",
-    description: "Trishul, chakra, lotus, flute, bow & arrow, gada — sacred items of Hindu deities.",
-    image: "/images/downloads-optimized/deity-symbols.webp",
-    downloadUrl: "/images/downloads/deity-symbols.png",
-    category: "Divine Symbols"
-  },
-  {
-    title: "Musical Instruments",
-    description: "Traditional Indian instruments — tabla, sitar, veena and more.",
-    image: "/images/downloads-optimized/musical-instruments.webp",
-    downloadUrl: "/images/downloads/musical-instruments.png",
-    category: "Divine Symbols"
-  },
-];
-
-// Features — icons rendered as inline SVGs for a modern look
-const features = [
-  { icon: "heart", title: "Always Free", description: "No payment, no signup, no catch" },
-  { icon: "zap", title: "Instant Download", description: "Click and save — ready in seconds" },
-  { icon: "printer", title: "Print at Home", description: "High-res files for crisp prints" },
-  { icon: "palette", title: "Cultural Art", description: "Authentic Hindu sacred designs" },
-];
-
-// How to use steps
-const steps = [
-  { step: 1, title: "Click Download", description: "Click the download button on any design you like. No signup needed!" },
-  { step: 2, title: "Print at Home", description: "Print the image on your home printer. Works great on regular paper!" },
-  { step: 3, title: "Color & Enjoy", description: "Grab your favorite colors and start your mindful coloring journey!" },
-];
 ---
 
 <Layout
@@ -159,7 +40,7 @@ const steps = [
   <!-- Features -->
   <Section background="light" padding="sm" container="lg">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      {features.map((feature) => (
+      {DOWNLOAD_FEATURES.map((feature) => (
         <div class="p-4 text-center">
           <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
             {feature.icon === "heart" && (
@@ -191,8 +72,8 @@ const steps = [
     />
 
     {/* Group downloads by category */}
-    {(['Mandalas & Symbols', 'Sacred Places', 'Divine Symbols'] as const).map((category) => {
-      const categoryDownloads = downloads.filter(d => d.category === category);
+    {DOWNLOAD_CATEGORIES.map((category) => {
+      const categoryDownloads = DOWNLOADS.filter(d => d.category === category);
       if (categoryDownloads.length === 0) return null;
       return (
         <div class="mb-12 last:mb-0">
@@ -262,7 +143,7 @@ const steps = [
     />
 
     <div class="grid md:grid-cols-3 gap-8">
-      {steps.map((item) => (
+      {DOWNLOAD_STEPS.map((item) => (
         <FeatureCard
           icon=""
           title={item.title}
@@ -298,30 +179,21 @@ const steps = [
   </Section>
 
   <!-- CTA -->
-  <Section background="dark" container="md">
-    <div class="text-center">
-      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
-        Want more <span class="text-primary">cultural content</span>?
-      </h2>
-      <p class="text-light/70 max-w-xl mx-auto mb-3">
-        Check out our bestselling children's book "The Marvelous Hindu Deities" —
-        10 beautifully illustrated deities with stories your kids will love!
-      </p>
-      <div class="flex items-center justify-center gap-2 mb-8">
-        <span class="text-amber-400 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="text-light/50 text-xs">Loved by families worldwide</span>
-      </div>
-      <Button variant="amazon" size="lg" asChild>
-        <a
-          href={getAmazonUrl('8195870724')}
-          target="_blank"
-          rel="noopener"
-        >
-          Get the Book With Prime Delivery
-        </a>
-      </Button>
-    </div>
-  </Section>
+  <DarkCtaSection
+    title="Want more cultural content?"
+    highlight="cultural content"
+    description={`Check out our bestselling children's book "The Marvelous Hindu Deities" - 10 beautifully illustrated deities with stories your kids will love!`}
+  >
+    <Button variant="amazon" size="lg" asChild>
+      <a
+        href={getAmazonUrl('8195870724')}
+        target="_blank"
+        rel="noopener"
+      >
+        Get the Book With Prime Delivery
+      </a>
+    </Button>
+  </DarkCtaSection>
 
   <!-- Conversion tools -->
   <ExitIntentPopup bookId={4} />

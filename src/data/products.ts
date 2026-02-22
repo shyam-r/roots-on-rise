@@ -122,8 +122,8 @@ export const BOOK_SERIES: BookSeries[] = [
     description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children from baby to 14 years with pronunciation guides and simple meanings.',
     formats: [
       { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$22.45', regularPrice: '$24.50', description: '78 pages with bonus coloring section' },
-      { id: 'paperback-standard', name: 'Paperback', asin: 'B0GK15FLFJ', price: '$9.99', regularPrice: '$11.99', description: '72 pages, great value edition' },
-      { id: 'paperback-premium', name: 'Premium Paperback', asin: 'B0GGRS2D5B', price: '$14.99', regularPrice: '$15.99', description: '81 pages, premium color + 10 coloring pages' },
+      { id: 'paperback-standard', name: 'Paperback', asin: 'B0GK15FLFJ', price: '$9.99', regularPrice: '$11.99', description: 'Great value edition, ages 5-14' },
+      { id: 'paperback-premium', name: 'Premium Paperback', asin: 'B0GGRS2D5B', price: '$14.99', regularPrice: '$15.99', description: 'Premium color + 10 coloring pages' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0GG84NQ35', price: '$9.99', description: 'Instant download, read anywhere' },
     ],
   },
@@ -133,9 +133,9 @@ export const BOOK_SERIES: BookSeries[] = [
     shortName: 'Hindu Deities',
     description: 'Introduces 10 major Hindu gods and goddesses—including Ganesha, Krishna, and Lakshmi—to children from baby to 12 years through vibrant illustrations.',
     formats: [
-      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', regularPrice: '$19.99', description: '24 thick pages, toddler-proof for ages 2-12' },
-      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$13.99', regularPrice: '$15.99', description: '44 pages with expanded stories' },
-      { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$4.99', regularPrice: '$7.99', description: 'Instant download, perfect for travel' },
+      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', regularPrice: '$19.99', description: 'Ages 0-4, thick chew-proof pages' },
+      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$13.99', regularPrice: '$15.99', description: 'Ages 4-12, expanded stories' },
+      { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$4.99', regularPrice: '$7.99', description: 'Read on any device with free Kindle app' },
     ],
   },
 ];
@@ -360,18 +360,7 @@ export const BOOKS: Book[] = [
 // Featured Products (for homepage)
 // =============================================================================
 
-export const FEATURED_BOOK = {
-  seriesId: 'marvelous-hindu-deities',
-  title: 'The Marvelous Hindu Deities',
-  description: 'A 24-page board book introducing 10 Hindu gods and goddesses to children ages 2-12. Bestselling choice for first-time readers.',
-  image: '/images/books/marvelous-hindu-deities/boardbook/hero-shot-1.jpg',
-  price: '$14.99',
-  features: [
-    '10 deities: Ganesha, Krishna, Lakshmi, and more',
-    'Thick board pages for toddler-safe handling',
-    'Vibrant illustrations with simple descriptions',
-  ],
-};
+export const FEATURED_BOOK = BOOKS.find(b => b.asin === '8195870724')!;
 
 // =============================================================================
 // Testimonials

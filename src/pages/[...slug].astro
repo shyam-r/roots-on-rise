@@ -11,6 +11,7 @@
 import Layout from '../layouts/Layout.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
+import DarkCtaSection from '@/components/DarkCtaSection.astro';
 import { Button, Section, SectionHeader } from '@/components/ui';
 import {
   LANDING_PAGES,
@@ -26,6 +27,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/data/products';
+import { splitOnHighlight } from '@/lib/utils';
 
 export function getStaticPaths() {
   return LANDING_PAGES.map((page) => ({
@@ -80,18 +82,7 @@ const articleSchema = {
 };
 
 // Build the highlighted heading
-function renderHeading(heading: string, highlight: string) {
-  const lowerHeading = heading.toLowerCase();
-  const lowerHighlight = highlight.toLowerCase();
-  const index = lowerHeading.indexOf(lowerHighlight);
-  if (index === -1) return heading;
-  const before = heading.slice(0, index);
-  const match = heading.slice(index, index + highlight.length);
-  const after = heading.slice(index + highlight.length);
-  return { before, match, after };
-}
-
-const headingParts = renderHeading(page.heading, page.headingHighlight);
+const headingParts = splitOnHighlight(page.heading, page.headingHighlight);
 ---
 
 <Layout
@@ -115,15 +106,15 @@ const headingParts = renderHeading(page.heading, page.headingHighlight);
         <span class="mx-2">/</span>
         <a href="/books" class="hover:text-primary transition-colors">Books</a>
         <span class="mx-2">/</span>
-        <span class="text-dark/70">{typeof headingParts === 'string' ? headingParts : `${headingParts.before}${headingParts.match}${headingParts.after}`}</span>
+        <span class="text-dark/70">{`${headingParts.before}${headingParts.match}${headingParts.after}`}</span>
       </nav>
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
-        {typeof headingParts === 'string' ? (
-          headingParts
-        ) : (
+        {headingParts.match ? (
           <>
             {headingParts.before}<span class="text-primary">{headingParts.match}</span>{headingParts.after}
           </>
+        ) : (
+          headingParts.before
         )}
       </h1>
       <p class="text-dark/70 text-lg max-w-2xl mx-auto">
@@ -312,32 +303,24 @@ const headingParts = renderHeading(page.heading, page.headingHighlight);
   )}
 
   <!-- Final CTA -->
-  <Section background="dark" container="md">
-    <div class="text-center">
-      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
-        ready to start the <span class="text-primary">journey</span>?
-      </h2>
-      <p class="text-light/70 max-w-xl mx-auto mb-3">
-        Give your children the gift of understanding their rich heritage through beautifully illustrated stories and sacred traditions.
-      </p>
-      <div class="flex items-center justify-center gap-2 mb-8">
-        <span class="text-amber-400 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="text-light/50 text-xs">Loved by families worldwide</span>
-      </div>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <Button variant="amazon" size="lg" asChild>
-          <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
-            Shop Hindu Deities Book
-          </a>
-        </Button>
-        <Button variant="outlineLight" size="lg" asChild>
-          <a href={getAmazonUrl('B0GH1Z46BD')} target="_blank" rel="noopener">
-            Shop Shloka Book
-          </a>
-        </Button>
-      </div>
+  <DarkCtaSection
+    title="ready to start the journey?"
+    highlight="journey"
+    description="Give your children the gift of understanding their rich heritage through beautifully illustrated stories and sacred traditions."
+  >
+    <div class="flex flex-wrap gap-4 justify-center">
+      <Button variant="amazon" size="lg" asChild>
+        <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
+          Shop Hindu Deities Book
+        </a>
+      </Button>
+      <Button variant="outlineLight" size="lg" asChild>
+        <a href={getAmazonUrl('B0GH1Z46BD')} target="_blank" rel="noopener">
+          Shop Shloka Book
+        </a>
+      </Button>
     </div>
-  </Section>
+  </DarkCtaSection>
 
   <!-- Conversion tools -->
   <ExitIntentPopup />
