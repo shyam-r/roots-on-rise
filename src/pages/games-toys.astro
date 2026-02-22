@@ -32,12 +32,25 @@ const puzzleProducts = [
   showAnnouncement={false}
 >
   <!-- Hero -->
-  <Section background="tertiary" container="md">
+  <Section container="md">
     <div class="text-center">
-      <Badge variant="comingSoon" className="mb-4">Coming Soon</Badge>
-      <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
-        <span class="text-primary">games &</span> toys
+      <!-- Playful emoji row -->
+      <div class="flex justify-center gap-4 mb-4">
+        <span class="text-3xl animate-bounce-soft" style="animation-delay: 0s;" aria-hidden="true">🧩</span>
+        <span class="text-3xl animate-bounce-soft" style="animation-delay: 0.3s;" aria-hidden="true">🎲</span>
+        <span class="text-3xl animate-bounce-soft" style="animation-delay: 0.6s;" aria-hidden="true">🎯</span>
+      </div>
+      <Badge variant="comingSoon" className="mb-4 badge-sticker">Coming Soon</Badge>
+      <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-4">
+        <span class="text-primary">games &</span> <span class="text-sky">toys</span>
       </h1>
+      <!-- Colorful underline dots -->
+      <div class="flex justify-center gap-2 mb-6" aria-hidden="true">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="w-2 h-2 rounded-full bg-sky"></span>
+        <span class="w-2 h-2 rounded-full bg-lime"></span>
+        <span class="w-2 h-2 rounded-full bg-marigold"></span>
+      </div>
       <p class="text-dark/70 text-lg max-w-2xl mx-auto">
         We're developing educational games and toys that make learning about Hindu culture fun and engaging for children of all ages.
       </p>
@@ -62,16 +75,16 @@ const puzzleProducts = [
   </Section>
 
   <!-- Notify Section -->
-  <Section background="dark" container="md">
-    <div class="text-center">
-      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
+  <Section container="md">
+    <div class="text-center rounded-2xl p-10 md:p-14" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(196, 120, 52, 0.05), rgba(251, 113, 133, 0.1));">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-4">
         Be the <span class="text-primary">first to play</span>
       </h2>
-      <p class="text-light/70 max-w-xl mx-auto mb-8">
+      <p class="text-dark/60 max-w-xl mx-auto mb-8">
         We're crafting educational games and toys with care. Follow us on social media to be notified when they're available.
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <Button variant="outlineLight" asChild>
+        <Button variant="outline" asChild>
           <a
             href="https://www.instagram.com/rootsonrise"
             target="_blank"
