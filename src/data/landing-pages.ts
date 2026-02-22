@@ -945,6 +945,330 @@ Starting early normalizes cultural practice — it becomes part of who they are,
     ],
     relatedSlugs: ['hindu-mythology-for-kids', 'sanskrit-mantras-for-kids', 'diwali-gifts-for-kids'],
   },
+  {
+    slug: 'free-hindu-coloring-pages',
+    category: 'topic',
+    title: 'Free Hindu Coloring Pages for Kids — Mandalas, Temples, Om Symbol | Roots On Rise',
+    description: 'Download 14 free printable Hindu coloring sheets: Ganesha mandalas, Om symbol, Kedarnath temple, trishul, diya, and more. Instant download, no signup. Ages 2-10.',
+    heading: 'free hindu coloring pages',
+    headingHighlight: 'free',
+    subheading: '14 beautiful coloring sheets featuring Hindu mandalas, sacred symbols, temples, and divine instruments — all free to download and print at home.',
+    heroImage: '/images/downloads-optimized/ganesha-mandala.webp',
+    content: [
+      {
+        heading: 'Free Printable Hindu Coloring Sheets',
+        body: `Our collection of 14 free Hindu coloring pages brings sacred art to life for children. Each sheet features authentic Hindu cultural designs — from intricate Ganesha mandalas to sacred symbols like the Om and Trishul.
+
+Every coloring page is:
+• **Completely free** — No payment, no signup, no hidden costs
+• **High resolution** — Designed for crisp, clear printing on regular paper
+• **Culturally authentic** — Each design is rooted in genuine Hindu artistic traditions
+• **Age-appropriate** — Simple outlines for young children, intricate mandalas for older kids`,
+      },
+      {
+        heading: 'What\'s in Our Collection',
+        body: `**Mandalas & Symbols (6 sheets):** Ganesha Mandala, Om Symbol Mandala, Intricate Om Mandala, Lotus Mandala, Om Symbol outline, and the Hindu Swastika (auspicious symbol of good fortune).
+
+**Sacred Places (4 sheets):** Kedarnath Temple in the Himalayas, Mount Kailasha (Shiva's abode), Shiva Linga (cosmic pillar), and the Diya oil lamp (lit during Diwali and puja).
+
+**Divine Symbols (4 sheets):** Trishul & Damaru (Shiva's trident and drum), Shankha & Sudarshana Chakra (Vishnu's conch and discus), Deity Symbols Collection (all sacred items in one page), and Traditional Indian Musical Instruments.`,
+      },
+      {
+        heading: 'Why Coloring Hindu Art Is Great for Kids',
+        body: `Coloring Hindu symbols and mandalas combines creativity with cultural learning:
+
+• **Mindfulness** — Mandala coloring is a proven calming activity that improves focus
+• **Cultural connection** — Children learn about Hindu symbols while creating art
+• **Fine motor skills** — Intricate patterns develop hand-eye coordination
+• **Conversation starter** — Each coloring page opens a discussion about Hindu traditions
+• **Festival activity** — Perfect for Diwali, Navratri, Ganesh Chaturthi, and everyday learning
+
+Download all 14 sheets on our [free downloads page](/digital-downloads) and start coloring today!`,
+      },
+    ],
+    featuredBooks: 'both',
+    faq: [
+      {
+        question: 'Are these coloring pages really free?',
+        answer: 'Yes, completely free! Click the download button on any coloring sheet to save the high-resolution PNG file instantly. No signup, no email required, no hidden costs. Print as many copies as you like for personal and educational use.',
+      },
+      {
+        question: 'What age are these Hindu coloring pages for?',
+        answer: 'Our collection covers ages 2-10+. Simple designs like the Om Symbol and Diya are great for ages 2-5. Medium designs like Kedarnath Temple and deity symbols suit ages 5-8. Intricate mandalas challenge older kids ages 8+. There is something for every skill level.',
+      },
+      {
+        question: 'Can I use these coloring pages in a classroom?',
+        answer: 'Absolutely! Our coloring sheets are perfect for multicultural education, world religions units, Diwali celebrations, and art activities. Teachers are welcome to print copies for classroom use. Each sheet includes culturally authentic Hindu designs with educational value.',
+      },
+      {
+        question: 'What paper should I use for printing?',
+        answer: 'Regular printer paper works great for crayons and colored pencils. For markers or watercolors, use thicker cardstock to prevent bleed-through. Print at 100% scale for the best results. All files are high-resolution PNGs designed for quality home printing.',
+      },
+    ],
+    relatedSlugs: ['hindu-mythology-for-kids', 'indian-culture-books-for-kids', 'diwali-gifts-for-kids'],
+  },
+  {
+    slug: 'om-symbol-for-kids',
+    category: 'topic',
+    title: 'Om Symbol for Kids — Meaning, Chanting & Free Coloring Page | Roots On Rise',
+    description: 'What does Om mean? Teach kids about the sacred Om symbol, its meaning in Hinduism, and how to chant it. Free Om coloring pages included. Ages 2-8.',
+    heading: 'the sacred om for kids',
+    headingHighlight: 'om',
+    subheading: 'The most sacred sound in Hinduism — discover its meaning, learn to chant it as a family, and download free Om coloring pages.',
+    heroImage: '/images/downloads-optimized/om-symbol.webp',
+    content: [
+      {
+        heading: 'What Does Om Mean?',
+        body: `Om (also written as Aum) is the most sacred sound in Hinduism. It's believed to be the very first sound of creation — the vibration from which the entire universe emerged.
+
+The three sounds that make up Om each have meaning:
+• **A (aah)** — Creation and waking consciousness
+• **U (ooh)** — Preservation and the dream state
+• **M (mmm)** — Transformation and deep sleep
+
+Together, they represent the entirety of existence. Teaching children about Om gives them a foundation for understanding Hindu spiritual practice.`,
+      },
+      {
+        heading: 'Teaching Om to Children',
+        body: `Children are naturally drawn to the sound and shape of Om. Here's how to introduce it:
+
+**Chanting:** Start with a simple family practice — sit together, take a deep breath, and chant "Ommm" slowly three times. Children love the vibration they feel in their chest and throat. It's a natural calming technique.
+
+**The Symbol:** The Om symbol's curves represent waking, dreaming, and deep sleep states. The dot on top represents transcendence. Children can learn to draw it and recognize it at temples and in art.
+
+**In Daily Life:** Many Hindu families begin prayers, meals, or study time with Om. Making it part of a routine normalizes the practice for children.
+
+Download free Om coloring pages from our [free downloads page](/digital-downloads) — coloring the symbol reinforces recognition while providing a calming, creative activity.`,
+      },
+      {
+        heading: 'Om in Hindu Culture',
+        body: `Om appears everywhere in Hindu life:
+
+• **Temples** — Carved on entrances and walls, chanted during every ceremony
+• **Prayers** — Almost every Hindu prayer and mantra begins with Om
+• **Yoga** — Classes worldwide open and close with the Om chant
+• **Art** — The Om symbol is one of the most recognized sacred symbols globally
+• **Music** — Classical Indian music begins with the Om vibration
+
+Scientists have even noted that the universe has a background frequency — and some compare it to the resonance of Om. Whether you see it as spiritual or scientific, Om connects us to something larger than ourselves.`,
+      },
+    ],
+    featuredBooks: 'shloka',
+    faq: [
+      {
+        question: 'How do I teach my child to chant Om?',
+        answer: 'Start by chanting together as a family. Take a deep breath, then slowly say "Aaa-Ooo-Mmm" as one flowing sound. Let the M sound hum for a few seconds. Repeat three times. Children as young as 2 can participate by humming along. Our Shloka and Mantra Book includes Om and 14 other mantras with pronunciation guides.',
+      },
+      {
+        question: 'What is the Om symbol?',
+        answer: 'The Om symbol is a sacred character from the Sanskrit script. Its curves represent different states of consciousness (waking, dreaming, deep sleep), the dot represents transcendence, and the semicircle represents the veil of illusion. It is the most recognized symbol in Hinduism and appears on temples, jewelry, and sacred texts worldwide.',
+      },
+      {
+        question: 'Is Om only for Hindu families?',
+        answer: 'While Om originates in Hindu tradition, it is used across many practices today including yoga, meditation, and mindfulness. Families of all backgrounds chant Om for its calming, centering effect. Our books present Om in a welcoming, educational way that respects its origins while being accessible to everyone.',
+      },
+    ],
+    relatedSlugs: ['sanskrit-mantras-for-kids', 'free-hindu-coloring-pages', 'hindu-mythology-for-kids'],
+  },
+  {
+    slug: 'hindu-symbols-for-kids',
+    category: 'topic',
+    title: 'Hindu Symbols for Kids — Trishul, Chakra, Lotus, Om & More | Roots On Rise',
+    description: 'Learn about Hindu sacred symbols: Trishul, Sudarshana Chakra, Shankha, Lotus, Om, and more. Kid-friendly explanations with free coloring pages. Ages 2-8.',
+    heading: 'hindu symbols for kids',
+    headingHighlight: 'symbols',
+    subheading: 'Every Hindu god carries special symbols with powerful meanings — discover what they are and why they matter.',
+    heroImage: '/images/downloads-optimized/deity-symbols.webp',
+    content: [
+      {
+        heading: 'Sacred Symbols of Hindu Gods',
+        body: `In Hinduism, every deity carries special objects that reveal their nature and powers. These symbols appear in temple art, puja ceremonies, festivals, and daily life. Teaching children to recognize them deepens their understanding of Hindu culture.
+
+The major deity symbols include:
+• **Trishul (Trident)** — Lord Shiva's three-pronged weapon representing creation, preservation, and transformation
+• **Sudarshana Chakra** — Lord Vishnu's spinning disc that destroys evil and represents the cycle of time
+• **Shankha (Conch Shell)** — Vishnu's conch whose sound represents Om and the creation of the universe
+• **Lotus** — Carried by Lakshmi, Saraswati, and Vishnu, representing purity rising from muddy water
+• **Bansuri (Flute)** — Krishna's bamboo flute representing divine love and joy
+• **Damaru (Drum)** — Shiva's hourglass-shaped drum whose rhythm creates the universe`,
+      },
+      {
+        heading: 'Symbols You See Every Day',
+        body: `Hindu symbols aren't just in mythology books — they appear throughout daily life:
+
+**At the Temple:** The Shankha is blown to start aarti. The Om symbol graces doorways. Trishuls top many Shiva temples. Lotus carvings appear on pillars and walls.
+
+**During Festivals:** Diyas (oil lamps) light up Diwali. Swastika symbols are drawn for good fortune. Rangoli patterns incorporate lotus and Om designs.
+
+**In the Home:** Many families keep a small trishul or Om in their puja room. Shankha shells are used during morning and evening prayers. Lotus-shaped incense holders scent the home.
+
+**In Art and Jewelry:** The Om pendant is one of the most popular Hindu jewelry designs. Lotus motifs appear in clothing, home decor, and paintings.
+
+Download free coloring pages of all these symbols from our [free downloads page](/digital-downloads)!`,
+      },
+      {
+        heading: 'Learning Through Coloring',
+        body: `Our free coloring sheets bring every symbol to life:
+
+• **Trishul & Damaru** — Color Shiva's trident and cosmic drum
+• **Shankha & Sudarshana Chakra** — Color Vishnu's conch and divine discus
+• **Deity Symbols Collection** — All sacred items on one page for comparison
+• **Om Symbol** — The most recognized Hindu symbol in the world
+• **Diya** — The oil lamp at the heart of Hindu worship
+
+Coloring these symbols while discussing their meanings creates a hands-on cultural learning experience that children remember far better than simply being told facts.`,
+      },
+    ],
+    featuredBooks: 'both',
+    faq: [
+      {
+        question: 'What are the main Hindu symbols?',
+        answer: 'The most important Hindu symbols include: Om (the sacred sound), Swastika (good fortune), Lotus (purity), Trishul (Shiva\'s trident), Sudarshana Chakra (Vishnu\'s disc), Shankha (conch shell), Diya (oil lamp), and Tilak (forehead mark). Our free coloring pages feature all of these symbols for children to learn while creating art.',
+      },
+      {
+        question: 'How do I explain Hindu symbols to a child?',
+        answer: 'Start with what they can see: "Each Hindu god carries special things, like a superhero has their gear." Then explain one at a time: "Shiva has a trident called a Trishul — its three points stand for three important forces." Our books introduce symbols through beautiful illustrations alongside the deities who carry them.',
+      },
+      {
+        question: 'Where can I find free Hindu symbol coloring pages?',
+        answer: 'Our free downloads page has 14 printable Hindu coloring sheets including deity symbols, Om mandalas, temples, and sacred instruments. All are free to download instantly — no signup required. Visit rootsonrise.com/digital-downloads to browse and download.',
+      },
+    ],
+    relatedSlugs: ['free-hindu-coloring-pages', 'hindu-mythology-for-kids', 'om-symbol-for-kids'],
+  },
+  {
+    slug: 'mandala-coloring-for-kids',
+    category: 'topic',
+    title: 'Hindu Mandala Coloring Pages for Kids — Free Printable Mandalas | Roots On Rise',
+    description: 'Free printable Hindu mandala coloring pages for kids: Ganesha mandala, Om mandala, lotus patterns. Mindful coloring activity for ages 2-10. Instant download.',
+    heading: 'mandala coloring for kids',
+    headingHighlight: 'mandala',
+    subheading: 'Beautiful Hindu mandala patterns that combine mindful coloring with cultural learning — free to download and print.',
+    heroImage: '/images/downloads-optimized/mandala.webp',
+    content: [
+      {
+        heading: 'Why Mandala Coloring Is Great for Kids',
+        body: `Mandala coloring is one of the most beneficial art activities for children. The circular, symmetrical patterns naturally promote:
+
+• **Focus and concentration** — Following intricate patterns requires sustained attention
+• **Calm and relaxation** — Repetitive, rhythmic coloring activates the brain's relaxation response
+• **Fine motor development** — Detailed patterns build hand-eye coordination and pencil control
+• **Creative expression** — Children choose their own color combinations, making each mandala unique
+• **Cultural awareness** — Hindu mandalas connect creativity with spiritual and artistic traditions
+
+Research has shown that mandala coloring can reduce anxiety in children and improve their ability to concentrate. Teachers, therapists, and parents worldwide use mandalas as a mindfulness tool.`,
+      },
+      {
+        heading: 'Our Hindu Mandala Collection',
+        body: `Our free mandala coloring pages combine traditional Hindu sacred art with kid-friendly designs:
+
+**Ganesha Mandala** — An intricate mandala featuring Lord Ganesha at the center, surrounded by radiating patterns. Perfect for children who know and love the elephant-headed god.
+
+**Om Symbol Mandala** — The sacred Om surrounded by beautiful mandala patterns. Combines symbol recognition with meditative coloring.
+
+**Intricate Om Mandala** — An advanced design with layers of detailed patterns for experienced young colorists. Great for ages 8+ who want a challenge.
+
+**Lotus Mandala** — A stunning lotus-flower design with layered petal patterns. The lotus represents purity in Hinduism — beauty rising from muddy water.
+
+All mandalas are free to download from our [free downloads page](/digital-downloads). Print as many copies as you need!`,
+      },
+      {
+        heading: 'Tips for Mandala Coloring with Kids',
+        body: `Make mandala coloring a special experience:
+
+**Start Simple:** Begin with the Om Symbol or Lotus Mandala for younger children. Save the Intricate Om for kids who are ready for a challenge.
+
+**Create a Calm Space:** Put on gentle music, clear the table, and make it a quiet time activity. The environment enhances the meditative quality.
+
+**Color from the Center Out:** Encourage children to start at the center and work outward — this mirrors how mandalas represent the universe expanding from a single point.
+
+**No Rules:** There's no "wrong" way to color a mandala. Let children choose any colors they want. The process matters more than perfection.
+
+**Display Their Art:** Hang completed mandalas on the wall. This validates their effort and creates a gallery of cultural art in your home.`,
+      },
+    ],
+    featuredBooks: 'both',
+    faq: [
+      {
+        question: 'What age are mandala coloring pages good for?',
+        answer: 'Our collection covers all ages. The Lotus Mandala and Om Symbol work for ages 3-6 with larger, simpler sections. The Ganesha Mandala suits ages 5-8 with moderate detail. The Intricate Om Mandala challenges ages 8+ with fine, layered patterns. Start with simpler designs and progress as skills develop.',
+      },
+      {
+        question: 'Are Hindu mandalas the same as regular mandalas?',
+        answer: 'Hindu mandalas are rooted in sacred geometry and spiritual tradition. They incorporate meaningful symbols like Om, lotus flowers, and deity imagery — each with specific cultural significance. While all mandalas share the circular pattern, Hindu mandalas connect the coloring experience to thousands of years of artistic and spiritual heritage.',
+      },
+      {
+        question: 'Can I use these mandalas for classroom activities?',
+        answer: 'Yes! Teachers are welcome to print copies for classroom use. Mandala coloring works well for multicultural art lessons, mindfulness breaks, world religions units, and quiet time activities. Each mandala includes authentic Hindu designs that can spark educational discussions about Indian culture.',
+      },
+    ],
+    relatedSlugs: ['free-hindu-coloring-pages', 'om-symbol-for-kids', 'hindu-symbols-for-kids'],
+  },
+  {
+    slug: 'hindu-temples-for-kids',
+    category: 'topic',
+    title: 'Hindu Temples for Kids — Kedarnath, Mount Kailash & Sacred Places | Roots On Rise',
+    description: 'Discover amazing Hindu temples and sacred places with kids: Kedarnath, Mount Kailash, Shiva Linga. Free coloring pages and stories for ages 2-8.',
+    heading: 'hindu temples for kids',
+    headingHighlight: 'temples',
+    subheading: 'Explore the most incredible sacred places in Hinduism — from snow-capped mountain temples to ancient stone shrines.',
+    heroImage: '/images/downloads-optimized/kedarnath.webp',
+    content: [
+      {
+        heading: 'Amazing Hindu Temples Kids Should Know',
+        body: `Hindu temples are some of the most breathtaking buildings on Earth. They're not just places of worship — they're architectural marvels, cultural treasures, and living connections to thousands of years of history.
+
+**Kedarnath Temple** sits at 11,755 feet in the Himalayas, surrounded by glaciers and snow-capped peaks. Over 1,000 years old, it can only be reached by a 16-kilometer mountain trek. In 2013, a devastating flood destroyed everything around it — but the temple survived, shielded by a massive boulder. Many believe Lord Shiva himself protected it.
+
+**Mount Kailash** in Tibet is believed to be Lord Shiva's heavenly home. At 21,778 feet, no one has ever climbed to its summit — not because it's impossible, but out of respect. Its nearly perfect symmetrical shape makes it one of the most visually striking mountains on Earth.`,
+      },
+      {
+        heading: 'What Children See at a Temple',
+        body: `Visiting a Hindu temple is a feast for the senses. Here's what kids experience:
+
+**Sound:** The ringing of brass bells announcing your arrival. The blowing of the shankha (conch shell). Chanting of mantras and singing of bhajans during aarti.
+
+**Sight:** Intricate stone carvings of gods, goddesses, and sacred stories. Colorful flowers and decorations. The warm glow of oil lamps. The Shiva Linga at the center of Shiva temples — a smooth, rounded stone representing cosmic energy.
+
+**Smell:** Incense smoke, fresh flowers (jasmine, marigold), camphor burning during aarti, and the scent of prasad (blessed food).
+
+**Touch:** Cool stone floors under bare feet. The smooth surface of temple pillars. Holy water sprinkled as a blessing.
+
+**Taste:** Prasad — blessed food distributed to visitors, often sweet treats that children love!`,
+      },
+      {
+        heading: 'Temple Etiquette for Kids',
+        body: `Teach children these simple practices before visiting a temple:
+
+• **Remove shoes** — Temples are sacred ground; leave footwear at the entrance
+• **Ring the bell** — The bell at the entrance announces your arrival to the deity
+• **Walk clockwise** — Always keep the main shrine to your right as you walk around
+• **Be quiet** — Speak softly and move gently out of respect
+• **Accept prasad** — Receive blessed food with your right hand or both hands
+• **Fold hands** — Bring palms together (namaste) when standing before the deity
+
+These small practices teach children respect, mindfulness, and cultural awareness — lessons that extend far beyond the temple walls.
+
+Color your own Hindu sacred places with our free coloring sheets at our [free downloads page](/digital-downloads)!`,
+      },
+    ],
+    featuredBooks: 'both',
+    faq: [
+      {
+        question: 'How do I explain a Hindu temple to my child?',
+        answer: 'Tell them: "A temple is a special house built for the gods. People visit to say thank you, ask for help, and feel peaceful. Each temple has a special room where the god lives, and families bring flowers and food as gifts." Our books introduce the deities children will see at temples, making visits more meaningful.',
+      },
+      {
+        question: 'What is the Shiva Linga?',
+        answer: 'The Shiva Linga is a smooth, rounded stone found at the center of every Shiva temple. It represents Lord Shiva\'s cosmic energy and infinite nature. Devotees pour milk, water, and honey over it as offerings. There are 12 especially sacred lingas across India called Jyotirlingas — Kedarnath is one of them.',
+      },
+      {
+        question: 'Can kids visit Kedarnath temple?',
+        answer: 'Kedarnath requires a 16-kilometer trek at high altitude (11,755 feet), which is challenging for young children. However, many families visit with children ages 8+ who are comfortable with hiking. Pony and palanquin services are available for those who cannot walk the full distance. The temple is open May through November.',
+      },
+    ],
+    relatedSlugs: ['shiva-book-for-kids', 'free-hindu-coloring-pages', 'hindu-mythology-for-kids'],
+  },
 ];
 
 // =============================================================================
