@@ -111,10 +111,87 @@
   animation-play-state: paused;
 }
 
-/* Accessibility: Respect user motion preferences for marquee */
+/* Kid-friendly animations */
+@keyframes float-gently {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float-gently 5s ease-in-out infinite;
+}
+
+.animate-wiggle-loop {
+  animation: wiggle 0.4s var(--ease-bounce) infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s var(--ease-bounce) infinite;
+}
+
+.card-hover-bounce {
+  transition: transform 0.3s var(--ease-bounce), box-shadow 0.3s ease;
+}
+
+.card-hover-bounce:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.badge-sticker {
+  transform: rotate(-2deg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.badge-sticker:hover {
+  transform: rotate(0deg);
+}
+
+/* Accessibility: Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float,
+  .animate-wiggle-loop,
+  .animate-bounce-soft {
     animation: none;
+  }
+
+  .card-hover-bounce:hover {
+    transform: none;
+  }
+
+  .badge-sticker {
+    transform: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .badge-sticker:hover {
+    transform: none;
   }
 }
 

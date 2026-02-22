@@ -73,6 +73,16 @@
   --color-accent-900: #462513;
   --color-accent-950: #261108;
 
+  /* Kid-Friendly Accent Colors */
+  --color-sky: #38bdf8;
+  --color-sky-light: #e0f6ff;
+  --color-coral: #fb7185;
+  --color-coral-light: #ffe4e8;
+  --color-lime: #34d399;
+  --color-lime-light: #d1fae5;
+  --color-marigold: #fbbf24;
+  --color-marigold-light: #fef9c3;
+
   /* Semantic Colors */
   --color-success: #2d7a3f;
   --color-success-light: #d4edda;
