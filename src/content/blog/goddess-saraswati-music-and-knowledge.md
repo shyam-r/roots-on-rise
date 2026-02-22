@@ -64,3 +64,11 @@ This means Saraswati helps us tell the difference between **what's true and what
 ## See Saraswati in Our Books
 
 **The Marvelous Hindu Deities** features Goddess Saraswati with her iconic veena and books, shown in a beautiful illustration that inspires a love of learning. A perfect addition to any child's bookshelf — especially on Vasant Panchami!
+
+## Free Saraswati Coloring Sheet
+
+Saraswati loves music — color the instruments she inspires! This printable features the veena, sitar, tabla, and other traditional Indian instruments.
+
+- [Musical Instruments](/images/downloads/musical-instruments.png) — Veena, sitar, tabla, flute and more
+
+See all 14 coloring sheets on our [free downloads page](/digital-downloads).

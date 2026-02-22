@@ -64,3 +64,11 @@ Out of the swirling ocean, many amazing things appeared — and the most beautif
 ## See Lakshmi in Our Books
 
 **The Marvelous Hindu Deities** features Goddess Lakshmi in a stunning illustration that captures her grace and golden glow. The perfect way to introduce her to young readers — especially during Diwali season!
+
+## Free Diwali Coloring Sheet
+
+Light up your coloring time with a diya — the oil lamp families light during Diwali to welcome Lakshmi!
+
+- [Diya Oil Lamp](/images/downloads/diya.png) — Traditional lamp, symbol of light over darkness
+
+See all 14 coloring sheets on our [free downloads page](/digital-downloads).

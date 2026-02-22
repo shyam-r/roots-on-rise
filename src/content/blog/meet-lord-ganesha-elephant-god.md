@@ -52,3 +52,11 @@ Ganesha won the race — not with speed, but with cleverness and love.
 ## Explore Ganesha in Our Books
 
 Want to see Ganesha in beautiful, colorful illustrations? **The Marvelous Hindu Deities** board book brings Ganesha to life with vibrant art perfect for little hands. And **My Little Shloka and Mantra Book** teaches the special Ganesha mantra: *Om Gan Ganapataye Namaha*.
+
+## Free Ganesha Coloring Sheet
+
+Download a free Ganesha mandala coloring page — a beautiful intricate design perfect for mindful coloring!
+
+- [Ganesha Mandala](/images/downloads/ganesha-mandala.png) — Intricate mandala featuring Lord Ganesha
+
+See all 14 coloring sheets on our [free downloads page](/digital-downloads).

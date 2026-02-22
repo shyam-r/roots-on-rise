@@ -14,34 +14,107 @@ import {
 // Digital download products - FREE downloads
 // Preview images use optimized WebP, downloads use original PNG for print quality
 const downloads = [
+  // --- Mandalas & Symbols ---
   {
-    title: "Ganesha Mandala Coloring Sheet",
+    title: "Ganesha Mandala",
     description: "Intricate mandala design featuring Lord Ganesha. Perfect for mindful coloring.",
     image: "/images/downloads-optimized/ganesha-mandala.webp",
     downloadUrl: "/images/downloads/ganesha-mandala.png",
-    category: "Coloring Sheets"
+    category: "Mandalas & Symbols"
   },
   {
     title: "Om Symbol Mandala",
     description: "Sacred Om symbol surrounded by intricate mandala patterns.",
     image: "/images/downloads-optimized/om-mandala.webp",
     downloadUrl: "/images/downloads/om-mandala.png",
-    category: "Coloring Sheets"
-  },
-  {
-    title: "Musical Instruments Coloring Pack",
-    description: "Traditional Indian instruments - tabla, sitar, veena and more.",
-    image: "/images/downloads-optimized/musical-instruments.webp",
-    downloadUrl: "/images/downloads/musical-instruments.png",
-    category: "Coloring Sheets"
+    category: "Mandalas & Symbols"
   },
   {
     title: "Intricate Om Mandala",
     description: "Advanced mandala design for experienced colorists.",
     image: "/images/downloads-optimized/intricate-om.webp",
     downloadUrl: "/images/downloads/intricate-om.png",
-    category: "Coloring Sheets"
-  }
+    category: "Mandalas & Symbols"
+  },
+  {
+    title: "Lotus Mandala",
+    description: "Beautiful lotus-inspired mandala with intricate petal patterns.",
+    image: "/images/downloads-optimized/mandala.webp",
+    downloadUrl: "/images/downloads/mandala.png",
+    category: "Mandalas & Symbols"
+  },
+  {
+    title: "Om Symbol",
+    description: "The sacred Om — universal sound of creation. Large outline perfect for coloring.",
+    image: "/images/downloads-optimized/om-symbol.webp",
+    downloadUrl: "/images/downloads/om-symbol.png",
+    category: "Mandalas & Symbols"
+  },
+  {
+    title: "Swastika Symbol",
+    description: "Ancient Hindu symbol of auspiciousness, prosperity, and good fortune.",
+    image: "/images/downloads-optimized/swastika.webp",
+    downloadUrl: "/images/downloads/swastika.png",
+    category: "Mandalas & Symbols"
+  },
+  // --- Sacred Places & Objects ---
+  {
+    title: "Mount Kailasha",
+    description: "The sacred abode of Lord Shiva — majestic mountain scene with sunrise and pine trees.",
+    image: "/images/downloads-optimized/kailasha.webp",
+    downloadUrl: "/images/downloads/kailasha.png",
+    category: "Sacred Places"
+  },
+  {
+    title: "Kedarnath Temple",
+    description: "One of the twelve Jyotirlingas — the iconic Himalayan temple with snow-capped peaks.",
+    image: "/images/downloads-optimized/kedarnath.webp",
+    downloadUrl: "/images/downloads/kedarnath.png",
+    category: "Sacred Places"
+  },
+  {
+    title: "Shiva Linga",
+    description: "Sacred symbol of Lord Shiva representing the cosmic pillar of creation.",
+    image: "/images/downloads-optimized/shiva-linga.webp",
+    downloadUrl: "/images/downloads/shiva-linga.png",
+    category: "Sacred Places"
+  },
+  {
+    title: "Diya Oil Lamp",
+    description: "Traditional oil lamp lit during Diwali and daily puja. Symbol of light over darkness.",
+    image: "/images/downloads-optimized/diya.webp",
+    downloadUrl: "/images/downloads/diya.png",
+    category: "Sacred Places"
+  },
+  // --- Divine Instruments & Symbols ---
+  {
+    title: "Trishul (Trident)",
+    description: "Lord Shiva's trident with damaru drum — symbol of divine power and cosmic rhythm.",
+    image: "/images/downloads-optimized/trishul.webp",
+    downloadUrl: "/images/downloads/trishul.png",
+    category: "Divine Symbols"
+  },
+  {
+    title: "Shankha & Sudarshana Chakra",
+    description: "Lord Vishnu's sacred conch shell and divine discus — symbols of protection and dharma.",
+    image: "/images/downloads-optimized/shankha-chakra.webp",
+    downloadUrl: "/images/downloads/shankha-chakra.png",
+    category: "Divine Symbols"
+  },
+  {
+    title: "Deity Symbols Collection",
+    description: "Trishul, chakra, lotus, flute, bow & arrow, gada — sacred items of Hindu deities.",
+    image: "/images/downloads-optimized/deity-symbols.webp",
+    downloadUrl: "/images/downloads/deity-symbols.png",
+    category: "Divine Symbols"
+  },
+  {
+    title: "Musical Instruments",
+    description: "Traditional Indian instruments — tabla, sitar, veena and more.",
+    image: "/images/downloads-optimized/musical-instruments.webp",
+    downloadUrl: "/images/downloads/musical-instruments.png",
+    category: "Divine Symbols"
+  },
 ];
 
 // Features with icons
@@ -61,8 +134,8 @@ const steps = [
 ---
 
 <Layout
-  title="Free Hindu Coloring Sheets — Ganesha Mandalas & Om Activities for Kids | Roots On Rise"
-  description="Free printable Hindu coloring sheets for kids: Ganesha mandalas, Om symbols, Indian musical instruments. Instant download, no signup. Perfect for Diwali activities and cultural learning."
+  title="Free Hindu Coloring Sheets — Mandalas, Temples, Sacred Symbols for Kids | Roots On Rise"
+  description="14 free printable Hindu coloring sheets: Ganesha mandalas, Om symbols, Kedarnath temple, Shiva's trishul, diya, and more. Instant download, no signup. Perfect for Diwali and cultural learning."
   showAnnouncement={false}
 >
   <!-- Hero -->
@@ -93,25 +166,35 @@ const steps = [
     </div>
   </Section>
 
-  <!-- Products Grid -->
+  <!-- Products Grid - Grouped by Category -->
   <Section>
     <SectionHeader
       title="coloring sheets"
       highlight="coloring"
-      description="Beautifully designed coloring sheets featuring Hindu deities, mandalas, and cultural symbols. Click to download instantly!"
+      description="Beautifully designed coloring sheets featuring Hindu deities, mandalas, sacred places, and cultural symbols. Click to download instantly!"
     />
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {downloads.map((product) => (
-        <DownloadCard
-          title={product.title}
-          description={product.description}
-          image={product.image}
-          downloadUrl={product.downloadUrl}
-          category={product.category}
-        />
-      ))}
-    </div>
+    {/* Group downloads by category */}
+    {(['Mandalas & Symbols', 'Sacred Places', 'Divine Symbols'] as const).map((category) => {
+      const categoryDownloads = downloads.filter(d => d.category === category);
+      if (categoryDownloads.length === 0) return null;
+      return (
+        <div class="mb-12 last:mb-0">
+          <h3 class="font-title font-semibold text-sm uppercase tracking-wider text-primary mb-4">{category}</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categoryDownloads.map((product) => (
+              <DownloadCard
+                title={product.title}
+                description={product.description}
+                image={product.image}
+                downloadUrl={product.downloadUrl}
+                category={product.category}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    })}
   </Section>
 
   <!-- How to Use -->

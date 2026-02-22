@@ -66,7 +66,7 @@ const websiteSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google tag (gtag.js) — cookieless, aggregate-only tracking -->
+    <!-- Google Analytics — cookieless, privacy-respecting, no ad tracking -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -74,7 +74,7 @@ const websiteSchema = {
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied',
-        'analytics_storage': 'denied',
+        'analytics_storage': 'granted',
         'functionality_storage': 'denied',
         'personalization_storage': 'denied'
       });

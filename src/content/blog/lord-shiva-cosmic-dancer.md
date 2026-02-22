@@ -64,3 +64,14 @@ The story of how Ganesha got his elephant head involves Shiva — but that's a w
 ## See Shiva in Our Books
 
 **The Marvelous Hindu Deities** shows Lord Shiva in a powerful illustration that captures his cosmic presence. And **My Little Shloka and Mantra Book** teaches the beloved *Om Namah Shivaya* mantra that families can chant together.
+
+## Free Shiva Coloring Sheets
+
+Bring Shiva's world to life with these free printable coloring pages! Click to download and print at home.
+
+- [Trishul & Damaru](/images/downloads/trishul.png) — Shiva's trident and cosmic drum
+- [Shiva Linga](/images/downloads/shiva-linga.png) — The sacred symbol of Lord Shiva
+- [Mount Kailasha](/images/downloads/kailasha.png) — Shiva's majestic Himalayan home
+- [Kedarnath Temple](/images/downloads/kedarnath.png) — The famous Shiva temple in the mountains
+
+See all 14 coloring sheets on our [free downloads page](/digital-downloads).

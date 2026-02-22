@@ -69,3 +69,11 @@ Vishnu found a way through every loophole. That's some serious creative problem-
 ## See Vishnu in Our Books
 
 **The Marvelous Hindu Deities** presents Lord Vishnu in his cosmic four-armed form with a stunning illustration. The perfect way to introduce children to the great protector of the universe!
+
+## Free Vishnu Coloring Sheet
+
+Color Lord Vishnu's sacred symbols! Download this free printable and bring the Shankha and Sudarshana Chakra to life.
+
+- [Shankha & Sudarshana Chakra](/images/downloads/shankha-chakra.png) — Vishnu's conch shell and divine discus
+
+See all 14 coloring sheets on our [free downloads page](/digital-downloads).
