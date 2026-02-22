@@ -133,7 +133,7 @@ const upsellBooks = BOOK_SERIES.map(series => {
   const bookCta = document.getElementById('dl-book-cta');
 
   let lastBookIdx = -1;
-  let abortController: AbortController | null = null;
+  let abortController = null;
 
   function getNextBook() {
     const idx = lastBookIdx === 0 ? 1 : 0;
@@ -141,7 +141,7 @@ const upsellBooks = BOOK_SERIES.map(series => {
     return upsellBooks[idx];
   }
 
-  function updateRing(progress: number, color = '#c47834') {
+  function updateRing(progress, color = '#c47834') {
     const degrees = progress * 360;
     const percent = Math.round(progress * 100);
     ring!.style.background = `conic-gradient(${color} ${degrees}deg, transparent ${degrees}deg)`;
@@ -167,7 +167,7 @@ const upsellBooks = BOOK_SERIES.map(series => {
     statusEl!.className = 'text-sm font-semibold text-red-500';
   }
 
-  async function showPopup(downloadTitle: string, downloadUrl: string) {
+  async function showPopup(downloadTitle, downloadUrl) {
     const book = getNextBook();
 
     // Set download info
@@ -236,7 +236,7 @@ const upsellBooks = BOOK_SERIES.map(series => {
       URL.revokeObjectURL(blobUrl);
 
       showComplete();
-    } catch (err: any) {
+    } catch (err) {
       if (err.name === 'AbortError') {
         // User closed popup before download finished — not an error
         return;
