@@ -1,7 +1,6 @@
 import * as React from "react"
-import { Download } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "./card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./card"
 
 export interface DownloadCardProps {
   title: string
@@ -32,10 +31,21 @@ function DownloadCard({
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
-        <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+        <span className="absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
           FREE
         </span>
+        {/* Download icon button — Arrow + Tray, frosted glass */}
+        <button
+          type="button"
+          data-download-url={downloadUrl}
+          data-download-title={title}
+          aria-label={`Download ${title}`}
+          className="dl-popup-trigger absolute bottom-3 right-3 w-11 h-11 rounded-full bg-white text-primary border-2 border-primary/20 flex items-center justify-center shadow-lg hover:bg-primary hover:text-white hover:border-primary hover:scale-110 transition-all duration-200 cursor-pointer"
+        >
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 4v9m0 0l-3-3m3 3l3-3" />
+          </svg>
+        </button>
       </div>
       <CardHeader className="pb-2">
         {category && (
@@ -48,16 +58,6 @@ function DownloadCard({
       <CardContent className="flex-1">
         <CardDescription>{description}</CardDescription>
       </CardContent>
-      <CardFooter className="pt-4 border-t border-gray-100">
-        <a
-          href={downloadUrl}
-          download
-          className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold py-2.5 px-4 rounded-lg hover:opacity-90 active:opacity-80 transition-opacity"
-        >
-          <Download className="w-4 h-4" />
-          Download Free
-        </a>
-      </CardFooter>
     </Card>
   )
 }

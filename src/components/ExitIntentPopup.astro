@@ -145,16 +145,14 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   const popup = document.getElementById('exit-popup');
   const overlay = document.getElementById('exit-popup-overlay');
   const closeBtn = document.getElementById('exit-popup-close');
-  const ctaLink = popup?.querySelector('a[href*="amazon"]');
-
   // Configuration
   const CONFIG = {
     STORAGE_KEY: 'exitPopup',
     MIN_PRODUCT_VIEW_TIME: 10000,   // 10 seconds viewing products
-    MIN_TIME_ON_PAGE: 20000,        // 20 seconds on ANY page (content engagement)
-    MIN_SCROLL_DEPTH: 0.3,          // 30% scroll depth (reading engagement)
-    COOLDOWN_DISMISSED_MINS: 30,    // 30 minutes after dismissal
-    COOLDOWN_CLICKED_DAYS: 7,       // 7 days if user clicked CTA
+    MIN_TIME_ON_PAGE: 12000,        // 12 seconds on ANY page (content engagement)
+    MIN_SCROLL_DEPTH: 0.15,         // 15% scroll depth (reading engagement)
+    COOLDOWN_DISMISSED_MINS: 30,    // 30 minutes after dismissal (homepage + books only)
+    COOLDOWN_PAGES: ['/', '/books'], // Pages where dismiss cooldown applies
     MOBILE_IDLE_TIMEOUT: 30000,     // 30 seconds idle on mobile
     SCROLL_UP_THRESHOLD: -100,      // px/100ms scroll velocity to trigger
   };
@@ -182,10 +180,10 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   let maxScrollDepth = 0;
 
   // =============================================================================
-  // Cooldown Logic (30 min for dismissals, 7 days for CTA clicks)
+  // Cooldown Logic (30 min dismiss cooldown on homepage + books only, none elsewhere)
   // =============================================================================
 
-  function getStoredData(): { lastShown: number; action: 'dismissed' | 'clicked' } | null {
+  function getStoredData(): { lastShown: number } | null {
     try {
       const data = localStorage.getItem(CONFIG.STORAGE_KEY);
       return data ? JSON.parse(data) : null;
@@ -194,11 +192,10 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
     }
   }
 
-  function setStoredData(action: 'dismissed' | 'clicked') {
+  function setStoredData() {
     try {
       localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
         lastShown: Date.now(),
-        action
       }));
     } catch {
       // Storage unavailable
@@ -206,18 +203,16 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   }
 
   function isInCooldown(): boolean {
+    // Cooldown only applies on homepage and books page
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    if (!CONFIG.COOLDOWN_PAGES.includes(path)) return false;
+
     const data = getStoredData();
     if (!data) return false;
 
     const timeSinceShown = Date.now() - data.lastShown;
-
-    if (data.action === 'clicked') {
-      const cooldownMs = CONFIG.COOLDOWN_CLICKED_DAYS * 24 * 60 * 60 * 1000;
-      return timeSinceShown < cooldownMs;
-    } else {
-      const cooldownMs = CONFIG.COOLDOWN_DISMISSED_MINS * 60 * 1000;
-      return timeSinceShown < cooldownMs;
-    }
+    const cooldownMs = CONFIG.COOLDOWN_DISMISSED_MINS * 60 * 1000;
+    return timeSinceShown < cooldownMs;
   }
 
   // =============================================================================
@@ -308,7 +303,7 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
     }
   }
 
-  function hidePopup(action: 'dismissed' | 'clicked' = 'dismissed') {
+  function hidePopup() {
     if (popup && overlay) {
       popup.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
       popup.classList.remove('opacity-100', 'scale-100');
@@ -319,7 +314,7 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
       overlay.setAttribute('aria-hidden', 'true');
 
       isShowing = false;
-      setStoredData(action);
+      setStoredData();
     }
   }
 
@@ -406,18 +401,13 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   }
 
   // Close handlers
-  closeBtn?.addEventListener('click', () => hidePopup('dismissed'));
-  overlay?.addEventListener('click', () => hidePopup('dismissed'));
-
-  // Track popup CTA clicks for longer cooldown
-  ctaLink?.addEventListener('click', () => {
-    setStoredData('clicked');
-  });
+  closeBtn?.addEventListener('click', () => hidePopup());
+  overlay?.addEventListener('click', () => hidePopup());
 
   // Escape key to close
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isShowing) {
-      hidePopup('dismissed');
+      hidePopup();
     }
   });
 </script>
