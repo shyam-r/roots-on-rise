@@ -1,4 +1,6 @@
 ---
+import { getAmazonUrl } from '@/data/products';
+
 interface Props {
   asin: string;
   label?: string;
@@ -13,7 +15,7 @@ const sizeClasses = {
   large: 'text-lg px-6 py-4',
 };
 
-const amazonUrl = `https://www.amazon.com/dp/${asin}?tag=rootsonrise-20`;
+const amazonUrl = getAmazonUrl(asin);
 ---
 
 <a

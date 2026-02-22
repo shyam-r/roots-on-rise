@@ -19,7 +19,8 @@ export interface BookFormat {
   name: string;
   isbn?: string;          // Primary identifier for physical books
   asin?: string;          // Only for Amazon-exclusive formats (Kindle)
-  price: string;
+  price: string;          // Current price (sale price if on sale)
+  regularPrice?: string;  // Original price before discount
   description?: string;
 }
 
@@ -120,9 +121,9 @@ export const BOOK_SERIES: BookSeries[] = [
     shortName: 'Shloka & Mantra',
     description: 'Teaches 15 traditional Hindu shlokas and Sanskrit mantras to children from baby to 14 years with pronunciation guides and simple meanings.',
     formats: [
-      { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$24.50', description: '78 pages with bonus coloring section' },
-      { id: 'paperback-standard', name: 'Paperback', asin: 'B0GK15FLFJ', price: '$11.99', description: '72 pages, great value edition' },
-      { id: 'paperback-premium', name: 'Premium Paperback', asin: 'B0GGRS2D5B', price: '$15.99', description: '81 pages, premium color + 10 coloring pages' },
+      { id: 'hardcover', name: 'Hardcover', asin: 'B0GH1Z46BD', price: '$22.45', regularPrice: '$24.50', description: '78 pages with bonus coloring section' },
+      { id: 'paperback-standard', name: 'Paperback', asin: 'B0GK15FLFJ', price: '$9.99', regularPrice: '$11.99', description: '72 pages, great value edition' },
+      { id: 'paperback-premium', name: 'Premium Paperback', asin: 'B0GGRS2D5B', price: '$14.99', regularPrice: '$15.99', description: '81 pages, premium color + 10 coloring pages' },
       { id: 'kindle', name: 'Kindle E-Book', asin: 'B0GG84NQ35', price: '$9.99', description: 'Instant download, read anywhere' },
     ],
   },
@@ -132,9 +133,9 @@ export const BOOK_SERIES: BookSeries[] = [
     shortName: 'Hindu Deities',
     description: 'Introduces 10 major Hindu gods and goddesses—including Ganesha, Krishna, and Lakshmi—to children from baby to 12 years through vibrant illustrations.',
     formats: [
-      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', description: '24 thick pages, toddler-proof for ages 2-12' },
-      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$15.99', description: '44 pages with expanded stories' },
-      { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$7.99', description: 'Instant download, perfect for travel' },
+      { id: 'board-book', name: 'Board Book', asin: '8195870724', price: '$14.99', regularPrice: '$19.99', description: '24 thick pages, toddler-proof for ages 2-12' },
+      { id: 'paperback', name: 'Paperback', asin: 'B0CN4NXVVN', price: '$13.99', regularPrice: '$15.99', description: '44 pages with expanded stories' },
+      { id: 'kindle', name: 'Kindle E-Book', asin: 'B0CLKYY3QC', price: '$4.99', regularPrice: '$7.99', description: 'Instant download, perfect for travel' },
     ],
   },
 ];
@@ -161,11 +162,12 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/hardcover/hero-all.png',
     ],
     regularPrice: '24.50',
+    salePrice: '22.45',
     asin: 'B0GH1Z46BD',
     format: 'Hardcover',
     ageRange: 'Baby - 14 years',
     pages: '78',
-    isOnSale: false,
+    isOnSale: true,
     metadata: {
       publisher: 'Independently published',
       publicationDate: 'January 15, 2026',
@@ -192,12 +194,13 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
     ],
     regularPrice: '11.99',
+    salePrice: '9.99',
     isbn: '979-8245747705',
     asin: 'B0GK15FLFJ',
     format: 'Paperback - Standard Edition',
     ageRange: '5 - 14 years',
     pages: '72',
-    isOnSale: false,
+    isOnSale: true,
     metadata: {
       publisher: 'Independently published',
       publicationDate: 'January 11, 2026',
@@ -224,12 +227,13 @@ export const BOOKS: Book[] = [
       '/images/books/shloka-mantra/promo_shot_Mom_Daughter_read_book.jpg',
     ],
     regularPrice: '15.99',
+    salePrice: '14.99',
     isbn: '979-8243474535',
     asin: 'B0GGRS2D5B',
     format: 'Paperback - Premium Edition',
     ageRange: '5 - 14 years',
     pages: '81',
-    isOnSale: false,
+    isOnSale: true,
     metadata: {
       publisher: 'Independently published',
       publicationDate: 'January 11, 2026',
@@ -309,11 +313,12 @@ export const BOOKS: Book[] = [
       '/images/books/marvelous-hindu-deities/paperback/promo_shot_8.jpg',
     ],
     regularPrice: '15.99',
+    salePrice: '13.99',
     asin: 'B0CN4NXVVN',
     format: 'Paperback',
     ageRange: 'Baby - 12 years',
     pages: '44',
-    isOnSale: false,
+    isOnSale: true,
     metadata: {
       publisher: 'Independently published',
       publicationDate: 'November 9, 2023',
@@ -337,10 +342,11 @@ export const BOOKS: Book[] = [
       '/images/books/marvelous-hindu-deities/ebook/hero-shot-announce-ebook.jpg',
     ],
     regularPrice: '7.99',
+    salePrice: '4.99',
     asin: 'B0CLKYY3QC',
     format: 'E-Book (Kindle)',
     ageRange: 'Baby - 12 years',
-    isOnSale: false,
+    isOnSale: true,
     metadata: {
       publicationDate: 'November 7, 2023',
       language: 'English',
@@ -591,7 +597,7 @@ export const SHLOKA_MANTRA_FAQ: FAQItem[] = [
   },
   {
     question: "What's the difference between the hardcover and paperback editions?",
-    answer: "We offer three print editions: The hardcover Special Edition (78 pages) includes a bonus coloring section. The Standard Paperback (72 pages, $11.99) is our great value option. The Premium Paperback (81 pages, $15.99) features high-quality premium color pages plus a kids activity section with 10 deity illustrations to color."
+    answer: "We offer three print editions: The hardcover Special Edition (78 pages) includes a bonus coloring section. The Standard Paperback (72 pages, $9.99) is our great value option. The Premium Paperback (81 pages, $14.99) features high-quality premium color pages plus a kids activity section with 10 deity illustrations to color."
   },
   {
     question: "How many shlokas and mantras are included?",
@@ -689,8 +695,8 @@ export function generateProductSchema(bookList: Book[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    'name': 'Children\'s Books Collection',
-    'description': 'Beautifully illustrated mythology books and shloka books for children',
+    'name': 'Hindu Children\'s Books Collection',
+    'description': 'Hindu mythology books, shloka books, and mantra books for children featuring Ganesha, Krishna, Lakshmi, Shiva, and more Hindu deities',
     'numberOfItems': bookList.length,
     'itemListElement': bookList.map((book, index) => ({
       '@type': 'ListItem',
@@ -714,6 +720,9 @@ export function generateProductSchema(bookList: Book[]) {
           'priceCurrency': 'USD',
           'availability': 'https://schema.org/InStock',
           'url': getBookAmazonUrl(book),
+          ...(book.isOnSale && book.salePrice ? {
+            'priceValidUntil': '2026-12-31',
+          } : {}),
         },
         'bookFormat': book.format.includes('E-Book')
           ? 'https://schema.org/EBook'

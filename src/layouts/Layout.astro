@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title,
-  description = "Discover beautifully illustrated children's books and cultural products. Explore mythology, shloka and mantra books for kids ages 2-8. Perfect gifts for children.",
+  description = "Hindu children's books featuring Ganesha, Krishna, Lakshmi & more. Shloka and mantra books for kids. Board books, paperbacks & Kindle. Perfect Diwali gifts for ages 2-14.",
   image = "/images/books-optimized/marvelous-hindu-deities/boardbook/promo_shot_7-hero.webp",
   canonicalUrl,
   type = "website",
@@ -41,7 +41,7 @@ const organizationSchema = {
   "name": "Roots On Rise",
   "url": siteUrl,
   "logo": `${siteUrl}/images/brand/Brand-Logo-Name-Transparent-Background.svg`,
-  "description": "Children's books and cultural products celebrating mythology and heritage.",
+  "description": "Hindu children's books featuring mythology, shlokas, mantras, and deity stories. Board books, paperbacks, and Kindle editions for kids ages 2-14.",
   "sameAs": [
     "https://www.instagram.com/rootsonrise"
   ]
@@ -53,7 +53,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": "Roots On Rise",
   "url": siteUrl,
-  "description": "Children's books, shloka books, and cultural products for kids"
+  "description": "Hindu mythology books, shloka books, and mantra books for children. Featuring Ganesha, Krishna, Lakshmi, and more Hindu deities."
 };
 ---
 
@@ -196,5 +196,26 @@ const websiteSchema = {
       <slot />
       <Footer />
     </main>
+
+    <!-- Amazon outbound link click tracking -->
+    <script is:inline>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('a[href*="amazon.com"]');
+        if (!link) return;
+
+        var url = link.href;
+        var asin = (url.match(/\/dp\/([A-Z0-9]{10})/i) || [])[1] || '';
+        var text = link.textContent.trim().substring(0, 50);
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'amazon_click', {
+            link_url: url,
+            link_text: text,
+            asin: asin,
+            page_path: window.location.pathname
+          });
+        }
+      });
+    </script>
   </body>
 </html>

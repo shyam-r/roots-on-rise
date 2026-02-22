@@ -7,6 +7,7 @@
  *
  * Uses CSS-only interactivity via radio inputs for no-JS tab switching.
  */
+import { getAmazonUrl } from '@/data/products';
 
 interface Format {
   name: string;
@@ -61,7 +62,7 @@ const selectorId = `format-selector-${Math.random().toString(36).substring(2, 9)
         )}
 
         <a
-          href={`https://www.amazon.com/dp/${format.asin}?tag=rootsonrise-20`}
+          href={getAmazonUrl(format.asin)}
           target="_blank"
           rel="noopener noreferrer"
           class="amazon-btn buy-button"

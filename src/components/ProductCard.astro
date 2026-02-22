@@ -1,5 +1,6 @@
 ---
 import { getOptimizedImage, getImageSrcSet } from '@/lib/images';
+import { getAmazonUrl } from '@/data/products';
 
 interface Props {
   title: string;
@@ -35,7 +36,7 @@ const {
 
 const isOnSale = salePrice && regularPrice && salePrice !== regularPrice;
 const purchaseId = asin ?? isbn;
-const amazonUrl = purchaseId ? `https://www.amazon.com/dp/${purchaseId}?tag=rootsonrise-20` : null;
+const amazonUrl = purchaseId ? getAmazonUrl(purchaseId) : null;
 const linkHref = comingSoon ? undefined : (href || amazonUrl || '#');
 const displayPrice = salePrice || regularPrice;
 

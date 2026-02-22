@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
+import { getAmazonUrl } from '@/data/products';
 import {
   Section,
   SectionHeader,
@@ -60,8 +61,8 @@ const steps = [
 ---
 
 <Layout
-  title="Free Hindu Coloring Sheets & Mandalas for Kids | Roots On Rise"
-  description="Download free Hindu coloring sheets, Ganesha mandalas, and Om symbol activities for kids. Instant printable downloads featuring Indian cultural art. Perfect for mindful coloring and heritage learning."
+  title="Free Hindu Coloring Sheets — Ganesha Mandalas & Om Activities for Kids | Roots On Rise"
+  description="Free printable Hindu coloring sheets for kids: Ganesha mandalas, Om symbols, Indian musical instruments. Instant download, no signup. Perfect for Diwali activities and cultural learning."
   showAnnouncement={false}
 >
   <!-- Hero -->
@@ -168,7 +169,7 @@ const steps = [
       </p>
       <Button variant="amazon" size="lg" asChild>
         <a
-          href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+          href={getAmazonUrl('8195870724')}
           target="_blank"
           rel="noopener"
         >
@@ -179,10 +180,5 @@ const steps = [
   </Section>
 
   <!-- Cross-sell Exit Intent -->
-  <ExitIntentPopup
-    title="Love our free coloring sheets?"
-    description="Get the complete Hindu Deities book with 10 beautifully illustrated gods and goddesses - perfect for little hands!"
-    ctaText="See the Book"
-    ctaLink="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
-  />
+  <ExitIntentPopup bookId={4} />
 </Layout>

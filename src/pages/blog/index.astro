@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Button, Section } from '@/components/ui';
-import { generateBreadcrumbSchema } from '@/data/products';
+import { generateBreadcrumbSchema, getAmazonUrl } from '@/data/products';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -83,7 +83,7 @@ const categoryLabels: Record<string, string> = {
         Our beautifully illustrated books bring Hindu mythology to life for young readers.
       </p>
       <Button variant="amazon" size="lg" asChild>
-        <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+        <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
           Shop Books on Amazon
         </a>
       </Button>

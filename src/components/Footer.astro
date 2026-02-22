@@ -1,4 +1,5 @@
 ---
+import { getAmazonUrl } from '@/data/products';
 const currentYear = new Date().getFullYear();
 
 const navItems = [
@@ -30,7 +31,7 @@ const socialLinks = [
             </a>
           ))}
           <a
-            href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+            href={getAmazonUrl('8195870724')}
             target="_blank"
             rel="noopener"
             class="text-light/70 hover:text-primary transition-colors"

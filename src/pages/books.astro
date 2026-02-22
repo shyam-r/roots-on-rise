@@ -11,6 +11,7 @@ import {
   GENERAL_FAQ,
   getBooksBySeriesId,
   getFAQBySeriesId,
+  getAmazonUrl,
   generateProductSchema,
   generateBreadcrumbSchema,
   generateFAQSchema
@@ -32,8 +33,8 @@ const faqSchema = generateFAQSchema(allFAQs);
 ---
 
 <Layout
-  title="Children's Books - Mythology & Shloka Books for Kids | Roots On Rise"
-  description="Shop beautifully illustrated children's books featuring mythology, shlokas, and mantras. Board books, paperbacks, and e-books for kids ages 2-8. Perfect gifts for Diwali and cultural learning."
+  title="Hindu Gods Books & Shloka Books for Kids — Board Books, Paperbacks & Kindle | Roots On Rise"
+  description="Hindu mythology books for children: Ganesha, Krishna, Shiva & more. Shloka and mantra books with Sanskrit pronunciation. Board books for toddlers, paperbacks & Kindle. Diwali gifts ages 2-14."
   image="/images/books-optimized/marvelous-hindu-deities/boardbook/hero-shot-1-hero.webp"
 >
   <!-- Structured Data: Products, Breadcrumbs, FAQ -->
@@ -48,7 +49,7 @@ const faqSchema = generateFAQSchema(allFAQs);
         children's <span class="text-primary">books</span>
       </h1>
       <p class="text-dark/70 text-lg max-w-2xl mx-auto">
-        Introduce your children to captivating mythology, shlokas, and mantras with our beautifully illustrated books. Perfect for ages 2-8, available on Amazon with fast Prime delivery.
+        Introduce your children to Hindu mythology, sacred shlokas, and Sanskrit mantras with our beautifully illustrated books featuring Ganesha, Krishna, Lakshmi, and more. Available on Amazon with free Prime delivery.
       </p>
     </div>
   </Section>
@@ -167,13 +168,13 @@ const faqSchema = generateFAQSchema(allFAQs);
       <!-- Quick CTA after comparison -->
       <div class="mt-10 text-center p-6 bg-white rounded-xl shadow-sm border-2 border-primary/20">
         <p class="font-title font-bold text-xl text-dark mb-2">
-          Can't decide? Start with the <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark underline underline-offset-2">Board Book</a>!
+          Can't decide? Start with the <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener" class="text-primary hover:text-primary-dark underline underline-offset-2">Board Book</a>!
         </p>
         <p class="text-dark/60 text-sm mb-4">
           Our bestselling edition — perfect for little hands, beloved by families worldwide.
         </p>
         <Button variant="amazon" size="md" asChild>
-          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+          <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
             Get It With Free Prime Delivery
           </a>
         </Button>
@@ -328,12 +329,12 @@ const faqSchema = generateFAQSchema(allFAQs);
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
         <Button variant="amazon" size="lg" asChild>
-          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+          <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
             Shop Hindu Deities Book
           </a>
         </Button>
         <Button variant="outlineLight" size="lg" asChild>
-          <a href="https://www.amazon.com/dp/B0GH1Z46BD?tag=rootsonrise-20" target="_blank" rel="noopener">
+          <a href={getAmazonUrl('B0GH1Z46BD')} target="_blank" rel="noopener">
             Shop Shloka Book
           </a>
         </Button>
@@ -342,12 +343,6 @@ const faqSchema = generateFAQSchema(allFAQs);
   </Section>
 
   <!-- Conversion Components -->
-  <ExitIntentPopup
-    title="Wait! Don't miss our bestseller"
-    description="The Board Book edition is perfect for little hands — durable, colorful, and loved by families worldwide."
-    ctaText="Get It With Free Prime Delivery"
-    ctaLink="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
-    productImage="/images/books/marvelous-hindu-deities/board_book_front_cover.webp"
-  />
+  <ExitIntentPopup bookId={4} />
   <MobileStickyBuy />
 </Layout>

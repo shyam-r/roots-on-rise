@@ -21,6 +21,7 @@ import {
   FEATURED_BOOK,
   getSeriesById,
   getBooksBySeriesId,
+  getAmazonUrl,
   HERO_SLIDES,
   TESTIMONIALS,
   COMING_SOON_PRODUCTS,
@@ -42,8 +43,8 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
 ---
 
 <Layout
-  title="Children's Books & Cultural Products | Roots On Rise"
-  description="Shop beautifully illustrated children's books celebrating mythology and heritage. Explore shloka books, mantra books for kids, and picture books. Perfect gifts for children ages 2-8."
+  title="Hindu Children's Books — Mythology, Shlokas & Mantras for Kids | Roots On Rise"
+  description="Shop Hindu mythology books for kids featuring Ganesha, Krishna & Lakshmi. Shloka and mantra books with Sanskrit pronunciation guides. Board books, paperbacks & Kindle. Perfect Diwali gifts ages 2-14."
   image={ogImage}
 >
   <!-- Hero Carousel -->
@@ -175,7 +176,7 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
         <Button variant="amazon" size="lg" asChild>
-          <a href="https://www.amazon.com/dp/8195870724?tag=rootsonrise-20" target="_blank" rel="noopener">
+          <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
             Get It With Free Prime Delivery
           </a>
         </Button>

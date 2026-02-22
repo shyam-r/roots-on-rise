@@ -6,6 +6,7 @@
 // Shows only after user has scrolled past the first product CTA (engagement signal)
 // Hides when scrolling up (content discovery) or at bottom of page
 // =============================================================================
+import { getAmazonUrl } from '@/data/products';
 
 interface Props {
   productName?: string;
@@ -18,7 +19,7 @@ const {
   productName = "The Marvelous Hindu Deities",
   price = "$14.99",
   ctaText = "Get It With Prime Delivery",
-  ctaLink = "https://www.amazon.com/dp/8195870724?tag=rootsonrise-20"
+  ctaLink = getAmazonUrl('8195870724')
 } = Astro.props;
 ---
 
