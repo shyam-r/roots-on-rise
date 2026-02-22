@@ -3,7 +3,7 @@ import { ShoppingCart, Smile, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
-import { ReviewSummary, BestsellerBadge, PrimeShipping, GuaranteeBadge } from "./trust-signals"
+import { ReviewSummary, BestsellerBadge, PrimeShipping, GuaranteeBadge, SocialProofCounter } from "./trust-signals"
 import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
 import type { Book as BookType, BookSeries } from "@/data/products"
 
@@ -179,14 +179,12 @@ function BookSeriesCard({
             })}
           </div>
           {/* Format benefit shown inline */}
-          {selectedFormat.description && (
-            <p className="text-primary text-sm mt-2 flex items-center gap-1">
-              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              {selectedFormat.description}
-            </p>
-          )}
+          <p className="text-primary text-sm mt-2 flex items-center gap-1">
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            {selectedFormat.description}
+          </p>
         </div>
 
         {/* Price + Reviews */}
@@ -242,6 +240,7 @@ function BookSeriesCard({
         <div className="flex flex-wrap items-center gap-4 mt-3">
           <PrimeShipping />
           <GuaranteeBadge />
+          <SocialProofCounter count={5000} label="happy families" />
         </div>
 
         {selectedBook.isbn && (
