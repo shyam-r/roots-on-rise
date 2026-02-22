@@ -5,6 +5,7 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { ReviewSummary, BestsellerBadge, PrimeShipping, GuaranteeBadge } from "./trust-signals"
 import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
+import { AMAZON_AFFILIATE_TAG } from "@/lib/constants"
 import type { Book as BookType, BookSeries } from "@/data/products"
 
 
@@ -229,7 +230,7 @@ function BookSeriesCard({
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
           <a
-            href={`https://www.amazon.com/dp/${selectedBook.asin ?? selectedBook.isbn}?tag=rootsonrise-20`}
+            href={`https://www.amazon.com/dp/${selectedBook.asin ?? selectedBook.isbn}?tag=${AMAZON_AFFILIATE_TAG}`}
             target="_blank"
             rel="noopener noreferrer"
           >

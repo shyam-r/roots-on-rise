@@ -1,0 +1,43 @@
+---
+/**
+ * BookFormatLinks — Minimal row of format links
+ *
+ * Lightweight, text-style. Good for inline placement within prose
+ * or as a subtle CTA that doesn't interrupt reading flow.
+ *
+ * @example <BookFormatLinks seriesId="marvelous-hindu-deities" />
+ * @example <BookFormatLinks seriesId="shloka-mantra" label="Get the Shloka Book" />
+ */
+import { BOOK_SERIES, getAmazonUrl } from '@/data/products';
+
+interface Props {
+  seriesId: string;
+  label?: string;
+  className?: string;
+}
+
+const { seriesId, label, className = '' } = Astro.props;
+const series = BOOK_SERIES.find(s => s.id === seriesId);
+---
+
+{series && (
+  <div class:list={[
+    "not-prose flex flex-wrap items-center gap-x-4 gap-y-2 text-sm",
+    className
+  ]}>
+    {label && <span class="font-title font-semibold text-dark">{label}:</span>}
+    {series.formats.map((fmt, i) => (
+      <>
+        <a
+          href={getAmazonUrl(fmt.asin || '')}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary hover:text-primary-dark font-medium underline decoration-primary/30 hover:decoration-primary transition-colors"
+        >
+          {fmt.name} {fmt.price}
+        </a>
+        {i < series.formats.length - 1 && <span class="text-dark/20">|</span>}
+      </>
+    ))}
+  </div>
+)}

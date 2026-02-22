@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { getOptimizedImage } from "@/lib/images"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./card"
 import { Badge } from "./badge"
 
@@ -23,7 +24,7 @@ function ComingSoonCard({
     )}>
       <div className="aspect-square relative overflow-hidden bg-tertiary">
         <img
-          src={image}
+          src={getOptimizedImage(image, 'product')}
           alt={title}
           className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-300"
           loading="lazy"

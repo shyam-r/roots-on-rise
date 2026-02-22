@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
-import { getAmazonUrl } from '@/data/products';
+import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
+import { getAmazonUrl, BOOK_SERIES, getBooksBySeriesId } from '@/data/products';
+import { getOptimizedImage } from '@/lib/images';
 import {
   Section,
   SectionHeader,
@@ -211,6 +213,47 @@ const steps = [
     })}
   </Section>
 
+  <!-- Book Bridge — convert free downloaders to book buyers -->
+  <Section background="gradientWarm" container="lg">
+    <div class="text-center mb-8">
+      <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-3">
+        love these <span class="text-primary">coloring pages</span>?
+      </h2>
+      <p class="text-dark/60 max-w-lg mx-auto">See these deities, symbols, and stories come to life in our beautifully illustrated books!</p>
+      <div class="flex items-center justify-center gap-2 mt-2">
+        <span class="text-amber-500 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="text-dark/50 text-xs">Loved by families worldwide</span>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+      {BOOK_SERIES.map((series) => {
+        const books = getBooksBySeriesId(series.id);
+        const book = books[0];
+        const format = series.formats[0];
+        if (!book || !format) return null;
+        return (
+          <a href={getAmazonUrl(format.asin || '')} target="_blank" rel="noopener"
+            class="flex items-center gap-4 bg-white rounded-2xl p-4 border border-dark/5 hover:shadow-lg transition-all group">
+            <div class="w-20 h-24 shrink-0 rounded-xl overflow-hidden shadow-md bg-tertiary">
+              <img src={getOptimizedImage(book.image, 'thumb')} alt={series.name} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-title font-bold text-dark group-hover:text-primary transition-colors text-sm md:text-base">{series.name}</p>
+              <p class="text-dark/50 text-xs mt-1 line-clamp-2">{series.description}</p>
+              <div class="flex items-center gap-3 mt-2">
+                <span class="text-primary font-bold text-sm">{format.price}</span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FF9900]/10 text-[#FF9900] text-xs font-semibold rounded">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                  Free Prime Delivery
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </Section>
+
   <!-- How to Use -->
   <Section background="tertiary" container="md">
     <SectionHeader
@@ -260,10 +303,14 @@ const steps = [
       <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
         Want more <span class="text-primary">cultural content</span>?
       </h2>
-      <p class="text-light/70 max-w-xl mx-auto mb-8">
-        Check out our bestselling children's book "The Marvelous Hindu Deities" -
+      <p class="text-light/70 max-w-xl mx-auto mb-3">
+        Check out our bestselling children's book "The Marvelous Hindu Deities" —
         10 beautifully illustrated deities with stories your kids will love!
       </p>
+      <div class="flex items-center justify-center gap-2 mb-8">
+        <span class="text-amber-400 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="text-light/50 text-xs">Loved by families worldwide</span>
+      </div>
       <Button variant="amazon" size="lg" asChild>
         <a
           href={getAmazonUrl('8195870724')}
@@ -276,6 +323,7 @@ const steps = [
     </div>
   </Section>
 
-  <!-- Cross-sell Exit Intent -->
+  <!-- Conversion tools -->
   <ExitIntentPopup bookId={4} />
+  <MobileStickyBuy />
 </Layout>

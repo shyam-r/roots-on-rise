@@ -8,7 +8,7 @@
  * import { BOOKS, getBooksBySeriesId, TESTIMONIALS } from '@/data/products';
  */
 
-import { AMAZON_BASE_URL } from '@/lib/constants';
+import { AMAZON_BASE_URL, AMAZON_AFFILIATE_TAG } from '@/lib/constants';
 
 // =============================================================================
 // Types
@@ -515,7 +515,7 @@ export function getBookPurchaseId(book: Book): string {
  * Get Amazon URL for a book using ISBN or ASIN
  * Note: ISBNs may contain hyphens for readability, but Amazon URLs require them stripped
  */
-export function getAmazonUrl(identifier: string, affiliateTag = 'rootsonrise-20'): string {
+export function getAmazonUrl(identifier: string, affiliateTag = AMAZON_AFFILIATE_TAG): string {
   // Strip hyphens from ISBN (ASINs don't have hyphens, so this is safe for both)
   const cleanIdentifier = identifier.replace(/-/g, '');
   return `${AMAZON_BASE_URL}${cleanIdentifier}?tag=${affiliateTag}`;
@@ -524,7 +524,7 @@ export function getAmazonUrl(identifier: string, affiliateTag = 'rootsonrise-20'
 /**
  * Get Amazon URL directly from a book object
  */
-export function getBookAmazonUrl(book: Book, affiliateTag = 'rootsonrise-20'): string {
+export function getBookAmazonUrl(book: Book, affiliateTag = AMAZON_AFFILIATE_TAG): string {
   return getAmazonUrl(getBookPurchaseId(book), affiliateTag);
 }
 

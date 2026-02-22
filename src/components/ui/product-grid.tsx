@@ -3,6 +3,7 @@ import { Eye, ShoppingCart } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
+import { AMAZON_AFFILIATE_TAG } from "@/lib/constants"
 
 // =============================================================================
 // Types
@@ -183,7 +184,7 @@ function ProductCard({ product, showQuickView, onQuickView }: ProductCardProps) 
             className="w-full mt-3"
           >
             <a
-              href={`https://www.amazon.com/dp/${product.asin ?? product.isbn}?tag=rootsonrise-20`}
+              href={`https://www.amazon.com/dp/${product.asin ?? product.isbn}?tag=${AMAZON_AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

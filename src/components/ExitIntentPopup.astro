@@ -143,6 +143,8 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   const CONFIG = {
     STORAGE_KEY: 'exitPopup',
     MIN_PRODUCT_VIEW_TIME: 10000,   // 10 seconds viewing products
+    MIN_TIME_ON_PAGE: 20000,        // 20 seconds on ANY page (content engagement)
+    MIN_SCROLL_DEPTH: 0.3,          // 30% scroll depth (reading engagement)
     COOLDOWN_DISMISSED_MINS: 30,    // 30 minutes after dismissal
     COOLDOWN_CLICKED_DAYS: 7,       // 7 days if user clicked CTA
     MOBILE_IDLE_TIMEOUT: 30000,     // 30 seconds idle on mobile
@@ -168,6 +170,8 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   let lastScrollTime = Date.now();
   let idleTimer: ReturnType<typeof setTimeout> | null = null;
   const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const pageLoadTime = Date.now();
+  let maxScrollDepth = 0;
 
   // =============================================================================
   // Cooldown Logic (30 min for dismissals, 7 days for CTA clicks)
@@ -214,7 +218,13 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
 
   function hasMetEngagementThreshold(): boolean {
     // User clicked a product OR viewed products for 10+ seconds
+    // OR spent 20+ seconds on page AND scrolled 30%+ (content engagement)
     return hasClickedProduct || totalProductViewTime >= CONFIG.MIN_PRODUCT_VIEW_TIME;
+  }
+
+  function hasMetContentEngagement(): boolean {
+    const timeOnPage = Date.now() - pageLoadTime;
+    return timeOnPage >= CONFIG.MIN_TIME_ON_PAGE && maxScrollDepth >= CONFIG.MIN_SCROLL_DEPTH;
   }
 
   function setupProductObserver() {
@@ -262,7 +272,7 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   }
 
   function hasMetEngagementThresholdNow(): boolean {
-    return hasClickedProduct || getCurrentViewTime() >= CONFIG.MIN_PRODUCT_VIEW_TIME;
+    return hasClickedProduct || getCurrentViewTime() >= CONFIG.MIN_PRODUCT_VIEW_TIME || hasMetContentEngagement();
   }
 
   // =============================================================================
@@ -320,6 +330,13 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
   // =============================================================================
 
   function handleScroll() {
+    // Track max scroll depth for content engagement
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight > 0) {
+      const currentDepth = window.scrollY / scrollHeight;
+      if (currentDepth > maxScrollDepth) maxScrollDepth = currentDepth;
+    }
+
     if (isMobile && hasMetEngagementThresholdNow()) {
       const now = Date.now();
       const timeDelta = now - lastScrollTime;
@@ -362,10 +379,10 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
     // Setup product visibility tracking
     setupProductObserver();
 
-    // Track scroll for mobile exit intent
+    // Track scroll for exit intent (mobile triggers + scroll depth tracking for all)
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Desktop: mouse exit
+    // Desktop: mouse exit (works with both product engagement AND content engagement)
     if (!isMobile) {
       document.addEventListener('mouseleave', handleMouseLeave);
     }

@@ -1,0 +1,65 @@
+---
+/**
+ * BookPromoBanner — Wider banner card with book image + description + format pills
+ *
+ * Best for between-section placement or end-of-content CTAs.
+ * Each format pill links directly to Amazon.
+ *
+ * @example <BookPromoBanner seriesId="marvelous-hindu-deities" />
+ * @example <BookPromoBanner seriesId="shloka-mantra" />
+ */
+import { BOOK_SERIES, getBooksBySeriesId, getAmazonUrl } from '@/data/products';
+import { getOptimizedImage } from '@/lib/images';
+
+interface Props {
+  seriesId: string;
+  className?: string;
+}
+
+const { seriesId, className = '' } = Astro.props;
+const series = BOOK_SERIES.find(s => s.id === seriesId);
+const books = series ? getBooksBySeriesId(series.id) : [];
+const primaryBook = books[0];
+---
+
+{series && primaryBook && (
+  <div class:list={["flex flex-col md:flex-row items-center gap-6", className]}>
+    <a
+      href={getAmazonUrl(series.formats[0]?.asin || '')}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-36 md:w-44 shrink-0"
+    >
+      <img
+        src={getOptimizedImage(primaryBook.image, 'product')}
+        alt={series.name}
+        class="w-full rounded-xl shadow-md"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+    <div class="flex-1 text-center md:text-left">
+      <h3 class="font-title font-bold text-xl md:text-2xl text-dark mb-2">{series.name}</h3>
+      <p class="text-dark/60 text-sm mb-2 max-w-md">{series.description}</p>
+      <div class="flex items-center gap-2 mb-4 justify-center md:justify-start">
+        <span class="text-amber-500 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="text-dark/50 text-xs">Loved by families worldwide</span>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+        {series.formats.map((fmt) => (
+          <a
+            href={getAmazonUrl(fmt.asin || '')}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FF9900] hover:bg-[#e68a00] text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            {fmt.name} &mdash; {fmt.price}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+)}

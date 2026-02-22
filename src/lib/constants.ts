@@ -24,6 +24,7 @@ export type ContainerSize = keyof typeof CONTAINER_CLASSES
 // =============================================================================
 
 export const AMAZON_BASE_URL = "https://www.amazon.com/dp/"
+export const AMAZON_AFFILIATE_TAG = "rootsonrise06-20"
 export const SITE_URL = "https://rootsonrise.com"
 export const INSTAGRAM_URL = "https://www.instagram.com/rootsonrise"
 

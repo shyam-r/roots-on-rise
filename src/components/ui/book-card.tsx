@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { getOptimizedImage, getImageSrcSet } from "@/lib/images"
+import { AMAZON_AFFILIATE_TAG } from "@/lib/constants"
 
 export interface BookCardProps {
   title: string
@@ -162,7 +163,7 @@ function BookCard({
         {/* Amazon Button */}
         <Button variant="amazon" asChild className="self-start">
           <a
-            href={`https://www.amazon.com/dp/${purchaseId}?tag=rootsonrise-20`}
+            href={`https://www.amazon.com/dp/${purchaseId}?tag=${AMAZON_AFFILIATE_TAG}`}
             target="_blank"
             rel="noopener noreferrer"
           >
