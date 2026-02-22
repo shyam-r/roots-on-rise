@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { Button, Section } from '@/components/ui';
 import { BOOK_SERIES, getBooksBySeriesId, getAmazonUrl, generateBreadcrumbSchema } from '@/data/products';
 import { getLandingPageBySlug } from '@/data/landing-pages';
+import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -19,6 +20,22 @@ const { post, index } = Astro.props;
 const ctaVariant = index % 3;
 const { Content } = await render(post);
 const postSlug = post.id.replace(/\.md$/, '');
+
+// Related blog posts: same category, excluding current post, limit to 3
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((p) => p.data.category === post.data.category && p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// Extract deity name for context-aware exit intent popup
+// For deity posts, extract the deity name from the title (e.g., "Goddess Parvati: The Loving Mother" -> "Parvati")
+const deityContextHint = post.data.category === 'deity'
+  ? post.data.title
+      .replace(/^(Lord|Goddess|Meet)\s+/i, '')
+      .replace(/[:\u2014\u2013\u2012].*$/, '')
+      .trim()
+  : undefined;
 
 // Determine which books to show
 const seriesToShow = post.data.relatedBook === 'deities'
@@ -132,6 +149,48 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     </article>
   </Section>
 
+  <!-- More Stories -->
+  {relatedPosts.length > 0 && (
+    <Section background="light">
+      <div class="text-center mb-10">
+        <h2 class="font-title font-bold text-2xl md:text-3xl text-dark mb-3">
+          more <span class="text-primary">stories</span> your family will love
+        </h2>
+        <p class="text-dark/60 max-w-md mx-auto text-sm">
+          Continue exploring with more reading adventures for young minds.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {relatedPosts.map((related) => {
+          const relatedSlug = related.id.replace(/\.md$/, '');
+          return (
+            <a href={`/blog/${relatedSlug}`}
+              class="group block bg-white rounded-xl overflow-hidden border border-dark/5 hover:shadow-lg transition-shadow">
+              {related.data.image && (
+                <div class="aspect-[16/10] overflow-hidden bg-tertiary">
+                  <img
+                    src={related.data.image}
+                    alt={related.data.imageAlt || related.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-4">
+                <span class="inline-block text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-2">
+                  {related.data.ageRange}
+                </span>
+                <h3 class="font-title font-bold text-dark text-sm leading-snug group-hover:text-primary transition-colors">
+                  {related.data.title}
+                </h3>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </Section>
+  )}
+
   <!-- Book Showcase — rotates between 3 styles so pages don't all look identical -->
   {ctaVariant === 0 && (
     /* Variant A: Horizontal banner — image left, formats right */
@@ -234,4 +293,6 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
       </div>
     </Section>
   )}
+
+  <ExitIntentPopup contextHint={deityContextHint} />
 </Layout>
