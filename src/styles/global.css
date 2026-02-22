@@ -6,16 +6,15 @@
 @theme {
   --color-light: #fff;
   --color-dark: #2d2d2d;
-  --color-primary: #d4a017;           /* Rich gold - warm, not yellow */
-  --color-primary-dark: #b8860b;      /* Dark goldenrod */
-  --color-secondary: #8b4513;         /* Saddle brown - earthy */
-  --color-secondary-dark: #6b350f;
+  --color-primary: #c47834;            /* Warm saffron orange - canonical brand color */
+  --color-primary-dark: #a85d1c;      /* Darker saffron */
+  --color-secondary: #d4a574;         /* Soft gold - heritage, warmth */
+  --color-secondary-dark: #b87d42;
   --color-tertiary: #fdf5e6;          /* Old lace cream */
   --color-tertiary-50: #fffdf9;
-  --color-accent: #c47834;            /* Warm saffron */
+  --color-accent: #8b4513;            /* Deep brown - earthiness */
   --color-gold: #daa520;              /* Goldenrod for highlights */
   --color-muted: #f3f4f6;
-  --color-border: #e5e7eb;
 
   /* Amazon brand colors */
   --color-amazon: #FF9900;
@@ -72,26 +71,6 @@
 
   .amazon-btn:hover {
     background: linear-gradient(to bottom, #f5d78e, #eeb933);
-  }
-
-  .coming-soon-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .coming-soon-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
   /* Skip to main content link - WCAG 2.4.1 compliance */

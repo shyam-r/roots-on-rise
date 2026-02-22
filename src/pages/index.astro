@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
+import DarkCtaSection from '@/components/DarkCtaSection.astro';
 import {
   Section,
   SectionHeader,
@@ -16,6 +17,7 @@ import {
   TestimonialCarousel,
   NewsletterSection,
   BookSeriesCard,
+  SocialProofCounter,
 } from '@/components/ui';
 import {
   FEATURED_BOOK,
@@ -37,6 +39,9 @@ const heroSlides = HERO_SLIDES;
 const testimonials = TESTIMONIALS;
 const comingProducts = COMING_SOON_PRODUCTS;
 const availableProducts = AVAILABLE_PRODUCTS;
+
+// Hero book cover thumbnail from first slide
+const heroProductImage = heroSlides[0]?.productImage;
 
 // Optimized OG image
 const ogImage = getOptimizedImage(featuredBook.image, 'hero');
@@ -105,6 +110,23 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
     </div>
   </section>
 
+  <!-- Hero Social Proof + Book Thumbnail -->
+  <Section padding="sm" background="tertiary">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+      {heroProductImage && (
+        <img
+          src={getOptimizedImage(heroProductImage, 'thumb')}
+          alt={featuredBook.title}
+          class="w-24 h-auto rounded-lg shadow-lg rotate-3 flex-shrink-0"
+          width="100"
+          height="100"
+          loading="eager"
+        />
+      )}
+      <SocialProofCounter count={5000} label="happy families" client:visible />
+    </div>
+  </Section>
+
   <!-- Featured Book Section -->
   <Section background="light">
     <SectionHeader
@@ -117,7 +139,7 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
       series={featuredSeries}
       books={featuredBooks}
       defaultFormat="board-book"
-      client:load
+      client:visible
     />
   </Section>
 
@@ -147,16 +169,16 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
       testimonials={testimonials}
       autoRotate={true}
       interval={5000}
-      client:load
+      client:visible
     />
   </Section>
 
-  <!-- Available Now -->
+  <!-- Free for Your Family -->
   <Section background="light">
     <SectionHeader
-      title="available now"
-      highlight="available"
-      description="Check out our free digital downloads!"
+      title="free for your family"
+      highlight="free"
+      description="Download beautiful Hindu heritage resources for your little ones — coloring sheets, activity pages, and more."
     />
     <div class="grid md:grid-cols-3 gap-8">
       {availableProducts.map((product) => (
@@ -212,34 +234,26 @@ const ogImage = getOptimizedImage(featuredBook.image, 'hero');
     highlight="community"
     description="Get notified about new books, free resources, and cultural celebration ideas."
     variant="tertiary"
-    client:load
+    client:visible
   />
 
   <!-- Final CTA -->
-  <Section background="dark" container="md">
-    <div class="text-center">
-      <h2 class="font-title font-bold text-2xl md:text-3xl text-light mb-4">
-        Start your <span class="text-primary">cultural journey</span> today
-      </h2>
-      <p class="text-light/70 max-w-xl mx-auto mb-3">
-        Give your children the gift of understanding their rich heritage through beautifully illustrated stories.
-      </p>
-      <div class="flex items-center justify-center gap-2 mb-8">
-        <span class="text-amber-400 text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="text-light/50 text-xs">Loved by families worldwide</span>
-      </div>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <Button variant="amazon" size="lg" asChild>
-          <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
-            Get It With Free Prime Delivery
-          </a>
-        </Button>
-        <Button variant="outlineLight" size="lg" asChild>
-          <a href="/our-story">Read Our Story</a>
-        </Button>
-      </div>
+  <DarkCtaSection
+    title="Start your cultural journey today"
+    highlight="cultural journey"
+    description="Give your children the gift of understanding their rich heritage through beautifully illustrated stories."
+  >
+    <div class="flex flex-wrap gap-4 justify-center">
+      <Button variant="amazon" size="lg" asChild>
+        <a href={getAmazonUrl('8195870724')} target="_blank" rel="noopener">
+          Get It With Free Prime Delivery
+        </a>
+      </Button>
+      <Button variant="outlineLight" size="lg" asChild>
+        <a href="/our-story">Read Our Story</a>
+      </Button>
     </div>
-  </Section>
+  </DarkCtaSection>
 
   <!-- Conversion Components -->
   <ExitIntentPopup />

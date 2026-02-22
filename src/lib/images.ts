@@ -33,20 +33,6 @@ export function getOptimizedImage(originalPath: string, size: ImageSize = 'produ
 }
 
 /**
- * Get default optimized image (no size suffix, product quality)
- */
-export function getOptimizedImageDefault(originalPath: string): string {
-  if (!originalPath.startsWith(ORIGINAL_BASE)) {
-    return originalPath;
-  }
-
-  const relativePath = originalPath.replace(ORIGINAL_BASE + '/', '');
-  const pathWithoutExt = relativePath.replace(/\.[^.]+$/, '');
-
-  return `${OPTIMIZED_BASE}/${pathWithoutExt}.webp`;
-}
-
-/**
  * Generate srcset for responsive images
  * @param originalPath - Original image path
  * @returns srcset string for use in img tags
