@@ -2,11 +2,13 @@
 import { BOOKS, getAmazonUrl } from '@/data/products';
 
 interface Props {
-  // Optional override - if not provided, rotates through popup offers
+  /** Optional override - if not provided, rotates through popup offers */
   bookId?: number;
+  /** Context hint for personalized copy (e.g., deity name from blog post) */
+  contextHint?: string;
 }
 
-const { bookId } = Astro.props;
+const { bookId, contextHint } = Astro.props;
 
 // Define popup offer configurations for different books
 const POPUP_OFFERS = [
@@ -40,10 +42,12 @@ const POPUP_OFFERS = [
   },
 ];
 
-// Select offer - either specified or random
-const selectedOffer = bookId
-  ? POPUP_OFFERS.find(o => o.bookId === bookId) || POPUP_OFFERS[0]
-  : POPUP_OFFERS[Math.floor(Math.random() * POPUP_OFFERS.length)];
+// Select offer: contextHint forces board book (deity context), bookId overrides, otherwise random
+const selectedOffer = contextHint
+  ? POPUP_OFFERS[0] // Board Book - Hindu Deities (most relevant for deity blog posts)
+  : bookId
+    ? POPUP_OFFERS.find(o => o.bookId === bookId) || POPUP_OFFERS[0]
+    : POPUP_OFFERS[Math.floor(Math.random() * POPUP_OFFERS.length)];
 
 const book = BOOKS.find(b => b.id === selectedOffer.bookId)!;
 const productImage = book.image;
@@ -97,10 +101,14 @@ const ctaLink = getAmazonUrl(book.asin || book.isbn || '');
     </div>
 
     <h2 id="exit-popup-title" class="font-title font-bold text-xl md:text-2xl text-dark mb-2">
-      {selectedOffer.title}
+      {contextHint
+        ? `Your child will love meeting ${contextHint} in full color`
+        : selectedOffer.title}
     </h2>
     <p class="text-dark/70 text-sm mb-4 max-w-xs mx-auto">
-      {selectedOffer.description}
+      {contextHint
+        ? `Bring ${contextHint} and 9 other Hindu deities to life with vibrant illustrations your child will treasure.`
+        : selectedOffer.description}
     </p>
     <p class="text-primary font-bold text-lg mb-4">
       ${book.salePrice || book.regularPrice}

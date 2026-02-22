@@ -1,6 +1,20 @@
 ---
-import { getAmazonUrl } from '@/data/products';
+import { BOOK_SERIES, getAmazonUrl } from '@/data/products';
 const currentYear = new Date().getFullYear();
+
+/** Find the cheapest format for each series to show "from $X.XX" pricing */
+const bookLinks = BOOK_SERIES.map((series) => {
+  const cheapest = series.formats.reduce((min, fmt) => {
+    const price = parseFloat(fmt.price.replace('$', ''));
+    const minPrice = parseFloat(min.price.replace('$', ''));
+    return price < minPrice ? fmt : min;
+  });
+  return {
+    name: series.shortName,
+    price: cheapest.price,
+    href: getAmazonUrl(cheapest.asin || ''),
+  };
+});
 
 const navItems = [
   { name: 'Books', href: '/books' },
@@ -20,7 +34,7 @@ const socialLinks = [
 
 <footer class="bg-dark text-light mx-auto max-w-screen-2xl">
   <div class="max-w-6xl mx-auto px-5 py-12 md:py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <!-- Quick Links -->
       <div>
         <h3 class="font-title font-bold text-lg mb-4">Quick Links</h3>
@@ -30,14 +44,23 @@ const socialLinks = [
               {item.name}
             </a>
           ))}
-          <a
-            href={getAmazonUrl('8195870724')}
-            target="_blank"
-            rel="noopener"
-            class="text-light/70 hover:text-primary transition-colors"
-          >
-            Shop Books on Amazon →
-          </a>
+        </nav>
+      </div>
+
+      <!-- Our Books -->
+      <div>
+        <h3 class="font-title font-bold text-lg mb-4">Our Books</h3>
+        <nav class="flex flex-col gap-2">
+          {bookLinks.map((book) => (
+            <a
+              href={book.href}
+              target="_blank"
+              rel="noopener"
+              class="text-light/70 hover:text-primary transition-colors text-sm"
+            >
+              {book.name} — <span class="text-primary/90">from {book.price}</span>
+            </a>
+          ))}
         </nav>
       </div>
 
