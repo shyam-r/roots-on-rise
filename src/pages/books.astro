@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { BookSeriesCard, Button, Section, SectionHeader } from '@/components/ui';
+import LotusAccent from '@/components/patterns/LotusAccent.astro';
 import ExitIntentPopup from '@/components/ExitIntentPopup.astro';
 import MobileStickyBuy from '@/components/MobileStickyBuy.astro';
 import {
@@ -44,7 +45,13 @@ const faqSchema = generateFAQSchema(allFAQs);
 
   <!-- Hero -->
   <Section background="tertiary" container="md">
-    <div class="text-center">
+    <div class="text-center relative">
+      <div class="hidden md:block absolute left-0 top-1/2 -translate-y-1/2">
+        <LotusAccent variant="outline" size="lg" opacity={0.25} />
+      </div>
+      <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+        <LotusAccent variant="outline" size="lg" opacity={0.25} rotation={180} />
+      </div>
       <h1 class="font-title font-bold text-4xl md:text-5xl text-dark mb-6">
         children's <span class="text-primary">books</span>
       </h1>
@@ -105,10 +112,10 @@ const faqSchema = generateFAQSchema(allFAQs);
           <thead>
             <tr class="border-b border-dark/10">
               <th class="text-left py-4 px-4 font-title font-bold text-dark">Feature</th>
-              <th class="text-center py-4 px-3 font-title font-bold text-primary">Board Book</th>
-              <th class="text-center py-4 px-3 font-title font-bold text-primary">Hardcover</th>
-              <th class="text-center py-4 px-3 font-title font-bold text-dark">Paperback</th>
-              <th class="text-center py-4 px-3 font-title font-bold text-dark">Kindle</th>
+              <th class="text-center py-4 px-3 font-title font-bold bg-lime/10 text-lime rounded-t-lg">Board Book</th>
+              <th class="text-center py-4 px-3 font-title font-bold bg-sky/10 text-sky rounded-t-lg">Hardcover</th>
+              <th class="text-center py-4 px-3 font-title font-bold bg-marigold/10 text-amber-700 rounded-t-lg">Paperback</th>
+              <th class="text-center py-4 px-3 font-title font-bold bg-coral/10 text-coral rounded-t-lg">Kindle</th>
             </tr>
           </thead>
           <tbody class="text-dark/80">
@@ -197,7 +204,7 @@ const faqSchema = generateFAQSchema(allFAQs);
       <!-- The Marvelous Hindu Deities FAQ -->
       <div id="faq-hindu-deities" class="mb-12 scroll-mt-32">
         <h3 class="font-title font-bold text-lg text-primary mb-4 flex items-center gap-2">
-          <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">📖</span>
+          <span class="w-8 h-8 bg-marigold/20 rounded-full flex items-center justify-center text-sm">📖</span>
           The Marvelous Hindu Deities
         </h3>
         <div class="space-y-4">
@@ -218,7 +225,7 @@ const faqSchema = generateFAQSchema(allFAQs);
       <!-- My Little Shloka and Mantra Book FAQ -->
       <div id="faq-shloka-mantra" class="mb-12 scroll-mt-32">
         <h3 class="font-title font-bold text-lg text-primary mb-4 flex items-center gap-2">
-          <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">🙏</span>
+          <span class="w-8 h-8 bg-sky/20 rounded-full flex items-center justify-center text-sm">🙏</span>
           My Little Shloka and Mantra Book
         </h3>
         <div class="space-y-4">
@@ -239,7 +246,7 @@ const faqSchema = generateFAQSchema(allFAQs);
       <!-- General FAQ -->
       <div>
         <h3 class="font-title font-bold text-lg text-dark/70 mb-4 flex items-center gap-2">
-          <span class="w-8 h-8 bg-dark/5 rounded-full flex items-center justify-center text-sm">❓</span>
+          <span class="w-8 h-8 bg-lime/15 rounded-full flex items-center justify-center text-sm">❓</span>
           General Questions
         </h3>
         <div class="space-y-4">
@@ -278,7 +285,7 @@ const faqSchema = generateFAQSchema(allFAQs);
           {deityPages.map((p) => (
             <a
               href={`/${p.slug}`}
-              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+              class="px-4 py-2 bg-primary/[0.08] rounded-full text-sm text-primary/80 border border-primary/20 hover:bg-primary hover:text-white hover:border-primary transition-colors"
             >
               {p.heading.replace('discover ', '').replace('goddess ', '').replace('lord ', '')}
             </a>
@@ -293,7 +300,7 @@ const faqSchema = generateFAQSchema(allFAQs);
           {festivalPages.map((p) => (
             <a
               href={`/${p.slug}`}
-              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+              class="px-4 py-2 bg-coral/10 rounded-full text-sm text-coral border border-coral/20 hover:bg-coral hover:text-white hover:border-coral transition-colors"
             >
               {p.heading.replace('celebrate ', '').replace('the perfect ', '').replace(' with kids', '').replace(' gift', ' gifts')}
             </a>
@@ -308,7 +315,7 @@ const faqSchema = generateFAQSchema(allFAQs);
           {topicPages.map((p) => (
             <a
               href={`/${p.slug}`}
-              class="px-4 py-2 bg-white rounded-full text-sm text-dark/70 border border-dark/10 hover:border-primary/40 hover:text-primary transition-colors"
+              class="px-4 py-2 bg-lime/10 rounded-full text-sm text-lime border border-lime/20 hover:bg-lime hover:text-white hover:border-lime transition-colors"
             >
               {p.heading}
             </a>
