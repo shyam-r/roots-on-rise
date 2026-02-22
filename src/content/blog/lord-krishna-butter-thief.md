@@ -59,10 +59,19 @@ That means: study hard even if you're not sure about the grade. Be kind even whe
 
 **The Marvelous Hindu Deities** shows Krishna with his iconic flute and peacock feather in bright, beautiful illustrations. Perfect for bedtime stories about the most playful god in Hindu mythology!
 
-## Free Krishna Coloring Sheet
-
-Krishna loved music — color the instruments he played! Download this free printable featuring traditional Indian instruments including Krishna's beloved flute.
-
-- [Musical Instruments](/images/downloads/musical-instruments.png) — Flute, tabla, sitar, veena and more
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50 border border-sky-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Krishna Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Krishna loved music — color the instruments he played!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/musical-instruments.png" download class="group block rounded-xl overflow-hidden border border-sky-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/musical-instruments.webp" alt="Indian musical instruments coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-sky-600">Musical Instruments</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

@@ -65,10 +65,19 @@ Out of the swirling ocean, many amazing things appeared — and the most beautif
 
 **The Marvelous Hindu Deities** features Goddess Lakshmi in a stunning illustration that captures her grace and golden glow. The perfect way to introduce her to young readers — especially during Diwali season!
 
-## Free Diwali Coloring Sheet
-
-Light up your coloring time with a diya — the oil lamp families light during Diwali to welcome Lakshmi!
-
-- [Diya Oil Lamp](/images/downloads/diya.png) — Traditional lamp, symbol of light over darkness
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Diwali Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Light up your coloring time with a diya — the lamp that welcomes Lakshmi!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/diya.png" download class="group block rounded-xl overflow-hidden border border-amber-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/diya.webp" alt="Diya oil lamp coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-amber-600">Diya Oil Lamp</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

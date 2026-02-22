@@ -70,10 +70,19 @@ Vishnu found a way through every loophole. That's some serious creative problem-
 
 **The Marvelous Hindu Deities** presents Lord Vishnu in his cosmic four-armed form with a stunning illustration. The perfect way to introduce children to the great protector of the universe!
 
-## Free Vishnu Coloring Sheet
-
-Color Lord Vishnu's sacred symbols! Download this free printable and bring the Shankha and Sudarshana Chakra to life.
-
-- [Shankha & Sudarshana Chakra](/images/downloads/shankha-chakra.png) — Vishnu's conch shell and divine discus
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Vishnu Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color Vishnu's sacred symbols — click to download and print!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/shankha-chakra.png" download class="group block rounded-xl overflow-hidden border border-blue-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/shankha-chakra.webp" alt="Shankha and Chakra coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-blue-600">Shankha & Chakra</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

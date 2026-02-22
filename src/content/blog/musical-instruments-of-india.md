@@ -86,10 +86,19 @@ Music fills every Hindu celebration:
 
 **The Marvelous Hindu Deities** shows Krishna with his iconic flute and Saraswati with her veena — the two most musical gods in Hindu mythology. **My Little Shloka and Mantra Book** brings the sounds of Sanskrit to life with mantras your family can chant together.
 
-## Free Musical Instruments Coloring Sheet
-
-Color the instruments of the gods — flute, tabla, sitar, veena and more!
-
-- [Musical Instruments](/images/downloads/musical-instruments.png) — Traditional Indian instruments in one beautiful page
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎵</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Musical Instruments Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color the instruments of the gods — flute, tabla, sitar, veena and more!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/musical-instruments.png" download class="group block rounded-xl overflow-hidden border border-emerald-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/musical-instruments.webp" alt="Indian musical instruments coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-emerald-600">Musical Instruments</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

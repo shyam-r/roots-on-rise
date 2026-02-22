@@ -103,12 +103,27 @@ Test yourself — can you match each deity to their symbol?
 
 **The Marvelous Hindu Deities** shows each god with their sacred symbols in beautiful, detailed illustrations. It's the perfect way for kids to learn to recognize and understand what each deity carries and why!
 
-## Free Symbol Coloring Sheets
-
-Color the sacred symbols of Hindu gods!
-
-- [Trishul & Damaru](/images/downloads/trishul.png) — Shiva's trident and cosmic drum
-- [Shankha & Sudarshana Chakra](/images/downloads/shankha-chakra.png) — Vishnu's conch shell and divine discus
-- [Deity Symbols Collection](/images/downloads/deity-symbols.png) — All the sacred items in one page: trishul, chakra, lotus, flute, bow & arrow, and gada
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">⚔️</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Symbol Coloring Sheets</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color the sacred symbols of Hindu gods!</p>
+  <div class="grid grid-cols-3 gap-4 mb-5">
+    <a href="/images/downloads/trishul.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/trishul.webp" alt="Trishul coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Trishul & Damaru</span>
+    </a>
+    <a href="/images/downloads/shankha-chakra.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/shankha-chakra.webp" alt="Shankha and Chakra coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Shankha & Chakra</span>
+    </a>
+    <a href="/images/downloads/deity-symbols.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/deity-symbols.webp" alt="Deity symbols collection coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">All Symbols</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

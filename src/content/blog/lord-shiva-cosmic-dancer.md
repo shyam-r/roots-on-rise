@@ -65,13 +65,31 @@ The story of how Ganesha got his elephant head involves Shiva — but that's a w
 
 **The Marvelous Hindu Deities** shows Lord Shiva in a powerful illustration that captures his cosmic presence. And **My Little Shloka and Mantra Book** teaches the beloved *Om Namah Shivaya* mantra that families can chant together.
 
-## Free Shiva Coloring Sheets
-
-Bring Shiva's world to life with these free printable coloring pages! Click to download and print at home.
-
-- [Trishul & Damaru](/images/downloads/trishul.png) — Shiva's trident and cosmic drum
-- [Shiva Linga](/images/downloads/shiva-linga.png) — The sacred symbol of Lord Shiva
-- [Mount Kailasha](/images/downloads/kailasha.png) — Shiva's majestic Himalayan home
-- [Kedarnath Temple](/images/downloads/kedarnath.png) — The famous Shiva temple in the mountains
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Shiva Coloring Sheets</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Bring Shiva's world to life! Click any image to download and print at home.</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+    <a href="/images/downloads/trishul.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/trishul.webp" alt="Trishul coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Trishul & Damaru</span>
+    </a>
+    <a href="/images/downloads/shiva-linga.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/shiva-linga.webp" alt="Shiva Linga coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Shiva Linga</span>
+    </a>
+    <a href="/images/downloads/kailasha.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/kailasha.webp" alt="Mount Kailasha coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Mount Kailasha</span>
+    </a>
+    <a href="/images/downloads/kedarnath.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/kedarnath.webp" alt="Kedarnath Temple coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Kedarnath Temple</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

@@ -53,10 +53,19 @@ Ganesha won the race — not with speed, but with cleverness and love.
 
 Want to see Ganesha in beautiful, colorful illustrations? **The Marvelous Hindu Deities** board book brings Ganesha to life with vibrant art perfect for little hands. And **My Little Shloka and Mantra Book** teaches the special Ganesha mantra: *Om Gan Ganapataye Namaha*.
 
-## Free Ganesha Coloring Sheet
-
-Download a free Ganesha mandala coloring page — a beautiful intricate design perfect for mindful coloring!
-
-- [Ganesha Mandala](/images/downloads/ganesha-mandala.png) — Intricate mandala featuring Lord Ganesha
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Ganesha Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color your own Ganesha mandala — click to download and print!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/ganesha-mandala.png" download class="group block rounded-xl overflow-hidden border border-orange-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/ganesha-mandala.webp" alt="Ganesha Mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-orange-600">Ganesha Mandala</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

@@ -65,10 +65,19 @@ This means Saraswati helps us tell the difference between **what's true and what
 
 **The Marvelous Hindu Deities** features Goddess Saraswati with her iconic veena and books, shown in a beautiful illustration that inspires a love of learning. A perfect addition to any child's bookshelf — especially on Vasant Panchami!
 
-## Free Saraswati Coloring Sheet
-
-Saraswati loves music — color the instruments she inspires! This printable features the veena, sitar, tabla, and other traditional Indian instruments.
-
-- [Musical Instruments](/images/downloads/musical-instruments.png) — Veena, sitar, tabla, flute and more
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Saraswati Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Saraswati loves music — color the instruments she inspires!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/musical-instruments.png" download class="group block rounded-xl overflow-hidden border border-purple-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/musical-instruments.webp" alt="Musical instruments coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-purple-600">Musical Instruments</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-purple-600 hover:text-purple-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

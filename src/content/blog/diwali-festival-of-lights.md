@@ -71,10 +71,19 @@ Diwali isn't just celebrated in India — families celebrate it in the United St
 
 **The Marvelous Hindu Deities** introduces the gods and goddesses celebrated during Diwali, including Lakshmi and Rama. And **My Little Shloka and Mantra Book** includes the Lakshmi mantra that families chant during Diwali puja!
 
-## Free Diwali Coloring Sheet
-
-Bring the festival of lights home — color your own diya oil lamp!
-
-- [Diya Oil Lamp](/images/downloads/diya.png) — Traditional lamp lit during Diwali and daily puja
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🪔</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Diwali Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Bring the festival of lights home — color your own diya!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/diya.png" download class="group block rounded-xl overflow-hidden border border-amber-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/diya.webp" alt="Diya oil lamp coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-amber-600">Diya Oil Lamp</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

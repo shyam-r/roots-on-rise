@@ -64,12 +64,27 @@ Here are some fun ways to explore Om together:
 
 **My Little Shloka and Mantra Book** teaches the sacred Om chant along with other beautiful mantras that families can learn together. The perfect introduction to the sounds of Hindu tradition!
 
-## Free Om Coloring Sheets
-
-Download these free printable Om designs — from simple outlines to intricate mandalas!
-
-- [Om Symbol](/images/downloads/om-symbol.png) — Large outline perfect for young colorists
-- [Om Symbol Mandala](/images/downloads/om-mandala.png) — Om surrounded by mandala patterns
-- [Intricate Om Mandala](/images/downloads/intricate-om.png) — Advanced design for experienced colorists
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Om Coloring Sheets</h3>
+  </div>
+  <p class="text-gray-600 mb-5">From simple outlines to intricate mandalas — click to download and print!</p>
+  <div class="grid grid-cols-3 gap-4 mb-5">
+    <a href="/images/downloads/om-symbol.png" download class="group block rounded-xl overflow-hidden border border-violet-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/om-symbol.webp" alt="Om symbol coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-violet-600">Om Symbol</span>
+    </a>
+    <a href="/images/downloads/om-mandala.png" download class="group block rounded-xl overflow-hidden border border-violet-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/om-mandala.webp" alt="Om mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-violet-600">Om Mandala</span>
+    </a>
+    <a href="/images/downloads/intricate-om.png" download class="group block rounded-xl overflow-hidden border border-violet-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/intricate-om.webp" alt="Intricate Om mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-violet-600">Intricate Om</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-violet-600 hover:text-violet-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

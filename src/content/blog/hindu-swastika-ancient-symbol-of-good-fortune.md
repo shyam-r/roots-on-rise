@@ -68,10 +68,19 @@ The swastika is closely connected to **Lord Ganesha**, the remover of obstacles.
 
 **The Marvelous Hindu Deities** introduces children to the beautiful world of Hindu art and symbolism, featuring deities adorned with sacred symbols. And **My Little Shloka and Mantra Book** teaches the mantras that families recite during the ceremonies where the swastika appears.
 
-## Free Swastika Coloring Sheet
-
-Color this ancient symbol of good fortune — perfect for learning about Hindu cultural traditions!
-
-- [Swastika Symbol](/images/downloads/swastika.png) — The auspicious Hindu symbol of prosperity and well-being
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 border border-red-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Swastika Coloring Sheet</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color this ancient symbol of good fortune!</p>
+  <div class="max-w-[200px] mb-5">
+    <a href="/images/downloads/swastika.png" download class="group block rounded-xl overflow-hidden border border-red-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/swastika.webp" alt="Hindu swastika coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-red-600">Swastika Symbol</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

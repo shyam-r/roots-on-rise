@@ -76,13 +76,31 @@ Here are some tips to make your mandala coloring experience even better:
 
 **The Marvelous Hindu Deities** features intricate artwork inspired by mandala patterns and sacred geometry. The perfect way to introduce children to the beauty of Hindu artistic traditions!
 
-## Free Mandala Coloring Sheets
-
-Download these beautiful mandalas and start your mindful coloring journey!
-
-- [Ganesha Mandala](/images/downloads/ganesha-mandala.png) — Intricate mandala featuring Lord Ganesha
-- [Lotus Mandala](/images/downloads/mandala.png) — Beautiful lotus-inspired mandala with petal patterns
-- [Om Symbol Mandala](/images/downloads/om-mandala.png) — Sacred Om surrounded by mandala patterns
-- [Intricate Om Mandala](/images/downloads/intricate-om.png) — Advanced design for experienced colorists
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🎨</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Mandala Coloring Sheets</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Beautiful mandalas for your mindful coloring journey — click to download!</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+    <a href="/images/downloads/ganesha-mandala.png" download class="group block rounded-xl overflow-hidden border border-pink-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/ganesha-mandala.webp" alt="Ganesha mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-pink-600">Ganesha Mandala</span>
+    </a>
+    <a href="/images/downloads/mandala.png" download class="group block rounded-xl overflow-hidden border border-pink-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/mandala.webp" alt="Lotus mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-pink-600">Lotus Mandala</span>
+    </a>
+    <a href="/images/downloads/om-mandala.png" download class="group block rounded-xl overflow-hidden border border-pink-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/om-mandala.webp" alt="Om mandala coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-pink-600">Om Mandala</span>
+    </a>
+    <a href="/images/downloads/intricate-om.png" download class="group block rounded-xl overflow-hidden border border-pink-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/intricate-om.webp" alt="Intricate Om coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-pink-600">Intricate Om</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-pink-600 hover:text-pink-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>

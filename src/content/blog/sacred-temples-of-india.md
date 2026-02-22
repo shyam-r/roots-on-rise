@@ -80,12 +80,27 @@ When you visit a Hindu temple, here's what you might see:
 
 **The Marvelous Hindu Deities** features Lord Shiva in his cosmic form — the very deity worshipped at Kedarnath and Kailash. And **My Little Shloka and Mantra Book** teaches the *Om Namah Shivaya* mantra that echoes through every Shiva temple.
 
-## Free Temple Coloring Sheets
-
-Color these sacred places and symbols of Lord Shiva!
-
-- [Kedarnath Temple](/images/downloads/kedarnath.png) — The iconic Himalayan temple with snow-capped peaks
-- [Mount Kailasha](/images/downloads/kailasha.png) — Shiva's majestic mountain home
-- [Shiva Linga](/images/downloads/shiva-linga.png) — The sacred symbol found in every Shiva temple
-
-See all 14 coloring sheets on our [free downloads page](/digital-downloads).
+<div class="not-prose my-10 rounded-2xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-200/50 p-6 md:p-8">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-3xl">🏔️</span>
+    <h3 class="font-bold text-xl text-gray-900">Free Temple Coloring Sheets</h3>
+  </div>
+  <p class="text-gray-600 mb-5">Color these sacred places and symbols of Lord Shiva!</p>
+  <div class="grid grid-cols-3 gap-4 mb-5">
+    <a href="/images/downloads/kedarnath.png" download class="group block rounded-xl overflow-hidden border border-teal-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/kedarnath.webp" alt="Kedarnath Temple coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-teal-600">Kedarnath</span>
+    </a>
+    <a href="/images/downloads/kailasha.png" download class="group block rounded-xl overflow-hidden border border-teal-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/kailasha.webp" alt="Mount Kailasha coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-teal-600">Mt. Kailasha</span>
+    </a>
+    <a href="/images/downloads/shiva-linga.png" download class="group block rounded-xl overflow-hidden border border-teal-200/50 bg-white hover:shadow-md transition-shadow">
+      <img src="/images/downloads-optimized/shiva-linga.webp" alt="Shiva Linga coloring page" class="w-full aspect-square object-cover" loading="lazy" />
+      <span class="block text-xs font-semibold text-center py-2 text-gray-700 group-hover:text-teal-600">Shiva Linga</span>
+    </a>
+  </div>
+  <a href="/digital-downloads" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-700">
+    See all 14 free coloring sheets →
+  </a>
+</div>
